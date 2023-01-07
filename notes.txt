@@ -1,0 +1,7 @@
+1) Create a basic layout
+2) Create a page to update
+3) Search for library for Image viewer
+4) Add notes for image
+5) Show image on request 
+6) Basic Login Page
+

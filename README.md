@@ -1,2 +1,2 @@
-# This is personal website for KrishivMenon.com
+# KrishivMenon.com
 

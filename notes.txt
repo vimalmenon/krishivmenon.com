@@ -4,4 +4,6 @@
 4) Add notes for image
 5) Show image on request 
 6) Basic Login Page
+7) Setup GitHub action
+8) Add library for notes
 

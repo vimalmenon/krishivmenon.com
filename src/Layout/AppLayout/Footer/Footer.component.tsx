@@ -1,10 +1,14 @@
-
+import {Container} from "../../../Style/Container"
+import {FooterStyle} from "./Footer.style";
 
 export const Footer:React.FC = () => {
   return (
-    <footer style={{display:"flex", flex: "0 0 20px"}}>
+    <Container component={"footer"} sx={{flex: "0 0 20px"}}>
       This is footer
-    </footer>
+      <FooterStyle>
+      copywrite @ 2023, all rights reserved
+    </FooterStyle>
+    </Container>
   )
 }
 

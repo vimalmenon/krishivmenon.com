@@ -1,13 +1,10 @@
-
-
 export const Navigations = [
   {
-    name: "Home",
-    url: "/"
+    name: 'Home',
+    url: '/',
   },
   {
-    name: "Admin",
-    url: "/admin"
-  }
+    name: 'Admin',
+    url: '/admin',
+  },
 ];
-

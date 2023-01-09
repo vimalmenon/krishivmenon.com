@@ -1,1 +1,1 @@
-export * from "./AppLayout.component";
+export * from './AppLayout.component';

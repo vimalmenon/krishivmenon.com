@@ -19,7 +19,8 @@
       "@layout": ["src/Layout"],
       "@types": ["src/types"],
       "@style": ["src/Style"],
-      "@page": ["src/Page"]
+      "@page": ["src/Page"],
+      "@common": ["src/Common"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

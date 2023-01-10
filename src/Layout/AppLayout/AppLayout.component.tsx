@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
+import { ReactChildren } from '@types';
 
-import { ReactChildren } from '../../types';
 import { Footer } from './Footer';
 import { Header } from './Header';
 

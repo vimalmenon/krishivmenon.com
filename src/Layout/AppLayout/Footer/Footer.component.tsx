@@ -1,6 +1,6 @@
 import MuiContainer from '@mui/material/Container';
+import { Container } from '@style';
 
-import { Container } from '../../../Style/Container';
 import { FooterStyle } from './Footer.style';
 
 export const Footer: React.FC = () => {

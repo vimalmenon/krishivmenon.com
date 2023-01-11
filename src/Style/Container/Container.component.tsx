@@ -7,10 +7,11 @@ export const Container: React.FC<ReactChildren & IContainer> = ({
   children,
   component = 'div',
   direction = 'row',
+  display = 'flex',
   sx = {},
 }) => {
   return (
-    <Box component={component} sx={{ ...sx, flexDirection: direction }}>
+    <Box component={component} sx={{ ...sx, display, flexDirection: direction }}>
       {children}
     </Box>
   );

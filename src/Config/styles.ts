@@ -1,10 +1,11 @@
 import { createTheme } from '@mui/material/styles';
 
-export const theme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
+export const getTheme = (mode: 'dark' | 'light') =>
+  createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
 
 export const margin = {
   xs: '',

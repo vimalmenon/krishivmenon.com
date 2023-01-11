@@ -7,10 +7,10 @@ export const Header: React.FC = () => {
   return (
     <Container component="header" sx={{ display: 'flex', flex: '0 0 50px' }}>
       this is header
-      <HeaderSwitch component="div">
+      <HeaderSwitch>
         <Switch />
       </HeaderSwitch>
-      <HeaderSwitch component="div">
+      <HeaderSwitch>
         <Switch />
       </HeaderSwitch>
     </Container>

@@ -20,7 +20,8 @@
       "@types": ["src/types"],
       "@style": ["src/Style"],
       "@page": ["src/Page"],
-      "@common": ["src/Common"]
+      "@common": ["src/Common"],
+      "@utility": ["src/Utility"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

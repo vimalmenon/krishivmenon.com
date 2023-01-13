@@ -13,7 +13,7 @@ export const initialValue: IAppContext = {
 
 export const Context = React.createContext<IAppContext>(initialValue);
 
-export const useContext = () => {
+export const useContext = (): IAppContext => {
   return React.useContext<IAppContext>(Context);
 };
 export const useThemeSwitcher = () => {
@@ -25,4 +25,5 @@ export const useThemeSwitcher = () => {
     switchTheme,
   };
 };
+
 export const context = { useThemeSwitcher, useContext };

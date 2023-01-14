@@ -1,6 +1,8 @@
 import createCache from '@emotion/cache';
 import { createTheme } from '@mui/material/styles';
-export const getTheme = (mode: 'dark' | 'light') =>
+import { ThemeType } from '@types';
+
+export const getTheme = (mode: ThemeType) =>
   createTheme({
     palette: {
       mode: mode,
@@ -9,15 +11,6 @@ export const getTheme = (mode: 'dark' | 'light') =>
 export const clientSideEmotionCache = createCache({
   key: 'css',
 });
-
-export const margin = {
-  xs: '',
-  sm: '',
-  md: '',
-  lg: '',
-  xl: '',
-  xxl: '',
-};
 
 export const fontSize = {
   xs: '0.8em',

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { ReactChildren } from '@types';
+import { ReactChildren, ThemeType } from '@types';
 
 import { Context, initialValue } from './AppContext.service';
 
 export const AppContext: React.FC<ReactChildren> = ({ children }) => {
-  const [theme, setTheme] = React.useState<'dark' | 'light'>(initialValue.theme);
+  const [theme, setTheme] = React.useState<ThemeType>(initialValue.theme);
   const [isAdmin, setAdmin] = React.useState<boolean>(initialValue.isAdmin);
   const [drawerOpen, setDrawerOpen] = React.useState(initialValue.drawerOpen);
   return (

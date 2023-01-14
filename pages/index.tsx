@@ -3,7 +3,7 @@ import { Main } from '@page';
 
 export default function Home() {
   return (
-    <AppLayout>
+    <AppLayout title="Home">
       <Main />
     </AppLayout>
   );

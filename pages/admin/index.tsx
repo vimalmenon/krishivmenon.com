@@ -3,7 +3,7 @@ import { Admin as AdminPage } from '@page';
 
 export default function Admin() {
   return (
-    <AppLayout>
+    <AppLayout title="Admin Page">
       <AdminPage />
     </AppLayout>
   );

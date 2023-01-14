@@ -8,3 +8,7 @@ export interface ReactChildren {
 export type AnyType = any;
 
 export type ThemeType = 'dark' | 'light';
+
+export interface IBaseLayout {
+  title: string;
+}

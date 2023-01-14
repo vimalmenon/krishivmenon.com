@@ -28,4 +28,14 @@ export const useThemeSwitcher = () => {
   };
 };
 
-export const context = { useThemeSwitcher, useContext };
+export const useSwitchDrawer = () => {
+  const { drawerOpen, setDrawerOpen } = React.useContext<IAppContext>(Context);
+  const switchDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+  return {
+    switchDrawer,
+  };
+};
+
+export const context = { useThemeSwitcher, useContext, useSwitchDrawer };

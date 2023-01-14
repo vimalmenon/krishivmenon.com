@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ThemeType } from '@types';
+import { ThemeType, IGenericMethod } from '@types';
 
 export interface IAppContext {
   theme: ThemeType;
@@ -9,4 +9,9 @@ export interface IAppContext {
   setAdmin: React.Dispatch<React.SetStateAction<boolean>>;
   drawerOpen: boolean;
   setDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface IUseCommonContext {
+  switchDrawer: IGenericMethod;
+  switchTheme: IGenericMethod;
 }

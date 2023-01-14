@@ -1,8 +1,8 @@
 import createCache from '@emotion/cache';
-import { createTheme } from '@mui/material/styles';
-import { ThemeType } from '@types';
+import { createTheme, Theme } from '@mui/material/styles';
+import { ThemeType, IGeneric } from '@types';
 
-export const getTheme = (mode: ThemeType) =>
+export const getTheme: IGeneric<ThemeType, Theme> = (mode) =>
   createTheme({
     palette: {
       mode: mode,

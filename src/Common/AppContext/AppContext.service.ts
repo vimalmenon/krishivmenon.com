@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { IGenericMethod, IGenericReturn } from '@types';
 import { NotImplemented } from '@utility';
 
-import { IAppContext } from './AppContext';
+import { IAppContext, IUseCommonContext } from './AppContext';
 
 export const initialValue: IAppContext = {
   theme: 'dark',
@@ -19,12 +20,12 @@ export const useContext = (): IAppContext => {
   return React.useContext<IAppContext>(Context);
 };
 
-export const useCommonContext = () => {
+export const useCommonContext: IGenericReturn<IUseCommonContext> = () => {
   const { drawerOpen, setDrawerOpen, theme, setTheme } = React.useContext<IAppContext>(Context);
-  const switchDrawer = () => {
+  const switchDrawer: IGenericMethod = () => {
     setDrawerOpen(!drawerOpen);
   };
-  const switchTheme = () => {
+  const switchTheme: IGenericMethod = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
   return {

@@ -18,24 +18,19 @@ export const Context = React.createContext<IAppContext>(initialValue);
 export const useContext = (): IAppContext => {
   return React.useContext<IAppContext>(Context);
 };
-export const useThemeSwitcher = () => {
-  const { theme, setTheme } = React.useContext<IAppContext>(Context);
+
+export const useCommonContext = () => {
+  const { drawerOpen, setDrawerOpen, theme, setTheme } = React.useContext<IAppContext>(Context);
+  const switchDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
   const switchTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
   return {
+    switchDrawer,
     switchTheme,
   };
 };
 
-export const useSwitchDrawer = () => {
-  const { drawerOpen, setDrawerOpen } = React.useContext<IAppContext>(Context);
-  const switchDrawer = () => {
-    setDrawerOpen(!drawerOpen);
-  };
-  return {
-    switchDrawer,
-  };
-};
-
-export const context = { useThemeSwitcher, useContext, useSwitchDrawer };
+export const context = { useContext, useCommonContext };

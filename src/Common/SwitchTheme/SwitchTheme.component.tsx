@@ -5,7 +5,7 @@ import { SwitchThemeStyle } from './SwitchTheme.style';
 
 export const SwitchTheme: React.FC = () => {
   const { theme } = context.useContext();
-  const { switchTheme } = context.useThemeSwitcher();
+  const { switchTheme } = context.useCommonContext();
 
   return (
     <SwitchThemeStyle>

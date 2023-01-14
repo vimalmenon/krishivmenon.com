@@ -4,6 +4,14 @@ export const Navigations = [
     url: '/',
   },
   {
+    name: 'Photos',
+    url: '/photos',
+  },
+  {
+    name: 'Notes',
+    url: '/notes',
+  },
+  {
     name: 'Admin',
     url: '/admin',
   },

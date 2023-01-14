@@ -1,9 +1,9 @@
 import { AppLayout } from '@layout';
 import { Admin as AdminPage } from '@page';
 
-export default function Admin() {
+export default function Notes() {
   return (
-    <AppLayout title="Admin ">
+    <AppLayout title="Notes">
       <AdminPage />
     </AppLayout>
   );

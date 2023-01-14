@@ -1,12 +1,9 @@
 import '../styles/globals.css';
 import { AppContext } from '@common';
-import createCache from '@emotion/cache';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import type { AppProps } from 'next/app';
 
-const clientSideEmotionCache = createCache({
-  key: 'css',
-});
+import { clientSideEmotionCache } from '../src/Config/styles';
 
 export default function App({
   Component,

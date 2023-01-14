@@ -5,4 +5,6 @@ export interface IAppContext {
   setTheme: React.Dispatch<React.SetStateAction<'dark' | 'light'>>;
   isAdmin: boolean;
   setAdmin: React.Dispatch<React.SetStateAction<boolean>>;
+  drawerOpen: boolean;
+  setDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }

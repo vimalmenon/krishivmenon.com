@@ -9,6 +9,8 @@ export const initialValue: IAppContext = {
   setTheme: NotImplemented,
   isAdmin: false,
   setAdmin: NotImplemented,
+  drawerOpen: true,
+  setDrawerOpen: NotImplemented,
 };
 
 export const Context = React.createContext<IAppContext>(initialValue);

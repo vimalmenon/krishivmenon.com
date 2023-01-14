@@ -1,8 +1,9 @@
 import { ElementType } from 'react';
 
+import { SxProps, Theme } from '@mui/material';
 export interface IContainer {
   direction?: 'column' | 'row';
-  sx?: any;
-  component: ElementType<any>;
+  sx?: SxProps<Theme>;
+  component: ElementType;
   display?: 'flex' | 'block' | 'inline';
 }

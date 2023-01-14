@@ -12,3 +12,8 @@ export type ThemeType = 'dark' | 'light';
 export interface IBaseLayout {
   title: string;
 }
+
+export type IGenericMethod = () => void;
+export type IGenericReturn<T> = () => T;
+export type IGenericParam<T> = (v: T) => void;
+export type IGeneric<T, K> = (v: T) => K;

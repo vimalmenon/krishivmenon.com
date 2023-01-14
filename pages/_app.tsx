@@ -1,11 +1,23 @@
 import '../styles/globals.css';
 import { AppContext } from '@common';
+import createCache from '@emotion/cache';
+import { CacheProvider, EmotionCache } from '@emotion/react';
 import type { AppProps } from 'next/app';
 
-export default function App({ Component, pageProps }: AppProps) {
+const clientSideEmotionCache = createCache({
+  key: 'css',
+});
+
+export default function App({
+  Component,
+  pageProps,
+  emotionCache = clientSideEmotionCache,
+}: AppProps & { emotionCache: EmotionCache }) {
   return (
     <AppContext>
-      <Component {...pageProps} />
+      <CacheProvider value={emotionCache}>
+        <Component {...pageProps} />
+      </CacheProvider>
     </AppContext>
   );
 }

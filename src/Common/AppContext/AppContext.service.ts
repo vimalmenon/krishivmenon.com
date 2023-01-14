@@ -7,7 +7,7 @@ import { IAppContext } from './AppContext';
 export const initialValue: IAppContext = {
   theme: 'dark',
   setTheme: NotImplemented,
-  isAdmin: false,
+  isAdmin: true,
   setAdmin: NotImplemented,
   drawerOpen: true,
   setDrawerOpen: NotImplemented,

@@ -8,3 +8,5 @@ export const Navigations = [
     url: '/admin',
   },
 ];
+
+export const DrawerWidth = 240;

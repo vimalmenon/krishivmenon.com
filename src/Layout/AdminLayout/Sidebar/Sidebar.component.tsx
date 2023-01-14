@@ -1,6 +1,7 @@
 import { context } from '@common';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { Drawer } from '@style';
 
@@ -14,6 +15,9 @@ export const Sidebar: React.FC = () => {
         {Navigations.map((nav, key) => {
           return (
             <ListItemButton key={key}>
+              <ListItemIcon>
+                <nav.Icon />
+              </ListItemIcon>
               <ListItemText primary={nav.name} />
             </ListItemButton>
           );

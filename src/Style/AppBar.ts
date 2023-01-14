@@ -2,8 +2,9 @@ import MuiAppBar from '@mui/material/AppBar';
 import { styled } from '@mui/material/styles';
 
 import { DrawerWidth } from '../Config/constants';
+import { IAppBar } from './style';
 
-export const AppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== 'open' })<any>(
+export const AppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== 'open' })<IAppBar>(
   ({ theme, open }) => {
     return {
       zIndex: theme.zIndex.drawer + 1,

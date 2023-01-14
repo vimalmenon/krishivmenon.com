@@ -11,7 +11,7 @@ export const AppLayout: React.FC<ReactChildren> = ({ children }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      {isAdmin ? <AdminLayout>{children}</AdminLayout> : <LoginLayout>{children}</LoginLayout>}
+      {!isAdmin ? <AdminLayout>{children}</AdminLayout> : <LoginLayout>{children}</LoginLayout>}
     </ThemeProvider>
   );
 };

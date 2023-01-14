@@ -1,8 +1,8 @@
+import { Footer } from '@common';
 import Box from '@mui/material/Box';
 import { ReactChildren } from '@types';
 
 import { BaseLayout } from '../';
-import { Footer } from './Footer';
 import { Header } from './Header';
 
 export const LoginLayout: React.FC<ReactChildren> = ({ children }) => {

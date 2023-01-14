@@ -1,5 +1,9 @@
-import { FooterStyle } from './Footer.style';
+import { FooterStyle, FooterContainer } from './Footer.style';
 
 export const Footer: React.FC = () => {
-  return <FooterStyle>&#169; 2023, All rights reserved</FooterStyle>;
+  return (
+    <FooterContainer>
+      <FooterStyle>&#169; 2023, All rights reserved</FooterStyle>
+    </FooterContainer>
+  );
 };

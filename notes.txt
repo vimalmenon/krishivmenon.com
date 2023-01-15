@@ -1,3 +1,16 @@
+High Priority: 
+    Able to Login with AWS cognito
+    Make an API to call AWS lambda
+    Make the Website HTTPS
+Medium Priority
+    Github action
+    Terraform
+    Automate
+Less Priority
+    Responsive UI
+Least Priority
+    Testing of application
+    
 2) Create a page to update
 3) Search for library for Image viewer
 4) Add notes for image

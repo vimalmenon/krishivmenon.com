@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 
-import { ReactChildren } from '../../types';
 import { IContainer } from './Container';
+import { ReactChildren } from '../../types';
 
 export const Container: React.FC<ReactChildren & IContainer> = ({
   children,

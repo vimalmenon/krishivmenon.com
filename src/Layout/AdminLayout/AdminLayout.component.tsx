@@ -3,9 +3,9 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { ReactChildren, IBaseLayout } from '@types';
 
-import { BaseLayout } from '../';
 import { Header } from './Header';
 import { Sidebar } from './Sidebar';
+import { BaseLayout } from '../';
 
 export const AdminLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, title }) => {
   return (

@@ -8,7 +8,7 @@ import { IAppContext, IUseCommonContext } from './AppContext';
 export const initialValue: IAppContext = {
   theme: 'dark',
   setTheme: NotImplemented,
-  isAdmin: true,
+  isAdmin: false,
   setAdmin: NotImplemented,
   drawerOpen: true,
   setDrawerOpen: NotImplemented,

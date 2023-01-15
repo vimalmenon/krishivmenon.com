@@ -14,7 +14,7 @@ export const AppLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, tit
       {isAdmin ? (
         <AdminLayout title={title}>{children}</AdminLayout>
       ) : (
-        <LoginLayout title="Login Page">{children}</LoginLayout>
+        <LoginLayout title="Login Page" />
       )}
     </ThemeProvider>
   );

@@ -1,9 +1,10 @@
 import '../styles/globals.css';
-import { AppContext } from '@common';
-import { CacheProvider, EmotionCache } from '@emotion/react';
-import type { AppProps } from 'next/app';
+import React from 'react';
 
-import { clientSideEmotionCache } from '../src/Config/styles';
+import { AppContext, AuthProvider } from '@context';
+import { CacheProvider, EmotionCache } from '@emotion/react';
+import { clientSideEmotionCache } from '@style';
+import type { AppProps } from 'next/app';
 
 export default function App({
   Component,
@@ -11,10 +12,14 @@ export default function App({
   emotionCache = clientSideEmotionCache,
 }: AppProps & { emotionCache: EmotionCache }) {
   return (
-    <AppContext>
+    <React.StrictMode>
       <CacheProvider value={emotionCache}>
-        <Component {...pageProps} />
+        <AuthProvider>
+          <AppContext>
+            <Component {...pageProps} />
+          </AppContext>
+        </AuthProvider>
       </CacheProvider>
-    </AppContext>
+    </React.StrictMode>
   );
 }

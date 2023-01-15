@@ -1,4 +1,5 @@
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import GoogleIcon from '@mui/icons-material/Google';
 import HomeIcon from '@mui/icons-material/Home';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import NoteIcon from '@mui/icons-material/Note';
@@ -26,5 +27,15 @@ export const Navigations = [
   },
 ];
 
-export const DrawerWidth = 240;
-export const FooterHeight = 40;
+export const Providers = [
+  {
+    name: 'Google',
+    provider: 'Google',
+    Icon: GoogleIcon,
+  },
+];
+
+export const ENV = {
+  AUTH_CLIENT_ID: process.env.NEXT_PUBLIC_AUTH_CLIENT_ID || '',
+  AUTH_URL: process.env.NEXT_PUBLIC_AUTH_URL || '',
+};

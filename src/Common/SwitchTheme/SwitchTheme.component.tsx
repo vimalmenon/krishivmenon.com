@@ -1,4 +1,4 @@
-import { context } from '@common';
+import { context } from '@context';
 import Switch from '@mui/material/Switch';
 
 import { SwitchThemeStyle } from './SwitchTheme.style';

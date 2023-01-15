@@ -21,7 +21,9 @@
       "@style": ["src/Style"],
       "@page": ["src/Page"],
       "@common": ["src/Common"],
-      "@utility": ["src/Utility"]
+      "@utility": ["src/Utility"],
+      "@constant": ["src/Config/constants"],
+      "@context": ["src/Context"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

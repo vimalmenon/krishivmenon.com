@@ -1,7 +1,5 @@
 import { styled } from '@mui/material/styles';
-
-import { FooterHeight } from '../../Config/constants';
-import { fontSize } from '../../Config/styles';
+import { fontSize, FooterHeight } from '@style';
 
 export const FooterStyle = styled('div')({
   fontSize: fontSize.xs,

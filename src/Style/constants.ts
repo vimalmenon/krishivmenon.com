@@ -20,3 +20,6 @@ export const fontSize = {
   xl: '',
   xxl: '',
 };
+
+export const DrawerWidth = 240;
+export const FooterHeight = 40;

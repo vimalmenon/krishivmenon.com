@@ -1,8 +1,8 @@
 import MuiAppBar from '@mui/material/AppBar';
 import { styled } from '@mui/material/styles';
 
+import { DrawerWidth } from './constants';
 import { IAppBar } from './style';
-import { DrawerWidth } from '../Config/constants';
 
 export const AppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== 'open' })<IAppBar>(
   ({ theme, open }) => {

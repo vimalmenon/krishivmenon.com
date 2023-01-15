@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:static": "next build && next export",
     "start": "next start",
     "eslint": "eslint ./ --ext .ts,.tsx",
     "eslint:fix": "eslint ./ --ext .ts,.tsx --fix",

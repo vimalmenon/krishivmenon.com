@@ -39,3 +39,5 @@ export const ENV = {
   AUTH_CLIENT_ID: process.env.NEXT_PUBLIC_AUTH_CLIENT_ID || '',
   AUTH_URL: process.env.NEXT_PUBLIC_AUTH_URL || '',
 };
+
+export const StorageKey = 'KM';

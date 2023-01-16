@@ -6,10 +6,9 @@ import { Context, initialValue } from './AppContext.service';
 
 export const AppContext: React.FC<ReactChildren> = ({ children }) => {
   const [theme, setTheme] = React.useState<ThemeType>(initialValue.theme);
-  const [isAdmin, setAdmin] = React.useState<boolean>(initialValue.isAdmin);
   const [drawerOpen, setDrawerOpen] = React.useState(initialValue.drawerOpen);
   return (
-    <Context.Provider value={{ theme, setTheme, isAdmin, setAdmin, drawerOpen, setDrawerOpen }}>
+    <Context.Provider value={{ theme, setTheme, drawerOpen, setDrawerOpen }}>
       {children}
     </Context.Provider>
   );

@@ -10,9 +10,10 @@ export const initialValue: IAuthProvider = {
 export const AuthProviderContext = React.createContext<IAuthProvider>(initialValue);
 
 export const useCommonAuthProvider = () => {
-  const context = React.useContext<IAuthProvider>(AuthProviderContext);
+  const { user, accessToken } = React.useContext<IAuthProvider>(AuthProviderContext);
 
   return {
-    context,
+    user,
+    accessToken,
   };
 };

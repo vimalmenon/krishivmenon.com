@@ -6,4 +6,5 @@ export interface IContainer {
   sx?: SxProps<Theme>;
   component: ElementType;
   display?: 'flex' | 'block' | 'inline';
+  isMain?: boolean;
 }

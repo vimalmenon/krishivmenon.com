@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import React from 'react';
 
-import { AppContext, AuthProvider, LocalStorageProvider } from '@context';
+import { AppProvider, AuthProvider, LocalStorageProvider } from '@context';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { clientSideEmotionCache } from '@style';
 import type { AppProps } from 'next/app';
@@ -16,9 +16,9 @@ export default function App({
       <CacheProvider value={emotionCache}>
         <LocalStorageProvider>
           <AuthProvider>
-            <AppContext>
+            <AppProvider>
               <Component {...pageProps} />
-            </AppContext>
+            </AppProvider>
           </AuthProvider>
         </LocalStorageProvider>
       </CacheProvider>

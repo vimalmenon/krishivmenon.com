@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ThemeType, IGenericMethod } from '@types';
 
-export interface IAppContext {
+export interface IAppProvider {
   theme: ThemeType;
   setTheme: React.Dispatch<React.SetStateAction<ThemeType>>;
   drawerOpen: boolean;

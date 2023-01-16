@@ -9,3 +9,4 @@ export const checkTruthy = (value: string | undefined | null) => {
   if (value === null) return false;
   return true;
 };
+export { apis } from './apis';

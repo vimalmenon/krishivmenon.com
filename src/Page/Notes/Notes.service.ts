@@ -2,6 +2,10 @@ export const useNotes = () => {
   return {};
 };
 
+export const useNote = () => {
+  return {};
+};
+
 /*
  * /notes
  *  - GET : Get all notes

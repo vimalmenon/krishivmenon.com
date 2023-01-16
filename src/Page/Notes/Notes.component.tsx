@@ -15,7 +15,6 @@ export const Notes: React.FC = () => {
       </Container>
       <Divider />
       <Container component="div" sx={{ my: 2 }}>
-        
         {notes.map((note) => {
           return <div key={note.title}>{note.title}</div>;
         })}

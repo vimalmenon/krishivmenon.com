@@ -14,7 +14,11 @@ export const Container: React.FC<ReactChildren & IContainer> = ({
 }) => {
   if (isMain) {
     return (
-      <MuiContainer component={component} sx={{ display, flexDirection: direction, ...sx }} maxWidth="lg">
+      <MuiContainer
+        component={component}
+        sx={{ display, flexDirection: direction, ...sx }}
+        maxWidth="lg"
+      >
         {children}
       </MuiContainer>
     );

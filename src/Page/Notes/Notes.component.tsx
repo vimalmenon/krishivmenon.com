@@ -1,3 +1,4 @@
+import { Container } from '@style';
 export const Notes: React.FC = () => {
-  return null;
+  return <Container component="div">This is notes</Container>;
 };

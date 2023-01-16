@@ -21,5 +21,11 @@ export const fontSize = {
   xxl: '',
 };
 
+export const Spacing = {
+  sm: 1,
+  md: 2,
+  lg: 3,
+};
+
 export const DrawerWidth = 240;
 export const FooterHeight = 40;

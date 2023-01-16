@@ -1,10 +1,10 @@
 import { AppLayout } from '@layout';
-import { Admin as AdminPage } from '@page';
+import { Notes as Page } from '@page';
 
 export default function Notes() {
   return (
     <AppLayout title="Notes">
-      <AdminPage />
+      <Page />
     </AppLayout>
   );
 }

@@ -20,5 +20,6 @@ Least Priority
 8) Add library for notes
 9) Need to login with Google Auth
 10) Set up HTTPS connection
+11) Upload file to lambda
 
 https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html

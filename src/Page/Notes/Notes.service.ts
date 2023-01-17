@@ -13,4 +13,5 @@ export const useNote = () => {
  *    - GET: Get note for an id
  *    - POST: Add note for an id
  *    - PUT: Update note for an id
+ *    - Delete: Delete note for an id
  */

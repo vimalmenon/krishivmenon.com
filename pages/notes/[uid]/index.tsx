@@ -1,6 +1,13 @@
 import { AppLayout } from '@layout';
+import { Note as Page } from '@page';
 import { useRouter } from 'next/router';
+
 export default function Note() {
   const { query } = useRouter();
-  return <AppLayout title="Note">{query.uid} is the uid</AppLayout>;
+  const uid = parseInt(query.uid as string);
+  return (
+    <AppLayout title="Note">
+      <Page id={uid} />
+    </AppLayout>
+  );
 }

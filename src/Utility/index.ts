@@ -9,4 +9,15 @@ export const checkTruthy = (value: string | undefined | null) => {
   if (value === null) return false;
   return true;
 };
+
+export const getFormData = <T>(body: T): FormData => {
+  const result = new FormData();
+  if (body) {
+    Object.keys(body).forEach((data) => {
+      result.append(data, (body as AnyType)[data]);
+    });
+  }
+  return result;
+};
+
 export { apis } from './apis';

@@ -14,6 +14,7 @@ export interface IBaseLayout {
 }
 
 export interface INotes {
+  uid: string;
   title: string;
   content: string;
   creator: string;

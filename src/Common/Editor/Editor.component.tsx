@@ -8,5 +8,12 @@ const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 export const Editor: React.FC = () => {
   const [value, setValue] = React.useState('');
 
-  return <ReactQuill theme="snow" value={value} onChange={setValue} />;
+  return (
+    <ReactQuill
+      theme="snow"
+      value={value}
+      onChange={setValue}
+      style={{ width: '100%', height: '50vh' }}
+    />
+  );
 };

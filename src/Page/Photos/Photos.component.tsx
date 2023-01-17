@@ -1,3 +1,9 @@
+import { FileUpload } from '@common';
+
 export const Photos: React.FC = () => {
-  return null;
+  return (
+    <div>
+      <FileUpload />
+    </div>
+  );
 };

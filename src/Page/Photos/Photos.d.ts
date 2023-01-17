@@ -1,6 +1,7 @@
 export interface IPhotos {
-  title: string;
+  name: string;
   url: string;
+  metadata: Record<string, string>;
   createdDate: string;
 }
 

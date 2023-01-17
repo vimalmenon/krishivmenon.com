@@ -17,10 +17,11 @@ export interface INotes {
   title: string;
   content: string;
   creator: string;
-  meta: Record<string, string>;
+  metadata: Record<string, string>;
   createdDate: string;
   updatedDate: string;
 }
+
 export type IGenericMethod = () => void;
 export type IGenericReturn<T> = () => T;
 export type IGenericParam<T> = (v: T) => void;

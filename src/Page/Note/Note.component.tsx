@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Editor } from '@common';
 import { TextField } from '@mui/material';
 import { Container } from '@style';
 
@@ -12,7 +13,9 @@ export const Note: React.FC<INote> = ({ id }) => {
       <Container component="div" sx={{ my: 2 }}>
         <TextField label="Search" variant="standard" size="small" fullWidth name="search" />
       </Container>
-      <Container component="div">This is note</Container>
+      <Container component="div">
+        <Editor />
+      </Container>
     </Container>
   );
 };

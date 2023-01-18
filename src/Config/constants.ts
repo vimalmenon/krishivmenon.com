@@ -38,6 +38,8 @@ export const Providers = [
 export const ENV = {
   AUTH_CLIENT_ID: process.env.NEXT_PUBLIC_AUTH_CLIENT_ID || '',
   AUTH_URL: process.env.NEXT_PUBLIC_AUTH_URL || '',
+  API: process.env.NEXT_PUBLIC_API || '',
+  API_VERSION: process.env.NEXT_PUBLIC_VERSION || '',
 };
 
 export const StorageKey = 'KM';

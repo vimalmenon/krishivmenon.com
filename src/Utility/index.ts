@@ -20,4 +20,4 @@ export const getFormData = <T>(body: T): FormData => {
   return result;
 };
 
-export { apis } from './apis';
+export { apis, getBaseUrl } from './apis';

@@ -10,7 +10,8 @@ Less Priority
     Responsive UI
 Least Priority
     Testing of application
-    
+
+1) Save the theme to LocalStorage
 2) Create a page to update
 3) Search for library for Image viewer
 4) Add notes for image
@@ -21,5 +22,29 @@ Least Priority
 9) Need to login with Google Auth
 10) Set up HTTPS connection
 11) Upload file to lambda
+12) Set up Proxy for API Gateway
 
 https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html
+
+
+KM - Krishiv Menon
+VM - Vimal Menon
+NK - Nitya Kurup
+
+Table Name  : Application
+  AppKey    : 
+  SortKey   :
+
+/image
+  - POST - Upload the image
+/folders
+  - GET
+  - DELETE
+  - POST
+/notes
+  - GET : Get all notes
+  /{id}:
+    - GET: Get note for an id
+    - POST: Add note for an id
+    - PUT: Update note for an id
+    - Delete: Delete note for an id

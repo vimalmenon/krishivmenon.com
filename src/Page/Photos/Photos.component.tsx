@@ -7,9 +7,7 @@ export const Photos: React.FC = () => {
   return (
     <div>
       <FileUpload saveFile={savePhoto} />
-      <div>
-        {base64}
-      </div>
+      <div>{base64}</div>
     </div>
   );
 };

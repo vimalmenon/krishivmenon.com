@@ -1,16 +1,15 @@
-
-import React from "react";
+import React from 'react';
 
 export const usePhotos = () => {
-const [base64, setBase] = React.useState<any>("")
+  const [base64] = React.useState<any>('');
   const savePhoto = (file: any) => {
-    var r = new FileReader();
-    r.onload = function(e){
-        console.log(e.target?.result)
-        // setBase(e.target?.result); 
+    const r = new FileReader();
+    r.onload = function (e) {
+      console.log(e.target?.result);
+      // setBase(e.target?.result);
     };
     r.readAsBinaryString(file);
-    console.log()
+    console.log();
     // fetch(' https://p1nqtdgh09.execute-api.us-east-1.amazonaws.com/test/image', {
     //     body: file,
     //     method: "POST",

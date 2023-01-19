@@ -22,6 +22,6 @@ export const getFormData = <T>(body: T): FormData => {
 };
 export const getUid: IGenericReturn<string> = () => {
   return uuid();
-}
+};
 
 export { apis, getBaseUrl } from './apis';

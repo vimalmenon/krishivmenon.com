@@ -23,6 +23,8 @@ export interface INotes {
   updatedDate: string;
 }
 
+export type MethodType = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
 export type IGenericMethod = () => void;
 export type IGenericReturn<T> = () => T;
 export type IGenericParam<T> = (v: T) => void;

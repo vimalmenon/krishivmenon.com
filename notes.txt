@@ -36,8 +36,19 @@ Table Name  : Application
   AppKey    : 
   SortKey   :
 
-/image
-  - POST - Upload the image
+IImage:
+  name: string
+  path: string
+
+IFolder:
+  name: string
+  content: string[]
+
+/storage
+  /{folder}
+    /{file}
+      - POST - Upload the image
+      - DELETE - Delete the file
 /folders
   - GET
   - DELETE

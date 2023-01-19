@@ -14,14 +14,17 @@ export const usePhotos = () => {
       });
   }, []);
   const savePhoto = (file: any) => {
-    // fetch(' https://p1nqtdgh09.execute-api.us-east-1.amazonaws.com/test/image', {
-    //     body: file,
-    //     method: "POST",
-    // }).then(() => {
-    //     console.log("this is called")
-    // }).catch(() => {
-    //     console.log("this is catch")
-    // });
+    console.log(file);
+    // fetch(`${url}/upload/work/something2.png`, {
+    //   body: file,
+    //   method: 'PUT',
+    // })
+    //   .then(() => {
+    //     console.log('this is called');
+    //   })
+    //   .catch(() => {
+    //     console.log('this is catch');
+    //   });
   };
   return {
     savePhoto,

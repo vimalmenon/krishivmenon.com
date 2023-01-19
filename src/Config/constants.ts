@@ -39,7 +39,16 @@ export const ENV = {
   AUTH_CLIENT_ID: process.env.NEXT_PUBLIC_AUTH_CLIENT_ID || '',
   AUTH_URL: process.env.NEXT_PUBLIC_AUTH_URL || '',
   API: process.env.NEXT_PUBLIC_API || '',
-  API_VERSION: process.env.NEXT_PUBLIC_VERSION || '',
+  API_VERSION: process.env.NEXT_PUBLIC_API_VERSION || '',
+};
+
+export const FileType = {
+  'image/jpeg': 'jpeg',
+  'image/png': 'png',
+  'image/heic': 'heic',
+  'application/pdf': 'pdf',
+  'application/zip': 'zip',
+  'application/json': 'json',
 };
 
 export const StorageKey = 'KM';

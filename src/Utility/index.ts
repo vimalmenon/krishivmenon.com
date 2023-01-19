@@ -1,4 +1,5 @@
-import { AnyType } from '@types';
+import { AnyType, IGenericReturn } from '@types';
+import { uuid } from 'uuidv4';
 
 export const NotImplemented = (): AnyType => {
   throw new Error('Function not implemented');
@@ -19,5 +20,8 @@ export const getFormData = <T>(body: T): FormData => {
   }
   return result;
 };
+export const getUid: IGenericReturn<string> = () => {
+  return uuid();
+}
 
 export { apis, getBaseUrl } from './apis';

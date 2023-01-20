@@ -16,7 +16,7 @@ export const apis = {
     fileName,
     file,
     extension,
-    imageType,
+    fileType,
   }: IApiStorageApi): IApi<File> {
     const url = Apis.S3Storage.replace('{folder}', folder)
       .replace('{fileName}', fileName)
@@ -26,7 +26,7 @@ export const apis = {
       method: 'PUT',
       data: file,
       headers: {
-        'Content-Type': imageType,
+        'Content-Type': fileType,
       },
     };
   },

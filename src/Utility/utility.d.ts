@@ -3,5 +3,5 @@ export interface IApiStorageApi {
   fileName: string;
   extension: string;
   file?: File;
-  imageType: string;
+  fileType: string;
 }

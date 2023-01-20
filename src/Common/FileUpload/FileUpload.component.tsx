@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FileType } from '@constant';
+import { FileTypeMapping } from '@constant';
 import { useCommonApiContext } from '@context';
 import { apis } from '@utility';
 import { getUid } from '@utility';
@@ -13,7 +13,7 @@ export const FileUpload: React.FC = () => {
   const { makeApiCall } = useCommonApiContext();
   React.useEffect(() => {
     acceptedFiles.map((file) => {
-      const extension = FileType[file.type];
+      const extension = FileTypeMapping[file.type];
       makeApiCall(
         apis.uploadToS3({
           folder: 'images',

@@ -43,7 +43,7 @@ Table Name : Application
   UpdatedDate   :
   CreatedBy     :
 
-IImage:
+IStorage:
   name: string
   path: string
   alias: string;
@@ -61,18 +61,23 @@ INote:
 
 /storage
   /{folder}
-    - GET - Get all the files
+    - GET         : Get all the files
     /{file}
-      - POST - Upload the image
-      - DELETE - Delete the file
+      - POST      : Upload the image
+      - DELETE    : Delete the file
+/images
+  - GET           : Get all the image
+  - POST          : Upload the image
+  - PUT           : Update the image
+  - Delete        : Delete the image
 /folders
   - GET
   - DELETE
   - POST
 /notes
-  - GET : Get all notes
+  - GET           : Get all notes
   /{id}:
-    - GET: Get note for an id
-    - POST: Add note for an id
-    - PUT: Update note for an id
-    - Delete: Delete note for an id
+    - GET         : Get note for an id
+    - POST        : Add note for an id
+    - PUT         : Update note for an id
+    - Delete      : Delete note for an id

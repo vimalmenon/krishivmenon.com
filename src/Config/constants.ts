@@ -3,6 +3,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import HomeIcon from '@mui/icons-material/Home';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import NoteIcon from '@mui/icons-material/Note';
+import { StorageFileType } from '@types';
 
 export const Navigations = [
   {
@@ -42,13 +43,19 @@ export const ENV = {
   API_VERSION: process.env.NEXT_PUBLIC_API_VERSION || '',
 };
 
-export const FileType: Record<string, string> = {
+export const FileTypeMapping: Record<string, string> = {
   'image/jpeg': 'jpeg',
   'image/png': 'png',
   'image/heic': 'heic',
   'application/pdf': 'pdf',
   'application/zip': 'zip',
   'application/json': 'json',
+};
+
+export const StorageFolderMapping: Record<StorageFileType, string> = {
+  image: '/images',
+  file: '/files',
+  video: '/videos',
 };
 
 export const StorageKey = 'KM';

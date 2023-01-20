@@ -5,7 +5,8 @@ import { IItem } from './Item';
 import { useItem } from './Item.hook';
 
 export const Item: React.FC<IItem> = ({ file, uid }) => {
-  const { isDeleted, loading } = useItem();
+  const { isDeleted, loading, extension } = useItem(file, uid);
+
   if (isDeleted) {
     return null;
   }
@@ -16,7 +17,9 @@ export const Item: React.FC<IItem> = ({ file, uid }) => {
         style={{ height: '70px', width: '50px' }}
         alt={file.name}
       />
-      {uid}
+      <div>
+        {uid}.{extension}
+      </div>
       <DeleteIcon />
       {loading && <LinearProgress color="secondary" />}
     </div>

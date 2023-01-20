@@ -33,6 +33,8 @@ export interface IApi<T> {
   headers?: Record<string, string>;
 }
 
+export type StorageFileType = 'image' | 'file' | 'video';
+
 export type IGenericMethod = () => void;
 export type IGenericReturn<T> = () => T;
 export type IGenericParam<T> = (v: T) => void;

@@ -9,4 +9,5 @@ export type IUseItem = (
 ) => {
   loading: boolean;
   isDeleted: boolean;
+  extension: string;
 };

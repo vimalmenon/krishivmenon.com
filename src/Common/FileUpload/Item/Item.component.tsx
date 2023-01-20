@@ -9,7 +9,7 @@ export const Item: React.FC<any> = ({ file }) => {
         style={{ height: '70px', width: '50px' }}
         alt={file.name}
       />
-      <DeleteIcon onClick={() => console.log('delete clicked')} />
+      <DeleteIcon />
       <LinearProgress color="secondary" />
     </div>
   );

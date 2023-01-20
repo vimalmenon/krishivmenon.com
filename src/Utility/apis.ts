@@ -11,7 +11,13 @@ export const Apis = {
   Notes: 'notes',
 };
 export const apis = {
-  uploadToS3: function <T>({ folder, fileName, file, extension }: IApiStorageApi): IApi<T> {
+  uploadToS3: function ({
+    folder,
+    fileName,
+    file,
+    extension,
+    imageType,
+  }: IApiStorageApi): IApi<File> {
     const url = Apis.S3Storage.replace('{folder}', folder)
       .replace('{fileName}', fileName)
       .replace('{extension}', extension);
@@ -19,6 +25,9 @@ export const apis = {
       url,
       method: 'PUT',
       data: file,
+      headers: {
+        'Content-Type': imageType,
+      },
     };
   },
   deleteFromS3: function <T>({ folder, fileName, extension }: IApiStorageApi): IApi<T> {

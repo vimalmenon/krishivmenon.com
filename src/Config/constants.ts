@@ -42,7 +42,7 @@ export const ENV = {
   API_VERSION: process.env.NEXT_PUBLIC_API_VERSION || '',
 };
 
-export const FileType = {
+export const FileType: Record<string, string> = {
   'image/jpeg': 'jpeg',
   'image/png': 'png',
   'image/heic': 'heic',

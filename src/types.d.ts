@@ -28,8 +28,9 @@ export type MethodType = 'GET' | 'POST' | 'PUT' | 'DELETE';
 export interface IApi<T> {
   url: string;
   method?: MethodType;
-  data?: any;
+  data?: T;
   params?: Record<string, string>;
+  headers?: Record<string, string>;
 }
 
 export type IGenericMethod = () => void;

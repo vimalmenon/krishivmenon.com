@@ -2,13 +2,13 @@ import React from 'react';
 
 import { FileType } from '@constant';
 import { useCommonApiContext } from '@context';
+import DeleteIcon from '@mui/icons-material/Delete';
+import LinearProgress from '@mui/material/LinearProgress';
 import { apis } from '@utility';
 import { getUid } from '@utility';
 import { useDropzone } from 'react-dropzone';
-import DeleteIcon from '@mui/icons-material/Delete';
-import LinearProgress from '@mui/material/LinearProgress';
 
-export const FileUpload: React.FC<any> = ({ saveFile }) => {
+export const FileUpload: React.FC = () => {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
   const { makeApiCall } = useCommonApiContext();
   React.useEffect(() => {
@@ -35,9 +35,9 @@ export const FileUpload: React.FC<any> = ({ saveFile }) => {
         {acceptedFiles.map((file) => {
           return (
             <div key={file.name}>
-                <img src={URL.createObjectURL(file)} style={{ height: '70px', width: '50px' }} />
-                <DeleteIcon onClick={() => console.log("delete clicked")}/>
-                <LinearProgress color="secondary" />
+              <img src={URL.createObjectURL(file)} style={{ height: '70px', width: '50px' }} />
+              <DeleteIcon onClick={() => console.log('delete clicked')} />
+              <LinearProgress color="secondary" />
             </div>
           );
         })}

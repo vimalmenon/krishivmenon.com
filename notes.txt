@@ -27,6 +27,7 @@ Least Priority
 11) Upload file to lambda
 12) Set up Proxy for API Gateway
 13) Need to work on certificate
+14) Need to bring down the warning to single digit
 
 https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html
 
@@ -35,17 +36,28 @@ KM - Krishiv Menon
 VM - Vimal Menon
 NK - Nitya Kurup
 
-Table Name  : Application
-  AppKey    : 
-  SortKey   :
+Table Name : Application
+  AppKey        : 
+  SortKey       :
+  CreatedDate   :
+  UpdatedDate   :
+  CreatedBy     :
 
 IImage:
   name: string
   path: string
+  alias: string;
+  private: boolean;
 
 IFolder:
   name: string
   content: string[]
+  private: boolean;
+
+INote:
+  title: string;
+  content: string;
+  metadata: Record<string,string>
 
 /storage
   /{folder}

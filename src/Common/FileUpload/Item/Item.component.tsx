@@ -1,7 +1,14 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import LinearProgress from '@mui/material/LinearProgress';
 
-export const Item: React.FC<any> = ({ file }) => {
+import { IItem } from './Item';
+import { useItem } from './Item.hook';
+
+export const Item: React.FC<IItem> = ({ file, uid }) => {
+  const { isDeleted, loading } = useItem();
+  if (isDeleted) {
+    return null;
+  }
   return (
     <div key={file.name}>
       <img
@@ -9,8 +16,9 @@ export const Item: React.FC<any> = ({ file }) => {
         style={{ height: '70px', width: '50px' }}
         alt={file.name}
       />
+      {uid}
       <DeleteIcon />
-      <LinearProgress color="secondary" />
+      {loading && <LinearProgress color="secondary" />}
     </div>
   );
 };

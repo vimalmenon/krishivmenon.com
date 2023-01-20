@@ -33,7 +33,7 @@ export const FileUpload: React.FC = () => {
       </div>
       <div>
         {acceptedFiles.map((file) => {
-          return <Item file={file} key={file.name} />;
+          return <Item file={file} uid={getUid()} key={file.name} />;
         })}
       </div>
     </div>

@@ -1,9 +1,14 @@
 import React from 'react';
 
 import { StorageKey } from '@constant';
+import { IGenericReturn } from '@types';
 import { NotImplemented } from '@utility';
 
-import { ILocalStorageProvider } from './LocalStorageProvider';
+import {
+  IUseCommonLocalStorage,
+  ISaveStorage,
+  ILocalStorageProvider,
+} from './LocalStorageProvider';
 
 export const initialValue: ILocalStorageProvider = {
   storage: {},
@@ -12,10 +17,10 @@ export const initialValue: ILocalStorageProvider = {
 
 export const LocalStorageContext = React.createContext<ILocalStorageProvider>(initialValue);
 
-export const useCommonLocalStorage = () => {
+export const useCommonLocalStorage: IGenericReturn<IUseCommonLocalStorage> = () => {
   const { storage, setStorage } = React.useContext<ILocalStorageProvider>(LocalStorageContext);
 
-  const saveStorage = (key: string, value: string) => {
+  const saveStorage: ISaveStorage = (key, value) => {
     storage[key] = value;
     localStorage.setItem(StorageKey, JSON.stringify(storage));
     setStorage(storage);

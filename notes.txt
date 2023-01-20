@@ -1,7 +1,10 @@
 High Priority: 
     Able to Login with AWS cognito
+    Able to Logout with AWS cognito
+    Refresh API Token
     Make an API to call AWS lambda
     Make the Website HTTPS
+    Redirect all the API from api.krishivmenon.com
 Medium Priority
     Github action
     Terraform
@@ -46,6 +49,7 @@ IFolder:
 
 /storage
   /{folder}
+    - GET - Get all the files
     /{file}
       - POST - Upload the image
       - DELETE - Delete the file

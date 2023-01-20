@@ -28,7 +28,7 @@ export type MethodType = 'GET' | 'POST' | 'PUT' | 'DELETE';
 export interface IApi<T> {
   url: string;
   method?: MethodType;
-  data?: T;
+  data?: any;
   params?: Record<string, string>;
 }
 

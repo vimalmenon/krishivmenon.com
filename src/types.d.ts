@@ -39,3 +39,15 @@ export type IGenericMethod = () => void;
 export type IGenericReturn<T> = () => T;
 export type IGenericParam<T> = (v: T) => void;
 export type IGeneric<T, K> = (v: T) => K;
+
+export interface IBaseContent {
+  uid: string;
+  alias: string;
+  type: string;
+  private?: boolean;
+  orphan: boolean;
+}
+
+export interface IFile extends IBaseContent {
+  path: string;
+}

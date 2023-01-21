@@ -1,5 +1,5 @@
 import { ENV } from '@constant';
-import { IGenericReturn, IApi } from '@types';
+import { IGenericReturn, IApi, IFile } from '@types';
 
 import { IApiStorageApi } from './utility';
 
@@ -46,21 +46,21 @@ export const apis = {
       method: 'GET',
     };
   },
-  addAssetToS3: function (data: any): IApi {
+  addAssetToS3: function (data: IFile): IApi {
     return {
       url: Apis.S3Storage,
       method: 'POST',
       data,
     };
   },
-  deleteAssetFromS3: function (data: any): IApi {
+  deleteAssetFromS3: function (data: IFile): IApi {
     return {
       url: Apis.S3Storage,
       method: 'DELETE',
       data,
     };
   },
-  updateAssetFromS3: function (data: any): IApi {
+  updateAssetFromS3: function (data: IFile): IApi {
     return {
       url: Apis.S3Storage,
       method: 'PUT',

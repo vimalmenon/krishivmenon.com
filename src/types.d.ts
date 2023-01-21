@@ -25,7 +25,7 @@ export interface INotes {
 
 export type MethodType = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
-export interface IApi<T> {
+export interface IApi<T = unknown> {
   url: string;
   method?: MethodType;
   data?: T;

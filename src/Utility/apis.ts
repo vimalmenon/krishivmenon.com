@@ -7,7 +7,8 @@ export const getBaseUrl: IGenericReturn<string> = () => {
   return `${ENV.API}${ENV.API_VERSION}`;
 };
 export const Apis = {
-  S3Storage: 'upload/{folder}/{fileName}.{extension}',
+  S3Upload: 'upload/{folder}/{fileName}.{extension}',
+  S3Storage: 'directory',
   Notes: 'notes',
 };
 export const apis = {
@@ -18,7 +19,7 @@ export const apis = {
     extension,
     fileType,
   }: IApiStorageApi): IApi<File> {
-    const url = Apis.S3Storage.replace('{folder}', folder)
+    const url = Apis.S3Upload.replace('{folder}', folder)
       .replace('{fileName}', fileName)
       .replace('{extension}', extension);
     return {
@@ -30,13 +31,40 @@ export const apis = {
       },
     };
   },
-  deleteFromS3: function <T>({ folder, fileName, extension }: IApiStorageApi): IApi<T> {
-    const url = Apis.S3Storage.replace('{folder}', folder)
+  deleteFromS3: function ({ folder, fileName, extension }: IApiStorageApi): IApi {
+    const url = Apis.S3Upload.replace('{folder}', folder)
       .replace('{fileName}', fileName)
       .replace('{extension}', extension);
     return {
       url,
       method: 'DELETE',
+    };
+  },
+  getAssetFromS3: function (): IApi {
+    return {
+      url: Apis.S3Storage,
+      method: 'GET',
+    };
+  },
+  addAssetToS3: function (data: any): IApi {
+    return {
+      url: Apis.S3Storage,
+      method: 'POST',
+      data,
+    };
+  },
+  deleteAssetFromS3: function (data: any): IApi {
+    return {
+      url: Apis.S3Storage,
+      method: 'DELETE',
+      data,
+    };
+  },
+  updateAssetFromS3: function (data: any): IApi {
+    return {
+      url: Apis.S3Storage,
+      method: 'PUT',
+      data,
     };
   },
 };

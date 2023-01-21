@@ -52,7 +52,7 @@ Table Name : Application
   UpdatedDate   : string
 
 IStorage:
-  name: string
+  uid: string
   path: string
   alias: string;
   type: string;
@@ -61,8 +61,10 @@ IStorage:
 
 
 IFolder:
-  name: string
+  uid: string
   content: string[]
+  alias: string;
+  type: string;
   private: boolean;
 
 INote:

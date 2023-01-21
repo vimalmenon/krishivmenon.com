@@ -38,7 +38,7 @@ Least Priority
 
 
 https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html
-
+https://mui.com/joy-ui/getting-started/templates/files/
 
 KM - Krishiv Menon
 VM - Vimal Menon
@@ -85,10 +85,12 @@ INote:
     - Delete       : Delete the image
 
 
-/folders
+/directory
   - GET
-  - DELETE
   - POST
+   /{id}:
+    - DELETE
+    - PUT 
 
 
 /notes

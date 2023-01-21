@@ -53,9 +53,9 @@ export const FileTypeMapping: Record<string, string> = {
 };
 
 export const StorageFolderMapping: Record<StorageFileType, string> = {
-  image: '/images',
-  file: '/files',
-  video: '/videos',
+  image: 'images',
+  file: 'files',
+  video: 'videos',
 };
 
 export const StorageKey = 'KM';

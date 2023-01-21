@@ -1,30 +1,13 @@
 import React from 'react';
 
-import { FileTypeMapping } from '@constant';
-import { useCommonApiContext } from '@context';
-import { apis } from '@utility';
 import { getUid } from '@utility';
 import { useDropzone } from 'react-dropzone';
 
+import { IFileUpload } from './FileUpload';
 import { Item } from './Item';
 
-export const FileUpload: React.FC = () => {
+export const FileUpload: React.FC<IFileUpload> = ({ fileType }) => {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
-  const { makeApiCall } = useCommonApiContext();
-  React.useEffect(() => {
-    acceptedFiles.map((file) => {
-      const extension = FileTypeMapping[file.type];
-      makeApiCall(
-        apis.uploadToS3({
-          folder: 'images',
-          fileName: getUid(),
-          file: file,
-          extension,
-          fileType: file.type,
-        })
-      );
-    });
-  }, [acceptedFiles]);
   return (
     <div>
       <div {...getRootProps({ className: 'dropzone' })}>
@@ -33,7 +16,7 @@ export const FileUpload: React.FC = () => {
       </div>
       <div>
         {acceptedFiles.map((file) => {
-          return <Item file={file} uid={getUid()} key={file.name} />;
+          return <Item file={file} uid={getUid()} key={file.name} fileType={fileType} />;
         })}
       </div>
     </div>

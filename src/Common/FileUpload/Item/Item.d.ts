@@ -1,6 +1,9 @@
+import { StorageFileType } from '@types';
+
 export interface IItem {
   file: File;
   uid: string;
+  fileType: StorageFileType;
 }
 
 export type IUseItem = (

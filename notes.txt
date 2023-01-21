@@ -1,21 +1,26 @@
-High Priority: 
-    Able to Login with AWS cognito
-    Able to Logout with AWS cognito
-    Refresh API Token
-    Make an API to call AWS lambda
-    Make the Website HTTPS
-    Redirect all the API from api.krishivmenon.com
-Medium Priority
-    Github action
-    Terraform
-    Automate
-Less Priority
-    Responsive UI
-Least Priority
-    Testing of application
+Finished Task:
+*) Save the theme to LocalStorage
 
-1) Save the theme to LocalStorage
-2) Create a page to update
+
+High Priority: 
+  Able to Login with AWS cognito
+  Able to Logout with AWS cognito
+  Refresh API Token
+  Make an API to call AWS lambda
+  Make the Website HTTPS
+  Redirect from api.krishivmenon.com
+Medium Priority
+  Github action
+  Terraform /serverless
+  Automate
+Less Priority
+  Responsive UI
+Least Priority
+  Testing of application
+  Need to bring down the warning to single digit
+  Setting up sonar
+
+2) Create a page to update notes
 3) Search for library for Image viewer
 4) Add notes for image
 5) Show image on request 
@@ -27,7 +32,9 @@ Least Priority
 11) Upload file to lambda
 12) Set up Proxy for API Gateway
 13) Need to work on certificate
-14) Need to bring down the warning to single digit
+15) Logging for S3 Bucket for static website
+16) Protect the api using Auth token
+
 
 https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html
 
@@ -39,15 +46,17 @@ NK - Nitya Kurup
 Table Name : Application
   AppKey        : 
   SortKey       :
+  CreatedBy     :
   CreatedDate   :
   UpdatedDate   :
-  CreatedBy     :
 
 IStorage:
   name: string
   path: string
   alias: string;
+  type: string;
   private: boolean;
+
 
 IFolder:
   name: string
@@ -65,15 +74,21 @@ INote:
     /{file}
       - POST      : Upload the image
       - DELETE    : Delete the file
+
+
 /images
   - GET           : Get all the image
   - POST          : Upload the image
   - PUT           : Update the image
   - Delete        : Delete the image
+
+
 /folders
   - GET
   - DELETE
   - POST
+
+
 /notes
   - GET           : Get all notes
   /{id}:

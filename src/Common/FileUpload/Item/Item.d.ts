@@ -1,4 +1,4 @@
-import { StorageFileType } from '@types';
+import { StorageFileType, IGenericMethod } from '@types';
 
 export interface IItem {
   file: File;
@@ -14,4 +14,5 @@ export type IUseItem = (
   loading: boolean;
   isDeleted: boolean;
   extension: string;
+  onDelete: IGenericMethod;
 };

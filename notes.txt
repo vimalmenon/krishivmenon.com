@@ -8,7 +8,7 @@ High Priority:
   Refresh API Token
   Make an API to call AWS lambda
   Make the Website HTTPS
-  Redirect from api.krishivmenon.com
+  Redirect apis from api.krishivmenon.com
 Medium Priority
   Github action
   Terraform /serverless
@@ -34,6 +34,7 @@ Least Priority
 13) Need to work on certificate
 15) Logging for S3 Bucket for static website
 16) Protect the api using Auth token
+17) Need to create Not authorized page
 
 
 https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html
@@ -44,11 +45,11 @@ VM - Vimal Menon
 NK - Nitya Kurup
 
 Table Name : Application
-  AppKey        : 
-  SortKey       :
-  CreatedBy     :
-  CreatedDate   :
-  UpdatedDate   :
+  AppKey        : string
+  SortKey       : string
+  CreatedBy     : string
+  CreatedDate   : string
+  UpdatedDate   : string
 
 IStorage:
   name: string
@@ -56,6 +57,7 @@ IStorage:
   alias: string;
   type: string;
   private: boolean;
+  orphan: boolean; 
 
 
 IFolder:
@@ -68,19 +70,19 @@ INote:
   content: string;
   metadata: Record<string,string>
 
-/storage
+/upload
   /{folder}
-    - GET         : Get all the files
     /{file}
       - POST      : Upload the image
       - DELETE    : Delete the file
 
 
-/images
-  - GET           : Get all the image
-  - POST          : Upload the image
-  - PUT           : Update the image
-  - Delete        : Delete the image
+/storage
+  /{folder}
+    - GET          : Get all the image
+    - POST         : Upload the image
+    - PUT          : Update the image
+    - Delete       : Delete the image
 
 
 /folders

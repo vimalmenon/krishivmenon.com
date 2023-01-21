@@ -46,21 +46,21 @@ export const apis = {
       method: 'GET',
     };
   },
-  addAssetToS3: function (data: IFile): IApi {
+  addAssetToS3: function (data: IFile): IApi<IFile> {
     return {
       url: Apis.S3Storage,
       method: 'POST',
       data,
     };
   },
-  deleteAssetFromS3: function (data: IFile): IApi {
+  deleteAssetFromS3: function (data: IFile): IApi<IFile> {
     return {
       url: Apis.S3Storage,
       method: 'DELETE',
       data,
     };
   },
-  updateAssetFromS3: function (data: IFile): IApi {
+  updateAssetFromS3: function (data: IFile): IApi<IFile> {
     return {
       url: Apis.S3Storage,
       method: 'PUT',

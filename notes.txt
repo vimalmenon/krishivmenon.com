@@ -34,7 +34,7 @@ Least Priority
 13) Need to work on certificate
 15) Logging for S3 Bucket for static website
 16) Protect the api using Auth token
-17) Need to create Not authorized page
+17) Need to create "Not Authorized" page
 
 
 https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html

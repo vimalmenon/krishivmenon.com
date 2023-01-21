@@ -4,8 +4,8 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { IItem } from './Item';
 import { useItem } from './Item.hook';
 
-export const Item: React.FC<IItem> = ({ file, uid }) => {
-  const { isDeleted, loading, extension } = useItem(file, uid);
+export const Item: React.FC<IItem> = ({ file, uid, fileType }) => {
+  const { isDeleted, loading, extension } = useItem(file, uid, fileType);
 
   if (isDeleted) {
     return null;

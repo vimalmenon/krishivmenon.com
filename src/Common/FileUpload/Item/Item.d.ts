@@ -8,7 +8,8 @@ export interface IItem {
 
 export type IUseItem = (
   file: File,
-  uid: string
+  uid: string,
+  fileType: StorageFileType
 ) => {
   loading: boolean;
   isDeleted: boolean;

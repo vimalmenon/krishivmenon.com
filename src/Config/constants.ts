@@ -5,6 +5,8 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import NoteIcon from '@mui/icons-material/Note';
 import { StorageFileType } from '@types';
 
+export { CommonIcons } from './icons';
+
 export const Navigations = [
   {
     name: 'Home',

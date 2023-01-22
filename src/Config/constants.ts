@@ -1,17 +1,15 @@
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import GoogleIcon from '@mui/icons-material/Google';
-import HomeIcon from '@mui/icons-material/Home';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import NoteIcon from '@mui/icons-material/Note';
 import { StorageFileType } from '@types';
 
-export { CommonIcons } from './icons';
+import { CommonIcons } from './icons';
 
 export const Navigations = [
   {
     name: 'Home',
     url: '/',
-    Icon: HomeIcon,
+    Icon: CommonIcons.Home,
   },
   {
     name: 'Photos',
@@ -26,7 +24,7 @@ export const Navigations = [
   {
     name: 'Admin',
     url: '/admin',
-    Icon: AdminPanelSettingsIcon,
+    Icon: CommonIcons.Admin,
   },
 ];
 
@@ -61,3 +59,5 @@ export const StorageFolderMapping: Record<StorageFileType, string> = {
 };
 
 export const StorageKey = 'KM';
+
+export { CommonIcons } from './icons';

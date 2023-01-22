@@ -1,3 +1,4 @@
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -12,4 +13,5 @@ export const CommonIcons = {
   Save: SaveIcon,
   Delete: DeleteIcon,
   Edit: EditIcon,
+  Admin: AdminPanelSettingsIcon,
 };

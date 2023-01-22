@@ -13,14 +13,16 @@ export interface IBaseLayout {
   title: string;
 }
 
-export interface INotes {
-  uid: string;
+export interface IBaseDB {
+  createdDate?: string;
+  updatedDate?: string;
+  sortKey?: string;
+  createdBy?: string;
+}
+export interface INotes extends IBaseDB {
   title: string;
   content: string;
-  creator: string;
   metadata: Record<string, string>;
-  createdDate: string;
-  updatedDate: string;
 }
 
 export type MethodType = 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -34,6 +36,7 @@ export interface IApi<T = unknown> {
 }
 
 export type StorageFileType = 'image' | 'file' | 'video';
+export type PageModeType = 'ADD' | 'EDIT' | 'VIEW';
 
 export type IGenericMethod = () => void;
 export type IGenericReturn<T> = () => T;

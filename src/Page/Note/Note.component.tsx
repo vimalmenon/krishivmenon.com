@@ -9,7 +9,7 @@ import { INote } from './Note';
 import { useNote } from './Note.hook';
 
 export const Note: React.FC<INote> = ({ id }) => {
-  const { mode, note, updateNote } = useNote(id);
+  const { mode, note, updateNote, setMode } = useNote(id);
   return (
     <Container component={'section'} direction="column">
       <Container component="div" sx={{ my: 2 }}>
@@ -19,18 +19,24 @@ export const Note: React.FC<INote> = ({ id }) => {
             <CommonIcons.Delete />
           </>
         )}
-        {mode === 'EDIT' ||
-          (mode === 'ADD' && (
-            <>
-              <CommonIcons.Save />
-            </>
-          ))}
+        {mode === 'EDIT' && (
+          <>
+            <CommonIcons.Save />
+            <CommonIcons.Cancel onClick={() => setMode('VIEW')} />
+          </>
+        )}
+        {mode === 'ADD' && (
+          <>
+            <CommonIcons.Save />
+            <CommonIcons.Cancel onClick={() => setMode('VIEW')} />
+          </>
+        )}
       </Container>
       <Container component="div" sx={{ my: 2 }}>
         <TextField label="Title" variant="standard" size="small" fullWidth name="search" />
       </Container>
       <Container component="div">
-        <Editor note={note?.content || ''} setNote={updateNote} />
+        <Editor note={note?.content || ''} setNote={updateNote} mode={mode} />
       </Container>
     </Container>
   );

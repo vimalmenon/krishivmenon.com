@@ -5,9 +5,10 @@ import { INotes, PageModeType } from '@types';
 export const useNote = (id: number) => {
   const [note, setNote] = React.useState<INotes>();
   const [loading] = React.useState<boolean>(true);
-  const [mode] = React.useState<PageModeType>('VIEW');
+  const [mode, setMode] = React.useState<PageModeType>('EDIT');
   const updateNote = (content: string) => {
     setNote({
+      sortKey: note?.sortKey || '',
       title: note?.title || '',
       content,
       metadata: note?.metadata || {},
@@ -15,10 +16,11 @@ export const useNote = (id: number) => {
   };
   return {
     id,
-    note,
-    setNote,
-    loading,
-    updateNote,
     mode,
+    note,
+    loading,
+    setNote,
+    updateNote,
+    setMode,
   };
 };

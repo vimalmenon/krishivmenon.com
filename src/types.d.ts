@@ -20,6 +20,7 @@ export interface IBaseDB {
   createdBy?: string;
 }
 export interface INotes extends IBaseDB {
+  id?: string;
   title: string;
   content: string;
   metadata: Record<string, string>;

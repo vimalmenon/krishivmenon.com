@@ -7,3 +7,7 @@ export interface IApiStorageApi extends IApiS3Folder {
   file?: File;
   fileType: string;
 }
+
+export interface IApiNote {
+  id: string;
+}

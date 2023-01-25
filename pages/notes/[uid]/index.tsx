@@ -4,10 +4,9 @@ import { useRouter } from 'next/router';
 
 export default function Note() {
   const { query } = useRouter();
-  const uid = parseInt(query.uid as string);
   return (
     <AppLayout title="Note">
-      <Page id={uid} />
+      <Page id={query.uid as string} />
     </AppLayout>
   );
 }

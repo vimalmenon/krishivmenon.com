@@ -56,7 +56,7 @@ export const apis = {
     };
   },
   getNote: function ({ id }: IApiNote): IApi {
-    const url = Apis.S3Drive.replace('{id}', id);
+    const url = Apis.Note.replace('{id}', id);
     return {
       url,
       method: 'GET',

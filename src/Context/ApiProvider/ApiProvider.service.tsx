@@ -14,7 +14,7 @@ const instance = axios.create({
 
 export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
   function makeApiCall<T, K>(value: IApi<T>): Promise<K> {
-    return instance.request(value);
+    return instance.request(value).then((result) => result.data);
   }
   return {
     makeApiCall,

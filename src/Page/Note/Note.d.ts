@@ -1,3 +1,3 @@
 export interface INote {
-  id: number;
+  id: string;
 }

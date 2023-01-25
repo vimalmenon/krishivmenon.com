@@ -9,7 +9,7 @@ import { INote } from './Note';
 import { useNote } from './Note.hook';
 
 export const Note: React.FC<INote> = ({ id }) => {
-  const { mode, note, updateNote, setMode } = useNote(id);
+  const { mode, note, setMode, updateValue } = useNote(id);
   return (
     <Container component={'section'} direction="column">
       <Container component="div" sx={{ my: 2 }}>
@@ -33,10 +33,22 @@ export const Note: React.FC<INote> = ({ id }) => {
         )}
       </Container>
       <Container component="div" sx={{ my: 2 }}>
-        <TextField label="Title" variant="standard" size="small" fullWidth name="search" />
+        <TextField
+          label="Title"
+          variant="standard"
+          size="small"
+          fullWidth
+          name="title"
+          value={note.title}
+          onChange={(e) => updateValue('title', e.target.value)}
+        />
       </Container>
       <Container component="div">
-        <Editor note={note?.content || ''} setNote={updateNote} mode={mode} />
+        <Editor
+          note={note?.content || ''}
+          setNote={(content) => updateValue('content', content)}
+          mode={mode}
+        />
       </Container>
     </Container>
   );

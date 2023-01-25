@@ -11,11 +11,12 @@ import { Container } from '@style';
 import { useNotes } from './Notes.service';
 
 export const Notes: React.FC = () => {
-  const { notes, deleteNote } = useNotes();
+  const { notes, deleteNote, toNote } = useNotes();
   return (
     <Container component="div" direction="column">
       <Container component="div" sx={{ my: 2 }}>
         <TextField label="Search" variant="standard" size="small" fullWidth name="search" />
+        <Button onClick={() => toNote('0')}>Add</Button>
       </Container>
       <Divider />
       <Container component="div" sx={{ my: 2 }}>
@@ -25,8 +26,8 @@ export const Notes: React.FC = () => {
               <Card sx={{ minWidth: 275, m: 2 }}>
                 <CardContent>{note.title}</CardContent>
                 <CardActions>
-                  <Button>View</Button>
-                  <Button onClick={() => deleteNote(note.id)}>Delete</Button>
+                  <Button onClick={() => toNote(note.id || '0')}>View</Button>
+                  <Button onClick={() => deleteNote(note.id || '0')}>Delete</Button>
                 </CardActions>
               </Card>
             </div>

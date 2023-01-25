@@ -15,6 +15,12 @@ export const useNotes = () => {
     setNotes(results.notes);
     setLoading(false);
   };
+  const deleteNote = async (id: string) => {
+    setLoading(true);
+    const results = await makeApiCall<unknown, { notes: INotes[] }>(apis.deleteNote({ id }));
+    setNotes(results.notes);
+    setLoading(false);
+  };
   React.useEffect(() => {
     if (ref.current) {
       getNotes();
@@ -24,5 +30,6 @@ export const useNotes = () => {
   return {
     notes,
     loading,
+    deleteNote,
   };
 };

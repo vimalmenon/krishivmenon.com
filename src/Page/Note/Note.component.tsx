@@ -9,7 +9,7 @@ import { INote } from './Note';
 import { useNote } from './Note.hook';
 
 export const Note: React.FC<INote> = ({ id }) => {
-  const { mode, note, setMode, updateValue } = useNote(id);
+  const { mode, note, setMode, updateValue, saveNote } = useNote(id);
   return (
     <Container component={'section'} direction="column">
       <Container component="div" sx={{ my: 2 }}>
@@ -21,7 +21,7 @@ export const Note: React.FC<INote> = ({ id }) => {
         )}
         {mode === 'EDIT' && (
           <>
-            <CommonIcons.Save />
+            <CommonIcons.Save onClick={saveNote} />
             <CommonIcons.Cancel onClick={() => setMode('VIEW')} />
           </>
         )}

@@ -1,5 +1,5 @@
 import { ENV } from '@constant';
-import { IGenericReturn, IApi } from '@types';
+import { IGenericReturn, IApi, INotes } from '@types';
 
 import { IApiStorageApi, IApiS3Folder, IApiNote } from './utility';
 
@@ -60,6 +60,21 @@ export const apis = {
     return {
       url,
       method: 'GET',
+    };
+  },
+  addNote: function (data: INotes): IApi<INotes> {
+    const url = Apis.Notes;
+    return {
+      url,
+      method: 'POST',
+      data,
+    };
+  },
+  deleteNote: function ({ id }: IApiNote): IApi {
+    const url = Apis.Note.replace('{id}', id);
+    return {
+      url,
+      method: 'DELETE',
     };
   },
 };

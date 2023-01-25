@@ -1,4 +1,4 @@
-export interface IApiS3Folder{
+export interface IApiS3Folder {
   folder: string;
 }
 export interface IApiStorageApi extends IApiS3Folder {

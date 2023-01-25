@@ -1,5 +1,5 @@
 import { ENV } from '@constant';
-import { IGenericReturn, IApi, IFile } from '@types';
+import { IGenericReturn, IApi } from '@types';
 
 import { IApiStorageApi, IApiS3Folder } from './utility';
 

@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import LinearProgress from '@mui/material/LinearProgress';
+import { getUid } from '@utility';
 
 import { IItem } from './Item';
 import { useItem } from './Item.hook';
-import { getUid } from '@utility';
-
 
 export const Item: React.FC<IItem> = ({ file, fileType }) => {
   const uid = React.useMemo(() => getUid(), []);

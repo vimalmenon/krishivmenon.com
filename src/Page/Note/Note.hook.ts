@@ -3,7 +3,6 @@ import React from 'react';
 import { useCommonApiContext } from '@context';
 import { INotes, PageModeType } from '@types';
 import { apis } from '@utility';
-import { useRouter } from 'next/router';
 
 export const useNote = (id: string) => {
   const [note, setNote] = React.useState<INotes>({
@@ -11,7 +10,6 @@ export const useNote = (id: string) => {
     content: '',
     metadata: {},
   });
-  const { push } = useRouter();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [mode, setMode] = React.useState<PageModeType>(id === '0' ? 'ADD' : 'VIEW');
   const { makeApiCall } = useCommonApiContext();
@@ -24,8 +22,8 @@ export const useNote = (id: string) => {
   };
   const getNote = async () => {
     setLoading(true);
-    const result = await makeApiCall<unknown, INotes>(apis.getNote({ id }));
-    push(`notes/${result.id}`);
+    const result = await makeApiCall<unknown, { note: INotes }>(apis.getNote({ id }));
+    setNote(result.note);
     setLoading(false);
   };
   const saveNote = async () => {

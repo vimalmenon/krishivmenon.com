@@ -23,7 +23,7 @@ export const useNotes = () => {
     setLoading(false);
   };
   const toNote = (id: string) => {
-    push(`notes/${id}`);
+    push(`/notes/${id}`);
   };
   React.useEffect(() => {
     if (ref.current) {

@@ -21,16 +21,15 @@ export const Notes: React.FC = () => {
       <Divider />
       <Container component="div" sx={{ my: 2 }}>
         {notes.map((note) => {
+          console.log(note);
           return (
-            <div key={note.id}>
-              <Card sx={{ minWidth: 275, m: 2 }}>
-                <CardContent>{note.title}</CardContent>
-                <CardActions>
-                  <Button onClick={() => toNote(note.id || '0')}>View</Button>
-                  <Button onClick={() => deleteNote(note.id || '0')}>Delete</Button>
-                </CardActions>
-              </Card>
-            </div>
+            <Card sx={{ minWidth: 275, m: 2 }} key={note.id}>
+              <CardContent>{note.title}</CardContent>
+              <CardActions>
+                <Button onClick={() => toNote(note.id || '0')}>View</Button>
+                <Button onClick={() => deleteNote(note.id || '0')}>Delete</Button>
+              </CardActions>
+            </Card>
           );
         })}
       </Container>

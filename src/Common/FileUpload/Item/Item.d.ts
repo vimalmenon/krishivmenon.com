@@ -2,7 +2,6 @@ import { StorageFileType, IGenericMethod } from '@types';
 
 export interface IItem {
   file: File;
-  uid: string;
   fileType: StorageFileType;
 }
 

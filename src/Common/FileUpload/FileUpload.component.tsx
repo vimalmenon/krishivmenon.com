@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { getUid } from '@utility';
 import { useDropzone } from 'react-dropzone';
 
 import { IFileUpload } from './FileUpload';
@@ -16,7 +15,7 @@ export const FileUpload: React.FC<IFileUpload> = ({ fileType }) => {
       </div>
       <div>
         {acceptedFiles.map((file) => {
-          return <Item file={file} uid={getUid()} key={file.name} fileType={fileType} />;
+          return <Item file={file} key={file.name} fileType={fileType} />;
         })}
       </div>
     </div>

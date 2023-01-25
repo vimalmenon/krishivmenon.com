@@ -24,25 +24,16 @@ export const useItem: IUseItem = (file, uid, fileType) => {
         fileType: file.type,
       })
     );
-    await makeApiCall(
-      apis.addAssetToS3({
-        path: `${folder}/${uid}.${extension}`,
-        uid,
-        alias: `${uid}.${extension}`,
-        type: file.type,
-        orphan: false,
-      })
-    );
     setLoading(false);
   };
   React.useEffect(() => {
-    if (!refs.current) {
+    if (refs.current) {
       uploadFile();
-      // refs.current = false;
+      refs.current = false;
     }
   }, []);
   const onDelete: IGenericMethod = async () => {
-    setLoading(false);
+    setLoading(true);
     await makeApiCall<unknown, unknown>(
       apis.deleteFromS3({
         folder: StorageFolderMapping[fileType],

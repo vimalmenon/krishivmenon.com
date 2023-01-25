@@ -1,12 +1,15 @@
+import React from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import LinearProgress from '@mui/material/LinearProgress';
 
 import { IItem } from './Item';
 import { useItem } from './Item.hook';
+import { getUid } from '@utility';
 
-export const Item: React.FC<IItem> = ({ file, uid, fileType }) => {
+
+export const Item: React.FC<IItem> = ({ file, fileType }) => {
+  const uid = React.useMemo(() => getUid(), []);
   const { isDeleted, loading, extension, onDelete } = useItem(file, uid, fileType);
-
   if (isDeleted) {
     return null;
   }

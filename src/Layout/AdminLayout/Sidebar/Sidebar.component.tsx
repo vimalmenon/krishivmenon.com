@@ -14,18 +14,20 @@ export const Sidebar: React.FC = () => {
     <Drawer variant="permanent" open={drawerOpen}>
       <List component="nav">
         {Navigations.map((nav) => {
-          return (
-            <ListItemButton
-              key={nav.name}
-              onClick={() => push(nav.url)}
-              selected={nav.url === asPath}
-            >
-              <ListItemIcon>
-                <nav.Icon />
-              </ListItemIcon>
-              <ListItemText primary={nav.name} />
-            </ListItemButton>
-          );
+          if (nav.show) {
+            return (
+              <ListItemButton
+                key={nav.name}
+                onClick={() => push(nav.url)}
+                selected={nav.url === asPath}
+              >
+                <ListItemIcon>
+                  <nav.Icon />
+                </ListItemIcon>
+                <ListItemText primary={nav.name} />
+              </ListItemButton>
+            );
+          }
         })}
       </List>
     </Drawer>

@@ -5,6 +5,7 @@ import { AppProvider, AuthProvider, LocalStorageProvider, ApiProvider } from '@c
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { clientSideEmotionCache } from '@style';
 import type { AppProps } from 'next/app';
+import '@fontsource/public-sans';
 
 export default function App({
   Component,

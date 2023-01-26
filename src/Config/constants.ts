@@ -10,21 +10,25 @@ export const Navigations = [
     name: 'Home',
     url: '/',
     Icon: CommonIcons.Home,
+    show: true,
   },
   {
-    name: 'Photos',
-    url: '/photos',
+    name: 'Gallery',
+    url: '/gallery',
     Icon: InsertPhotoIcon,
+    show: true,
   },
   {
     name: 'Notes',
     url: '/notes',
     Icon: NoteIcon,
+    show: true,
   },
   {
     name: 'Admin',
     url: '/admin',
     Icon: CommonIcons.Admin,
+    show: false,
   },
 ];
 

@@ -1,9 +1,9 @@
 import { AppLayout } from '@layout';
 import { Photos as Page } from '@page';
 
-export default function Photos() {
+export default function Gallery() {
   return (
-    <AppLayout title="Photos">
+    <AppLayout title="Gallery">
       <Page />
     </AppLayout>
   );

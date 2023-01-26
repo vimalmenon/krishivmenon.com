@@ -11,6 +11,8 @@ export const Apis = {
   S3DriveFile: 'drive/{folder}/{fileName}.{extension}',
   Notes: 'notes',
   Note: 'notes/{id}',
+  Folders: 'folder',
+  Folder: 'folder/{id}',
 };
 export const apis = {
   uploadToS3: function ({
@@ -72,6 +74,20 @@ export const apis = {
   },
   deleteNote: function ({ id }: IApiNote): IApi {
     const url = Apis.Note.replace('{id}', id);
+    return {
+      url,
+      method: 'DELETE',
+    };
+  },
+  createFolder: function (): IApi {
+    const url = Apis.Folders;
+    return {
+      url,
+      method: 'POST',
+    };
+  },
+  deleteFolder: function ({ id }: IApiNote): IApi {
+    const url = Apis.Folder.replace('{id}', id);
     return {
       url,
       method: 'DELETE',

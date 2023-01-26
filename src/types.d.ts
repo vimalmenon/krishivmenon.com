@@ -52,6 +52,29 @@ export interface IBaseContent {
   orphan: boolean;
 }
 
-export interface IFile extends IBaseContent {
+export interface IBaseDB {
+  appKey?: string;
+  sortKey?: string;
+  createdBy?: string;
+  createdDate?: string;
+  updatedDate?: string;
+}
+
+export interface IFolder extends IBaseDB {
+  id: string;
+  name: string;
+  metadata?: Record<string, string>;
+  label: string;
+  parent: string;
+  type: string;
+  content: string[];
+}
+
+export interface IFile extends IBaseDB {
+  id: string;
+  name: string;
+  metadata?: Record<string, string>;
+  label: string;
   path: string;
+  type: string;
 }

@@ -51,16 +51,18 @@ Table Name : Application
   createdDate   : string
   updatedDate   : string
 
-IStorage:
-  uid: string
+IFile:
+  id: string
+  name: string;
   path: string
-  alias: string;
+  metadata?: Record<string, string>;
+  label: string;
   type: string;
   private: boolean;
-  orphan: boolean; 
+  orphan: boolean;
 
 IFolder:
-  uid: string
+  id: string
   content: string[]
   alias: string;
   type: string;

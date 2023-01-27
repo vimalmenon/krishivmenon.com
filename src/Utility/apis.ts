@@ -1,5 +1,5 @@
 import { ENV } from '@constant';
-import { IGenericReturn, IApi, INotes } from '@types';
+import { IGenericReturn, IApi, INotes, IFolder } from '@types';
 
 import { IApiStorageApi, IApiS3Folder, IApiNote } from './utility';
 
@@ -11,8 +11,8 @@ export const Apis = {
   S3DriveFile: 'drive/{folder}/{fileName}.{extension}',
   Notes: 'notes',
   Note: 'notes/{id}',
-  Folders: 'folder',
-  Folder: 'folder/{id}',
+  Folders: 'folders',
+  Folder: 'folders/{id}',
 };
 export const apis = {
   uploadToS3: function ({
@@ -79,11 +79,12 @@ export const apis = {
       method: 'DELETE',
     };
   },
-  createFolder: function (): IApi {
+  createFolder: function (data: IFolder): IApi {
     const url = Apis.Folders;
     return {
       url,
       method: 'POST',
+      data,
     };
   },
   deleteFolder: function ({ id }: IApiNote): IApi {

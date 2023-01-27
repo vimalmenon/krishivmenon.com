@@ -1,10 +1,18 @@
 import { FileUpload } from '@common';
 import { CommonIcons } from '@constant';
+import TextField from '@mui/material/TextField';
 
 import { usePhotos } from './Photos.hook';
 
 export const Photos: React.FC = () => {
-  const { createdFolder, onFolderAdd, folders, onAddFolderCancel } = usePhotos();
+  const {
+    createdFolder,
+    onFolderAdd,
+    folders,
+    onAddFolderCancel,
+    onAddFolderUpdate,
+    onAddFolderSave,
+  } = usePhotos();
   return (
     <div>
       <div>
@@ -17,7 +25,13 @@ export const Photos: React.FC = () => {
             <div key={key}>
               <div>{folder.label}</div>
               <div>
-                <CommonIcons.Check />
+                <TextField
+                  variant="standard"
+                  size="small"
+                  value={createdFolder?.label}
+                  onChange={(e) => onAddFolderUpdate('label', e.target.value)}
+                />
+                <CommonIcons.Check onClick={onAddFolderSave} />
                 <CommonIcons.Cancel onClick={onAddFolderCancel} />
               </div>
             </div>

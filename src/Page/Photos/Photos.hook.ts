@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useCommonApiContext } from '@context';
 import { IFolder } from '@types';
 import { apis } from '@utility';
 
@@ -13,6 +14,7 @@ const initialValue: IFolder = {
 };
 export const usePhotos = () => {
   const [createdFolder, setCreateFolder] = React.useState<IFolder | null>(null);
+  const { makeApiCall } = useCommonApiContext();
   const [folders] = React.useState<IFolder[]>([]);
   const onFolderAdd = () => {
     setCreateFolder(initialValue);
@@ -21,18 +23,24 @@ export const usePhotos = () => {
     setCreateFolder(null);
   };
   const onAddFolderSave = () => {
-    console.log(apis.createFolder());
+    if (createdFolder) {
+      makeApiCall(apis.createFolder(createdFolder));
+    }
   };
-  const onUpdateFolderDetail = () => {
-    console.log(createdFolder);
+  const onAddFolderUpdate = (name: string, value: string) => {
+    if (createdFolder) {
+      setCreateFolder({
+        ...createdFolder,
+        [name]: value,
+      });
+    }
   };
-
   return {
     folders,
     createdFolder,
     onFolderAdd,
-    onUpdateFolderDetail,
     onAddFolderCancel,
     onAddFolderSave,
+    onAddFolderUpdate,
   };
 };

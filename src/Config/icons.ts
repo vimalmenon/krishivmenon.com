@@ -1,4 +1,6 @@
+import AddIcon from '@mui/icons-material/Add';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -16,4 +18,6 @@ export const CommonIcons = {
   Edit: EditIcon,
   Admin: AdminPanelSettingsIcon,
   Cancel: ClearIcon,
+  Add: AddIcon,
+  Check: CheckIcon,
 };

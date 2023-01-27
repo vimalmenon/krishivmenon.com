@@ -19,9 +19,8 @@ export const Notes: React.FC = () => {
         <Button onClick={() => toNote('0')}>Add</Button>
       </Container>
       <Divider />
-      <Container component="div" sx={{ my: 2 }}>
+      <Container component="div" sx={{ my: 2, flexWrap: 'wrap' }}>
         {notes.map((note) => {
-          console.log(note);
           return (
             <Card sx={{ minWidth: 275, m: 2 }} key={note.id}>
               <CardContent>{note.title}</CardContent>

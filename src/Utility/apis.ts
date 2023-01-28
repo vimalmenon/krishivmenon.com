@@ -78,6 +78,9 @@ export const apis = {
     return {
       url,
       method: 'DELETE',
+      params: {
+        code: '3',
+      },
     };
   },
   createFolder: function (data: IFolder): IApi {
@@ -86,6 +89,9 @@ export const apis = {
       url,
       method: 'POST',
       data,
+      params: {
+        code: '3',
+      },
     };
   },
   deleteFolder: function ({ id }: IApiNote): IApi {
@@ -93,6 +99,9 @@ export const apis = {
     return {
       url,
       method: 'DELETE',
+      params: {
+        code: '3',
+      },
     };
   },
   getFolderByParent: function ({ id }: IApiNote): IApi {

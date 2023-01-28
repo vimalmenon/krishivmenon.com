@@ -47,6 +47,10 @@ export const usePhotos = () => {
       });
     }
   };
+  const onFolderDelete = async (id: string) => {
+    const result = (await makeApiCall(apis.deleteFolder({ id }))) as any;
+    setFolders(result.data);
+  };
   return {
     folders,
     createdFolder,
@@ -54,5 +58,6 @@ export const usePhotos = () => {
     onAddFolderCancel,
     onAddFolderSave,
     onAddFolderUpdate,
+    onFolderDelete,
   };
 };

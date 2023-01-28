@@ -6,4 +6,5 @@ export interface IFolder {
   onNameChange: IGenericParam<string>;
   onSave: IGenericMethod;
   onCancel: IGenericMethod;
+  onDelete: IGenericMethod;
 }

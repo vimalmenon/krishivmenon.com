@@ -11,6 +11,7 @@ export const Photos: React.FC = () => {
     onAddFolderCancel,
     onAddFolderUpdate,
     onAddFolderSave,
+    onFolderDelete,
   } = usePhotos();
   return (
     <div>
@@ -28,6 +29,7 @@ export const Photos: React.FC = () => {
               onNameChange={(value) => onAddFolderUpdate('label', value)}
               onCancel={onAddFolderCancel}
               onSave={onAddFolderSave}
+              onDelete={() => onFolderDelete(folder.id)}
             />
           );
         })}

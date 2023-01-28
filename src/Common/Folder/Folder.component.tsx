@@ -4,12 +4,19 @@ import TextField from '@mui/material/TextField';
 import { IFolder } from './Folder';
 import { FolderStyle, FolderContainer, FolderInput } from './Folder.style';
 
-export const Folder: React.FC<IFolder> = ({ name, edit, onNameChange, onCancel, onSave }) => {
+export const Folder: React.FC<IFolder> = ({
+  name,
+  edit,
+  onNameChange,
+  onCancel,
+  onSave,
+  onDelete,
+}) => {
   return (
     <FolderContainer>
       <FolderStyle>
         <div className="delete">
-          <CommonIcons.Delete fontSize="small" />
+          <CommonIcons.Delete fontSize="small" onClick={onDelete} />
         </div>
         <div>
           <CommonIcons.Folder fontSize="large" />

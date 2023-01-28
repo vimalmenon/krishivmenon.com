@@ -6,7 +6,6 @@ import { apis } from '@utility';
 
 const initialValue: IFolder = {
   id: '',
-  name: '',
   parent: 'root',
   label: '',
   type: 'folder',
@@ -16,6 +15,7 @@ export const usePhotos = () => {
   const [createdFolder, setCreateFolder] = React.useState<IFolder | null>(null);
   const { makeApiCall } = useCommonApiContext();
   const [folders] = React.useState<IFolder[]>([]);
+  const ref = React.useRef<boolean>(true);
   const onFolderAdd = () => {
     setCreateFolder(initialValue);
   };
@@ -27,6 +27,12 @@ export const usePhotos = () => {
       makeApiCall(apis.createFolder(createdFolder));
     }
   };
+  React.useEffect(() => {
+    if (ref.current) {
+      makeApiCall(apis.getFolderByParent({ id: 'root' }));
+      ref.current = false;
+    }
+  }, []);
   const onAddFolderUpdate = (name: string, value: string) => {
     if (createdFolder) {
       setCreateFolder({

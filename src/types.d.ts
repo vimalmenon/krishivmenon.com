@@ -62,7 +62,6 @@ export interface IBaseDB {
 
 export interface IFolder extends IBaseDB {
   id: string;
-  name: string;
   metadata?: Record<string, string>;
   label: string;
   parent: string;

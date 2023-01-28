@@ -13,6 +13,7 @@ export const Apis = {
   Note: 'notes/{id}',
   Folders: 'folders',
   Folder: 'folders/{id}',
+  FolderParent: 'folders/parent/{id}',
 };
 export const apis = {
   uploadToS3: function ({
@@ -92,6 +93,13 @@ export const apis = {
     return {
       url,
       method: 'DELETE',
+    };
+  },
+  getFolderByParent: function ({ id }: IApiNote): IApi {
+    const url = Apis.FolderParent.replace('{id}', id);
+    return {
+      url,
+      method: 'GET',
     };
   },
 };

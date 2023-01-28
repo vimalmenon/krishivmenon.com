@@ -14,7 +14,7 @@ const initialValue: IFolder = {
 export const usePhotos = () => {
   const [createdFolder, setCreateFolder] = React.useState<IFolder | null>(null);
   const { makeApiCall } = useCommonApiContext();
-  const [folders] = React.useState<IFolder[]>([]);
+  const [folders, setFolders] = React.useState<IFolder[]>([]);
   const ref = React.useRef<boolean>(true);
   const onFolderAdd = () => {
     setCreateFolder(initialValue);
@@ -22,14 +22,20 @@ export const usePhotos = () => {
   const onAddFolderCancel = () => {
     setCreateFolder(null);
   };
-  const onAddFolderSave = () => {
+  const onAddFolderSave = async () => {
     if (createdFolder) {
-      makeApiCall(apis.createFolder(createdFolder));
+      const result = (await makeApiCall(apis.createFolder(createdFolder))) as any;
+      setCreateFolder(null);
+      setFolders(result.data);
     }
+  };
+  const getFolders = async () => {
+    const result = (await makeApiCall(apis.getFolderByParent({ id: 'root' }))) as any;
+    setFolders(result.data);
   };
   React.useEffect(() => {
     if (ref.current) {
-      makeApiCall(apis.getFolderByParent({ id: 'root' }));
+      getFolders();
       ref.current = false;
     }
   }, []);

@@ -1,6 +1,5 @@
-import { FileUpload } from '@common';
+import { FileUpload, Folder } from '@common';
 import { CommonIcons } from '@constant';
-import TextField from '@mui/material/TextField';
 
 import { usePhotos } from './Photos.hook';
 
@@ -19,22 +18,17 @@ export const Photos: React.FC = () => {
         <CommonIcons.Add onClick={onFolderAdd} />
       </div>
       <FileUpload fileType="image" />
-      <div>
-        {(createdFolder ? [createdFolder, ...folders] : folders).map((folder, key) => {
+      <div style={{ display: 'flex', gap: '20px' }}>
+        {(createdFolder ? [createdFolder, ...folders] : folders).map((folder) => {
           return (
-            <div key={key}>
-              <div>{folder.label}</div>
-              <div>
-                <TextField
-                  variant="standard"
-                  size="small"
-                  value={createdFolder?.label}
-                  onChange={(e) => onAddFolderUpdate('label', e.target.value)}
-                />
-                <CommonIcons.Check onClick={onAddFolderSave} />
-                <CommonIcons.Cancel onClick={onAddFolderCancel} />
-              </div>
-            </div>
+            <Folder
+              key={folder.id}
+              name={folder.label}
+              edit={!folder.id}
+              onNameChange={(value) => onAddFolderUpdate('label', value)}
+              onCancel={onAddFolderCancel}
+              onSave={onAddFolderSave}
+            />
           );
         })}
       </div>

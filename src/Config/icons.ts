@@ -4,6 +4,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import FolderIcon from '@mui/icons-material/Folder';
 import GoogleIcon from '@mui/icons-material/Google';
 import HomeIcon from '@mui/icons-material/Home';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
@@ -20,4 +21,5 @@ export const CommonIcons = {
   Cancel: ClearIcon,
   Add: AddIcon,
   Check: CheckIcon,
+  Folder: FolderIcon,
 };

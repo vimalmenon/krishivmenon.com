@@ -4,6 +4,14 @@ import { useCommonApiContext } from '@context';
 import { IFolder } from '@types';
 import { apis } from '@utility';
 
+import { IGalleryContext } from './Gallery';
+
+const initialContextValue: IGalleryContext = {
+  loading: false,
+};
+
+export const GalleryContext = React.createContext<IGalleryContext>(initialContextValue);
+
 const initialValue: IFolder = {
   id: '',
   parent: 'root',
@@ -15,6 +23,7 @@ export const usePhotos = () => {
   const [createdFolder, setCreateFolder] = React.useState<IFolder | null>(null);
   const { makeApiCall } = useCommonApiContext();
   const [folders, setFolders] = React.useState<IFolder[]>([]);
+
   const ref = React.useRef<boolean>(true);
   const onFolderAdd = () => {
     setCreateFolder(initialValue);

@@ -1,5 +1,5 @@
 import { AppLayout } from '@layout';
-import { Photos as Page } from '@page';
+import { Gallery as Page } from '@page';
 
 export default function Gallery() {
   return (

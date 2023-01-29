@@ -46,7 +46,11 @@ export const useCommonGallery = () => {
   };
   const onAddFolderSave = async () => {
     if (selectedFolder) {
-      const result = (await makeApiCall(apis.createFolder(selectedFolder))) as any;
+      const result = (await makeApiCall(
+        selectedFolder.id
+          ? apis.updateFolderData({ id: selectedFolder.id }, selectedFolder)
+          : apis.createFolder(selectedFolder)
+      )) as any;
       setSelectedFolder(null);
       setFolders(result.data);
     }

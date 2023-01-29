@@ -14,6 +14,7 @@ export const Apis = {
   Folders: 'folders',
   Folder: 'folders/{id}',
   FolderParent: 'folders/parent/{id}',
+  FolderData: 'folders/folder_data/{id}',
 };
 export const apis = {
   uploadToS3: function ({
@@ -99,6 +100,17 @@ export const apis = {
     return {
       url,
       method: 'DELETE',
+      params: {
+        code: '3',
+      },
+    };
+  },
+  updateFolderData: function ({ id }: IApiNote, data: IFolder): IApi<IFolder> {
+    const url = Apis.FolderData.replace('{id}', id);
+    return {
+      url,
+      method: 'PUT',
+      data,
       params: {
         code: '3',
       },

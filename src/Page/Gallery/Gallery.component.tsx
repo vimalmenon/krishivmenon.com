@@ -21,7 +21,7 @@ const GalleryChildren: React.FC = () => {
         <div>
           <CommonIcons.Add onClick={onFolderAdd} />
         </div>
-        <div style={{ display: 'flex', gap: '20px' }}>
+        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
           {folders.map((folder) => {
             return <GalleryFolder key={folder.id} folder={folder} />;
           })}

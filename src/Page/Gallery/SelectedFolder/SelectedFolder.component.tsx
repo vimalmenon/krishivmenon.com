@@ -1,3 +1,4 @@
+import { CommonIcons } from '@constant';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Container } from '@style';
@@ -13,9 +14,10 @@ export const SelectedFolder: React.FC = () => {
     onFolderDelete,
   } = useCommonGallery();
   return (
-    <Container component={'section'} sx={{ width: '300px' }} direction="column">
-      <Container component={'section'}>
+    <Container component={'section'} sx={{ width: '400px' }} direction="column">
+      <Container component={'div'}>
         {selectedFolder?.id ? <span>Edit {selectedFolder.label}</span> : <span>Add Folder</span>}
+        <CommonIcons.Cancel onClick={onSelectedFolderCancel} />
       </Container>
       <div>
         <TextField
@@ -25,12 +27,12 @@ export const SelectedFolder: React.FC = () => {
           onChange={(e) => onSelectedFolderLabelUpdate(e.target.value)}
         />
       </div>
+      <Container component={'div'} sx={{ flex: '1' }}>
+        &nbsp;
+      </Container>
       <div>
         <Button variant="contained" onClick={onAddFolderSave}>
           Save
-        </Button>
-        <Button variant="contained" onClick={onSelectedFolderCancel}>
-          Cancel
         </Button>
         <Button variant="contained" onClick={onFolderDelete}>
           Delete

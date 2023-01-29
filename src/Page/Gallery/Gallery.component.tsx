@@ -16,7 +16,7 @@ import { SelectedFolder } from './SelectedFolder';
 const GalleryChildren: React.FC = () => {
   const { folders, selectedFolder, onFolderAdd } = useCommonGallery();
   return (
-    <Container component={'section'}>
+    <Container component={'section'} sx={{ flex: '1 1 100%' }}>
       <Container component={'div'} direction="column" sx={{ flex: '1 1 100%' }}>
         <div>
           <CommonIcons.Add onClick={onFolderAdd} />
@@ -40,7 +40,7 @@ export const Gallery: React.FC = () => {
     <GalleryContext.Provider
       value={{ loading, folders, selectedFolder, setSelectedFolder, setFolders }}
     >
-      <GalleryChildren />
+      {loading ? <div>...Loading</div> : <GalleryChildren />}
     </GalleryContext.Provider>
   );
 };

@@ -22,7 +22,7 @@ export const useNote = (id: string) => {
   };
   const getNote = async () => {
     setLoading(true);
-    const result = await makeApiCall<unknown, { note: INotes }>(apis.getNote({ id }));
+    const result = await makeApiCall<{ note: INotes }>(apis.getNote({ id }));
     setNote(result.note);
     setLoading(false);
   };

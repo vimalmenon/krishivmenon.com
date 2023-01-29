@@ -1,19 +1,8 @@
-import { Folder } from '@common';
-import { NotImplemented } from '@utility';
-
+import { useGalleryFolder } from './GalleryFolder.hook';
+import { FolderStyle } from './GalleryFolder.style';
 import { IPhotoFolder } from './PhotoFolder';
-import { usePhotoFolder } from './PhotoFolder.hook';
 
 export const PhotoFolder: React.FC<IPhotoFolder> = ({ folder }) => {
-  const { folderName, setFolderName, onFolderNameChangeCancel } = usePhotoFolder(folder);
-  return (
-    <Folder
-      name={folderName}
-      edit={!folder.id}
-      onNameChange={setFolderName}
-      onCancel={onFolderNameChangeCancel}
-      onSave={NotImplemented}
-      onDelete={NotImplemented}
-    />
-  );
+  const { onFolderClick } = useGalleryFolder(folder);
+  return <FolderStyle onClick={onFolderClick}>{folder.label}</FolderStyle>;
 };

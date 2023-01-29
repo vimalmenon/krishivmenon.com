@@ -13,13 +13,13 @@ export const useNotes = () => {
   const { push } = useRouter();
   const getNotes = async () => {
     setLoading(true);
-    const results = await makeApiCall<unknown, { notes: INotes[] }>(apis.getNotes());
+    const results = await makeApiCall<{ notes: INotes[] }>(apis.getNotes());
     setNotes(results.notes);
     setLoading(false);
   };
   const deleteNote = async (id: string) => {
     setLoading(true);
-    await makeApiCall<unknown, { notes: INotes[] }>(apis.deleteNote({ id }));
+    await makeApiCall<{ notes: INotes[] }>(apis.deleteNote({ id }));
     setLoading(false);
   };
   const toNote = (id: string) => {

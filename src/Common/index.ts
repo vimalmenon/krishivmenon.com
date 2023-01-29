@@ -3,4 +3,3 @@ export * from './SwitchTheme';
 export * from './Footer';
 export * from './Editor';
 export * from './FileUpload';
-export * from './Folder';

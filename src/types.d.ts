@@ -66,7 +66,9 @@ export interface IFolder extends IBaseDB {
   label: string;
   parent: string;
   type: string;
+  loading: boolean;
   content: string[];
+  folders: IFolder[];
 }
 
 export interface IFile extends IBaseDB {
@@ -76,4 +78,10 @@ export interface IFile extends IBaseDB {
   label: string;
   path: string;
   type: string;
+}
+
+export interface IBaseResponse<T = unknown> {
+  message: string;
+  data: T;
+  code: string;
 }

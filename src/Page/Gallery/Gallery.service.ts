@@ -2,12 +2,16 @@ import React from 'react';
 
 import { useCommonApiContext } from '@context';
 import { IFolder } from '@types';
-import { apis } from '@utility';
+import { apis, NotImplemented } from '@utility';
 
 import { IGalleryContext } from './Gallery';
 
-const initialContextValue: IGalleryContext = {
+export const initialContextValue: IGalleryContext = {
   loading: false,
+  folders: [],
+  setFolders: NotImplemented,
+  selectedFolder: null,
+  setSelectedFolder: NotImplemented,
 };
 
 export const GalleryContext = React.createContext<IGalleryContext>(initialContextValue);
@@ -17,56 +21,73 @@ const initialValue: IFolder = {
   parent: 'root',
   label: '',
   type: 'folder',
+  loading: false,
   content: [],
+  folders: [],
 };
-export const usePhotos = () => {
-  const [createdFolder, setCreateFolder] = React.useState<IFolder | null>(null);
-  const { makeApiCall } = useCommonApiContext();
-  const [folders, setFolders] = React.useState<IFolder[]>([]);
 
-  const ref = React.useRef<boolean>(true);
+export const useCommonGallery = () => {
+  const { loading, folders, selectedFolder, setSelectedFolder, setFolders } =
+    React.useContext<IGalleryContext>(GalleryContext);
+  const { makeApiCall } = useCommonApiContext();
   const onFolderAdd = () => {
-    setCreateFolder(initialValue);
+    setSelectedFolder(initialValue);
   };
-  const onAddFolderCancel = () => {
-    setCreateFolder(null);
+  const onSelectedFolderCancel = () => {
+    setSelectedFolder(null);
   };
-  const onAddFolderSave = async () => {
-    if (createdFolder) {
-      const result = (await makeApiCall(apis.createFolder(createdFolder))) as any;
-      setCreateFolder(null);
-      setFolders(result.data);
-    }
-  };
-  const getFolders = async () => {
-    const result = (await makeApiCall(apis.getFolderByParent({ id: 'root' }))) as any;
-    setFolders(result.data);
-  };
-  React.useEffect(() => {
-    if (ref.current) {
-      getFolders();
-      ref.current = false;
-    }
-  }, []);
-  const onAddFolderUpdate = (name: string, value: string) => {
-    if (createdFolder) {
-      setCreateFolder({
-        ...createdFolder,
-        [name]: value,
+  const onSelectedFolderLabelUpdate = (value: string) => {
+    if (selectedFolder) {
+      setSelectedFolder({
+        ...selectedFolder,
+        label: value,
       });
     }
   };
-  const onFolderDelete = async (id: string) => {
-    const result = (await makeApiCall(apis.deleteFolder({ id }))) as any;
+  const onAddFolderSave = async () => {
+    if (selectedFolder) {
+      const result = (await makeApiCall(apis.createFolder(selectedFolder))) as any;
+      setSelectedFolder(null);
+      setFolders(result.data);
+    }
+  };
+  const onFolderDelete = async () => {
+    const result = (await makeApiCall(apis.deleteFolder({ id: selectedFolder?.id || '' }))) as any;
     setFolders(result.data);
   };
   return {
+    loading,
     folders,
-    createdFolder,
+    selectedFolder,
     onFolderAdd,
-    onAddFolderCancel,
+    onSelectedFolderCancel,
+    onSelectedFolderLabelUpdate,
     onAddFolderSave,
-    onAddFolderUpdate,
+    setSelectedFolder,
     onFolderDelete,
+  };
+};
+
+export const useGallery = () => {
+  const [loading, setLoading] = React.useState<boolean>(initialContextValue.loading);
+  const [folders, setFolders] = React.useState<IFolder[]>(initialContextValue.folders);
+  const ref = React.useRef<boolean>(true);
+  const { makeApiCall } = useCommonApiContext();
+  const getFolders = async (parentId: string) => {
+    setLoading(true);
+    const result = (await makeApiCall(apis.getFolderByParent({ id: parentId }))) as any;
+    setFolders(result.data);
+    setLoading(false);
+  };
+  React.useEffect(() => {
+    if (ref.current) {
+      getFolders('root');
+      ref.current = false;
+    }
+  }, []);
+  return {
+    folders,
+    loading,
+    setFolders,
   };
 };

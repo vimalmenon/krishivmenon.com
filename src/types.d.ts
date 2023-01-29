@@ -80,5 +80,5 @@ export interface IFile extends IBaseDB {
 export interface IBaseResponse<T = unknown> {
   message: string;
   data: T;
-  code: string;
+  code: number;
 }

@@ -77,6 +77,9 @@ export const useGallery = () => {
     setLoading(true);
     const result = (await makeApiCall(apis.getFolderByParent({ id: parentId }))) as any;
     setFolders(result.data);
+    // result.data.map((folder:IFolder) => {
+    //   getFolders(folder.id);
+    // })
     setLoading(false);
   };
   React.useEffect(() => {

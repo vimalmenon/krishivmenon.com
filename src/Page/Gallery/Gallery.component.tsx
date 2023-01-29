@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { FileUpload } from '@common';
 import { CommonIcons } from '@constant';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import { Container } from '@style';
 import { IFolder } from '@types';
 
 import {
@@ -13,53 +11,24 @@ import {
   useGallery,
 } from './Gallery.service';
 import { GalleryFolder } from './GalleryFolder';
+import { SelectedFolder } from './SelectedFolder';
 
 const GalleryChildren: React.FC = () => {
-  const {
-    folders,
-    selectedFolder,
-    onFolderAdd,
-    onSelectedFolderCancel,
-    onSelectedFolderLabelUpdate,
-    onAddFolderSave,
-    onFolderDelete,
-  } = useCommonGallery();
+  const { folders, selectedFolder, onFolderAdd } = useCommonGallery();
   return (
-    <div>
-      <div>
-        <CommonIcons.Add onClick={onFolderAdd} />
-      </div>
-      <FileUpload fileType="image" />
-      <div style={{ display: 'flex', gap: '20px' }}>
-        {folders.map((folder) => {
-          return <GalleryFolder key={folder.id} folder={folder} />;
-        })}
-      </div>
-      {selectedFolder && (
+    <Container component={'section'}>
+      <Container component={'div'} direction="column" sx={{ flex: '1 1 100%' }}>
         <div>
-          <div>This is add Folder</div>
-          <div>
-            <TextField
-              variant="standard"
-              size="small"
-              value={selectedFolder?.label}
-              onChange={(e) => onSelectedFolderLabelUpdate(e.target.value)}
-            />
-          </div>
-          <div>
-            <Button variant="contained" onClick={onAddFolderSave}>
-              Save
-            </Button>
-            <Button variant="contained" onClick={onSelectedFolderCancel}>
-              Cancel
-            </Button>
-            <Button variant="contained" onClick={onFolderDelete}>
-              Delete
-            </Button>
-          </div>
+          <CommonIcons.Add onClick={onFolderAdd} />
         </div>
-      )}
-    </div>
+        <div style={{ display: 'flex', gap: '20px' }}>
+          {folders.map((folder) => {
+            return <GalleryFolder key={folder.id} folder={folder} />;
+          })}
+        </div>
+      </Container>
+      {selectedFolder && <SelectedFolder />}
+    </Container>
   );
 };
 export const Gallery: React.FC = () => {

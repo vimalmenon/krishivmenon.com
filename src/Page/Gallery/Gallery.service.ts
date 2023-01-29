@@ -29,16 +29,7 @@ const rootFolder: IGalleryFolder = {
   parent: '',
   content: [],
   folders: [],
-  breadcrumbs: [
-    {
-      id: 'root',
-      label: 'My Gallery',
-      parent: '',
-      content: [],
-      folders: [],
-      breadcrumbs: [],
-    },
-  ],
+  breadcrumbs: [0],
 };
 
 export const useCommonGallery = () => {
@@ -103,11 +94,11 @@ export const useGallery = () => {
   const createFolder = async (folder: IGalleryFolder) => {
     const result = await makeApiCall<IFolder[]>(apis.getFolderByParent({ id: folder.id }));
     folder.folders = await Promise.all(
-      result.map(async (value) => {
+      result.map(async (value, key) => {
         return await createFolder({
           ...value,
           folders: [],
-          breadcrumbs: [...folder.breadcrumbs, { ...value, folders: [], breadcrumbs: [] }],
+          breadcrumbs: [...folder.breadcrumbs, key],
         });
       })
     );

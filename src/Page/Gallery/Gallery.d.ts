@@ -10,5 +10,5 @@ export interface IGalleryContext {
 
 export interface IGalleryFolder extends IFolder {
   folders: IGalleryFolder[];
-  breadcrumbs: IGalleryFolder[];
+  breadcrumbs: number[];
 }

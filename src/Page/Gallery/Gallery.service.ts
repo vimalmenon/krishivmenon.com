@@ -52,18 +52,20 @@ export const useCommonGallery = () => {
   };
   const onAddFolderSave = async () => {
     if (selectedFolder) {
-      const result = (await makeApiCall(
+      const result = await makeApiCall<IFolder[]>(
         selectedFolder.id
           ? apis.updateFolderData({ id: selectedFolder.id }, selectedFolder)
           : apis.createFolder(selectedFolder)
-      )) as any;
+      );
       setSelectedFolder(null);
-      setFolders(result.data);
+      setFolders(result);
     }
   };
   const onFolderDelete = async () => {
-    const result = (await makeApiCall(apis.deleteFolder({ id: selectedFolder?.id || '' }))) as any;
-    setFolders(result.data);
+    const result = await makeApiCall<IFolder[]>(
+      apis.deleteFolder({ id: selectedFolder?.id || '' })
+    );
+    setFolders(result);
     setSelectedFolder(null);
   };
   return {

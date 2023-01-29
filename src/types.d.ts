@@ -65,10 +65,7 @@ export interface IFolder extends IBaseDB {
   metadata?: Record<string, string>;
   label: string;
   parent: string;
-  type: string;
-  loading: boolean;
   content: string[];
-  folders: IFolder[];
 }
 
 export interface IFile extends IBaseDB {

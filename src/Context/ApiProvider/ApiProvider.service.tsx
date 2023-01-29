@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IApi, IGenericReturn } from '@types';
+import { IApi, IBaseResponse, IGenericReturn } from '@types';
 import { getBaseUrl, NotImplemented } from '@utility';
 import axios from 'axios';
 
@@ -13,8 +13,8 @@ const instance = axios.create({
 });
 
 export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
-  function makeApiCall<T, K>(value: IApi<T>): Promise<K> {
-    return instance.request(value).then((result) => result.data);
+  function makeApiCall<K, T>(value: IApi<T>): Promise<K> {
+    return instance.request<IBaseResponse<K>>(value).then((result) => result.data.data);
   }
   return {
     makeApiCall,

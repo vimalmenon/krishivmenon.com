@@ -16,7 +16,7 @@ export const useGalleryFolder = (folder: IFolder) => {
   const onFolderClick = (e: React.MouseEvent<HTMLDivElement>) => {
     switch (e.detail) {
       case 1:
-        event = setTimeout(onFinalSingleClick, 200);
+        event = setTimeout(onFinalSingleClick, 300);
         break;
       case 2:
         clearTimeout(event);

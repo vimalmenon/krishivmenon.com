@@ -4,7 +4,7 @@ import { useCommonApiContext } from '@context';
 import { IFolder } from '@types';
 import { apis, NotImplemented } from '@utility';
 
-import { IGalleryContext } from './Gallery';
+import { IGalleryContext, IGalleryFolder } from './Gallery';
 
 export const initialContextValue: IGalleryContext = {
   loading: false,
@@ -20,10 +20,25 @@ const initialValue: IFolder = {
   id: '',
   parent: 'root',
   label: '',
-  type: 'folder',
-  loading: false,
+  content: [],
+};
+
+const rootFolder: IGalleryFolder = {
+  id: 'root',
+  label: 'My Gallery',
+  parent: '',
   content: [],
   folders: [],
+  breadcrumbs: [
+    {
+      id: 'root',
+      label: 'My Gallery',
+      parent: '',
+      content: [],
+      folders: [],
+      breadcrumbs: [],
+    },
+  ],
 };
 
 export const useCommonGallery = () => {
@@ -58,6 +73,7 @@ export const useCommonGallery = () => {
   const onFolderDelete = async () => {
     const result = (await makeApiCall(apis.deleteFolder({ id: selectedFolder?.id || '' }))) as any;
     setFolders(result.data);
+    setSelectedFolder(null);
   };
   return {
     loading,
@@ -75,26 +91,39 @@ export const useCommonGallery = () => {
 export const useGallery = () => {
   const [loading, setLoading] = React.useState<boolean>(initialContextValue.loading);
   const [folders, setFolders] = React.useState<IFolder[]>(initialContextValue.folders);
+  const [folder] = React.useState<IGalleryFolder>(rootFolder);
   const ref = React.useRef<boolean>(true);
   const { makeApiCall } = useCommonApiContext();
   const getFolders = async (parentId: string) => {
     setLoading(true);
-    const result = (await makeApiCall(apis.getFolderByParent({ id: parentId }))) as any;
-    setFolders(result.data);
-    // result.data.map((folder:IFolder) => {
-    //   getFolders(folder.id);
-    // })
+    const result = await makeApiCall<IFolder[]>(apis.getFolderByParent({ id: parentId }));
+    setFolders(result);
     setLoading(false);
+  };
+  const createFolder = async (folder: IGalleryFolder) => {
+    const result = await makeApiCall<IFolder[]>(apis.getFolderByParent({ id: folder.id }));
+    folder.folders = await Promise.all(
+      result.map(async (value) => {
+        return await createFolder({
+          ...value,
+          folders: [],
+          breadcrumbs: [...folder.breadcrumbs, { ...value, folders: [], breadcrumbs: [] }],
+        });
+      })
+    );
+    return folder;
   };
   React.useEffect(() => {
     if (ref.current) {
       getFolders('root');
+      createFolder(rootFolder).then(console.log);
       ref.current = false;
     }
   }, []);
   return {
     folders,
     loading,
+    folder,
     setFolders,
   };
 };

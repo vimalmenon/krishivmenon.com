@@ -7,3 +7,8 @@ export interface IGalleryContext {
   selectedFolder: IFolder | null;
   setSelectedFolder: React.Dispatch<React.SetStateAction<IFolder | null>>;
 }
+
+export interface IGalleryFolder extends IFolder {
+  folders: IGalleryFolder[];
+  breadcrumbs: IGalleryFolder[];
+}

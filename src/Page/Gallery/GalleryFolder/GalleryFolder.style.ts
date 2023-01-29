@@ -6,7 +6,6 @@ export const FolderStyle = styled('div')({
   width: '150px',
   display: 'flex',
   borderRadius: '15px',
-  flexDirection: 'column',
   justifyContent: 'space-evenly',
   padding: '20px',
 });

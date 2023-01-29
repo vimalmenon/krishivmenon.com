@@ -1,5 +1,5 @@
 import { IFolder } from '@types';
 
-export interface IPhotoFolder {
+export interface IGalleryFolder {
   folder: IFolder;
 }

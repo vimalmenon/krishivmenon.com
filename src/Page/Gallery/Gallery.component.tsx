@@ -12,7 +12,7 @@ import {
   useCommonGallery,
   useGallery,
 } from './Gallery.service';
-import { PhotoFolder } from './GalleryFolder';
+import { GalleryFolder } from './GalleryFolder';
 
 const GalleryChildren: React.FC = () => {
   const {
@@ -32,7 +32,7 @@ const GalleryChildren: React.FC = () => {
       <FileUpload fileType="image" />
       <div style={{ display: 'flex', gap: '20px' }}>
         {folders.map((folder) => {
-          return <PhotoFolder key={folder.id} folder={folder} />;
+          return <GalleryFolder key={folder.id} folder={folder} />;
         })}
       </div>
       {selectedFolder && (

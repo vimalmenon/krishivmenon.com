@@ -1,17 +1,16 @@
 import React from 'react';
 
-import { IFolder } from '@types';
-
+import { IGalleryFolder } from '../Gallery';
 import { useCommonGallery } from '../Gallery.service';
 
-export const useGalleryFolder = (folder: IFolder) => {
-  const { setSelectedFolder } = useCommonGallery();
+export const useGalleryFolder = (folder: IGalleryFolder) => {
+  const { setSelectedFolder, onFolderSelect } = useCommonGallery();
   let event: any;
   const onFinalSingleClick = () => {
     setSelectedFolder(folder);
   };
   const onFinalDoubleClick = () => {
-    console.log('double click');
+    onFolderSelect(folder);
   };
   const onFolderClick = (e: React.MouseEvent<HTMLDivElement>) => {
     switch (e.detail) {

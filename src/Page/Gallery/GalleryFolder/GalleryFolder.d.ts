@@ -1,5 +1,5 @@
-import { IFolder } from '@types';
+import { IGalleryFolder } from '../Gallery';
 
 export interface IGalleryFolder {
-  folder: IFolder;
+  folder: IGalleryFolder;
 }

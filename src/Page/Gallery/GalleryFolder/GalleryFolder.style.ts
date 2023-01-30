@@ -8,4 +8,6 @@ export const FolderStyle = styled('div')({
   borderRadius: '15px',
   justifyContent: 'space-evenly',
   padding: '20px',
+  cursor: 'pointer',
+  userSelect: 'none',
 });

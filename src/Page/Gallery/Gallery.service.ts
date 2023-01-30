@@ -95,9 +95,7 @@ export const useCommonGallery = () => {
 export const useGallery = () => {
   const [loading, setLoading] = React.useState<boolean>(initialContextValue.loading);
   const [folder, setFolder] = React.useState<IGalleryFolder>(rootFolder);
-  const [currentFolder, setCurrentFolder] = React.useState<string>(
-    '5e816101-602c-4572-a788-e9f046254447'
-  );
+  const [currentFolder, setCurrentFolder] = React.useState<string>(rootFolder.id);
   const [index, setIndex] = React.useState<number[]>(initialContextValue.index);
   const ref = React.useRef<boolean>(true);
   const { makeApiCall } = useCommonApiContext();

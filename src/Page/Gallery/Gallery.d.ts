@@ -1,14 +1,17 @@
-import { IFolder } from '@types';
-
-export interface IGalleryContext {
-  loading: boolean;
-  folders: IFolder[];
-  setFolders: React.Dispatch<React.SetStateAction<IFolder[]>>;
-  selectedFolder: IFolder | null;
-  setSelectedFolder: React.Dispatch<React.SetStateAction<IFolder | null>>;
-}
+import { IFolder, IGenericParam } from '@types';
 
 export interface IGalleryFolder extends IFolder {
   folders: IGalleryFolder[];
-  breadcrumbs: number[];
+  index: number[];
+  loading: boolean;
+}
+
+export interface IGalleryContext {
+  loading: boolean;
+  folder: IGalleryFolder;
+  currentFolder: string;
+  index: number[];
+  selectedFolder: IFolder | null;
+  onFolderSelect: IGenericParam<IGalleryFolder>;
+  setSelectedFolder: React.Dispatch<React.SetStateAction<IFolder | null>>;
 }

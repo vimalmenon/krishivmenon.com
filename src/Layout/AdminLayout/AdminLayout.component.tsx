@@ -14,7 +14,7 @@ export const AdminLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, t
       <Sidebar />
       <Box component={'main'} sx={{ display: 'flex', flex: '1 1 auto', flexDirection: 'column' }}>
         <Toolbar />
-        <Box component="section" sx={{ display: 'flex', flex: '1 1 100%' }}>
+        <Box component="section" sx={{ display: 'flex', flex: '1 1 100%', p: 2 }}>
           {children}
         </Box>
         <Footer />

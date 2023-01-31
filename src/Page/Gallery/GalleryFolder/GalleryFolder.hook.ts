@@ -13,11 +13,13 @@ export const useGalleryFolder = (folder: IGalleryFolder) => {
     setSelectedFolder(null);
   };
   const onFolderClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    let event;
     switch (e.detail) {
       case 1:
-        onFinalSingleClick();
+        event = setTimeout(onFinalSingleClick, 100);
         break;
       case 2:
+        clearTimeout(event);
         onFinalDoubleClick();
         break;
     }

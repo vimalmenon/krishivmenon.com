@@ -14,40 +14,34 @@ const initialValue: IFolder = {
 };
 
 const rootFolder: IGalleryFolder = {
+  breadcrumbs: ['root'],
+  folders: [],
+  loading: true,
   id: 'root',
   label: 'My Gallery',
   parent: '',
   content: [],
-  folders: [],
-  index: [],
-  loading: true,
 };
 
 export const initialContextValue: IGalleryContext = {
   loading: false,
-  folder: rootFolder,
   currentFolder: rootFolder.id,
   selectedFolder: null,
   setSelectedFolder: NotImplemented,
-  index: [],
   onFolderSelect: NotImplemented,
+  folderMap: {
+    [rootFolder.id]: rootFolder,
+  },
 };
 
 export const GalleryContext = React.createContext<IGalleryContext>(initialContextValue);
 
 export const useCommonGallery = () => {
-  const {
-    loading,
-    folder,
-    selectedFolder,
-    index,
-    currentFolder,
-    setSelectedFolder,
-    onFolderSelect,
-  } = React.useContext<IGalleryContext>(GalleryContext);
+  const { loading, selectedFolder, currentFolder, setSelectedFolder, onFolderSelect, folderMap } =
+    React.useContext<IGalleryContext>(GalleryContext);
   const { makeApiCall } = useCommonApiContext();
   const onFolderAdd = () => {
-    setSelectedFolder(initialValue);
+    setSelectedFolder({ ...initialValue, parent: currentFolder });
   };
   const onSelectedFolderCancel = () => {
     setSelectedFolder(null);
@@ -77,10 +71,9 @@ export const useCommonGallery = () => {
     setSelectedFolder(null);
   };
   return {
-    index,
     loading,
-    folder,
     selectedFolder,
+    folderMap,
     onFolderAdd,
     onSelectedFolderCancel,
     onSelectedFolderLabelUpdate,
@@ -94,44 +87,64 @@ export const useCommonGallery = () => {
 
 export const useGallery = () => {
   const [loading, setLoading] = React.useState<boolean>(initialContextValue.loading);
-  const [folder, setFolder] = React.useState<IGalleryFolder>(rootFolder);
+  const [folderMap, setFolderMap] = React.useState<Record<string, IGalleryFolder>>(
+    initialContextValue.folderMap
+  );
   const [currentFolder, setCurrentFolder] = React.useState<string>(rootFolder.id);
-  const [index, setIndex] = React.useState<number[]>(initialContextValue.index);
   const ref = React.useRef<boolean>(true);
   const { makeApiCall } = useCommonApiContext();
-  const createFolder = async (folder: IGalleryFolder, index: number[]) => {
+  const createFolderMapping = async (folder: IGalleryFolder, breadcrumbs: string[]) => {
+    setFolderMap((folderMap) => {
+      return {
+        ...folderMap,
+        [folder.id]: {
+          ...folder,
+        },
+      };
+    });
     const result = await makeApiCall<IFolder[]>(apis.getFolderByParent({ id: folder.id }));
-    folder.folders = await Promise.all(
-      result.map(async (value, key) => {
-        if (value.id === currentFolder) {
-          setIndex((index) => [...index, key]);
-        }
-        return await createFolder(
+    await Promise.all(
+      result.map(async (value) => {
+        setFolderMap((folderMap) => {
+          const parentFolder = folderMap[folder.id];
+          return {
+            ...folderMap,
+            [parentFolder.id]: {
+              ...parentFolder,
+              folders: [...parentFolder.folders, value.id],
+            },
+          };
+        });
+        const result = await createFolderMapping(
           {
             ...value,
-            folders: [],
             loading: true,
-            index: [...folder.index, key],
+            breadcrumbs: [...breadcrumbs, value.id],
+            folders: [],
           },
-          [...index, key]
+          [...breadcrumbs, value.id]
         );
+        return result;
       })
     );
-    folder.loading = false;
-    return folder;
+    setFolderMap((folderMap) => {
+      const parentFolder = folderMap[folder.id];
+      return {
+        ...folderMap,
+        [folder.id]: {
+          ...parentFolder,
+          loading: false,
+        },
+      };
+    });
   };
   const onFolderSelect = (folder: IGalleryFolder) => {
     setCurrentFolder(folder.id);
-    setIndex(folder.index);
-  };
-  const onFolderUpdate = (folders: IGalleryFolder) => {
-    index.reduce;
   };
   React.useEffect(() => {
     if (ref.current) {
       setLoading(true);
-      createFolder(rootFolder, []).then((data) => {
-        setFolder(data);
+      createFolderMapping(rootFolder, rootFolder.breadcrumbs).then(() => {
         setLoading(false);
       });
       ref.current = false;
@@ -139,20 +152,8 @@ export const useGallery = () => {
   }, []);
   return {
     loading,
-    folder,
-    index,
+    folderMap,
     currentFolder,
     onFolderSelect,
-    onFolderUpdate,
   };
-};
-
-export const getFolder = (folder: IGalleryFolder, index: number[]) => {
-  const trail = [folder];
-  let temp = folder;
-  index.forEach((element) => {
-    temp = temp.folders[element];
-    trail.push(temp);
-  });
-  return trail;
 };

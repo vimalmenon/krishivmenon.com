@@ -11,15 +11,14 @@ import {
   initialContextValue,
   useCommonGallery,
   useGallery,
-  getFolder,
 } from './Gallery.service';
 import { GalleryFolder } from './GalleryFolder';
 import { SelectedFolder } from './SelectedFolder';
 
 const GalleryChildren: React.FC = () => {
-  const { folder, selectedFolder, onFolderAdd, index, onFolderSelect } = useCommonGallery();
-  const trails = getFolder(folder, index);
-  const lastFolder = trails[index.length];
+  const { currentFolder, selectedFolder, onFolderAdd, folderMap, onFolderSelect } =
+    useCommonGallery();
+
   return (
     <Container component={'section'} sx={{ flex: '1 1 100%' }}>
       <Container component={'div'} direction="column" sx={{ flex: '1 1 100%', gap: '20px' }}>
@@ -28,16 +27,20 @@ const GalleryChildren: React.FC = () => {
         </div>
         <div>
           <Breadcrumbs>
-            {trails.map((trail) => {
+            {folderMap[currentFolder].breadcrumbs.map((value) => {
               return (
-                <Chip key={trail.id} label={trail.label} onClick={() => onFolderSelect(trail)} />
+                <Chip
+                  key={value}
+                  label={folderMap[value].label}
+                  onClick={() => onFolderSelect(folderMap[value])}
+                />
               );
             })}
           </Breadcrumbs>
         </div>
         <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-          {lastFolder.folders.map((folder) => {
-            return <GalleryFolder key={folder.id} folder={folder} />;
+          {folderMap[currentFolder].folders.map((value) => {
+            return <GalleryFolder key={value} folder={folderMap[value]} />;
           })}
         </div>
       </Container>
@@ -49,16 +52,15 @@ export const Gallery: React.FC = () => {
   const [selectedFolder, setSelectedFolder] = React.useState<IFolder | null>(
     initialContextValue.selectedFolder
   );
-  const { loading, folder, index, currentFolder, onFolderSelect } = useGallery();
+  const { loading, currentFolder, folderMap, onFolderSelect } = useGallery();
   return (
     <GalleryContext.Provider
       value={{
         loading,
-        folder,
+        currentFolder,
         selectedFolder,
         onFolderSelect,
-        index,
-        currentFolder,
+        folderMap,
         setSelectedFolder,
       }}
     >

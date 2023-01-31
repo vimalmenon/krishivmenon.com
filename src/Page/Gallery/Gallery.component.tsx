@@ -18,7 +18,6 @@ import { SelectedFolder } from './SelectedFolder';
 const GalleryChildren: React.FC = () => {
   const { currentFolder, selectedFolder, onFolderAdd, folderMap, onFolderSelect } =
     useCommonGallery();
-
   return (
     <Container component={'section'} sx={{ flex: '1 1 100%' }}>
       <Container component={'div'} direction="column" sx={{ flex: '1 1 100%', gap: '20px' }}>
@@ -52,7 +51,7 @@ export const Gallery: React.FC = () => {
   const [selectedFolder, setSelectedFolder] = React.useState<IFolder | null>(
     initialContextValue.selectedFolder
   );
-  const { loading, currentFolder, folderMap, onFolderSelect } = useGallery();
+  const { loading, currentFolder, folderMap, onFolderSelect, onFolderUpdate } = useGallery();
   return (
     <GalleryContext.Provider
       value={{
@@ -62,6 +61,7 @@ export const Gallery: React.FC = () => {
         onFolderSelect,
         folderMap,
         setSelectedFolder,
+        onFolderUpdate,
       }}
     >
       {loading ? <div>...Loading</div> : <GalleryChildren />}

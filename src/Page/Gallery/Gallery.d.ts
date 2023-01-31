@@ -13,4 +13,5 @@ export interface IGalleryContext {
   selectedFolder: IFolder | null;
   onFolderSelect: IGenericParam<IGalleryFolder>;
   setSelectedFolder: React.Dispatch<React.SetStateAction<IFolder | null>>;
+  onFolderUpdate: (folders: IFolder[], currentFolder: IGalleryFolder) => void;
 }

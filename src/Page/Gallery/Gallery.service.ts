@@ -29,6 +29,7 @@ export const initialContextValue: IGalleryContext = {
   selectedFolder: null,
   setSelectedFolder: NotImplemented,
   onFolderSelect: NotImplemented,
+  onFolderUpdate: NotImplemented,
   folderMap: {
     [rootFolder.id]: rootFolder,
   },
@@ -37,8 +38,15 @@ export const initialContextValue: IGalleryContext = {
 export const GalleryContext = React.createContext<IGalleryContext>(initialContextValue);
 
 export const useCommonGallery = () => {
-  const { loading, selectedFolder, currentFolder, setSelectedFolder, onFolderSelect, folderMap } =
-    React.useContext<IGalleryContext>(GalleryContext);
+  const {
+    loading,
+    selectedFolder,
+    currentFolder,
+    setSelectedFolder,
+    onFolderSelect,
+    folderMap,
+    onFolderUpdate,
+  } = React.useContext<IGalleryContext>(GalleryContext);
   const { makeApiCall } = useCommonApiContext();
   const onFolderAdd = () => {
     setSelectedFolder({ ...initialValue, parent: currentFolder });
@@ -61,6 +69,7 @@ export const useCommonGallery = () => {
           ? apis.updateFolderData({ id: selectedFolder.id }, selectedFolder)
           : apis.createFolder(selectedFolder)
       );
+      onFolderUpdate(result, folderMap[currentFolder]);
       setSelectedFolder(null);
     }
   };
@@ -68,6 +77,7 @@ export const useCommonGallery = () => {
     const result = await makeApiCall<IFolder[]>(
       apis.deleteFolder({ id: selectedFolder?.id || '' })
     );
+    onFolderUpdate(result, folderMap[currentFolder]);
     setSelectedFolder(null);
   };
   return {
@@ -141,6 +151,30 @@ export const useGallery = () => {
   const onFolderSelect = (folder: IGalleryFolder) => {
     setCurrentFolder(folder.id);
   };
+  const onFolderUpdate = async (folders: IFolder[], currentFolder: IGalleryFolder) => {
+    folderMap[currentFolder.id];
+    const folderIds = folders.map((data) => {
+      createFolderMapping(
+        {
+          ...data,
+          loading: true,
+          breadcrumbs: [...currentFolder.breadcrumbs, data.id],
+          folders: [],
+        },
+        [...currentFolder.breadcrumbs, data.id]
+      );
+      return data.id;
+    });
+    setFolderMap((folderMap) => {
+      return {
+        ...folderMap,
+        [currentFolder.id]: {
+          ...currentFolder,
+          folders: folderIds,
+        },
+      };
+    });
+  };
   React.useEffect(() => {
     if (ref.current) {
       setLoading(true);
@@ -155,5 +189,6 @@ export const useGallery = () => {
     folderMap,
     currentFolder,
     onFolderSelect,
+    onFolderUpdate,
   };
 };

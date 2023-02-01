@@ -1,10 +1,12 @@
 import React from 'react';
 
 import { useCommonApiContext } from '@context';
-import { INotes, PageModeType } from '@types';
+import { IGeneric, IGenericReturn, INotes, PageModeType } from '@types';
 import { apis } from '@utility';
 
-export const useNote = (id: string) => {
+import { IUseNote } from './Note';
+
+export const useNote: IGeneric<string, IUseNote> = (id: string) => {
   const [note, setNote] = React.useState<INotes>({
     title: '',
     content: '',
@@ -14,19 +16,19 @@ export const useNote = (id: string) => {
   const [mode, setMode] = React.useState<PageModeType>(id === '0' ? 'ADD' : 'VIEW');
   const { makeApiCall } = useCommonApiContext();
   const ref = React.useRef<boolean>(true);
-  const updateValue = (key: string, value: string) => {
+  const updateValue = (key: string, value: string): void => {
     setNote({
       ...note,
       [key]: value,
     });
   };
-  const getNote = async () => {
+  const getNote: IGenericReturn<Promise<void>> = async () => {
     setLoading(true);
     const result = await makeApiCall<{ note: INotes }>(apis.getNote({ id }));
     setNote(result.note);
     setLoading(false);
   };
-  const saveNote = async () => {
+  const saveNote: IGenericReturn<Promise<void>> = async () => {
     setLoading(true);
     await makeApiCall(apis.addNote(note));
     setLoading(false);
@@ -45,7 +47,6 @@ export const useNote = (id: string) => {
     mode,
     note,
     loading,
-    setNote,
     updateValue,
     saveNote,
     setMode,

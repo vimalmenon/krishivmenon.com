@@ -1,11 +1,11 @@
 import { CommonIcons } from '@constant';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { Container } from '@style';
+import { Container, Spacing } from '@style';
 
 import { useCommonGallery } from '../Gallery.service';
 
-export const SelectedFolder: React.FC = () => {
+export const AddEditFolder: React.FC = () => {
   const {
     addEditFolder,
     onSelectedFolderCancel,
@@ -14,12 +14,16 @@ export const SelectedFolder: React.FC = () => {
     onFolderDelete,
   } = useCommonGallery();
   return (
-    <Container component={'section'} sx={{ width: '400px' }} direction="column">
-      <Container component={'div'}>
+    <Container
+      component={'section'}
+      sx={{ width: '400px', gap: Spacing.md, padding: Spacing.sm }}
+      direction="column"
+    >
+      <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
         {addEditFolder?.id ? <span>Edit {addEditFolder.label}</span> : <span>Add Folder</span>}
         <CommonIcons.Cancel onClick={onSelectedFolderCancel} />
       </Container>
-      <div>
+      <Container component={'div'} sx={{ flex: '0' }}>
         <TextField
           variant="standard"
           size="small"
@@ -27,7 +31,7 @@ export const SelectedFolder: React.FC = () => {
           fullWidth
           onChange={(e) => onSelectedFolderLabelUpdate(e.target.value)}
         />
-      </div>
+      </Container>
       <Container component={'div'} sx={{ flex: '1' }}>
         &nbsp;
       </Container>

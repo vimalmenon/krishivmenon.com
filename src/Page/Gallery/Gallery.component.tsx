@@ -4,8 +4,10 @@ import { CommonIcons } from '@constant';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import { Container } from '@style';
+import { Spacing } from '@style';
 import { IFolder } from '@types';
 
+import { AddEditFolder } from './AddEditFolder';
 import {
   GalleryContext,
   initialContextValue,
@@ -13,14 +15,13 @@ import {
   useGallery,
 } from './Gallery.service';
 import { GalleryFolder } from './GalleryFolder';
-import { SelectedFolder } from './SelectedFolder';
 
 const GalleryChildren: React.FC = () => {
   const { currentFolder, addEditFolder, onFolderAdd, folderMap, onFolderSelect } =
     useCommonGallery();
   return (
     <Container component={'section'} sx={{ flex: '1 1 100%' }}>
-      <Container component={'div'} direction="column" sx={{ flex: '1 1 100%', gap: '20px' }}>
+      <Container component={'div'} direction="column" sx={{ gap: Spacing.md }}>
         <div>
           <CommonIcons.Add onClick={onFolderAdd} />
         </div>
@@ -43,7 +44,7 @@ const GalleryChildren: React.FC = () => {
           })}
         </div>
       </Container>
-      {addEditFolder && <SelectedFolder />}
+      {addEditFolder && <AddEditFolder />}
     </Container>
   );
 };

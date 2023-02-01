@@ -64,4 +64,6 @@ export const StorageFolderMapping: Record<StorageFileType, string> = {
 
 export const StorageKey = 'KM';
 
+export const FolderDepth = 4;
+
 export { CommonIcons } from './icons';

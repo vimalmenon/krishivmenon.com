@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useCommonApiContext } from '@context';
-import { INotes } from '@types';
+import { IGeneric, IGenericReturn, INotes } from '@types';
 import { apis } from '@utility';
 import { useRouter } from 'next/router';
 
@@ -11,13 +11,13 @@ export const useNotes = () => {
   const [loading, setLoading] = React.useState<boolean>(true);
   const { makeApiCall } = useCommonApiContext();
   const { push } = useRouter();
-  const getNotes = async () => {
+  const getNotes: IGenericReturn<Promise<void>> = async () => {
     setLoading(true);
     const results = await makeApiCall<{ notes: INotes[] }>(apis.getNotes());
     setNotes(results.notes);
     setLoading(false);
   };
-  const deleteNote = async (id: string) => {
+  const deleteNote: IGeneric<string, Promise<void>> = async (id: string) => {
     setLoading(true);
     await makeApiCall<{ notes: INotes[] }>(apis.deleteNote({ id }));
     setLoading(false);

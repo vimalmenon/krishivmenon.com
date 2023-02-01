@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { useCommonApiContext } from '@context';
-import { IFolder } from '@types';
+import { IFolder, IGenericMethod, IGenericParam, IGenericReturn } from '@types';
 import { apis, NotImplemented } from '@utility';
 
-import { IGalleryContext, IGalleryFolder } from './Gallery';
+import { IGalleryContext, IGalleryFolder, IUseGallery, IUseCommonGalleryContext } from './Gallery';
 
 const initialValue: IFolder = {
   id: '',
@@ -37,7 +37,7 @@ export const initialContextValue: IGalleryContext = {
 
 export const GalleryContext = React.createContext<IGalleryContext>(initialContextValue);
 
-export const useCommonGallery = () => {
+export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => {
   const {
     loading,
     selectedFolder,
@@ -48,13 +48,13 @@ export const useCommonGallery = () => {
     onFolderUpdate,
   } = React.useContext<IGalleryContext>(GalleryContext);
   const { makeApiCall } = useCommonApiContext();
-  const onFolderAdd = () => {
+  const onFolderAdd: IGenericMethod = () => {
     setSelectedFolder({ ...initialValue, parent: currentFolder });
   };
-  const onSelectedFolderCancel = () => {
+  const onSelectedFolderCancel: IGenericMethod = () => {
     setSelectedFolder(null);
   };
-  const onSelectedFolderLabelUpdate = (value: string) => {
+  const onSelectedFolderLabelUpdate: IGenericParam<string> = (value) => {
     if (selectedFolder) {
       setSelectedFolder({
         ...selectedFolder,
@@ -62,7 +62,7 @@ export const useCommonGallery = () => {
       });
     }
   };
-  const onAddFolderSave = async () => {
+  const onAddFolderSave: IGenericReturn<Promise<unknown>> = async () => {
     if (selectedFolder) {
       const result = await makeApiCall<IFolder[]>(
         selectedFolder.id
@@ -73,7 +73,7 @@ export const useCommonGallery = () => {
       setSelectedFolder(null);
     }
   };
-  const onFolderDelete = async () => {
+  const onFolderDelete: IGenericReturn<Promise<unknown>> = async () => {
     const result = await makeApiCall<IFolder[]>(
       apis.deleteFolder({ id: selectedFolder?.id || '' })
     );
@@ -95,7 +95,7 @@ export const useCommonGallery = () => {
   };
 };
 
-export const useGallery = () => {
+export const useGallery: IGenericReturn<IUseGallery> = () => {
   const [loading, setLoading] = React.useState<boolean>(initialContextValue.loading);
   const [folderMap, setFolderMap] = React.useState<Record<string, IGalleryFolder>>(
     initialContextValue.folderMap
@@ -103,7 +103,10 @@ export const useGallery = () => {
   const [currentFolder, setCurrentFolder] = React.useState<string>(rootFolder.id);
   const ref = React.useRef<boolean>(true);
   const { makeApiCall } = useCommonApiContext();
-  const createFolderMapping = async (folder: IGalleryFolder, breadcrumbs: string[]) => {
+  const createFolderMapping = async (
+    folder: IGalleryFolder,
+    breadcrumbs: string[]
+  ): Promise<void> => {
     setFolderMap((folderMap) => {
       return {
         ...folderMap,
@@ -148,11 +151,13 @@ export const useGallery = () => {
       };
     });
   };
-  const onFolderSelect = (folder: IGalleryFolder) => {
+  const onFolderSelect: IGenericParam<IGalleryFolder> = (folder): void => {
     setCurrentFolder(folder.id);
   };
-  const onFolderUpdate = async (folders: IFolder[], currentFolder: IGalleryFolder) => {
-    folderMap[currentFolder.id];
+  const onFolderUpdate = async (
+    folders: IFolder[],
+    currentFolder: IGalleryFolder
+  ): Promise<void> => {
     const folderIds = folders.map((data) => {
       createFolderMapping(
         {

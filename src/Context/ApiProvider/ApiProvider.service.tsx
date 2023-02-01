@@ -37,7 +37,7 @@ export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
         return result.data;
       });
   }
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string): void => {
     if (reason === 'clickaway') {
       return;
     }

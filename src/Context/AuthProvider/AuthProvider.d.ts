@@ -9,3 +9,8 @@ export interface IAuthProvider {
   idToken: string | null;
   user: IUser | null;
 }
+
+export interface IUseCommonAuthProvider {
+  user: IUser | null;
+  accessToken: string | null;
+}

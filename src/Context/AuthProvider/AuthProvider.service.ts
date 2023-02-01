@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { IAuthProvider } from './AuthProvider';
+import { IGenericReturn } from '@types';
+
+import { IAuthProvider, IUseCommonAuthProvider } from './AuthProvider';
 
 export const initialValue: IAuthProvider = {
   accessToken: null,
@@ -9,7 +11,7 @@ export const initialValue: IAuthProvider = {
 };
 export const AuthProviderContext = React.createContext<IAuthProvider>(initialValue);
 
-export const useCommonAuthProvider = () => {
+export const useCommonAuthProvider: IGenericReturn<IUseCommonAuthProvider> = () => {
   const { user, accessToken } = React.useContext<IAuthProvider>(AuthProviderContext);
 
   return {

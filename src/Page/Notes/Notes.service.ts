@@ -1,11 +1,13 @@
 import React from 'react';
 
 import { useCommonApiContext } from '@context';
-import { IGeneric, IGenericReturn, INotes } from '@types';
+import { IGeneric, IGenericParam, IGenericReturn, INotes } from '@types';
 import { apis } from '@utility';
 import { useRouter } from 'next/router';
 
-export const useNotes = () => {
+import { IUseNotes } from './Notes';
+
+export const useNotes: IGenericReturn<IUseNotes> = () => {
   const ref = React.useRef<boolean>(true);
   const [notes, setNotes] = React.useState<INotes[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
@@ -17,12 +19,12 @@ export const useNotes = () => {
     setNotes(results.notes);
     setLoading(false);
   };
-  const deleteNote: IGeneric<string, Promise<void>> = async (id: string) => {
+  const deleteNote: IGeneric<string, Promise<void>> = async (id) => {
     setLoading(true);
     await makeApiCall<{ notes: INotes[] }>(apis.deleteNote({ id }));
     setLoading(false);
   };
-  const toNote = (id: string) => {
+  const toNote: IGenericParam<string> = (id) => {
     push(`/notes/${id}`);
   };
   React.useEffect(() => {

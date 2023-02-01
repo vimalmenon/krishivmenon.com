@@ -7,11 +7,11 @@ import { clientSideEmotionCache } from '@style';
 import type { AppProps } from 'next/app';
 import '@fontsource/public-sans';
 
-export default function App({
+const MyApp: React.FC<AppProps & { emotionCache: EmotionCache }> = ({
   Component,
   pageProps,
   emotionCache = clientSideEmotionCache,
-}: AppProps & { emotionCache: EmotionCache }) {
+}) => {
   return (
     <React.StrictMode>
       <CacheProvider value={emotionCache}>
@@ -27,4 +27,6 @@ export default function App({
       </CacheProvider>
     </React.StrictMode>
   );
-}
+};
+
+export default MyApp;

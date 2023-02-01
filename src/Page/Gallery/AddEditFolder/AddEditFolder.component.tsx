@@ -1,8 +1,9 @@
 import { CommonIcons } from '@constant';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { Container, Spacing } from '@style';
+import { Container } from '@style';
 
+import { PaperStyle } from './AddEditFolder.style';
 import { useCommonGallery } from '../Gallery.service';
 
 export const AddEditFolder: React.FC = () => {
@@ -14,11 +15,7 @@ export const AddEditFolder: React.FC = () => {
     onFolderDelete,
   } = useCommonGallery();
   return (
-    <Container
-      component={'section'}
-      sx={{ width: '400px', gap: Spacing.md, padding: Spacing.sm }}
-      direction="column"
-    >
+    <PaperStyle elevation={6}>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
         {addEditFolder?.id ? <span>Edit {addEditFolder.label}</span> : <span>Add Folder</span>}
         <CommonIcons.Cancel onClick={onSelectedFolderCancel} />
@@ -43,6 +40,6 @@ export const AddEditFolder: React.FC = () => {
           Delete
         </Button>
       </Container>
-    </Container>
+    </PaperStyle>
   );
 };

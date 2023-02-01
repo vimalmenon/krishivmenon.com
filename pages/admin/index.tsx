@@ -1,10 +1,12 @@
 import { AppLayout } from '@layout';
 import { Admin as AdminPage } from '@page';
+import { NextPage } from 'next/types';
 
-export default function Admin() {
+const Admin: NextPage = () => {
   return (
     <AppLayout title="Admin ">
       <AdminPage />
     </AppLayout>
   );
-}
+};
+export default Admin;

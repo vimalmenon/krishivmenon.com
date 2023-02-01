@@ -1,31 +1,40 @@
 import React from 'react';
 
+import { IGeneric, IGenericMethod, IGenericParam } from '@types';
+
+import { IUseClick, IUseGalleryFolder } from './GalleryFolder';
 import { IGalleryFolder } from '../Gallery';
 import { useCommonGallery } from '../Gallery.service';
 
-export const useGalleryFolder = (folder: IGalleryFolder) => {
+export const useGalleryFolder: IGeneric<IGalleryFolder, IUseGalleryFolder> = (folder) => {
   const { setSelectedFolder, onFolderSelect } = useCommonGallery();
-  const onFinalSingleClick = () => {
+  const onFinalSingleClick: IGenericMethod = () => {
     setSelectedFolder(folder);
   };
-  const onFinalDoubleClick = () => {
+  const onFinalDoubleClick: IGenericMethod = () => {
     onFolderSelect(folder);
     setSelectedFolder(null);
   };
-  const onFolderClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    let event;
+  return {
+    onFinalSingleClick,
+    onFinalDoubleClick,
+  };
+};
+
+export const useClick = (singleClick: IGenericMethod, doubleClick: IGenericMethod): IUseClick => {
+  const ref = React.useRef<NodeJS.Timeout>();
+  const onClick: IGenericParam<React.MouseEvent<HTMLDivElement>> = (e) => {
     switch (e.detail) {
       case 1:
-        event = setTimeout(onFinalSingleClick, 100);
+        ref.current = setTimeout(singleClick, 220);
         break;
       case 2:
-        clearTimeout(event);
-        onFinalDoubleClick();
+        clearTimeout(ref.current);
+        doubleClick();
         break;
     }
   };
-
   return {
-    onFolderClick,
+    onClick,
   };
 };

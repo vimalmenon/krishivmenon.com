@@ -1,6 +1,7 @@
 import { ENV } from '@constant';
+import { IGenericParam } from '@types';
 
-export const onClick = (provider: string) => {
+export const onClick: IGenericParam<string> = (provider) => {
   const { origin, pathname } = window.location;
   window.location.href = `${
     ENV.AUTH_URL

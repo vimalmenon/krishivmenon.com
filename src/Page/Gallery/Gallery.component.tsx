@@ -16,7 +16,7 @@ import { GalleryFolder } from './GalleryFolder';
 import { SelectedFolder } from './SelectedFolder';
 
 const GalleryChildren: React.FC = () => {
-  const { currentFolder, selectedFolder, onFolderAdd, folderMap, onFolderSelect } =
+  const { currentFolder, addEditFolder, onFolderAdd, folderMap, onFolderSelect } =
     useCommonGallery();
   return (
     <Container component={'section'} sx={{ flex: '1 1 100%' }}>
@@ -43,13 +43,13 @@ const GalleryChildren: React.FC = () => {
           })}
         </div>
       </Container>
-      {selectedFolder && <SelectedFolder />}
+      {addEditFolder && <SelectedFolder />}
     </Container>
   );
 };
 export const Gallery: React.FC = () => {
-  const [selectedFolder, setSelectedFolder] = React.useState<IFolder | null>(
-    initialContextValue.selectedFolder
+  const [addEditFolder, setAddEditFolder] = React.useState<IFolder | null>(
+    initialContextValue.addEditFolder
   );
   const { loading, currentFolder, folderMap, onFolderSelect, onFolderUpdate } = useGallery();
   return (
@@ -57,10 +57,10 @@ export const Gallery: React.FC = () => {
       value={{
         loading,
         currentFolder,
-        selectedFolder,
+        addEditFolder,
         onFolderSelect,
         folderMap,
-        setSelectedFolder,
+        setAddEditFolder,
         onFolderUpdate,
       }}
     >

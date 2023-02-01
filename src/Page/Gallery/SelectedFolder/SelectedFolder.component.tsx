@@ -7,7 +7,7 @@ import { useCommonGallery } from '../Gallery.service';
 
 export const SelectedFolder: React.FC = () => {
   const {
-    selectedFolder,
+    addEditFolder,
     onSelectedFolderCancel,
     onSelectedFolderLabelUpdate,
     onAddFolderSave,
@@ -16,14 +16,14 @@ export const SelectedFolder: React.FC = () => {
   return (
     <Container component={'section'} sx={{ width: '400px' }} direction="column">
       <Container component={'div'}>
-        {selectedFolder?.id ? <span>Edit {selectedFolder.label}</span> : <span>Add Folder</span>}
+        {addEditFolder?.id ? <span>Edit {addEditFolder.label}</span> : <span>Add Folder</span>}
         <CommonIcons.Cancel onClick={onSelectedFolderCancel} />
       </Container>
       <div>
         <TextField
           variant="standard"
           size="small"
-          value={selectedFolder?.label}
+          value={addEditFolder?.label}
           fullWidth
           onChange={(e) => onSelectedFolderLabelUpdate(e.target.value)}
         />

@@ -26,8 +26,8 @@ const rootFolder: IGalleryFolder = {
 export const initialContextValue: IGalleryContext = {
   loading: false,
   currentFolder: rootFolder.id,
-  selectedFolder: null,
-  setSelectedFolder: NotImplemented,
+  addEditFolder: null,
+  setAddEditFolder: NotImplemented,
   onFolderSelect: NotImplemented,
   onFolderUpdate: NotImplemented,
   folderMap: {
@@ -40,55 +40,53 @@ export const GalleryContext = React.createContext<IGalleryContext>(initialContex
 export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => {
   const {
     loading,
-    selectedFolder,
+    addEditFolder,
     currentFolder,
-    setSelectedFolder,
+    setAddEditFolder,
     onFolderSelect,
     folderMap,
     onFolderUpdate,
   } = React.useContext<IGalleryContext>(GalleryContext);
   const { makeApiCall } = useCommonApiContext();
   const onFolderAdd: IGenericMethod = () => {
-    setSelectedFolder({ ...initialValue, parent: currentFolder });
+    setAddEditFolder({ ...initialValue, parent: currentFolder });
   };
   const onSelectedFolderCancel: IGenericMethod = () => {
-    setSelectedFolder(null);
+    setAddEditFolder(null);
   };
   const onSelectedFolderLabelUpdate: IGenericParam<string> = (value) => {
-    if (selectedFolder) {
-      setSelectedFolder({
-        ...selectedFolder,
+    if (addEditFolder) {
+      setAddEditFolder({
+        ...addEditFolder,
         label: value,
       });
     }
   };
   const onAddFolderSave: IGenericReturn<Promise<unknown>> = async () => {
-    if (selectedFolder) {
+    if (addEditFolder) {
       const result = await makeApiCall<IFolder[]>(
-        selectedFolder.id
-          ? apis.updateFolderData({ id: selectedFolder.id }, selectedFolder)
-          : apis.createFolder(selectedFolder)
+        addEditFolder.id
+          ? apis.updateFolderData({ id: addEditFolder.id }, addEditFolder)
+          : apis.createFolder(addEditFolder)
       );
       onFolderUpdate(result, folderMap[currentFolder]);
-      setSelectedFolder(null);
+      setAddEditFolder(null);
     }
   };
   const onFolderDelete: IGenericReturn<Promise<unknown>> = async () => {
-    const result = await makeApiCall<IFolder[]>(
-      apis.deleteFolder({ id: selectedFolder?.id || '' })
-    );
+    const result = await makeApiCall<IFolder[]>(apis.deleteFolder({ id: addEditFolder?.id || '' }));
     onFolderUpdate(result, folderMap[currentFolder]);
-    setSelectedFolder(null);
+    setAddEditFolder(null);
   };
   return {
     loading,
-    selectedFolder,
+    addEditFolder,
     folderMap,
     onFolderAdd,
     onSelectedFolderCancel,
     onSelectedFolderLabelUpdate,
     onAddFolderSave,
-    setSelectedFolder,
+    setAddEditFolder,
     onFolderDelete,
     onFolderSelect,
     currentFolder,

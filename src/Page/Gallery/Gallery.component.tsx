@@ -52,11 +52,16 @@ export const Gallery: React.FC = () => {
   const [addEditFolder, setAddEditFolder] = React.useState<IFolder | null>(
     initialContextValue.addEditFolder
   );
+  const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(
+    initialContextValue.deleteConfirm
+  );
   const { loading, currentFolder, folderMap, onFolderSelect, onFolderUpdate } = useGallery();
   return (
     <GalleryContext.Provider
       value={{
         loading,
+        deleteConfirm,
+        setDeleteConfirm,
         currentFolder,
         addEditFolder,
         onFolderSelect,

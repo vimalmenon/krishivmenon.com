@@ -14,6 +14,8 @@ export interface IGalleryContext {
   onFolderSelect: IGenericParam<IGalleryFolder>;
   setAddEditFolder: React.Dispatch<React.SetStateAction<IFolder | null>>;
   onFolderUpdate: (folders: IFolder[], currentFolder: IGalleryFolder) => void;
+  deleteConfirm: boolean;
+  setDeleteConfirm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IUseGallery {
@@ -36,4 +38,6 @@ export interface IUseCommonGalleryContext {
   setAddEditFolder: React.Dispatch<React.SetStateAction<IFolder | null>>;
   onFolderSelect: IGenericParam<IGalleryFolder>;
   onSelectedFolderLabelUpdate: IGenericParam<string>;
+  onFolderDeleteConfirm: IGenericMethod;
+  deleteConfirm: boolean;
 }

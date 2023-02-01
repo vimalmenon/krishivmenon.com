@@ -13,17 +13,19 @@ export const AddEditFolder: React.FC = () => {
     onSelectedFolderLabelUpdate,
     onAddFolderSave,
     onFolderDelete,
+    deleteConfirm,
   } = useCommonGallery();
   return (
     <PaperStyle elevation={6}>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
         {addEditFolder?.id ? <span>Edit {addEditFolder.label}</span> : <span>Add Folder</span>}
-        <CommonIcons.Cancel onClick={onSelectedFolderCancel} />
+        <CommonIcons.Delete onClick={onFolderDelete} />
       </Container>
       <Container component={'div'} sx={{ flex: '0' }}>
         <TextField
           variant="standard"
           size="small"
+          disabled={deleteConfirm}
           value={addEditFolder?.label}
           fullWidth
           onChange={(e) => onSelectedFolderLabelUpdate(e.target.value)}
@@ -36,8 +38,8 @@ export const AddEditFolder: React.FC = () => {
         <Button variant="contained" onClick={onAddFolderSave}>
           Save
         </Button>
-        <Button variant="contained" onClick={onFolderDelete}>
-          Delete
+        <Button variant="contained" onClick={onSelectedFolderCancel}>
+          Cancel
         </Button>
       </Container>
     </PaperStyle>

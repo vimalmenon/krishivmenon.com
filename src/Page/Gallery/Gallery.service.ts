@@ -30,6 +30,8 @@ export const initialContextValue: IGalleryContext = {
   setAddEditFolder: NotImplemented,
   onFolderSelect: NotImplemented,
   onFolderUpdate: NotImplemented,
+  deleteConfirm: false,
+  setDeleteConfirm: NotImplemented,
   folderMap: {
     [rootFolder.id]: rootFolder,
   },
@@ -46,6 +48,8 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     onFolderSelect,
     folderMap,
     onFolderUpdate,
+    deleteConfirm,
+    setDeleteConfirm,
   } = React.useContext<IGalleryContext>(GalleryContext);
   const { makeApiCall } = useCommonApiContext();
   const onFolderAdd: IGenericMethod = () => {
@@ -77,6 +81,10 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     const result = await makeApiCall<IFolder[]>(apis.deleteFolder({ id: addEditFolder?.id || '' }));
     onFolderUpdate(result, folderMap[currentFolder]);
     setAddEditFolder(null);
+    setDeleteConfirm(true);
+  };
+  const onFolderDeleteConfirm: IGenericMethod = () => {
+    setAddEditFolder(null);
   };
   return {
     loading,
@@ -90,6 +98,8 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     onFolderDelete,
     onFolderSelect,
     currentFolder,
+    onFolderDeleteConfirm,
+    deleteConfirm,
   };
 };
 

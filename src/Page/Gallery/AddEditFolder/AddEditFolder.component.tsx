@@ -20,7 +20,7 @@ export const AddEditFolder: React.FC = () => {
     <PaperStyle elevation={6}>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
         {addEditFolder?.id ? <span>Edit {addEditFolder.label}</span> : <span>Add Folder</span>}
-        <CommonIcons.Delete onClick={onFolderDelete} />
+        {addEditFolder?.id && <CommonIcons.Delete onClick={onFolderDelete} />}
       </Container>
       <Container component={'div'} sx={{ flex: '0' }}>
         <TextField

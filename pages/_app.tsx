@@ -1,7 +1,13 @@
 import '../styles/globals.css';
 import React from 'react';
 
-import { AppProvider, AuthProvider, LocalStorageProvider, ApiProvider } from '@context';
+import {
+  AppProvider,
+  AuthProvider,
+  LocalStorageProvider,
+  ApiProvider,
+  ErrorBoundaryProvider,
+} from '@context';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { clientSideEmotionCache } from '@style';
 import type { AppProps } from 'next/app';
@@ -16,13 +22,15 @@ const MyApp: React.FC<AppProps & { emotionCache: EmotionCache }> = ({
     <React.StrictMode>
       <CacheProvider value={emotionCache}>
         <LocalStorageProvider>
-          <AuthProvider>
-            <AppProvider>
-              <ApiProvider>
-                <Component {...pageProps} />
-              </ApiProvider>
-            </AppProvider>
-          </AuthProvider>
+          <ErrorBoundaryProvider>
+            <AuthProvider>
+              <AppProvider>
+                <ApiProvider>
+                  <Component {...pageProps} />
+                </ApiProvider>
+              </AppProvider>
+            </AuthProvider>
+          </ErrorBoundaryProvider>
         </LocalStorageProvider>
       </CacheProvider>
     </React.StrictMode>

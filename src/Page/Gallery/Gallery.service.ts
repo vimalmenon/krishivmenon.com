@@ -11,6 +11,7 @@ const initialValue: IFolder = {
   parent: 'root',
   label: '',
   content: [],
+  files: [],
 };
 
 const rootFolder: IGalleryFolder = {
@@ -21,6 +22,7 @@ const rootFolder: IGalleryFolder = {
   label: 'My Gallery',
   parent: '',
   content: [],
+  files: [],
 };
 
 export const initialContextValue: IGalleryContext = {

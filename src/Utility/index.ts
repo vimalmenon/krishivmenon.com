@@ -11,15 +11,6 @@ export const checkTruthy: IGeneric<string | undefined | null, boolean> = (value)
   return true;
 };
 
-export const getFormData = <T>(body: T): FormData => {
-  const result = new FormData();
-  if (body) {
-    Object.keys(body).forEach((data) => {
-      result.append(data, (body as AnyType)[data]);
-    });
-  }
-  return result;
-};
 export const getUid: IGenericReturn<string> = () => {
   return uuid();
 };

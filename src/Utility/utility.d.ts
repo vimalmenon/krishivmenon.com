@@ -11,3 +11,10 @@ export interface IApiStorageApi extends IApiS3Folder {
 export interface IApiNote {
   id: string;
 }
+
+export interface IUploadToS3 {
+  extension: string;
+  folderId: string;
+  data: File;
+  fileName: string;
+}

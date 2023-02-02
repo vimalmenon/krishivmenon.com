@@ -15,15 +15,15 @@ export const useItem: IUseItem = (file, uid, fileType) => {
   const extension = FileTypeMapping[file.type];
   const folder = StorageFolderMapping[fileType];
   const uploadFile: IGenericReturn<Promise<unknown>> = async () => {
-    await makeApiCall<File, unknown>(
-      apis.uploadToS3({
-        folder,
-        fileName: uid,
-        file: file,
-        extension,
-        fileType: file.type,
-      })
-    );
+    // await makeApiCall<File, unknown>(
+    //   // apis.uploadToS3({
+    //   //   folder,
+    //   //   fileName: uid,
+    //   //   file: file,
+    //   //   extension,
+    //   //   fileType: file.type,
+    //   // })
+    // );
     setLoading(false);
   };
   React.useEffect(() => {

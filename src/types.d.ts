@@ -66,6 +66,7 @@ export interface IFolder extends IBaseDB {
   label: string;
   parent: string;
   content: string[];
+  files: [];
 }
 
 export interface IFile extends IBaseDB {

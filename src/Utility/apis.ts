@@ -1,7 +1,7 @@
 import { ENV } from '@constant';
-import { IGenericReturn, IApi, INotes, IFolder } from '@types';
+import { IGenericReturn, IApi, INotes, IFolder, AnyType } from '@types';
 
-import { IApiStorageApi, IApiS3Folder, IApiNote } from './utility';
+import { IApiStorageApi, IApiS3Folder, IApiNote, IUploadToS3 } from './utility';
 
 export const getBaseUrl: IGenericReturn<string> = () => {
   return `${ENV.API}${ENV.API_VERSION}`;
@@ -16,23 +16,26 @@ export const Apis = {
   FolderParent: 'folders/parent/{id}',
   FolderData: 'folders/folder_data/{id}',
 };
+
+export const getFormData = <T>(body: T): FormData => {
+  const result = new FormData();
+  if (body) {
+    Object.keys(body).forEach((data) => {
+      result.append(data, (body as AnyType)[data]);
+    });
+  }
+  return result;
+};
+
 export const apis = {
-  uploadToS3: function ({
-    folder,
-    fileName,
-    file,
-    extension,
-    fileType,
-  }: IApiStorageApi): IApi<File> {
-    const url = Apis.S3DriveFile.replace('{folder}', folder)
-      .replace('{fileName}', fileName)
-      .replace('{extension}', extension);
+  uploadToS3: function (folder: string, data: IUploadToS3): IApi<FormData> {
+    const url = Apis.S3Drive.replace('{folder}', folder);
     return {
       url,
       method: 'POST',
-      data: file,
-      headers: {
-        'Content-Type': fileType,
+      data: getFormData<IUploadToS3>(data),
+      params: {
+        code: '3',
       },
     };
   },

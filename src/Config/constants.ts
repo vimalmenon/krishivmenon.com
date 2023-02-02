@@ -61,6 +61,14 @@ export const StorageFolderMapping: Record<StorageFileType, string> = {
   file: 'files',
   video: 'videos',
 };
+export const DriveFolderMapping: Record<string, string> = {
+  'image/jpeg': StorageFolderMapping.image,
+  'image/png': StorageFolderMapping.image,
+  'image/heic': StorageFolderMapping.image,
+  'application/pdf': StorageFolderMapping.file,
+  'application/zip': StorageFolderMapping.file,
+  'application/json': StorageFolderMapping.file,
+};
 
 export const StorageKey = 'KM';
 

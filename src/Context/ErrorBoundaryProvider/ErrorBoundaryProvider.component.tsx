@@ -2,16 +2,16 @@ import React, { ReactNode } from 'react';
 
 import { ReactChildren } from '@types';
 
+import { IErrorBoundaryProps } from './ErrorBoundaryProvider';
 import { Context } from './ErrorBoundaryProvider.service';
 
-class ErrorBoundary extends React.Component<{ children: ReactNode }, { hasError: boolean }> {
-  constructor(props: { children: ReactNode }) {
+class ErrorBoundary extends React.Component<ReactChildren, IErrorBoundaryProps> {
+  constructor(props: ReactChildren) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: Error) {
-    console.log(error);
+  static getDerivedStateFromError(): IErrorBoundaryProps {
     // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
@@ -21,7 +21,7 @@ class ErrorBoundary extends React.Component<{ children: ReactNode }, { hasError:
   //   logErrorToMyService(error, errorInfo);
   // }
 
-  render() {
+  render(): ReactNode {
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return <h1>Something went wrong.</h1>;

@@ -3,8 +3,7 @@ import React from 'react';
 import { CommonIcons } from '@constant';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
-import { Container } from '@style';
-import { Spacing } from '@style';
+import { Container, Spacing } from '@style';
 import { IFolder } from '@types';
 
 import { AddEditFolder } from './AddEditFolder';

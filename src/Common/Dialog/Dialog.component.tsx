@@ -24,9 +24,18 @@ export const Dialog: IDialogStatic & React.FC<IDialog & ReactChildren> = ({
   handleClose,
   title,
   children,
+  fullWidth = true,
+  maxWidth = 'md',
 }) => {
   return (
-    <MuiDialog open={open} TransitionComponent={Transition} keepMounted onClose={handleClose}>
+    <MuiDialog
+      open={open}
+      TransitionComponent={Transition}
+      keepMounted
+      onClose={handleClose}
+      fullWidth={fullWidth}
+      maxWidth={maxWidth}
+    >
       <DialogTitle>{title}</DialogTitle>
       {children}
     </MuiDialog>

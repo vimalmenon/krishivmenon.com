@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icon } from '@common';
+import { Icon, Confirm } from '@common';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
@@ -26,6 +26,9 @@ const GalleryChildren: React.FC = () => {
     onFolderSelect,
     showUploadFolder,
     toggleShowUploadFolder,
+    deleteConfirm,
+    onDeleteConfirmCancel,
+    onFolderDeleteConfirm,
   } = useCommonGallery();
   return (
     <Container component={'section'} sx={{ flex: '1 1 100%' }}>
@@ -50,6 +53,13 @@ const GalleryChildren: React.FC = () => {
           </div>
         </Container>
         <Divider />
+        <Confirm
+          open={deleteConfirm}
+          handleClose={onDeleteConfirmCancel}
+          handleConfirm={onFolderDeleteConfirm}
+        >
+          <>Are you sure you want to delete {addEditFolder?.label}</>
+        </Confirm>
         <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
           {folderMap[currentFolder].folders.map((value) => {
             return <GalleryFolder key={value} folder={folderMap[value]} />;

@@ -35,7 +35,7 @@ export interface IUseCommonGalleryContext {
   onFolderAdd: IGenericMethod;
   onSelectedFolderCancel: IGenericMethod;
   currentFolder: string;
-  onFolderDelete: IGenericReturn<Promise<unknown>>;
+  onFolderDelete: IGenericMethod;
   onAddFolderSave: IGenericReturn<Promise<unknown>>;
   setAddEditFolder: React.Dispatch<React.SetStateAction<IFolder | null>>;
   onFolderSelect: IGenericParam<IGalleryFolder>;
@@ -44,4 +44,5 @@ export interface IUseCommonGalleryContext {
   deleteConfirm: boolean;
   showUploadFolder: boolean;
   toggleShowUploadFolder: IGenericMethod;
+  onDeleteConfirmCancel: IGenericMethod;
 }

@@ -84,18 +84,21 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
       setAddEditFolder(null);
     }
   };
-  const onFolderDelete: IGenericReturn<Promise<unknown>> = async () => {
+  const onFolderDelete: IGenericMethod = () => {
+    setDeleteConfirm(true);
+  };
+  const onFolderDeleteConfirm: IGenericReturn<Promise<unknown>> = async () => {
     const result = await makeApiCall<IFolder[]>(apis.deleteFolder({ id: addEditFolder?.id || '' }));
     onFolderUpdate(result, folderMap[currentFolder]);
     setAddEditFolder(null);
-    setDeleteConfirm(true);
-  };
-  const onFolderDeleteConfirm: IGenericMethod = () => {
-    setAddEditFolder(null);
+    setDeleteConfirm(false);
   };
   const toggleShowUploadFolder: IGenericMethod = () => {
     setShowUploadFolder(!showUploadFolder);
     setAddEditFolder(null);
+  };
+  const onDeleteConfirmCancel: IGenericMethod = () => {
+    setDeleteConfirm(false);
   };
   return {
     loading,
@@ -113,6 +116,7 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     deleteConfirm,
     showUploadFolder,
     toggleShowUploadFolder,
+    onDeleteConfirmCancel,
   };
 };
 

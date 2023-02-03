@@ -1,3 +1,4 @@
+export * from './Icon';
 export * from './Alert';
 export * from './Dialog';
 export * from './Footer';

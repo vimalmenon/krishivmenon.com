@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CommonIcons } from '@constant';
+import { Icon } from '@common';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
@@ -38,7 +38,7 @@ const GalleryChildren: React.FC = () => {
             </Breadcrumbs>
           </div>
           <div>
-            <CommonIcons.Add onClick={onFolderAdd} />
+            <Icon Icon={Icon.icons.Add} label="Add" onClick={onFolderAdd} />
           </div>
         </Container>
         <Divider />

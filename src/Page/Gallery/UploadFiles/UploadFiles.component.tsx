@@ -1,4 +1,5 @@
 import { FileUpload } from '@common';
+import { AcceptVideo, AcceptImages } from '@constant';
 import Button from '@mui/material/Button';
 import { Container } from '@style';
 
@@ -10,7 +11,7 @@ export const UploadFiles: React.FC = () => {
   return (
     <PaperStyle>
       <Container component={'div'} sx={{ flex: '1' }}>
-        <FileUpload fileType={'image'} />
+        <FileUpload accept={{ ...AcceptVideo, ...AcceptImages }} />
       </Container>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
         <Button variant="contained">Save</Button>

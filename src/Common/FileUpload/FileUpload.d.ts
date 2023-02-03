@@ -1,5 +1,3 @@
-import { StorageFileType } from '@types';
-
 export interface IFileUpload {
-  fileType: StorageFileType;
+  accept: Record<string, string[]>;
 }

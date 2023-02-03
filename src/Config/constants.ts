@@ -47,6 +47,12 @@ export const ENV = {
   API_VERSION: process.env.NEXT_PUBLIC_API_VERSION || '',
 };
 
+export const AcceptImages = {
+  'image/*': ['jpeg', 'png', 'heic'],
+};
+export const AcceptVideo = {
+  'video/*': ['mp4', 'mov'],
+};
 export const FileTypeMapping: Record<string, string> = {
   'image/jpeg': 'jpeg',
   'image/png': 'png',
@@ -54,12 +60,16 @@ export const FileTypeMapping: Record<string, string> = {
   'application/pdf': 'pdf',
   'application/zip': 'zip',
   'application/json': 'json',
+  'video/quicktime': 'mov',
+  'video/mp4': 'mp4',
+  'audio/mpeg': 'mp3',
 };
 
 export const StorageFolderMapping: Record<StorageFileType, string> = {
   image: 'images',
   file: 'files',
   video: 'videos',
+  audio: 'audios',
 };
 export const DriveFolderMapping: Record<string, string> = {
   'image/jpeg': StorageFolderMapping.image,
@@ -68,6 +78,9 @@ export const DriveFolderMapping: Record<string, string> = {
   'application/pdf': StorageFolderMapping.file,
   'application/zip': StorageFolderMapping.file,
   'application/json': StorageFolderMapping.file,
+  'video/quicktime': StorageFolderMapping.video,
+  'video/mp4': StorageFolderMapping.video,
+  'audio/mpeg': StorageFolderMapping.audio,
 };
 
 export const StorageKey = 'KM';

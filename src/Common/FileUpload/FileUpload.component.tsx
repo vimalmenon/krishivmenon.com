@@ -6,14 +6,22 @@ import { useDropzone } from 'react-dropzone';
 import { IFileUpload } from './FileUpload';
 import { Item } from './Item';
 
-export const FileUpload: React.FC<IFileUpload> = ({ fileType }) => {
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+export const FileUpload: React.FC<IFileUpload> = ({ accept }) => {
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    accept: accept,
+    onDropAccepted(files, event) {
+      console.log(files);
+    },
+    onDropRejected(files, event) {
+      console.log(files);
+    },
+  });
   return (
     <Container component={'section'} direction="column" sx={{ flex: '1 1 100%' }}>
       <div
         {...getRootProps({ className: 'dropzone' })}
         style={{
-          flex: 2,
+          flex: 1,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -30,10 +38,10 @@ export const FileUpload: React.FC<IFileUpload> = ({ fileType }) => {
         <p>Drag & drop some files here, or click to select files</p>
       </div>
 
-      <div style={{ flex: 3, display: 'flex' }}>
-        {acceptedFiles.map((file) => {
+      <div style={{ flex: 4, display: 'flex' }}>
+        {/* {acceptedFiles.map((file) => {
           return <Item file={file} key={file.name} fileType={fileType} />;
-        })}
+        })} */}
       </div>
     </Container>
   );

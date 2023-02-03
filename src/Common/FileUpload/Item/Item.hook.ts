@@ -2,12 +2,11 @@ import React from 'react';
 
 import { FileTypeMapping, StorageFolderMapping } from '@constant';
 import { useCommonApiContext } from '@context';
-import { IGenericMethod, IGenericReturn } from '@types';
-import { apis } from '@utility';
+import { IGenericReturn } from '@types';
 
 import { IUseItem } from './Item';
 
-export const useItem: IUseItem = (file, uid, fileType) => {
+export const useItem: IUseItem = (file, fileType) => {
   const [loading, setLoading] = React.useState<boolean>(true);
   const [isDeleted, setDeleted] = React.useState<boolean>(false);
   const refs = React.useRef<boolean>(true);
@@ -32,23 +31,9 @@ export const useItem: IUseItem = (file, uid, fileType) => {
       refs.current = false;
     }
   }, []);
-  const onDelete: IGenericMethod = async () => {
-    setLoading(true);
-    await makeApiCall<unknown, unknown>(
-      apis.deleteFromS3({
-        folder: StorageFolderMapping[fileType],
-        fileName: uid,
-        extension,
-        fileType: file.type,
-      })
-    );
-    setLoading(false);
-    setDeleted(true);
-  };
   return {
     extension,
     loading,
     isDeleted,
-    onDelete,
   };
 };

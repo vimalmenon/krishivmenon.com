@@ -54,6 +54,8 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     onFolderUpdate,
     deleteConfirm,
     setDeleteConfirm,
+    showUploadFolder,
+    setShowUploadFolder,
   } = React.useContext<IGalleryContext>(GalleryContext);
   const { makeApiCall } = useCommonApiContext();
   const onFolderAdd: IGenericMethod = () => {
@@ -90,6 +92,9 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
   const onFolderDeleteConfirm: IGenericMethod = () => {
     setAddEditFolder(null);
   };
+  const toggleShowUploadFolder: IGenericMethod = () => {
+    setShowUploadFolder(!showUploadFolder);
+  };
   return {
     loading,
     addEditFolder,
@@ -104,6 +109,8 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     currentFolder,
     onFolderDeleteConfirm,
     deleteConfirm,
+    showUploadFolder,
+    toggleShowUploadFolder,
   };
 };
 

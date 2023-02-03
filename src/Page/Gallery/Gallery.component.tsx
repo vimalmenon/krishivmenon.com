@@ -18,8 +18,15 @@ import { GalleryFolder } from './GalleryFolder';
 import { UploadFiles } from './UploadFiles';
 
 const GalleryChildren: React.FC = () => {
-  const { currentFolder, addEditFolder, onFolderAdd, folderMap, onFolderSelect } =
-    useCommonGallery();
+  const {
+    currentFolder,
+    addEditFolder,
+    onFolderAdd,
+    folderMap,
+    onFolderSelect,
+    showUploadFolder,
+    toggleShowUploadFolder,
+  } = useCommonGallery();
   return (
     <Container component={'section'} sx={{ flex: '1 1 100%' }}>
       <Container component={'div'} direction="column" sx={{ gap: Spacing.md, flex: '1 1 100%' }}>
@@ -38,6 +45,7 @@ const GalleryChildren: React.FC = () => {
             </Breadcrumbs>
           </div>
           <div>
+            <Icon Icon={Icon.icons.CloudUpload} label="Upload" onClick={toggleShowUploadFolder} />
             <Icon Icon={Icon.icons.Add} label="Add" onClick={onFolderAdd} />
           </div>
         </Container>
@@ -49,7 +57,7 @@ const GalleryChildren: React.FC = () => {
         </div>
       </Container>
       {addEditFolder && <AddEditFolder />}
-      <UploadFiles />
+      {showUploadFolder && <UploadFiles />}
     </Container>
   );
 };

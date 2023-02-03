@@ -42,4 +42,6 @@ export interface IUseCommonGalleryContext {
   onSelectedFolderLabelUpdate: IGenericParam<string>;
   onFolderDeleteConfirm: IGenericMethod;
   deleteConfirm: boolean;
+  showUploadFolder: boolean;
+  toggleShowUploadFolder: IGenericMethod;
 }

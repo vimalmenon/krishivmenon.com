@@ -60,6 +60,9 @@ export const Gallery: React.FC = () => {
   const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(
     initialContextValue.deleteConfirm
   );
+  const [showUploadFolder, setShowUploadFolder] = React.useState<boolean>(
+    initialContextValue.showUploadFolder
+  );
   const { loading, currentFolder, folderMap, onFolderSelect, onFolderUpdate } = useGallery();
   return (
     <GalleryContext.Provider
@@ -73,6 +76,8 @@ export const Gallery: React.FC = () => {
         folderMap,
         setAddEditFolder,
         onFolderUpdate,
+        showUploadFolder,
+        setShowUploadFolder,
       }}
     >
       {loading ? <div>...Loading</div> : <GalleryChildren />}

@@ -16,6 +16,8 @@ export interface IGalleryContext {
   onFolderUpdate: (folders: IFolder[], currentFolder: IGalleryFolder) => void;
   deleteConfirm: boolean;
   setDeleteConfirm: React.Dispatch<React.SetStateAction<boolean>>;
+  showUploadFolder: boolean;
+  setShowUploadFolder: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IUseGallery {

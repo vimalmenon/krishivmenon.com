@@ -37,6 +37,8 @@ export const initialContextValue: IGalleryContext = {
   folderMap: {
     [rootFolder.id]: rootFolder,
   },
+  showUploadFolder: false,
+  setShowUploadFolder: NotImplemented,
 };
 
 export const GalleryContext = React.createContext<IGalleryContext>(initialContextValue);

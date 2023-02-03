@@ -1,4 +1,3 @@
-import { FileUpload } from '@common';
 import { CommonIcons } from '@constant';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -33,7 +32,7 @@ export const AddEditFolder: React.FC = () => {
         />
       </Container>
       <Container component={'div'} sx={{ flex: '1' }}>
-        <FileUpload fileType={'image'} />
+        &nbsp;
       </Container>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
         <Button variant="contained" onClick={onAddFolderSave}>

@@ -11,7 +11,7 @@ export const UploadFiles: React.FC = () => {
   return (
     <PaperStyle>
       <Container component={'div'} sx={{ flex: '1' }}>
-        <FileUpload accept={{ ...AcceptVideo, ...AcceptImages }} />
+        <FileUpload accept={{ ...AcceptImages, ...AcceptVideo }} />
       </Container>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
         <Button variant="contained">Save</Button>

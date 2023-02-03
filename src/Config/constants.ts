@@ -48,10 +48,10 @@ export const ENV = {
 };
 
 export const AcceptImages = {
-  'image/*': ['jpeg', 'png', 'heic'],
+  'image/*': ['.jpeg', '.png', '.heic'],
 };
 export const AcceptVideo = {
-  'video/*': ['mp4', 'mov'],
+  'video/*': ['.mp4', '.mov'],
 };
 export const FileTypeMapping: Record<string, string> = {
   'image/jpeg': 'jpeg',

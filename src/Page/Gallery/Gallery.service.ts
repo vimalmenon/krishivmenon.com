@@ -60,6 +60,7 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
   const { makeApiCall } = useCommonApiContext();
   const onFolderAdd: IGenericMethod = () => {
     setAddEditFolder({ ...initialValue, parent: currentFolder });
+    setShowUploadFolder(false);
   };
   const onSelectedFolderCancel: IGenericMethod = () => {
     setAddEditFolder(null);
@@ -94,6 +95,7 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
   };
   const toggleShowUploadFolder: IGenericMethod = () => {
     setShowUploadFolder(!showUploadFolder);
+    setAddEditFolder(null);
   };
   return {
     loading,

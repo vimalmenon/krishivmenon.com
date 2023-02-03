@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 
-export const UploadInputStyle = styled('section')(({ theme }) => ({
+export const UploadInputStyle = styled('section')(() => ({
   flex: 1,
   display: 'flex',
   flexDirection: 'column',

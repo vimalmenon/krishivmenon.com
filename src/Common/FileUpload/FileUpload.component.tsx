@@ -16,7 +16,7 @@ export const FileUpload: React.FC<IFileUpload> = ({ accept, onDropAccepted, onDr
     <Container component={'section'} direction="column" sx={{ flex: '1 1 100%' }}>
       <UploadInputStyle {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
-        <p>Drag & drop some files here, or click to select files</p>
+        <p>Drag & drop files here, or click to select files</p>
       </UploadInputStyle>
       <div style={{ flex: 4, display: 'flex' }}></div>
     </Container>

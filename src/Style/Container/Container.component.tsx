@@ -10,6 +10,7 @@ export const Container: React.FC<ReactChildren & IContainer> = ({
   direction = 'row',
   display = 'flex',
   sx = {},
+  className = '',
   isMain = false,
 }) => {
   if (isMain) {
@@ -18,13 +19,18 @@ export const Container: React.FC<ReactChildren & IContainer> = ({
         component={component}
         sx={{ display, flexDirection: direction, ...sx }}
         maxWidth="lg"
+        className={className}
       >
         {children}
       </MuiContainer>
     );
   }
   return (
-    <Box component={component} sx={{ ...sx, display, flexDirection: direction }}>
+    <Box
+      component={component}
+      sx={{ ...sx, display, flexDirection: direction }}
+      className={className}
+    >
       {children}
     </Box>
   );

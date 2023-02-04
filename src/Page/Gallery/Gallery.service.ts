@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AcceptVideo, AcceptImages } from '@constant';
+import { AcceptVideo, AcceptImages, FileTypeExtensionMapping, DriveFolderMapping } from '@constant';
 import { useCommonApiContext } from '@context';
 import { IFolder, IGenericMethod, IGenericParam, IGenericReturn } from '@types';
 import { apis, NotImplemented } from '@utility';
@@ -39,6 +39,7 @@ export const initialContextValue: IGalleryContext = {
     [rootFolder.id]: rootFolder,
   },
   showFileUploader: false,
+  onFileSetLoading: NotImplemented,
   setShowFileUploader: NotImplemented,
   files: [],
   accept: { ...AcceptVideo, ...AcceptImages },
@@ -62,6 +63,7 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     onFolderSelect,
     onDropRejected,
     onDropAccepted,
+    onFileSetLoading,
     setAddEditFolder,
     setDeleteConfirm,
     showFileUploader,
@@ -116,11 +118,26 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     setShowFileUploader(!showFileUploader);
     setAddEditFolder(null);
   };
+  const uploadFiles: IGenericMethod = async () => {
+    files.map(async (file, key) => {
+      onFileSetLoading(key, true);
+      await makeApiCall(
+        apis.uploadToS3(DriveFolderMapping[file.file.type], {
+          extension: FileTypeExtensionMapping[file.file.type],
+          folderId: currentFolder,
+          data: file.file,
+          fileName: file.label,
+        })
+      );
+      onFileSetLoading(key, false);
+    });
+  };
   return {
     files,
     accept,
     loading,
     folderMap,
+    uploadFiles,
     onFolderAdd,
     onDeleteFile,
     addEditFolder,
@@ -133,6 +150,7 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     onAddFolderSave,
     setAddEditFolder,
     showFileUploader,
+    onFileSetLoading,
     setShowFileUploader,
     openShowUploadFolder,
     onFolderDeleteConfirm,

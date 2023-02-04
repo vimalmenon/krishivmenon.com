@@ -6,8 +6,15 @@ import { PaperStyle } from './UploadFiles.style';
 import { useCommonGallery } from '../Gallery.service';
 
 export const UploadFiles: React.FC = () => {
-  const { toggleShowUploadFolder, accept, onDropAccepted, onDropRejected, onDeleteFile, files } =
-    useCommonGallery();
+  const {
+    files,
+    accept,
+    uploadFiles,
+    onDeleteFile,
+    onDropAccepted,
+    onDropRejected,
+    toggleShowUploadFolder,
+  } = useCommonGallery();
   return (
     <PaperStyle>
       <Container component={'div'} sx={{ flex: '1' }}>
@@ -20,7 +27,9 @@ export const UploadFiles: React.FC = () => {
         />
       </Container>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
-        <Button variant="contained">Upload</Button>
+        <Button variant="contained" disabled={!files.length} onClick={uploadFiles}>
+          Upload
+        </Button>
         <Button variant="contained" onClick={toggleShowUploadFolder}>
           Cancel
         </Button>

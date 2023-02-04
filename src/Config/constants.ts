@@ -53,7 +53,7 @@ export const AcceptImages = {
 export const AcceptVideo = {
   'video/*': ['.mp4', '.mov'],
 };
-export const FileTypeMapping: Record<string, string> = {
+export const FileTypeExtensionMapping: Record<string, string> = {
   'image/jpeg': 'jpeg',
   'image/png': 'png',
   'image/heic': 'heic',

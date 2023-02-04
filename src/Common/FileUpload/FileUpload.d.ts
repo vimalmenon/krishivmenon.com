@@ -13,6 +13,7 @@ export interface IFileUpload {
 }
 export interface IFileUploadExternal extends IFileUpload {
   showFileUploader: boolean;
+  onFileSetLoading: (index: number, loading: boolean) => void;
   setShowFileUploader: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export interface IUploadedFile {
@@ -30,10 +31,11 @@ export interface IFileUploadedItem {
 
 export interface IUseFileUploadHook {
   files: IUploadedFile[];
-  clearFiles: IGenericMethod;
   showFileUploader: boolean;
-  setShowFileUploader: React.Dispatch<React.SetStateAction<boolean>>;
-  onDeleteFile: IGenericParam<number>;
+  clearFiles: IGenericMethod;
   onDropAccepted: OnDropAcceptedType;
   onDropRejected: OnDropRejectedType;
+  onDeleteFile: IGenericParam<number>;
+  onFileSetLoading: (index: number, loading: boolean) => void;
+  setShowFileUploader: React.Dispatch<React.SetStateAction<boolean>>;
 }

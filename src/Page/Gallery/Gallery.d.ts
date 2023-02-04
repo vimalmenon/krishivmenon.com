@@ -45,4 +45,5 @@ export interface IUseCommonGalleryContext extends IFileUploadExternal {
   openShowUploadFolder: IGenericMethod;
   onDeleteConfirmCancel: IGenericMethod;
   toggleShowUploadFolder: IGenericMethod;
+  uploadFiles: IGenericMethod;
 }

@@ -86,6 +86,7 @@ export const Gallery: React.FC = () => {
     onDeleteFile,
     showFileUploader,
     setShowFileUploader,
+    onFileSetLoading,
   } = useFileUpload();
   return (
     <GalleryContext.Provider
@@ -101,8 +102,9 @@ export const Gallery: React.FC = () => {
         onFolderUpdate,
         onFolderSelect,
         onDropRejected,
-        showFileUploader,
         setAddEditFolder,
+        onFileSetLoading,
+        showFileUploader,
         setDeleteConfirm,
         setShowFileUploader,
         accept: initialContextValue.accept,

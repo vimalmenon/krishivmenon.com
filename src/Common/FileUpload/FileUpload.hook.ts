@@ -46,12 +46,18 @@ export const useFileUpload: IGenericReturn<IUseFileUploadHook> = () => {
     files.splice(index, 1);
     setFiles([...files]);
   };
+  const onFileSetLoading = (index: number, loading: boolean): void => {
+    const newFiles = [...files];
+    newFiles[index].loading = loading;
+    setFiles(newFiles);
+  };
   return {
     files,
     clearFiles,
     onDeleteFile,
     onDropRejected,
     onDropAccepted,
+    onFileSetLoading,
     showFileUploader,
     setShowFileUploader,
   };

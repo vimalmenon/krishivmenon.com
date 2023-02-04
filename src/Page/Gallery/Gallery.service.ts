@@ -11,7 +11,6 @@ const initialValue: IFolder = {
   id: '',
   parent: 'root',
   label: '',
-  content: [],
   files: [],
 };
 
@@ -22,7 +21,6 @@ const rootFolder: IGalleryFolder = {
   id: 'root',
   label: 'My Gallery',
   parent: '',
-  content: [],
   files: [],
 };
 
@@ -119,18 +117,20 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     setAddEditFolder(null);
   };
   const uploadFiles: IGenericMethod = async () => {
-    files.map(async (file, key) => {
-      onFileSetLoading(key, true);
-      await makeApiCall(
-        apis.uploadToS3(DriveFolderMapping[file.file.type], {
-          extension: FileTypeExtensionMapping[file.file.type],
-          folderId: currentFolder,
-          data: file.file,
-          fileName: file.label,
-        })
-      );
-      onFileSetLoading(key, false);
-    });
+    await Promise.all(
+      files.map(async (file, key) => {
+        onFileSetLoading(key, true);
+        await makeApiCall(
+          apis.uploadToS3(DriveFolderMapping[file.file.type], {
+            extension: FileTypeExtensionMapping[file.file.type],
+            folderId: currentFolder,
+            data: file.file,
+            fileName: file.label,
+          })
+        );
+        onFileSetLoading(key, false);
+      })
+    );
   };
   return {
     files,

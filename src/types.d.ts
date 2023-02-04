@@ -65,7 +65,6 @@ export interface IFolder extends IBaseDB {
   metadata?: Record<string, string>;
   label: string;
   parent: string;
-  content: string[];
   files: [];
 }
 

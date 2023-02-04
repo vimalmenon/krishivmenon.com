@@ -28,7 +28,7 @@ export const FileUpload: React.FC<IFileUpload> = ({
         <p>Drag & drop files here, or click to select files</p>
       </UploadInputStyle>
       {preview && (
-        <div style={{ flex: 4, display: 'flex', flexDirection: 'column' }}>
+        <div style={{ flex: 4, display: 'flex', flexDirection: 'column', gap: '10px' }}>
           {files.map((file, key) => {
             return (
               <FileUploadedItem key={file.label} file={file} onDelete={() => onDeleteFile(key)} />

@@ -121,9 +121,7 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
       files.map(async (file, key) => {
         onFileSetLoading(key, true);
         await makeApiCall(
-          apis.uploadToS3(DriveFolderMapping[file.file.type], {
-            extension: FileTypeExtensionMapping[file.file.type],
-            folderId: currentFolder,
+          apis.uploadToS3(currentFolder, {
             data: file.file,
             fileName: file.label,
           })

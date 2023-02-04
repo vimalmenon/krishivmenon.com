@@ -13,8 +13,6 @@ export interface IApiNote {
 }
 
 export interface IUploadToS3 {
-  extension: string;
-  folderId: string;
   data: File;
   fileName: string;
 }

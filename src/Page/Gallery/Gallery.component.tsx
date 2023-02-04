@@ -9,26 +9,26 @@ import { IFolder } from '@types';
 
 import { AddEditFolder } from './AddEditFolder';
 import {
-  GalleryContext,
-  initialContextValue,
-  useCommonGallery,
   useGallery,
+  GalleryContext,
+  useCommonGallery,
+  initialContextValue,
 } from './Gallery.service';
 import { GalleryFolder } from './GalleryFolder';
 import { UploadFiles } from './UploadFiles';
 
 const GalleryChildren: React.FC = () => {
   const {
+    folderMap,
+    onFolderAdd,
+    deleteConfirm,
     currentFolder,
     addEditFolder,
-    onFolderAdd,
-    folderMap,
     onFolderSelect,
-    showUploadFolder,
-    toggleShowUploadFolder,
-    deleteConfirm,
+    showFileUploader,
     onDeleteConfirmCancel,
     onFolderDeleteConfirm,
+    toggleShowUploadFolder,
   } = useCommonGallery();
   return (
     <Container component={'section'} sx={{ flex: '1 1 100%' }}>
@@ -67,7 +67,7 @@ const GalleryChildren: React.FC = () => {
         </div>
       </Container>
       {addEditFolder && <AddEditFolder />}
-      {showUploadFolder && <UploadFiles />}
+      {showFileUploader && <UploadFiles />}
     </Container>
   );
 };
@@ -78,15 +78,18 @@ export const Gallery: React.FC = () => {
   const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(
     initialContextValue.deleteConfirm
   );
-  const [showUploadFolder, setShowUploadFolder] = React.useState<boolean>(
-    initialContextValue.showUploadFolder
-  );
   const { loading, currentFolder, folderMap, onFolderSelect, onFolderUpdate } = useGallery();
-  const { files, onDropAccepted, onDropRejected, onDeleteFile } = useFileUpload();
+  const {
+    files,
+    onDropAccepted,
+    onDropRejected,
+    onDeleteFile,
+    showFileUploader,
+    setShowFileUploader,
+  } = useFileUpload();
   return (
     <GalleryContext.Provider
       value={{
-        accept: initialContextValue.accept,
         files,
         loading,
         folderMap,
@@ -98,10 +101,11 @@ export const Gallery: React.FC = () => {
         onFolderUpdate,
         onFolderSelect,
         onDropRejected,
+        showFileUploader,
         setAddEditFolder,
-        showUploadFolder,
         setDeleteConfirm,
-        setShowUploadFolder,
+        setShowFileUploader,
+        accept: initialContextValue.accept,
       }}
     >
       {loading ? <div>...Loading</div> : <GalleryChildren />}

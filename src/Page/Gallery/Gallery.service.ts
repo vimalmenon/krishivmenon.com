@@ -38,8 +38,8 @@ export const initialContextValue: IGalleryContext = {
   folderMap: {
     [rootFolder.id]: rootFolder,
   },
-  showUploadFolder: false,
-  setShowUploadFolder: NotImplemented,
+  showFileUploader: false,
+  setShowFileUploader: NotImplemented,
   files: [],
   accept: { ...AcceptVideo, ...AcceptImages },
   onDropAccepted: NotImplemented,
@@ -53,24 +53,24 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     files,
     accept,
     loading,
+    folderMap,
+    onDeleteFile,
     addEditFolder,
     currentFolder,
-    setAddEditFolder,
+    deleteConfirm,
+    onFolderUpdate,
     onFolderSelect,
-    onDeleteFile,
     onDropRejected,
     onDropAccepted,
-    folderMap,
-    onFolderUpdate,
-    deleteConfirm,
+    setAddEditFolder,
     setDeleteConfirm,
-    showUploadFolder,
-    setShowUploadFolder,
+    showFileUploader,
+    setShowFileUploader,
   } = React.useContext<IGalleryContext>(GalleryContext);
   const { makeApiCall } = useCommonApiContext();
   const onFolderAdd: IGenericMethod = () => {
     setAddEditFolder({ ...initialValue, parent: currentFolder });
-    setShowUploadFolder(false);
+    setShowFileUploader(false);
   };
   const onSelectedFolderCancel: IGenericMethod = () => {
     setAddEditFolder(null);
@@ -103,39 +103,44 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     setAddEditFolder(null);
     setDeleteConfirm(false);
   };
-  const toggleShowUploadFolder: IGenericMethod = () => {
-    setShowUploadFolder(!showUploadFolder);
-    setAddEditFolder(null);
-  };
   const onDeleteConfirmCancel: IGenericMethod = () => {
     setDeleteConfirm(false);
   };
   const closeShowUploadFolder: IGenericMethod = () => {
-    setShowUploadFolder(false);
+    setShowFileUploader(false);
+  };
+  const openShowUploadFolder: IGenericMethod = () => {
+    setShowFileUploader(true);
+  };
+  const toggleShowUploadFolder: IGenericMethod = () => {
+    setShowFileUploader(!showFileUploader);
+    setAddEditFolder(null);
   };
   return {
     files,
     accept,
-    onDeleteFile,
-    onDropRejected,
-    onDropAccepted,
     loading,
-    addEditFolder,
     folderMap,
     onFolderAdd,
-    onSelectedFolderCancel,
-    onSelectedFolderLabelUpdate,
-    onAddFolderSave,
-    setAddEditFolder,
+    onDeleteFile,
+    addEditFolder,
+    currentFolder,
+    deleteConfirm,
+    onDropRejected,
+    onDropAccepted,
     onFolderDelete,
     onFolderSelect,
-    currentFolder,
+    onAddFolderSave,
+    setAddEditFolder,
+    showFileUploader,
+    setShowFileUploader,
+    openShowUploadFolder,
     onFolderDeleteConfirm,
-    deleteConfirm,
-    showUploadFolder,
-    toggleShowUploadFolder,
     onDeleteConfirmCancel,
     closeShowUploadFolder,
+    onSelectedFolderCancel,
+    toggleShowUploadFolder,
+    onSelectedFolderLabelUpdate,
   };
 };
 

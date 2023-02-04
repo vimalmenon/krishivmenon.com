@@ -8,12 +8,12 @@ import { useCommonGallery } from '../Gallery.service';
 
 export const AddEditFolder: React.FC = () => {
   const {
+    deleteConfirm,
     addEditFolder,
+    onFolderDelete,
+    onAddFolderSave,
     onSelectedFolderCancel,
     onSelectedFolderLabelUpdate,
-    onAddFolderSave,
-    onFolderDelete,
-    deleteConfirm,
   } = useCommonGallery();
   return (
     <PaperStyle elevation={6}>
@@ -38,7 +38,7 @@ export const AddEditFolder: React.FC = () => {
       </Container>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
         <Button variant="contained" onClick={onAddFolderSave}>
-          Save
+          {addEditFolder?.id ? 'Update' : 'Create'}
         </Button>
         <Button variant="contained" onClick={onSelectedFolderCancel}>
           Cancel

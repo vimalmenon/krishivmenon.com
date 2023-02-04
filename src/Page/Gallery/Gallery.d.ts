@@ -1,5 +1,5 @@
 import { IFolder, IGenericMethod, IGenericParam } from '@types';
-import { IFileUpload } from 'src/Common/FileUpload/FileUpload';
+import { IFileUploadExternal } from 'src/Common/FileUpload/FileUpload';
 
 export interface IGalleryFolder extends IFolder {
   breadcrumbs: string[];
@@ -7,7 +7,7 @@ export interface IGalleryFolder extends IFolder {
   loading: boolean;
 }
 
-export interface IGalleryContext extends IFileUpload {
+export interface IGalleryContext extends IFileUploadExternal {
   loading: boolean;
   currentFolder: string;
   folderMap: Record<string, IGalleryFolder>;
@@ -17,8 +17,6 @@ export interface IGalleryContext extends IFileUpload {
   onFolderUpdate: (folders: IFolder[], currentFolder: IGalleryFolder) => void;
   deleteConfirm: boolean;
   setDeleteConfirm: React.Dispatch<React.SetStateAction<boolean>>;
-  showUploadFolder: boolean;
-  setShowUploadFolder: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IUseGallery {
@@ -29,7 +27,7 @@ export interface IUseGallery {
   onFolderUpdate: (folder: IFolder[], currentFolder: IGalleryFolder) => void;
 }
 
-export interface IUseCommonGalleryContext extends IFileUpload {
+export interface IUseCommonGalleryContext extends IFileUploadExternal {
   loading: boolean;
   addEditFolder: IFolder | null;
   folderMap: Record<string, IGalleryFolder>;
@@ -43,8 +41,8 @@ export interface IUseCommonGalleryContext extends IFileUpload {
   onSelectedFolderLabelUpdate: IGenericParam<string>;
   onFolderDeleteConfirm: IGenericMethod;
   deleteConfirm: boolean;
-  showUploadFolder: boolean;
-  toggleShowUploadFolder: IGenericMethod;
-  onDeleteConfirmCancel: IGenericMethod;
   closeShowUploadFolder: IGenericMethod;
+  openShowUploadFolder: IGenericMethod;
+  onDeleteConfirmCancel: IGenericMethod;
+  toggleShowUploadFolder: IGenericMethod;
 }

@@ -6,13 +6,15 @@ export type OnDropRejectedType = (fileRejections: FileRejection[], event: DropEv
 
 export interface IFileUpload {
   files: IUploadedFile[];
-  preview?: boolean;
   accept: Record<string, string[]>;
   onDropAccepted: OnDropAcceptedType;
   onDropRejected?: OnDropRejectedType;
   onDeleteFile: IGenericParam<number>;
 }
-
+export interface IFileUploadExternal extends IFileUpload {
+  showFileUploader: boolean;
+  setShowFileUploader: React.Dispatch<React.SetStateAction<boolean>>;
+}
 export interface IUploadedFile {
   loading: boolean;
   file: File;
@@ -29,6 +31,8 @@ export interface IFileUploadedItem {
 export interface IUseFileUploadHook {
   files: IUploadedFile[];
   clearFiles: IGenericMethod;
+  showFileUploader: boolean;
+  setShowFileUploader: React.Dispatch<React.SetStateAction<boolean>>;
   onDeleteFile: IGenericParam<number>;
   onDropAccepted: OnDropAcceptedType;
   onDropRejected: OnDropRejectedType;

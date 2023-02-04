@@ -8,13 +8,11 @@ import { UploadInputStyle } from './FileUpload.style';
 import { FileUploadedItem } from './FileUploadedItem.component';
 
 export const FileUpload: React.FC<IFileUpload> = ({
+  files,
   accept,
   onDeleteFile,
   onDropAccepted,
   onDropRejected,
-
-  preview = true,
-  files,
 }) => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: accept,
@@ -27,15 +25,14 @@ export const FileUpload: React.FC<IFileUpload> = ({
         <input {...getInputProps()} />
         <p>Drag & drop files here, or click to select files</p>
       </UploadInputStyle>
-      {preview && (
-        <div style={{ flex: 4, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          {files.map((file, key) => {
-            return (
-              <FileUploadedItem key={file.label} file={file} onDelete={() => onDeleteFile(key)} />
-            );
-          })}
-        </div>
-      )}
+
+      <div style={{ flex: 4, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        {files.map((file, key) => {
+          return (
+            <FileUploadedItem key={file.label} file={file} onDelete={() => onDeleteFile(key)} />
+          );
+        })}
+      </div>
     </Container>
   );
 };

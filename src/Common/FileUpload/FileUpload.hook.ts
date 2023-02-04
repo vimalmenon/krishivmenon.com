@@ -11,6 +11,7 @@ import {
 
 export const useFileUpload: IGenericReturn<IUseFileUploadHook> = () => {
   const [files, setFiles] = React.useState<IUploadedFile[]>([]);
+  const [showFileUploader, setShowFileUploader] = React.useState<boolean>(false);
   const onDropAccepted: OnDropAcceptedType = (acceptedFiles) => {
     setFiles([
       ...files,
@@ -49,7 +50,9 @@ export const useFileUpload: IGenericReturn<IUseFileUploadHook> = () => {
     files,
     clearFiles,
     onDeleteFile,
-    onDropAccepted,
     onDropRejected,
+    onDropAccepted,
+    showFileUploader,
+    setShowFileUploader,
   };
 };

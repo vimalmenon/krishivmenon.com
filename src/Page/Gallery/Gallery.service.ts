@@ -100,6 +100,9 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
   const onDeleteConfirmCancel: IGenericMethod = () => {
     setDeleteConfirm(false);
   };
+  const closeShowUploadFolder: IGenericMethod = () => {
+    setShowUploadFolder(false);
+  };
   return {
     loading,
     addEditFolder,
@@ -117,6 +120,7 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     showUploadFolder,
     toggleShowUploadFolder,
     onDeleteConfirmCancel,
+    closeShowUploadFolder,
   };
 };
 

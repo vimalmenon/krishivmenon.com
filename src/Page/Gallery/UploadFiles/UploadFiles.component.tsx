@@ -21,7 +21,7 @@ export const UploadFiles: React.FC = () => {
         />
       </Container>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
-        <Button variant="contained">Save</Button>
+        <Button variant="contained">Upload</Button>
         <Button variant="contained" onClick={toggleShowUploadFolder}>
           Cancel
         </Button>

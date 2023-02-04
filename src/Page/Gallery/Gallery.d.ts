@@ -45,4 +45,5 @@ export interface IUseCommonGalleryContext {
   showUploadFolder: boolean;
   toggleShowUploadFolder: IGenericMethod;
   onDeleteConfirmCancel: IGenericMethod;
+  closeShowUploadFolder: IGenericMethod;
 }

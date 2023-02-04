@@ -36,7 +36,6 @@ export interface IApi<T = unknown> {
   headers?: Record<string, string>;
 }
 
-export type StorageFileType = 'image' | 'file' | 'video' | 'audio';
 export type PageModeType = 'ADD' | 'EDIT' | 'VIEW';
 
 export type IGenericMethod = () => void;

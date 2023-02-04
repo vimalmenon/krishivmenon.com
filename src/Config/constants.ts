@@ -1,7 +1,6 @@
 import GoogleIcon from '@mui/icons-material/Google';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import NoteIcon from '@mui/icons-material/Note';
-import { StorageFileType } from '@types';
 
 import { CommonIcons } from './icons';
 

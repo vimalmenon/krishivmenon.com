@@ -1,4 +1,5 @@
 import { IFolder, IGenericMethod, IGenericParam } from '@types';
+import { IFileUpload } from 'src/Common/FileUpload/FileUpload';
 
 export interface IGalleryFolder extends IFolder {
   breadcrumbs: string[];
@@ -6,7 +7,7 @@ export interface IGalleryFolder extends IFolder {
   loading: boolean;
 }
 
-export interface IGalleryContext {
+export interface IGalleryContext extends IFileUpload {
   loading: boolean;
   currentFolder: string;
   folderMap: Record<string, IGalleryFolder>;
@@ -28,7 +29,7 @@ export interface IUseGallery {
   onFolderUpdate: (folder: IFolder[], currentFolder: IGalleryFolder) => void;
 }
 
-export interface IUseCommonGalleryContext {
+export interface IUseCommonGalleryContext extends IFileUpload {
   loading: boolean;
   addEditFolder: IFolder | null;
   folderMap: Record<string, IGalleryFolder>;

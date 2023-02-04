@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { AcceptVideo, AcceptImages } from '@constant';
 import { useCommonApiContext } from '@context';
 import { IFolder, IGenericMethod, IGenericParam, IGenericReturn } from '@types';
 import { apis, NotImplemented } from '@utility';
@@ -39,17 +40,26 @@ export const initialContextValue: IGalleryContext = {
   },
   showUploadFolder: false,
   setShowUploadFolder: NotImplemented,
+  files: [],
+  accept: { ...AcceptVideo, ...AcceptImages },
+  onDropAccepted: NotImplemented,
+  onDeleteFile: NotImplemented,
 };
 
 export const GalleryContext = React.createContext<IGalleryContext>(initialContextValue);
 
 export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => {
   const {
+    files,
+    accept,
     loading,
     addEditFolder,
     currentFolder,
     setAddEditFolder,
     onFolderSelect,
+    onDeleteFile,
+    onDropRejected,
+    onDropAccepted,
     folderMap,
     onFolderUpdate,
     deleteConfirm,
@@ -104,6 +114,11 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     setShowUploadFolder(false);
   };
   return {
+    files,
+    accept,
+    onDeleteFile,
+    onDropRejected,
+    onDropAccepted,
     loading,
     addEditFolder,
     folderMap,

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icon, Confirm } from '@common';
+import { Icon, Confirm, useFileUpload } from '@common';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
@@ -82,19 +82,25 @@ export const Gallery: React.FC = () => {
     initialContextValue.showUploadFolder
   );
   const { loading, currentFolder, folderMap, onFolderSelect, onFolderUpdate } = useGallery();
+  const { files, onDropAccepted, onDropRejected, onDeleteFile } = useFileUpload();
   return (
     <GalleryContext.Provider
       value={{
+        accept: initialContextValue.accept,
+        files,
         loading,
-        deleteConfirm,
-        setDeleteConfirm,
+        folderMap,
+        onDeleteFile,
         currentFolder,
         addEditFolder,
-        onFolderSelect,
-        folderMap,
-        setAddEditFolder,
+        deleteConfirm,
+        onDropAccepted,
         onFolderUpdate,
+        onFolderSelect,
+        onDropRejected,
+        setAddEditFolder,
         showUploadFolder,
+        setDeleteConfirm,
         setShowUploadFolder,
       }}
     >

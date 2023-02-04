@@ -1,10 +1,15 @@
 import React from 'react';
 
-import { IGenericMethod, IGenericParam } from '@types';
+import { IGenericMethod, IGenericParam, IGenericReturn } from '@types';
 
-import { IUploadedFile, OnDropAcceptedType, OnDropRejectedType } from './FileUpload';
+import {
+  IUploadedFile,
+  OnDropAcceptedType,
+  OnDropRejectedType,
+  IUseFileUploadHook,
+} from './FileUpload';
 
-export const useFileUpload = () => {
+export const useFileUpload: IGenericReturn<IUseFileUploadHook> = () => {
   const [files, setFiles] = React.useState<IUploadedFile[]>([]);
   const onDropAccepted: OnDropAcceptedType = (acceptedFiles) => {
     setFiles([

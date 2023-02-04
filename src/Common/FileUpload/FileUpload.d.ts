@@ -1,4 +1,4 @@
-import { IGenericMethod } from '@types';
+import { IGenericMethod, IGenericParam } from '@types';
 import { DropEvent, FileRejection } from 'react-dropzone';
 
 export type OnDropAcceptedType = (files: File[], event: DropEvent) => void;
@@ -24,4 +24,12 @@ export interface IUploadedFile {
 export interface IFileUploadedItem {
   file: IUploadedFile;
   onDelete: IGenericMethod;
+}
+
+export interface IUseFileUploadHook {
+  files: IUploadedFile[];
+  clearFiles: IGenericMethod;
+  onDeleteFile: IGenericParam<number>;
+  onDropAccepted: OnDropAcceptedType;
+  onDropRejected: OnDropRejectedType;
 }

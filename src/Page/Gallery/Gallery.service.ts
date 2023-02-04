@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AcceptVideo, AcceptImages, FileTypeExtensionMapping, DriveFolderMapping } from '@constant';
+import { AcceptVideo, AcceptImages } from '@constant';
 import { useCommonApiContext } from '@context';
 import { IFolder, IGenericMethod, IGenericParam, IGenericReturn } from '@types';
 import { apis, NotImplemented } from '@utility';

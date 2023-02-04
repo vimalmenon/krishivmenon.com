@@ -53,35 +53,6 @@ export const AcceptImages = {
 export const AcceptVideo = {
   'video/*': ['.mp4', '.mov'],
 };
-export const FileTypeExtensionMapping: Record<string, string> = {
-  'image/jpeg': 'jpeg',
-  'image/png': 'png',
-  'image/heic': 'heic',
-  'application/pdf': 'pdf',
-  'application/zip': 'zip',
-  'application/json': 'json',
-  'video/quicktime': 'mov',
-  'video/mp4': 'mp4',
-  'audio/mpeg': 'mp3',
-};
-
-export const StorageFolderMapping: Record<StorageFileType, string> = {
-  image: 'images',
-  file: 'files',
-  video: 'videos',
-  audio: 'audios',
-};
-export const DriveFolderMapping: Record<string, string> = {
-  'image/jpeg': StorageFolderMapping.image,
-  'image/png': StorageFolderMapping.image,
-  'image/heic': StorageFolderMapping.image,
-  'application/pdf': StorageFolderMapping.file,
-  'application/zip': StorageFolderMapping.file,
-  'application/json': StorageFolderMapping.file,
-  'video/quicktime': StorageFolderMapping.video,
-  'video/mp4': StorageFolderMapping.video,
-  'audio/mpeg': StorageFolderMapping.audio,
-};
 
 export const StorageKey = 'KM';
 

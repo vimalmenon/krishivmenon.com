@@ -1,14 +1,7 @@
 import React from 'react';
 
 import { useCommonApiContext } from '@context';
-import {
-  IGeneric,
-  IGenericMethod,
-  IGenericParam,
-  IGenericReturn,
-  INotes,
-  PageModeType,
-} from '@types';
+import { IGenericMethod, IGenericParam, IGenericReturn, INotes, PageModeType } from '@types';
 import { apis } from '@utility';
 
 import { IUseNotes } from './Notes';
@@ -25,6 +18,7 @@ export const useNotes: IGenericReturn<IUseNotes> = () => {
   const [selectedNote, setSelectedNote] = React.useState<INotes | null>(null);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [mode, setMode] = React.useState<PageModeType>('VIEW');
+  const [confirmDelete, setConfirmDelete] = React.useState<INotes | null>(null);
 
   const { makeApiCall } = useCommonApiContext();
   const getNotes: IGenericReturn<Promise<void>> = async () => {
@@ -33,11 +27,12 @@ export const useNotes: IGenericReturn<IUseNotes> = () => {
     setNotes(results);
     setLoading(false);
   };
-  const deleteNote: IGeneric<INotes, Promise<void>> = async (note) => {
-    if (note) {
+  const deleteNote: IGenericReturn<Promise<void>> = async () => {
+    if (confirmDelete) {
       setLoading(true);
-      const results = await makeApiCall<INotes[]>(apis.deleteNote(note.id || ''));
+      const results = await makeApiCall<INotes[]>(apis.deleteNote(confirmDelete.id || ''));
       setNotes(results);
+      setConfirmDelete(null);
       setLoading(false);
     }
   };
@@ -80,6 +75,12 @@ export const useNotes: IGenericReturn<IUseNotes> = () => {
   const onNoteCancel: IGenericMethod = () => {
     setMode('VIEW');
   };
+  const onDeleteCancel: IGenericMethod = () => {
+    setConfirmDelete(null);
+  };
+  const onDeleteConfirm: IGenericParam<INotes> = (note) => {
+    setConfirmDelete(note);
+  };
   React.useEffect(() => {
     if (ref.current) {
       getNotes();
@@ -97,6 +98,9 @@ export const useNotes: IGenericReturn<IUseNotes> = () => {
     deleteNote,
     onNoteSelect,
     selectedNote,
+    confirmDelete,
     onNoteCancel,
+    onDeleteConfirm,
+    onDeleteCancel,
   };
 };

@@ -1,4 +1,4 @@
-import { IGenericMethod, IGeneric, INotes, IGenericParam } from '@types';
+import { IGenericMethod, INotes, IGenericParam } from '@types';
 
 export interface IUseNotes {
   mode: PageModeType;
@@ -6,10 +6,13 @@ export interface IUseNotes {
   loading: boolean;
   createNote: IGenericMethod;
   updateNote: (name: string, value: string) => void;
-  deleteNote: IGeneric<INotes, Promise<void>>;
+  deleteNote: IGenericReturn<Promise<void>>;
   selectedNote: INotes | null;
   saveNote: IGenericMethod;
   onNoteSelect: IGenericParam<INotes>;
   onNoteEdit: IGenericMethod;
   onNoteCancel: IGenericMethod;
+  confirmDelete: INotes | null;
+  onDeleteCancel: IGenericMethod;
+  onDeleteConfirm: IGenericParam<INotes>;
 }

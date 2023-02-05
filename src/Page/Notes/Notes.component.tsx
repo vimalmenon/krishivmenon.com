@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icon, Editor } from '@common';
+import { Icon, Editor, Confirm } from '@common';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
@@ -21,13 +21,19 @@ export const Notes: React.FC = () => {
     selectedNote,
     onNoteSelect,
     onNoteEdit,
+    confirmDelete,
     onNoteCancel,
+    onDeleteCancel,
+    onDeleteConfirm,
   } = useNotes();
   if (loading) {
     return <div>...loading</div>;
   }
   return (
     <Container component="div" direction="column" sx={{ flex: '1' }}>
+      <Confirm open={!!confirmDelete} handleClose={onDeleteCancel} handleConfirm={deleteNote}>
+        <>Are you sure you want to delete {selectedNote?.title}</>
+      </Confirm>
       <Container component="div" sx={{ my: 2, flexWrap: 'wrap', gap: '10px' }}>
         <Container component="div" sx={{ flex: '1', gap: '10px' }} direction="column">
           <Container component="div">
@@ -38,7 +44,7 @@ export const Notes: React.FC = () => {
             return (
               <Card sx={{ display: 'flex' }} key={note.id} onClick={() => onNoteSelect(note)}>
                 <CardContent sx={{ display: 'flex', justifyContent: 'space-between', flex: '1' }}>
-                  {note.title} <Icon.icons.Delete onClick={() => deleteNote(note)} />
+                  {note.title} <Icon.icons.Delete onClick={() => onDeleteConfirm(note)} />
                 </CardContent>
               </Card>
             );

@@ -3,7 +3,6 @@ export interface IApiS3Folder {
 }
 export interface IApiStorageApi extends IApiS3Folder {
   fileName: string;
-  extension: string;
   file?: File;
   fileType: string;
 }

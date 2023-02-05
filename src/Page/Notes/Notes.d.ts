@@ -1,8 +1,10 @@
-import { IGenericParam, INotes } from '@types';
+import { IGenericMethod, IGeneric, INotes, IGenericParam } from '@types';
 
 export interface IUseNotes {
   notes: INotes[];
   loading: boolean;
-  toNote: IGenericParam<string>;
+  createNote: IGenericMethod;
   deleteNote: IGeneric<string, Promise<void>>;
+  selectedNote: INotes | null;
+  onNoteSelect: IGenericParam<INotes>;
 }

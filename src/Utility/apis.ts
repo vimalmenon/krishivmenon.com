@@ -8,7 +8,7 @@ export const getBaseUrl: IGenericReturn<string> = () => {
 };
 export const Apis = {
   S3Drive: 'drive/{folder}',
-  S3DriveFile: 'drive/{folder}/{fileName}.{extension}',
+  S3DriveFile: 'drive/{folder}/{fileName}',
   Notes: 'notes',
   Note: 'notes/{id}',
   Folders: 'folders',
@@ -39,10 +39,8 @@ export const apis = {
       },
     };
   },
-  deleteFromS3: function ({ folder, fileName, extension }: IApiStorageApi): IApi {
-    const url = Apis.S3DriveFile.replace('{folder}', folder)
-      .replace('{fileName}', fileName)
-      .replace('{extension}', extension);
+  deleteFromS3: function ({ folder, fileName }: IApiStorageApi): IApi {
+    const url = Apis.S3DriveFile.replace('{folder}', folder).replace('{fileName}', fileName);
     return {
       url,
       method: 'DELETE',

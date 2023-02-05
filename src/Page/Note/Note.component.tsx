@@ -27,7 +27,7 @@ export const Note: React.FC<INote> = ({ id }) => {
         )}
         {mode === 'ADD' && (
           <>
-            <CommonIcons.Save />
+            <CommonIcons.Save onClick={saveNote} />
             <CommonIcons.Cancel onClick={() => setMode('VIEW')} />
           </>
         )}

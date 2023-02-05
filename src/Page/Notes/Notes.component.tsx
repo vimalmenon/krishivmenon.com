@@ -11,26 +11,30 @@ import { Container } from '@style';
 import { useNotes } from './Notes.service';
 
 export const Notes: React.FC = () => {
-  const { notes, deleteNote, toNote } = useNotes();
+  const { notes, deleteNote, createNote, onNoteSelect } = useNotes();
   return (
     <Container component="div" direction="column">
       <Container component="div" sx={{ my: 2 }}>
         <TextField label="Search" variant="standard" size="small" fullWidth name="search" />
-        <Button onClick={() => toNote('0')}>Add</Button>
+        <Button onClick={createNote}>Add</Button>
       </Container>
       <Divider />
       <Container component="div" sx={{ my: 2, flexWrap: 'wrap' }}>
-        {notes.map((note) => {
-          return (
-            <Card sx={{ minWidth: 275, m: 2 }} key={note.id}>
-              <CardContent>{note.title}</CardContent>
-              <CardActions>
-                <Button onClick={() => toNote(note.id || '0')}>View</Button>
-                <Button onClick={() => deleteNote(note.id || '0')}>Delete</Button>
-              </CardActions>
-            </Card>
-          );
-        })}
+        <Container component="div" sx={{ flex: '1' }}>
+          {notes.map((note) => {
+            return (
+              <Card sx={{ minWidth: 275, m: 2 }} key={note.id} onClick={() => onNoteSelect(note)}>
+                <CardContent>{note.title}</CardContent>
+                <CardActions>
+                  <Button onClick={() => deleteNote(note.id || '0')}>Delete</Button>
+                </CardActions>
+              </Card>
+            );
+          })}
+        </Container>
+        <Container component="div" sx={{ flex: '2' }}>
+          $nbsp;
+        </Container>
       </Container>
     </Container>
   );

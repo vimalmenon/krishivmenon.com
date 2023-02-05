@@ -26,14 +26,37 @@ export const useNotes: IGenericReturn<IUseNotes> = () => {
   };
   const deleteNote: IGeneric<string, Promise<void>> = async (id) => {
     setLoading(true);
-    await makeApiCall<INotes[]>(apis.deleteNote({ id }));
+    const results = await makeApiCall<INotes[]>(apis.deleteNote({ id }));
+    setNotes(results);
     setLoading(false);
   };
   const createNote: IGenericMethod = () => {
-    setSelectedNote(emptyNote);
+    setSelectedNote({
+      title: '',
+      content: '',
+      metadata: {},
+    });
   };
   const onNoteSelect: IGenericParam<INotes> = (value) => {
     setSelectedNote(value);
+  };
+  const updateNote = (name: string, value: string): void => {
+    if (selectedNote) {
+      setSelectedNote({
+        ...selectedNote,
+        [name]: value,
+      });
+    }
+  };
+  const saveNote: IGenericMethod = async () => {
+    if (selectedNote) {
+      setLoading(true);
+      const results = await makeApiCall<INotes[]>(
+        selectedNote.id ? apis.updateNote(selectedNote) : apis.addNote(selectedNote)
+      );
+      setNotes(results);
+      setLoading(false);
+    }
   };
   React.useEffect(() => {
     if (ref.current) {
@@ -44,6 +67,8 @@ export const useNotes: IGenericReturn<IUseNotes> = () => {
   return {
     notes,
     loading,
+    saveNote,
+    updateNote,
     createNote,
     deleteNote,
     onNoteSelect,

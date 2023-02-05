@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icon } from '@common';
+import { Icon, Editor } from '@common';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,7 +11,20 @@ import { Container } from '@style';
 import { useNotes } from './Notes.service';
 
 export const Notes: React.FC = () => {
-  const { notes, deleteNote, createNote, onNoteSelect, selectedNote } = useNotes();
+  const {
+    notes,
+    deleteNote,
+    createNote,
+    onNoteSelect,
+    selectedNote,
+    loading,
+    updateNote,
+    saveNote,
+  } = useNotes();
+  if (loading) {
+    return <div>...loading</div>;
+  }
+  console.log(selectedNote)
   return (
     <Container component="div" direction="column" sx={{ flex: '1' }}>
       <Container component="div" sx={{ my: 2, flexWrap: 'wrap', gap: '10px' }}>
@@ -23,11 +36,7 @@ export const Notes: React.FC = () => {
           <Divider />
           {notes.map((note) => {
             return (
-              <Card
-                sx={{ display: 'flex', flex: '1' }}
-                key={note.id}
-                onClick={() => onNoteSelect(note)}
-              >
+              <Card sx={{ display: 'flex' }} key={note.id} onClick={() => onNoteSelect(note)}>
                 <CardContent sx={{ display: 'flex', justifyContent: 'space-between', flex: '1' }}>
                   {note.title} <Icon.icons.Delete onClick={() => deleteNote(note?.id || '')} />
                 </CardContent>
@@ -35,8 +44,26 @@ export const Notes: React.FC = () => {
             );
           })}
         </Container>
-        <Container component="div" sx={{ flex: '2' }}>
-          {selectedNote?.title}
+        <Container component="div" sx={{ flex: '2' }} direction="column">
+          <Container component="div" sx={{ justifyContent: 'end' }}>
+            <Icon Icon={Icon.icons.Save} label="Save" onClick={saveNote} />
+          </Container>
+          <Container component="div" sx={{}} direction="column">
+            <TextField
+              label="Title"
+              variant="standard"
+              size="small"
+              fullWidth
+              name="title"
+              value={(selectedNote?.title) || ""}
+              onChange={(e) => updateNote('title', e.target.value)}
+            />
+            <Editor
+              note={selectedNote?.content || ''}
+              setNote={(value) => updateNote('content', value)}
+              mode={'EDIT'}
+            />
+          </Container>
         </Container>
       </Container>
     </Container>

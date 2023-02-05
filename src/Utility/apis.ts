@@ -75,6 +75,14 @@ export const apis = {
       data,
     };
   },
+  updateNote: function (data: INotes): IApi<INotes> {
+    const url = Apis.Note.replace('{id}', data.id || '');
+    return {
+      url,
+      method: 'PUT',
+      data,
+    };
+  },
   deleteNote: function ({ id }: IApiNote): IApi {
     const url = Apis.Note.replace('{id}', id);
     return {

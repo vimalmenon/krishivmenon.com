@@ -1,6 +1,7 @@
 import { IGenericMethod, IGeneric, INotes, IGenericParam } from '@types';
 
 export interface IUseNotes {
+  mode: PageModeType;
   notes: INotes[];
   loading: boolean;
   createNote: IGenericMethod;
@@ -9,4 +10,5 @@ export interface IUseNotes {
   selectedNote: INotes | null;
   saveNote: IGenericMethod;
   onNoteSelect: IGenericParam<INotes>;
+  onNoteEdit: IGenericMethod;
 }

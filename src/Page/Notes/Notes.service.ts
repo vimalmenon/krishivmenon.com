@@ -1,7 +1,14 @@
 import React from 'react';
 
 import { useCommonApiContext } from '@context';
-import { IGeneric, IGenericMethod, IGenericParam, IGenericReturn, INotes } from '@types';
+import {
+  IGeneric,
+  IGenericMethod,
+  IGenericParam,
+  IGenericReturn,
+  INotes,
+  PageModeType,
+} from '@types';
 import { apis } from '@utility';
 
 import { IUseNotes } from './Notes';
@@ -17,6 +24,8 @@ export const useNotes: IGenericReturn<IUseNotes> = () => {
   const [notes, setNotes] = React.useState<INotes[]>([]);
   const [selectedNote, setSelectedNote] = React.useState<INotes | null>(null);
   const [loading, setLoading] = React.useState<boolean>(true);
+  const [mode, setMode] = React.useState<PageModeType>('VIEW');
+
   const { makeApiCall } = useCommonApiContext();
   const getNotes: IGenericReturn<Promise<void>> = async () => {
     setLoading(true);
@@ -31,20 +40,28 @@ export const useNotes: IGenericReturn<IUseNotes> = () => {
     setLoading(false);
   };
   const createNote: IGenericMethod = () => {
-    setSelectedNote({
-      title: '',
-      content: '',
-      metadata: {},
-    });
+    setSelectedNote(() => ({
+      ...emptyNote,
+    }));
+    setMode('EDIT');
   };
   const onNoteSelect: IGenericParam<INotes> = (value) => {
     setSelectedNote(value);
+    setMode('VIEW');
+  };
+  const onNoteEdit: IGenericMethod = () => {
+    setMode('EDIT');
   };
   const updateNote = (name: string, value: string): void => {
     if (selectedNote) {
-      setSelectedNote({
-        ...selectedNote,
-        [name]: value,
+      setSelectedNote((selectedNote) => {
+        if (selectedNote) {
+          return {
+            ...selectedNote,
+            [name]: value,
+          };
+        }
+        return null;
       });
     }
   };
@@ -65,9 +82,11 @@ export const useNotes: IGenericReturn<IUseNotes> = () => {
     }
   }, []);
   return {
+    mode,
     notes,
     loading,
     saveNote,
+    onNoteEdit,
     updateNote,
     createNote,
     deleteNote,

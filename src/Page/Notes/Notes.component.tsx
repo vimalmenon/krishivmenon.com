@@ -12,19 +12,20 @@ import { useNotes } from './Notes.service';
 
 export const Notes: React.FC = () => {
   const {
+    mode,
     notes,
+    loading,
+    saveNote,
     deleteNote,
     createNote,
-    onNoteSelect,
-    selectedNote,
-    loading,
     updateNote,
-    saveNote,
+    selectedNote,
+    onNoteSelect,
+    onNoteEdit,
   } = useNotes();
   if (loading) {
     return <div>...loading</div>;
   }
-  console.log(selectedNote)
   return (
     <Container component="div" direction="column" sx={{ flex: '1' }}>
       <Container component="div" sx={{ my: 2, flexWrap: 'wrap', gap: '10px' }}>
@@ -46,6 +47,7 @@ export const Notes: React.FC = () => {
         </Container>
         <Container component="div" sx={{ flex: '2' }} direction="column">
           <Container component="div" sx={{ justifyContent: 'end' }}>
+            <Icon Icon={Icon.icons.Edit} label="Edit" onClick={onNoteEdit} />
             <Icon Icon={Icon.icons.Save} label="Save" onClick={saveNote} />
           </Container>
           <Container component="div" sx={{}} direction="column">
@@ -55,13 +57,13 @@ export const Notes: React.FC = () => {
               size="small"
               fullWidth
               name="title"
-              value={(selectedNote?.title) || ""}
+              value={selectedNote?.title || ''}
               onChange={(e) => updateNote('title', e.target.value)}
             />
             <Editor
               note={selectedNote?.content || ''}
               setNote={(value) => updateNote('content', value)}
-              mode={'EDIT'}
+              mode={mode}
             />
           </Container>
         </Container>

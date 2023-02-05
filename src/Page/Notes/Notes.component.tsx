@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Icon, Editor } from '@common';
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
@@ -22,6 +21,7 @@ export const Notes: React.FC = () => {
     selectedNote,
     onNoteSelect,
     onNoteEdit,
+    onNoteCancel,
   } = useNotes();
   if (loading) {
     return <div>...loading</div>;
@@ -32,14 +32,13 @@ export const Notes: React.FC = () => {
         <Container component="div" sx={{ flex: '1', gap: '10px' }} direction="column">
           <Container component="div">
             <TextField label="Search" variant="standard" size="small" fullWidth name="search" />
-            <Button onClick={createNote}>Add</Button>
           </Container>
           <Divider />
           {notes.map((note) => {
             return (
               <Card sx={{ display: 'flex' }} key={note.id} onClick={() => onNoteSelect(note)}>
                 <CardContent sx={{ display: 'flex', justifyContent: 'space-between', flex: '1' }}>
-                  {note.title} <Icon.icons.Delete onClick={() => deleteNote(note?.id || '')} />
+                  {note.title} <Icon.icons.Delete onClick={() => deleteNote(note)} />
                 </CardContent>
               </Card>
             );
@@ -47,6 +46,9 @@ export const Notes: React.FC = () => {
         </Container>
         <Container component="div" sx={{ flex: '2' }} direction="column">
           <Container component="div" sx={{ justifyContent: 'end' }}>
+            <Icon Icon={Icon.icons.Add} label="Add" onClick={createNote} />
+
+            <Icon Icon={Icon.icons.Cancel} label="Cancel" onClick={onNoteCancel} />
             <Icon Icon={Icon.icons.Edit} label="Edit" onClick={onNoteEdit} />
             <Icon Icon={Icon.icons.Save} label="Save" onClick={saveNote} />
           </Container>

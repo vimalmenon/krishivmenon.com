@@ -60,13 +60,6 @@ export const apis = {
       method: 'GET',
     };
   },
-  getNote: function ({ id }: IApiNote): IApi {
-    const url = Apis.Note.replace('{id}', id);
-    return {
-      url,
-      method: 'GET',
-    };
-  },
   addNote: function (data: INotes): IApi<INotes> {
     const url = Apis.Notes;
     return {
@@ -83,7 +76,7 @@ export const apis = {
       data,
     };
   },
-  deleteNote: function ({ id }: IApiNote): IApi {
+  deleteNote: function (id: string): IApi {
     const url = Apis.Note.replace('{id}', id);
     return {
       url,

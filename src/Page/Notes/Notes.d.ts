@@ -6,9 +6,10 @@ export interface IUseNotes {
   loading: boolean;
   createNote: IGenericMethod;
   updateNote: (name: string, value: string) => void;
-  deleteNote: IGeneric<string, Promise<void>>;
+  deleteNote: IGeneric<INotes, Promise<void>>;
   selectedNote: INotes | null;
   saveNote: IGenericMethod;
   onNoteSelect: IGenericParam<INotes>;
   onNoteEdit: IGenericMethod;
+  onNoteCancel: IGenericMethod;
 }

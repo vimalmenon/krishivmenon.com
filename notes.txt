@@ -30,6 +30,7 @@ Medium Priority
   Github action
   Terraform /Serverless
   Automate
+  Need to work on logout of auth
 Less Priority
   Responsive UI
 Least Priority

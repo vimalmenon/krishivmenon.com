@@ -81,3 +81,9 @@ export interface IBaseResponse<T = unknown> {
   data: T;
   code: number;
 }
+
+export interface IAuthResponse {
+  picture: string;
+  email: string;
+  given_name: string;
+}

@@ -44,6 +44,7 @@ export const ENV = {
   AUTH_URL: process.env.NEXT_PUBLIC_AUTH_URL || '',
   API: process.env.NEXT_PUBLIC_API || '',
   API_VERSION: process.env.NEXT_PUBLIC_API_VERSION || '',
+  AUTHORIZATION: process.env.NEXT_PUBLIC_AUTHORIZATION || '',
 };
 
 export const AcceptImages = {

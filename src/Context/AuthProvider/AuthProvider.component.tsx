@@ -8,13 +8,14 @@ import { useRouter } from 'next/router';
 
 import { IUser } from './AuthProvider';
 import { AuthProviderContext, initialValue, createBody } from './AuthProvider.service';
+import { useCommonContext } from '../AppProvider/AppProvider.service';
 
 export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   const [refreshToken, setRefreshToken] = React.useState<string | null>(null);
   const [idToken, setIdToken] = React.useState<string | null>(initialValue.idToken);
   const [user, setUser] = React.useState<IUser | null>(initialValue.user);
-  const [authorized, setAuthorized] = React.useState<boolean>(false);
   const { storage, saveStorage } = useCommonLocalStorage();
+  const { setAuthorized } = useCommonContext();
   const router = useRouter();
   const getToken = async (code: string, state?: string): Promise<void> => {
     try {
@@ -40,7 +41,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
         }
       }
     } catch (error) {
-      setAuthorized(false);
+      return;
     }
   };
   const handleRefreshToken: IGenericReturn<Promise<unknown>> = async () => {
@@ -70,8 +71,10 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   }, []);
   React.useEffect(() => {
     if (storage && storage['idToken']) {
-      setAuthorized(true);
       setIdToken(storage['idToken']);
+      setAuthorized(true);
+    } else {
+      setAuthorized(false);
     }
   }, [storage]);
   React.useEffect(() => {
@@ -95,8 +98,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   }, [idToken]);
   return (
     <AuthProviderContext.Provider value={{ idToken, user, handleRefreshToken }}>
-      {authorized && children}
-      {!authorized && <div>Authorizing</div>}
+      {children}
     </AuthProviderContext.Provider>
   );
 };

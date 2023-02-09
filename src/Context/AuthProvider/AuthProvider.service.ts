@@ -1,21 +1,37 @@
 import React from 'react';
 
-import { IGenericReturn } from '@types';
+import { ENV } from '@constant';
+import { IGeneric, IGenericReturn } from '@types';
+import { NotImplemented } from '@utility';
 
-import { IAuthProvider, IUseCommonAuthProvider } from './AuthProvider';
+import { IAuthProvider, IUseCommonAuthProvider, ISignInUrl } from './AuthProvider';
 
 export const initialValue: IAuthProvider = {
-  accessToken: null,
+  handleRefreshToken: NotImplemented,
   idToken: null,
   user: null,
 };
 export const AuthProviderContext = React.createContext<IAuthProvider>(initialValue);
 
 export const useCommonAuthProvider: IGenericReturn<IUseCommonAuthProvider> = () => {
-  const { user, accessToken } = React.useContext<IAuthProvider>(AuthProviderContext);
+  const { user, idToken, handleRefreshToken } =
+    React.useContext<IAuthProvider>(AuthProviderContext);
 
   return {
     user,
-    accessToken,
+    idToken,
+    handleRefreshToken,
   };
+};
+
+export const signInUrl: IGeneric<ISignInUrl, string> = ({ provider, state, redirectUrl }) => {
+  return `${ENV.AUTH_URL}?identity_provider=${provider}&client_id=${ENV.AUTH_CLIENT_ID}&state=${state}&response_type=code&redirect_uri=${redirectUrl}`;
+};
+
+export const createBody: IGeneric<Record<string, string>, string> = (body) => {
+  return Object.keys(body)
+    .map((value) => {
+      return `${value}=${body[value]}`;
+    })
+    .join('&');
 };

@@ -5,6 +5,7 @@ import { getBaseUrl, NotImplemented } from '@utility';
 import axios from 'axios';
 
 import { IUseApiProvider, IAlert, IUseApiProviderExposed } from './ApiProvider';
+import { useCommonAuthProvider } from '../AuthProvider';
 
 const baseURL = getBaseUrl();
 
@@ -13,8 +14,13 @@ const instance = axios.create({
 });
 
 export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
+  const { idToken } = useCommonAuthProvider();
   const [alert, setAlert] = React.useState<IAlert | null>(null);
   function makeApiCall<K, T>(value: IApi<T>): Promise<K> {
+    value.headers = {
+      ...value.headers,
+      ['Authorization']: idToken || '',
+    };
     return instance
       .request<IBaseResponse<K>>(value)
       .then((result) => result.data)
@@ -34,7 +40,7 @@ export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
             message: result.message,
           });
         }
-        return result.data;
+        throw new Error('Error while trying to fetch notes');
       });
   }
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string): void => {

@@ -86,4 +86,6 @@ export interface IAuthResponse {
   picture: string;
   email: string;
   given_name: string;
+  exp: number;
+  iat: number;
 }

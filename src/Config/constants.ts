@@ -41,7 +41,9 @@ export const Providers = [
 
 export const ENV = {
   AUTH_CLIENT_ID: process.env.NEXT_PUBLIC_AUTH_CLIENT_ID || '',
-  AUTH_URL: process.env.NEXT_PUBLIC_AUTH_URL || '',
+  AUTH_URL: `${process.env.NEXT_PUBLIC_AUTH_URL}/oauth2/authorize`,
+  AUTH_TOKEN_URL: `${process.env.NEXT_PUBLIC_AUTH_URL}/oauth2/token`,
+  AUTH_LOGOUT_URL: '',
   API: process.env.NEXT_PUBLIC_API || '',
   API_VERSION: process.env.NEXT_PUBLIC_API_VERSION || '',
   AUTHORIZATION: process.env.NEXT_PUBLIC_AUTHORIZATION || '',
@@ -57,5 +59,7 @@ export const AcceptVideo = {
 export const StorageKey = 'KM';
 
 export const FolderDepth = 4;
+
+export const AuthRefreshTime = 6300000;
 
 export { CommonIcons } from './icons';

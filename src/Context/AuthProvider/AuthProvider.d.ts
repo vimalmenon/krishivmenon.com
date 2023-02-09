@@ -1,3 +1,5 @@
+import { IGenericReturn } from '@types';
+
 export interface IUser {
   profile: string;
   email: string;
@@ -5,12 +7,18 @@ export interface IUser {
 }
 
 export interface IAuthProvider {
-  accessToken: string | null;
-  idToken: string | null;
   user: IUser | null;
+  idToken: string | null;
+  handleRefreshToken: IGenericReturn<Promise<unknown>>;
 }
 
 export interface IUseCommonAuthProvider {
   user: IUser | null;
-  accessToken: string | null;
+  idToken: string | null;
+}
+
+export interface ISignInUrl {
+  provider: string;
+  state: string;
+  redirectUrl: string;
 }

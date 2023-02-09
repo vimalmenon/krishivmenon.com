@@ -23,8 +23,12 @@ export const useNotes: IGenericReturn<IUseNotes> = () => {
   const { makeApiCall } = useCommonApiContext();
   const getNotes: IGenericReturn<Promise<void>> = async () => {
     setLoading(true);
-    const results = await makeApiCall<INotes[]>(apis.getNotes());
-    setNotes(results);
+    try {
+      const results = await makeApiCall<INotes[]>(apis.getNotes());
+      setNotes(results);
+    } catch (error) {
+      setNotes([]);
+    }
     setLoading(false);
   };
   const deleteNote: IGenericReturn<Promise<void>> = async () => {

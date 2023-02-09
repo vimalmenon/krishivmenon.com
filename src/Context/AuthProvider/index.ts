@@ -1,2 +1,2 @@
 export * from './AuthProvider.component';
-export { useCommonAuthProvider } from './AuthProvider.service';
+export { useCommonAuthProvider, signInUrl } from './AuthProvider.service';

@@ -1,61 +1,102 @@
 import React from 'react';
 
+import { ENV } from '@constant';
 import { useCommonLocalStorage } from '@context';
-import { ReactChildren, AnyType } from '@types';
+import { ReactChildren, IGenericReturn, IAuthResponse } from '@types';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
 
 import { IUser } from './AuthProvider';
-import { AuthProviderContext, initialValue } from './AuthProvider.service';
+import { AuthProviderContext, initialValue, createBody } from './AuthProvider.service';
 
 export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
-  const [accessToken, setAccessToken] = React.useState<string | null>(initialValue.accessToken);
+  const [refreshToken, setRefreshToken] = React.useState<string | null>(null);
   const [idToken, setIdToken] = React.useState<string | null>(initialValue.idToken);
   const [user, setUser] = React.useState<IUser | null>(initialValue.user);
+  const [authorized, setAuthorized] = React.useState<boolean>(false);
   const { storage, saveStorage } = useCommonLocalStorage();
   const router = useRouter();
+  const getToken = async (code: string, state?: string): Promise<void> => {
+    try {
+      const result = await fetch(ENV.AUTH_TOKEN_URL, {
+        method: 'Post',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: `Basic ${ENV.AUTHORIZATION}`,
+        },
+        body: createBody({
+          grant_type: 'authorization_code',
+          client_id: ENV.AUTH_CLIENT_ID,
+          code: code,
+          redirect_uri: `${location.origin}/`,
+        }),
+      });
+      if (result.ok) {
+        const data = await result.json();
+        saveStorage('refreshToken', data.refresh_token);
+        saveStorage('idToken', data.id_token);
+        if (state) {
+          router.replace(state);
+        }
+      }
+    } catch (error) {
+      setAuthorized(false);
+    }
+  };
+  const handleRefreshToken: IGenericReturn<Promise<unknown>> = async () => {
+    const result = await fetch(ENV.AUTH_TOKEN_URL, {
+      method: 'Post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Basic ${ENV.AUTHORIZATION}`,
+      },
+      body: createBody({
+        grant_type: 'refresh_token',
+        client_id: ENV.AUTH_CLIENT_ID,
+        refresh_token: refreshToken || '',
+      }),
+    });
+    const data = await result.json();
+    saveStorage('idToken', data.id_token);
+    setIdToken(data.id_token);
+  };
   React.useEffect(() => {
-    const { hash } = window.location;
-
-    if (hash) {
-      const parsedHash = new URLSearchParams(
-        hash.substring(1) // skip the first char (#)
-      );
-
-      if (parsedHash.get('access_token')) {
-        saveStorage('accessToken', parsedHash.get('access_token') || '');
-      }
-      if (parsedHash.get('id_token')) {
-        saveStorage('idToken', parsedHash.get('id_token') || '');
-      }
-      if (parsedHash.get('state')) {
-        router.replace(parsedHash.get('state') as string);
-      }
+    const query = new URLSearchParams(window.location.search);
+    const code = query.get('code');
+    const state = query.get('state');
+    if (code) {
+      getToken(code || '', state || '');
     }
   }, []);
   React.useEffect(() => {
     if (storage && storage['idToken']) {
+      setAuthorized(true);
       setIdToken(storage['idToken']);
     }
   }, [storage]);
   React.useEffect(() => {
-    if (storage && storage['accessToken']) {
-      setAccessToken(storage['accessToken']);
+    if (storage && storage['refreshToken']) {
+      setRefreshToken(storage['refreshToken']);
     }
   }, [storage]);
   React.useEffect(() => {
     if (idToken) {
-      const value = jwtDecode(idToken) as AnyType;
-      setUser({
-        profile: value['picture'],
-        email: value['email'],
-        name: value['given_name'],
-      });
+      const value = jwtDecode<IAuthResponse>(idToken);
+      if (value.exp * 1000 < new Date().getTime()) {
+        handleRefreshToken();
+      } else {
+        setUser({
+          profile: value.picture,
+          email: value.email,
+          name: value.given_name,
+        });
+      }
     }
   }, [idToken]);
   return (
-    <AuthProviderContext.Provider value={{ accessToken, idToken, user }}>
-      {children}
+    <AuthProviderContext.Provider value={{ idToken, user, handleRefreshToken }}>
+      {authorized && children}
+      {!authorized && <div>Authorizing</div>}
     </AuthProviderContext.Provider>
   );
 };

@@ -9,18 +9,20 @@ import { useCommonAuthProvider } from '../AuthProvider';
 
 const baseURL = getBaseUrl();
 
-const instance = axios.create({
-  baseURL: baseURL,
-});
-
 export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
   const { idToken } = useCommonAuthProvider();
   const [alert, setAlert] = React.useState<IAlert | null>(null);
+  const instance = React.useMemo(
+    () =>
+      axios.create({
+        baseURL: baseURL,
+        headers: {
+          Authorization: idToken || '',
+        },
+      }),
+    [idToken]
+  );
   function makeApiCall<K, T>(value: IApi<T>): Promise<K> {
-    value.headers = {
-      ...value.headers,
-      ['Authorization']: idToken || '',
-    };
     return instance
       .request<IBaseResponse<K>>(value)
       .then((result) => result.data)

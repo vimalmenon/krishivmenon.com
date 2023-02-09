@@ -23,13 +23,13 @@ const MyApp: React.FC<AppProps & { emotionCache: EmotionCache }> = ({
       <CacheProvider value={emotionCache}>
         <LocalStorageProvider>
           <ErrorBoundaryProvider>
-            <AuthProvider>
-              <AppProvider>
+            <AppProvider>
+              <AuthProvider>
                 <ApiProvider>
                   <Component {...pageProps} />
                 </ApiProvider>
-              </AppProvider>
-            </AuthProvider>
+              </AuthProvider>
+            </AppProvider>
           </ErrorBoundaryProvider>
         </LocalStorageProvider>
       </CacheProvider>

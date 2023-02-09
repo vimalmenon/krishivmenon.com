@@ -14,7 +14,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   const [refreshToken, setRefreshToken] = React.useState<string | null>(null);
   const [idToken, setIdToken] = React.useState<string | null>(initialValue.idToken);
   const [user, setUser] = React.useState<IUser | null>(initialValue.user);
-  const { storage, saveStorage } = useCommonLocalStorage();
+  const { saveStorage, getStorage } = useCommonLocalStorage();
   const { setAuthorized } = useCommonContext();
   const router = useRouter();
   const getToken = async (code: string, state?: string): Promise<void> => {
@@ -70,18 +70,18 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     }
   }, []);
   React.useEffect(() => {
-    if (storage && storage['idToken']) {
-      setIdToken(storage['idToken']);
+    if (getStorage<string>('idToken')) {
+      setIdToken(getStorage<string>('idToken'));
       setAuthorized(true);
     } else {
       setAuthorized(false);
     }
-  }, [storage]);
+  }, [getStorage<string>('idToken')]);
   React.useEffect(() => {
-    if (storage && storage['refreshToken']) {
-      setRefreshToken(storage['refreshToken']);
+    if (getStorage<string>('refreshToken')) {
+      setRefreshToken(getStorage<string>('refreshToken'));
     }
-  }, [storage]);
+  }, [getStorage<string>('refreshToken')]);
   React.useEffect(() => {
     if (idToken) {
       const value = jwtDecode<IAuthResponse>(idToken);

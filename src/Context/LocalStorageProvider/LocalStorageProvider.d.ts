@@ -4,8 +4,9 @@ export interface ILocalStorageProvider {
 }
 
 export type ISaveStorage = (key: string, value: string) => void;
+export type IGetStorage<T> = (key: string) => T;
 
 export interface IUseCommonLocalStorage {
-  storage: Record<string, string>;
   saveStorage: ISaveStorage;
+  getStorage: IGetStorage;
 }

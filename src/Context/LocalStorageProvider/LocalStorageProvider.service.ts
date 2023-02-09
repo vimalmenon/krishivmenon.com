@@ -25,8 +25,11 @@ export const useCommonLocalStorage: IGenericReturn<IUseCommonLocalStorage> = () 
     localStorage.setItem(StorageKey, JSON.stringify(storage));
     setStorage(storage);
   };
+  const getStorage = <T>(key: string): T => {
+    return storage[key] as T;
+  };
   return {
     saveStorage,
-    storage,
+    getStorage,
   };
 };

@@ -1,11 +1,10 @@
-import { context } from '@context';
+import { useCommonContext } from '@context';
 import Switch from '@mui/material/Switch';
 
 import { SwitchThemeStyle } from './SwitchTheme.style';
 
 export const SwitchTheme: React.FC = () => {
-  const { theme } = context.useContext();
-  const { switchTheme } = context.useCommonContext();
+  const { switchTheme, theme } = useCommonContext();
 
   return (
     <SwitchThemeStyle>

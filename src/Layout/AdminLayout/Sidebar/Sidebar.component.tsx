@@ -1,5 +1,5 @@
 import { Navigations } from '@constant';
-import { context } from '@context';
+import { useCommonContext } from '@context';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -8,7 +8,7 @@ import { Drawer } from '@style';
 import { useRouter } from 'next/router';
 
 export const Sidebar: React.FC = () => {
-  const { drawerOpen } = context.useContext();
+  const { drawerOpen } = useCommonContext();
   const { push, asPath } = useRouter();
   return (
     <Drawer variant="permanent" open={drawerOpen}>

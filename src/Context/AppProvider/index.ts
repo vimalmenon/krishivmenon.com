@@ -1,2 +1,2 @@
 export * from './AppProvider.component';
-export { context } from './AppProvider.service';
+export { useCommonContext } from './AppProvider.service';

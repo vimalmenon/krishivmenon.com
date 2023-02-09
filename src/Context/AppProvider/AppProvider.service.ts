@@ -32,11 +32,11 @@ export const useCommonContext: IGenericReturn<IUseCommonContext> = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
   return {
+    theme,
+    drawerOpen,
     authorized,
     switchTheme,
     switchDrawer,
     setAuthorized,
   };
 };
-
-export const context = { useContext, useCommonContext };

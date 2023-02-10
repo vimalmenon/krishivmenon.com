@@ -3,10 +3,18 @@ export interface ILocalStorageProvider {
   setStorage: React.Dispatch<React.SetStateAction<ThemeType>>;
 }
 
-export type ISaveStorage = (key: string, value: string) => void;
-export type IGetStorage<T> = (key: string) => T;
+export type StorageKeyType =
+  | 'theme'
+  | 'refreshToken'
+  | 'idToken'
+  | 'userProfile'
+  | 'userEmail'
+  | 'userName'
+  | 'tokenExpiry';
+
+export type ISaveStorage = (key: StorageKeyType, value: string) => void;
 
 export interface IUseCommonLocalStorage {
   saveStorage: ISaveStorage;
-  getStorage: IGetStorage;
+  getStorage: <T>(key: StorageKeyType) => T;
 }

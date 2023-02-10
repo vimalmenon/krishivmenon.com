@@ -8,6 +8,7 @@ import {
   IUseCommonLocalStorage,
   ISaveStorage,
   ILocalStorageProvider,
+  StorageKeyType,
 } from './LocalStorageProvider';
 
 export const initialValue: ILocalStorageProvider = {
@@ -25,7 +26,7 @@ export const useCommonLocalStorage: IGenericReturn<IUseCommonLocalStorage> = () 
     localStorage.setItem(StorageKey, JSON.stringify(storage));
     setStorage(storage);
   };
-  const getStorage = <T>(key: string): T => {
+  const getStorage = <T>(key: StorageKeyType): T => {
     return storage[key] as T;
   };
   return {

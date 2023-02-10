@@ -14,6 +14,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   const [refreshToken, setRefreshToken] = React.useState<string | null>(null);
   const [idToken, setIdToken] = React.useState<string | null>(initialValue.idToken);
   const [user, setUser] = React.useState<IUser | null>(initialValue.user);
+  const [tokenExpiry, setTokenExpiry] = React.useState<number>(0);
   const { saveStorage, getStorage } = useCommonLocalStorage();
   const { setAuthorized } = useCommonContext();
   const router = useRouter();
@@ -36,6 +37,11 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
         const data = await result.json();
         saveStorage('refreshToken', data.refresh_token);
         saveStorage('idToken', data.id_token);
+        const value = jwtDecode<IAuthResponse>(data.id_token);
+        saveStorage('userProfile', value.picture);
+        saveStorage('userEmail', value.email);
+        saveStorage('userEmail', value.given_name);
+        saveStorage('tokenExpiry', String(value.exp * 1000));
         if (state) {
           router.replace(state);
         }
@@ -80,22 +86,21 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   React.useEffect(() => {
     if (getStorage<string>('refreshToken')) {
       setRefreshToken(getStorage<string>('refreshToken'));
+      setTokenExpiry(parseInt(getStorage<string>('tokenExpiry')));
+      setUser({
+        profile: getStorage<string>('userProfile'),
+        email: getStorage<string>('userEmail'),
+        name: getStorage<string>('userName'),
+      });
     }
   }, [getStorage<string>('refreshToken')]);
   React.useEffect(() => {
-    if (idToken) {
-      const value = jwtDecode<IAuthResponse>(idToken);
-      if (value.exp * 1000 < new Date().getTime()) {
+    if (tokenExpiry) {
+      if (tokenExpiry < new Date().getTime()) {
         handleRefreshToken();
-      } else {
-        setUser({
-          profile: value.picture,
-          email: value.email,
-          name: value.given_name,
-        });
       }
     }
-  }, [idToken]);
+  }, [tokenExpiry]);
   return (
     <AuthProviderContext.Provider value={{ idToken, user, handleRefreshToken }}>
       {children}

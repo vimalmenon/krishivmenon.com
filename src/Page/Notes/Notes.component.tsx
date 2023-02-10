@@ -18,11 +18,11 @@ export const Notes: React.FC = () => {
     deleteNote,
     createNote,
     updateNote,
+    onNoteEdit,
     selectedNote,
     onNoteSelect,
-    onNoteEdit,
-    confirmDelete,
     onNoteCancel,
+    confirmDelete,
     onDeleteCancel,
     onDeleteConfirm,
   } = useNotes();
@@ -52,11 +52,16 @@ export const Notes: React.FC = () => {
         </Container>
         <Container component="div" sx={{ flex: '2' }} direction="column">
           <Container component="div" sx={{ justifyContent: 'end' }}>
-            <Icon Icon={Icon.icons.Add} label="Add" onClick={createNote} />
-
-            <Icon Icon={Icon.icons.Cancel} label="Cancel" onClick={onNoteCancel} />
-            <Icon Icon={Icon.icons.Edit} label="Edit" onClick={onNoteEdit} />
-            <Icon Icon={Icon.icons.Save} label="Save" onClick={saveNote} />
+            {mode === 'VIEW' && <Icon Icon={Icon.icons.Add} label="Add" onClick={createNote} />}
+            {selectedNote?.id && mode === 'VIEW' && (
+              <Icon Icon={Icon.icons.Edit} label="Edit" onClick={onNoteEdit} />
+            )}
+            {(mode === 'ADD' || mode === 'EDIT') && (
+              <Icon Icon={Icon.icons.Cancel} label="Cancel" onClick={onNoteCancel} />
+            )}
+            {(mode === 'ADD' || mode === 'EDIT') && (
+              <Icon Icon={Icon.icons.Save} label="Save" onClick={saveNote} />
+            )}
           </Container>
           <Container component="div" sx={{}} direction="column">
             <TextField

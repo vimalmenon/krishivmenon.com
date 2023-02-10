@@ -1,4 +1,4 @@
-import { IGenericMethod, INotes, IGenericParam } from '@types';
+import { IGenericMethod, INotes, IGenericParam, PageModeType } from '@types';
 
 export interface IUseNotes {
   mode: PageModeType;

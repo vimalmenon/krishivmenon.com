@@ -74,6 +74,7 @@ export const useNotes: IGenericReturn<IUseNotes> = () => {
       );
       setNotes(results);
       setLoading(false);
+      setMode('VIEW');
     }
   };
   const onNoteCancel: IGenericMethod = () => {

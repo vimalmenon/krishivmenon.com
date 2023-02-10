@@ -66,6 +66,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     const data = await result.json();
     saveStorage('idToken', data.id_token);
     setIdToken(data.id_token);
+    saveStorage('tokenExpiry', String(new Date().getTime() + 3000000));
   };
   React.useEffect(() => {
     const query = new URLSearchParams(window.location.search);

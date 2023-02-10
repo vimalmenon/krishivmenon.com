@@ -1,38 +1,41 @@
 Finished Task:
 *) Save the theme to LocalStorage
 *) Need to login with Google Auth
+*) Protect the api using Auth token
+*) Set up Proxy for API Gateway
+*) Able to Login with AWS cognito
+*) Basic Login Page
+*) Upload file to lambda
+*) Add library for notes
+*) Make an API to call AWS lambda
+
 
 Pending Task:
 *) Create a page to update notes
 *) Search for library for Image viewer
 *) Add notes for image
 *) Show image on request 
-*) Basic Login Page
 *) Setup GitHub action
-*) Add library for notes
 *) Set up HTTPS connection
-*) Upload file to lambda
-*) Set up Proxy for API Gateway
 *) Need to work on certificate
 *) Logging for S3 Bucket for static website
-*) Protect the api using Auth token
 *) Need to create "Not Authorized" page
 
 
 High Priority: 
-  Able to Login with AWS cognito
   Able to Logout with AWS cognito
   Refresh API Token
-  Make an API to call AWS lambda
   Make the Website HTTPS
   Redirect apis from api.krishivmenon.com
+  Need to work on logout of auth
 Medium Priority
   Github action
   Terraform /Serverless
   Automate
-  Need to work on logout of auth
-Less Priority
+
   Responsive UI
+  Improve UI
+Less Priority
 Least Priority
   Testing of application
   Need to bring down the warning to single digit

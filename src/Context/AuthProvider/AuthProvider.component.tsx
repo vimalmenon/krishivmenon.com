@@ -51,6 +51,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     }
   };
   const handleRefreshToken: IGenericReturn<Promise<unknown>> = async () => {
+    setAuthorized(false);
     const result = await fetch(ENV.AUTH_TOKEN_URL, {
       method: 'Post',
       headers: {
@@ -67,6 +68,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     saveStorage('idToken', data.id_token);
     setIdToken(data.id_token);
     saveStorage('tokenExpiry', String(new Date().getTime() + 3000000));
+    setAuthorized(true);
   };
   React.useEffect(() => {
     const query = new URLSearchParams(window.location.search);

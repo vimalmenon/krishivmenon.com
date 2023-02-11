@@ -1,27 +1,27 @@
 Finished Task:
-*) Need to login with Google Auth
-*) Protect the api using Auth token
-*) Set up Proxy for API Gateway
-*) Able to Login with AWS cognito
-*) Basic Login Page
-*) Upload file to lambda
-*) Add library for notes
-*) Make an API to call AWS lambda
-*) Need to bring down the warning to single digit
-*) Serverless
+  Need to login with Google Auth
+  Protect the api using Auth token
+  Able to Login with AWS cognito
+  Basic Login Page
+  Upload file to lambda
+  Add library for notes
+  Make an API to call AWS lambda
+  Need to bring down the warning to single digit
+  Serverless
+  Refresh API Token
 
 
 
 High Priority: 
   Create a page to update notes (WIP)
   Able to Logout with AWS cognito
-  Refresh API Token
   Make the Website HTTPS
   Need to work on certificate
   Redirect apis from api.krishivmenon.com
   Need to work on logout of auth
   Responsive UI
   Improve UI
+  First time Refresh token is failing (Bug)
 Medium Priority
   Setup GitHub action
   Setup Quality Check (TSC/ eslint / test)
@@ -29,6 +29,7 @@ Medium Priority
   Need to create "Not Authorized" page
   Pre signed image on request
   Testing of application
+  Need to create a Tags for notes and Library
 Less Priority
   Setting up sonar
   Search for library for Image viewer

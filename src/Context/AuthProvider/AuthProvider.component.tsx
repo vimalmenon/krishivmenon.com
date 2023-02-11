@@ -95,6 +95,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
         email: getStorage<string>('userEmail'),
         name: getStorage<string>('userName'),
       });
+      setAuthorized(true);
     }
   }, [getStorage<string>('refreshToken')]);
   React.useEffect(() => {

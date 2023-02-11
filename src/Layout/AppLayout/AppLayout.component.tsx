@@ -13,8 +13,8 @@ export const AppLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, tit
   return (
     <ThemeProvider theme={theme}>
       {authorized === null && <div>Authorizing</div>}
-      {authorized === true && <AdminLayout title={title}>{children}</AdminLayout>}
       {authorized === false && <LoginLayout title="Login Page" />}
+      {authorized && <AdminLayout title={title}>{children}</AdminLayout>}
     </ThemeProvider>
   );
 };

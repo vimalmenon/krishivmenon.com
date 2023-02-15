@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CommonIcons } from '@constant';
+import { Icon } from '@common';
 
 import { IGalleryFolder } from './GalleryFolder';
 import { useGalleryFolder, useClick } from './GalleryFolder.hook';
@@ -11,7 +11,7 @@ export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder }) => {
   const { onClick } = useClick(onFinalSingleClick, onFinalDoubleClick);
   return (
     <FolderStyle onClick={onClick}>
-      <CommonIcons.Folder />
+      <Icon.icons.Folder />
       {folder.label}
     </FolderStyle>
   );

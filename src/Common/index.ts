@@ -7,3 +7,4 @@ export * from './Confirm';
 export * from './MetaData';
 export * from './FileUpload';
 export * from './SwitchTheme';
+export * from './SideNavigation';

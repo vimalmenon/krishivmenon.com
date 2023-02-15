@@ -9,7 +9,7 @@ Finished Task:
   Need to bring down the warning to single digit
   Serverless
   Refresh API Token
-
+  Responsive UI
 
 
 High Priority: 
@@ -19,7 +19,6 @@ High Priority:
   Need to work on certificate
   Redirect apis from api.krishivmenon.com
   Need to work on logout of auth
-  Responsive UI
   Improve UI
   First time Refresh token is failing (Bug)
 Medium Priority

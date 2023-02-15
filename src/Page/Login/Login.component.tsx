@@ -2,10 +2,11 @@ import { Providers } from '@constant';
 import Button from '@mui/material/Button';
 
 import { onClick } from './Login.service';
+import {LoginRoot} from "./Login.style";
 
 export const Login: React.FC = () => {
   return (
-    <div>
+    <LoginRoot>
       {Providers.map((provider, key) => {
         return (
           <Button
@@ -19,6 +20,6 @@ export const Login: React.FC = () => {
           </Button>
         );
       })}
-    </div>
+    </LoginRoot>
   );
 };

@@ -8,7 +8,7 @@ import { useCommonLocalStorage } from '../index';
 export const initialValue: IAppProvider = {
   theme: 'dark',
   setTheme: NotImplemented,
-  drawerOpen: true,
+  drawerOpen: false,
   setDrawerOpen: NotImplemented,
   authorized: null,
   setAuthorized: NotImplemented,

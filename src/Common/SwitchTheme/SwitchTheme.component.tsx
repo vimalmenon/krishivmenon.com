@@ -1,5 +1,7 @@
 import { useCommonContext } from '@context';
-import Switch from '@mui/material/Switch';
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
+import IconButton from '@mui/material/IconButton';
 
 import { SwitchThemeStyle } from './SwitchTheme.style';
 
@@ -8,7 +10,9 @@ export const SwitchTheme: React.FC = () => {
 
   return (
     <SwitchThemeStyle>
-      <Switch checked={theme === 'dark'} onChange={switchTheme} />
+      <IconButton onClick={switchTheme}>
+        {theme === 'dark' ? <LightModeRoundedIcon /> : <DarkModeRoundedIcon />}
+      </IconButton>
     </SwitchThemeStyle>
   );
 };

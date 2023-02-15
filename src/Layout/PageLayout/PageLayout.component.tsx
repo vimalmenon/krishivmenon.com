@@ -1,18 +1,19 @@
+import { MetaData } from '@common';
 import CssBaseline from '@mui/material/CssBaseline';
-import { ReactChildren } from '@types';
+import { IBaseLayout, ReactChildren } from '@types';
 
 import { MainPageLayout, MainPageContent } from './PageLayout.style';
 import { PageLayoutHeader, PageLayoutAside, PageLayoutFooter } from '../';
 
-export const PageLayout: React.FC<ReactChildren> = ({ children }) => {
+export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, title }) => {
   return (
     <MainPageLayout>
       <CssBaseline />
+      <MetaData title={title} />
       <PageLayoutHeader />
       <PageLayoutAside />
-      <MainPageContent>content</MainPageContent>
+      <MainPageContent>{children}</MainPageContent>
       <PageLayoutFooter />
-      {/* <MainPageBody>{children}</MainPageBody> */}
     </MainPageLayout>
   );
 };

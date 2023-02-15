@@ -1,14 +1,13 @@
+import { Icon } from '@common';
 import GoogleIcon from '@mui/icons-material/Google';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import NoteIcon from '@mui/icons-material/Note';
-
-import { CommonIcons } from './icons';
 
 export const Navigations = [
   {
     name: 'Home',
     url: '/',
-    Icon: CommonIcons.Home,
+    Icon: Icon.icons.Home,
     show: true,
   },
   {
@@ -26,7 +25,7 @@ export const Navigations = [
   {
     name: 'Admin',
     url: '/admin',
-    Icon: CommonIcons.Admin,
+    Icon: Icon.icons.Admin,
     show: false,
   },
 ];
@@ -61,5 +60,3 @@ export const StorageKey = 'KM';
 export const FolderDepth = 4;
 
 export const AuthRefreshTime = 6300000;
-
-export { CommonIcons } from './icons';

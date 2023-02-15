@@ -12,18 +12,20 @@ export const SideNavigation: React.FC = () => {
     <SideNavigationRoot>
       <SideNavigationList dense>
         {Navigations.map((navigation) => {
-          return (
-            <ListItemButton
-              key={navigation.name}
-              onClick={() => push(navigation.url)}
-              selected={navigation.url === asPath}
-            >
-              <ListItemIcon>
-                <navigation.Icon />
-              </ListItemIcon>
-              <ListItemText primary={navigation.name} />
-            </ListItemButton>
-          );
+          if (navigation.show) {
+            return (
+              <ListItemButton
+                key={navigation.name}
+                onClick={() => push(navigation.url)}
+                selected={navigation.url === asPath}
+              >
+                <ListItemIcon>
+                  <navigation.Icon />
+                </ListItemIcon>
+                <ListItemText primary={navigation.name} />
+              </ListItemButton>
+            );
+          }
         })}
       </SideNavigationList>
     </SideNavigationRoot>

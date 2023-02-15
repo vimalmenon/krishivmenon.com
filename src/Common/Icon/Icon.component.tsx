@@ -1,15 +1,13 @@
-import GoogleIcon from '@mui/icons-material/Google';
+import SaveIcon from '@mui/icons-material/Save';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
+import { GoogleIcon } from './custom';
 import { IIcon, IIconStatic } from './Icon';
 import { CommonIcons } from './Icon.service';
 
-export const Icon: IIconStatic<typeof GoogleIcon> & React.FC<IIcon<typeof GoogleIcon>> = ({
-  label,
-  Icon,
-  onClick,
-}) => {
+export const Icon: IIconStatic<typeof SaveIcon | typeof GoogleIcon> &
+  React.FC<IIcon<typeof SaveIcon | typeof GoogleIcon>> = ({ label, Icon, onClick }) => {
   return (
     <Tooltip title={label}>
       <IconButton onClick={onClick}>

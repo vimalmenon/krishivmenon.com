@@ -1,9 +1,9 @@
 import { styled } from '@mui/material/styles';
 
-export const LoginRoot = styled('section')(({ theme }) => {
+export const LoginRoot = styled('section')(() => {
   return {
-    display: "flex",
-    justifyContent:"center",
-    alignItems: "center"
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 });

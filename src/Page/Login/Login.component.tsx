@@ -2,7 +2,7 @@ import { Providers } from '@constant';
 import Button from '@mui/material/Button';
 
 import { onClick } from './Login.service';
-import {LoginRoot} from "./Login.style";
+import { LoginRoot } from './Login.style';
 
 export const Login: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ export const Login: React.FC = () => {
             variant="outlined"
             key={key}
             startIcon={<provider.Icon />}
-            onClick={() => onClick}
+            onClick={() => onClick(provider.provider)}
           >
             {' '}
             Sign in with {provider.name}

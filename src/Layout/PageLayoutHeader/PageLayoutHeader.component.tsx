@@ -15,14 +15,6 @@ export const PageLayoutHeader: React.FC = () => {
 
   return (
     <PageLayoutHeaderRoot sx={{ borderColor: 'divider' }}>
-      {/* <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: 1.5,
-        }}
-      > */}
       <PageLayoutHeaderTitle>
         <IconButton size="small" onClick={switchDrawer} sx={{ display: { sm: 'none' } }}>
           <MenuIcon />
@@ -37,44 +29,6 @@ export const PageLayoutHeader: React.FC = () => {
       <PageLayoutHeaderSide>
         <SwitchTheme />
       </PageLayoutHeaderSide>
-      {/* </Box> */}
-
-      {/* <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
-        <IconButton
-          size="sm"
-          variant="outlined"
-          color="primary"
-          component="a"
-          href="/blog/first-look-at-joy/"
-        >
-          <BookRoundedIcon />
-        </IconButton>
-        <Menu
-          id="app-selector"
-          control={
-            <IconButton size="sm" variant="outlined" color="primary" aria-label="Apps">
-              <GridViewRoundedIcon />
-            </IconButton>
-          }
-          menus={[
-            {
-              label: 'Email',
-              active: true,
-              href: '/joy-ui/getting-started/templates/email/',
-              'aria-current': 'page',
-            },
-            {
-              label: 'Team',
-              href: '/joy-ui/getting-started/templates/team/',
-            },
-            {
-              label: 'Files',
-              href: '/joy-ui/getting-started/templates/files/',
-            },
-          ]}
-        />
-        <ColorSchemeToggle />
-      </Box> */}
     </PageLayoutHeaderRoot>
   );
 };

@@ -5,13 +5,16 @@ import { NotImplemented } from '@utility';
 
 import { IAppProvider, IUseCommonContext } from './AppProvider';
 import { useCommonLocalStorage } from '../index';
+
 export const initialValue: IAppProvider = {
   theme: 'dark',
-  setTheme: NotImplemented,
+  authorized: false,
   drawerOpen: false,
+  authorizing: false,
+  setTheme: NotImplemented,
   setDrawerOpen: NotImplemented,
-  authorized: null,
   setAuthorized: NotImplemented,
+  setAuthorizing: NotImplemented,
 };
 
 export const Context = React.createContext<IAppProvider>(initialValue);
@@ -21,8 +24,16 @@ export const useContext = (): IAppProvider => {
 };
 
 export const useCommonContext: IGenericReturn<IUseCommonContext> = () => {
-  const { drawerOpen, setDrawerOpen, theme, setTheme, authorized, setAuthorized } =
-    React.useContext<IAppProvider>(Context);
+  const {
+    drawerOpen,
+    setDrawerOpen,
+    theme,
+    setTheme,
+    authorized,
+    setAuthorized,
+    authorizing,
+    setAuthorizing,
+  } = React.useContext<IAppProvider>(Context);
   const { saveStorage } = useCommonLocalStorage();
   const switchDrawer: IGenericMethod = () => {
     setDrawerOpen(!drawerOpen);
@@ -36,7 +47,9 @@ export const useCommonContext: IGenericReturn<IUseCommonContext> = () => {
     drawerOpen,
     authorized,
     switchTheme,
+    authorizing,
     switchDrawer,
     setAuthorized,
+    setAuthorizing,
   };
 };

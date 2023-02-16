@@ -33,11 +33,19 @@ export const Admin = {
   show: false,
   title: 'Admin | Krishiv Menon',
 };
+export const PageNotFound = {
+  name: '',
+  url: '',
+  Icon: Icon.icons.Admin,
+  show: false,
+  title: 'Page Not Found | Krishiv Menon',
+};
 
 export const NavigationList = [Home, Gallery, Notes, Admin];
 
 export const navigation = {
   NavigationList,
+  PageNotFound,
   Home,
   Gallery,
   Notes,

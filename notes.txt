@@ -16,6 +16,7 @@ Finished Task:
 High Priority: 
   Testing of application (React testing library)
   Automate Deployment from github action
+  Setup Quality Check (TSC/ eslint / test)
   Automatically create tag when deployed
   Create a page to update notes (WIP)
   Able to Logout with AWS cognito

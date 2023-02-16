@@ -1,10 +1,11 @@
+import { navigation } from '@data';
 import { AppLayout } from '@layout';
 import { Main } from '@page';
 import { NextPage } from 'next/types';
 
 const Home: NextPage = () => {
   return (
-    <AppLayout title="Home">
+    <AppLayout title={navigation.Home.title}>
       <Main />
     </AppLayout>
   );

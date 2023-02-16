@@ -1,40 +1,10 @@
 import { Icon } from '@common';
-import GoogleIcon from '@mui/icons-material/Google';
-import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
-import NoteIcon from '@mui/icons-material/Note';
-
-export const Navigations = [
-  {
-    name: 'Home',
-    url: '/',
-    Icon: Icon.icons.Home,
-    show: true,
-  },
-  {
-    name: 'Gallery',
-    url: '/gallery',
-    Icon: InsertPhotoIcon,
-    show: true,
-  },
-  {
-    name: 'Notes',
-    url: '/notes',
-    Icon: NoteIcon,
-    show: true,
-  },
-  {
-    name: 'Admin',
-    url: '/admin',
-    Icon: Icon.icons.Admin,
-    show: false,
-  },
-];
 
 export const Providers = [
   {
     name: 'Google',
     provider: 'Google',
-    Icon: GoogleIcon,
+    Icon: Icon.icons.Google,
   },
 ];
 

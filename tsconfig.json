@@ -24,6 +24,7 @@
       "@utility": ["src/Utility"],
       "@constant": ["src/Config/constants"],
       "@context": ["src/Context"],
+      "@data": ["src/Config/data"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

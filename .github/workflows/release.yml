@@ -98,12 +98,12 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       run: npm ci --ignore-scripts
     - name: Build
-      run: npm run build
+      run: npm run build:static
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
         name: build
-        path: .next/**/*
+        path: out/**/*
   Upload:
     name: Upload
     runs-on: ubuntu-latest

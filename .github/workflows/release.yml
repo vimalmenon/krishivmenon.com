@@ -109,7 +109,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: Build
     steps:
-      - uses: actions/checkout@master
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
@@ -125,6 +124,16 @@ jobs:
           aws_bucket: ${{ secrets.AWS_BUCKET }}
           source_dir: "build"
           destination_dir: ""
+  CreateTag:
+    name: Create Tag
+    runs-on: ubuntu-latest
+    needs: Upload
+    steps:
+      - uses: actions/checkout@v3
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: "Release v${{ needs.prepare.outputs.selected }}"
+          message: "Release v${{ needs.prepare.outputs.selected }} created on ${{ needs.prepare.outputs.date }}"
   # Release:
   #   name: Create a release
   #   needs: [Build, Prepare, PushCode]

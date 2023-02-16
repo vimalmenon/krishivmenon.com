@@ -7,10 +7,10 @@ Finished Task:
   GitHub Action : Set up quality check on TSC and eslint
   GitHub Action : Automate Deploy and add Tag
   UI : Small Screen not to show hamburger menu if the user is not logged in
-
-High Priority:
   Error if the .env file is not created
   Set up env file in the deployment
+
+High Priority:
   Testing of application (React testing library)
   Create a page to update notes (WIP)
   Ability to Logout with AWS cognito

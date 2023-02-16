@@ -1,0 +1,156 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Release And Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      Release:
+        description: 'Select a release'
+        type: choice
+        required: true
+        default: 'Patch' 
+        options:
+          - Patch
+          - Minor
+          - Major
+      Region:
+        description: 'Select region'
+        type: choice
+        required: true
+        default: 'ap-southeast-1' 
+        options:
+          - ap-southeast-1
+          - ap-southeast-2
+          - us-east-1
+          - us-east-2
+          - us-west-1
+          - us-west-2
+
+env:
+  NODE_VERSION: 18.x
+  INFRA: infra
+  TF_VAR_access_key: ${{secrets.ACCESS_KEY}}
+  TF_VAR_secret_key: ${{secrets.SECRET_KEY}}
+  TF_VAR_region: ${{github.event.inputs.Region}}
+  NEXT_PUBLIC_GA_TRACKING : true
+
+jobs:
+  Prepare:
+    name: Prepare release
+    runs-on: ubuntu-latest
+    outputs:
+      patch: ${{ steps.values.outputs.patch }}
+      minor: ${{ steps.values.outputs.minor }}
+      major: ${{ steps.values.outputs.major }}
+      date: ${{ steps.values.outputs.date }}
+      selected: ${{ steps.values.outputs.selected }}
+    steps:
+      - uses: actions/checkout@v2.2.0
+        with:
+          fetch-depth: 0 # Required due to the weg Git works, without it this action won't be able to find any or the correct tags
+      - name: 'Get Previous tag'
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        with:
+          fallback: 0.0.0 # Optional fallback tag to use when no tag can be found
+      - name: 'Get next minor version'
+        id: semvers
+        uses: "WyriHaximus/github-action-next-semvers@v1"
+        with:
+          version: ${{ steps.previoustag.outputs.tag }}
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: 'Setting values'
+        id: values
+        run: |
+          echo "::set-output name=patch::${{ steps.semvers.outputs.patch }}"
+          echo "::set-output name=minor::${{ steps.semvers.outputs.minor }}"
+          echo "::set-output name=major::${{ steps.semvers.outputs.major }}"
+          echo "::set-output name=date::$(date +'%d-%b-%Y')"
+          if [[ ${{github.event.inputs.Release}} == "Patch" ]]; then
+            echo "::set-output name=selected::${{ steps.semvers.outputs.patch }}"
+          elif [[ ${{github.event.inputs.Release}} == "Minor" ]]; then
+            echo "::set-output name=selected::${{ steps.semvers.outputs.minor }}"
+          else
+            echo "::set-output name=selected::${{ steps.semvers.outputs.major }}"
+          fi
+  Build:
+    name: Install
+    runs-on: ubuntu-latest
+    needs: Prepare
+    steps:
+    - name: Checkout 
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{env.NODE_VERSION}}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{env.NODE_VERSION}}
+        cache: 'npm'
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v2
+      with:
+        path: ./node_modules
+        key: modules-${{ hashFiles('package-lock.json') }}
+    - name: Install dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: npm ci --ignore-scripts
+    - name: Build
+      run: npm run build
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build
+        path: .next/**/*
+  Upload:
+    name: Upload
+    runs-on: ubuntu-latest
+    needs: Build
+    steps:
+      - uses: actions/checkout@master
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+      - name: Upload To S3
+        uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          source_dir: '.next'
+  # Release:
+  #   name: Create a release
+  #   needs: [Build, Prepare, PushCode]
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: write
+  #   steps:
+  #   - name: Download artifacts
+  #     uses: actions/download-artifact@v3
+  #     with:
+  #       name: build
+  #   - name: Create ${{ needs.prepare.outputs.selected }} release
+  #     uses: actions/create-release@v1
+  #     id: create_release
+  #     env:
+  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+  #     with:
+  #       tag_name: "v${{ needs.prepare.outputs.selected }}"
+  #       release_name: Release ${{ needs.prepare.outputs.selected }}
+  #       body: "Release v${{ needs.prepare.outputs.selected }} created on ${{ needs.prepare.outputs.date }}"
+  #       draft: false
+  #       prerelease: false
+  #   - name: Zip Folder
+  #     run: zip -r build.zip .
+  #   - name: Upload artifact
+  #     uses: actions/upload-release-asset@v1
+  #     env:
+  #       GITHUB_TOKEN: ${{ github.token }}
+  #     with:
+  #       upload_url: ${{ steps.create_release.outputs.upload_url }}
+  #       asset_path: build.zip
+  #       asset_name: build.zip
+  #       asset_content_type: application/zip

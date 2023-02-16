@@ -13,7 +13,7 @@ Finished Task:
   Setup GitHub action
 
 High Priority: 
-  Testing of application
+  Testing of application (React testing library)
   Automate Deployment from github action
   Setup Quality Check (TSC/ eslint / test)
   Create a page to update notes (WIP)

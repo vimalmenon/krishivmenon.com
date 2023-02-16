@@ -11,7 +11,7 @@ High Priority:
   Set up env file in the deployment
   Testing of application (React testing library)
   Create a page to update notes (WIP)
-  Able to Logout with AWS cognito
+  Ability to Logout with AWS cognito
   Make the Website HTTPS
   Need to work on certificate
   Redirect apis from api.krishivmenon.com

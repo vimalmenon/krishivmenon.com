@@ -11,11 +11,12 @@ Finished Task:
   Refresh API Token
   Responsive UI
   Setup GitHub action
+  Setup Quality Check (TSC/ eslint)
 
 High Priority: 
   Testing of application (React testing library)
   Automate Deployment from github action
-  Setup Quality Check (TSC/ eslint / test)
+  Automatically create tag when deployed
   Create a page to update notes (WIP)
   Able to Logout with AWS cognito
   Make the Website HTTPS
@@ -31,7 +32,6 @@ High Priority:
   Need to show user detail in the Page
 Medium Priority
   Pre signed image on request
-
   Need to create a Tags for notes and Library
   Create content for Home page
   Need to build 400 Page

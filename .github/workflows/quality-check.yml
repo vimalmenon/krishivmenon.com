@@ -1,0 +1,53 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Quality check
+
+on:
+  push:
+  pull_request:
+    branches: [ master ]
+
+env:
+  NODE_VERSION: 18.x
+
+jobs:
+  Install:
+    name: Install
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout 
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{env.NODE_VERSION}}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{env.NODE_VERSION}}
+        cache: 'npm'
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v2
+      with:
+        path: ./node_modules
+        key: modules-${{ hashFiles('package-lock.json') }}
+    - name: Install dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: npm ci --ignore-scripts
+
+  Check:
+    name: Check
+    runs-on: ubuntu-latest
+    needs: Install
+    if: needs.install.result == 'success'
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v2
+      with:
+        path: ./node_modules
+        key: modules-${{ hashFiles('package-lock.json') }}
+    - name: Lint
+      run: npm run eslint
+    - name: Type Checking
+      run: npm run tsc

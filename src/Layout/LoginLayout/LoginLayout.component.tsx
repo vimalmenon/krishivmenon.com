@@ -1,10 +1,10 @@
-import { MetaData } from '@common';
+import { ErrorBoundary, MetaData } from '@common';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Login } from '@page';
 import { IBaseLayout } from '@types';
 
 import { LoginLayoutRoot, LoginLayoutContent } from './LoginLayout.style';
-import { PageLayoutFooter, PageLayoutHeader } from '..';
+import { EnvCheck, PageLayoutFooter, PageLayoutHeader } from '..';
 
 export const LoginLayout: React.FC<IBaseLayout> = ({ title }) => {
   return (
@@ -12,9 +12,19 @@ export const LoginLayout: React.FC<IBaseLayout> = ({ title }) => {
       <CssBaseline />
       <MetaData title={title} />
       <PageLayoutHeader />
-      <LoginLayoutContent>
-        <Login />
-      </LoginLayoutContent>
+      <ErrorBoundary
+        sx={{
+          gridArea: 'content',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <EnvCheck>
+          <LoginLayoutContent>
+            <Login />
+          </LoginLayoutContent>
+        </EnvCheck>
+      </ErrorBoundary>
       <PageLayoutFooter />
     </LoginLayoutRoot>
   );

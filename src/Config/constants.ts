@@ -12,10 +12,10 @@ export const ENV = {
   AUTH_CLIENT_ID: process.env.NEXT_PUBLIC_AUTH_CLIENT_ID || '',
   AUTH_URL: `${process.env.NEXT_PUBLIC_AUTH_URL}/oauth2/authorize`,
   AUTH_TOKEN_URL: `${process.env.NEXT_PUBLIC_AUTH_URL}/oauth2/token`,
-  AUTH_LOGOUT_URL: '',
-  API: process.env.NEXT_PUBLIC_API || '',
+  AUTH_LOGOUT_URL: process.env.NEXT_PUBLIC_AUTH_URL,
+  API_URL: process.env.NEXT_PUBLIC_API_URL || '',
   API_VERSION: process.env.NEXT_PUBLIC_API_VERSION || '',
-  AUTHORIZATION: process.env.NEXT_PUBLIC_AUTHORIZATION || '',
+  AUTH_AUTHORIZATION: process.env.NEXT_PUBLIC_AUTH_AUTHORIZATION || '',
 };
 
 export const AcceptImages = {

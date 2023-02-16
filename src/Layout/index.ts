@@ -1,3 +1,4 @@
+export * from './EnvCheck';
 export * from './AppLayout';
 export * from './LoginLayout';
 export * from './PageLayoutAside';

@@ -30,11 +30,11 @@ on:
 
 env:
   NODE_VERSION: 18.x
-  INFRA: infra
-  TF_VAR_access_key: ${{secrets.ACCESS_KEY}}
-  TF_VAR_secret_key: ${{secrets.SECRET_KEY}}
-  TF_VAR_region: ${{github.event.inputs.Region}}
-  NEXT_PUBLIC_GA_TRACKING : true
+  API_URL : ${{secrets.API_URL}}
+  API_VERSION : ${{secrets.API_VERSION}}
+  AUTH_URL : ${{secrets.AUTH_URL}}
+  AUTH_CLIENT_ID : ${{secrets.AUTH_CLIENT_ID}}
+  AUTH_AUTHORIZATION : ${{secrets.AUTH_AUTHORIZATION}}
 
 jobs:
   Prepare:
@@ -97,6 +97,14 @@ jobs:
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
       run: npm ci --ignore-scripts
+    - name: Create .env
+      run: |
+        touch .env
+        echo NEXT_PUBLIC_AUTH_CLIENT_ID=${{env.AUTH_CLIENT_ID}} >> .env
+        echo NEXT_PUBLIC_AUTH_URL=${{env.AUTH_URL}} >> .env
+        echo NEXT_PUBLIC_API_URL=${{env.API_URL}} >> .env
+        echo NEXT_PUBLIC_API_VERSION=${{env.API_VERSION}} >> .env
+        echo NEXT_PUBLIC_AUTH_AUTHORIZATION=${{env.AUTH_AUTHORIZATION}} >> .env
     - name: Build
       run: npm run build:static
     - name: Upload artifacts

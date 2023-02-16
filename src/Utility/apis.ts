@@ -4,7 +4,7 @@ import { IGenericReturn, IApi, INotes, IFolder, AnyType } from '@types';
 import { IApiStorageApi, IApiS3Folder, IApiNote, IUploadToS3 } from './utility';
 
 export const getBaseUrl: IGenericReturn<string> = () => {
-  return `${ENV.API}${ENV.API_VERSION}`;
+  return `${ENV.API_URL}${ENV.API_VERSION}`;
 };
 export const Apis = {
   S3Drive: 'drive/{folder}',

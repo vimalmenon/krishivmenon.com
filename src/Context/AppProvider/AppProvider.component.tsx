@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ENV } from '@constant';
 import { ReactChildren, ThemeType } from '@types';
 
 import { Context, initialValue } from './AppProvider.service';
@@ -14,6 +15,13 @@ export const AppProvider: React.FC<ReactChildren> = ({ children }) => {
   React.useEffect(() => {
     setTheme(getStorage<ThemeType>('theme') || 'dark');
   }, [getStorage<ThemeType>('theme')]);
+  React.useEffect(() => {
+    for (const value of Object.values(ENV)) {
+      if (!value) {
+        throw new Error('All env values are not set');
+      }
+    }
+  }, []);
   return (
     <Context.Provider
       value={{

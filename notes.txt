@@ -8,6 +8,7 @@ Finished Task:
   GitHub Action : Automate Deploy and add Tag
 
 High Priority:
+  Error if the .env file is not created
   Set up env file in the deployment
   Testing of application (React testing library)
   Create a page to update notes (WIP)

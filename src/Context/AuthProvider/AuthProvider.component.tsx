@@ -24,7 +24,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
         method: 'Post',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          Authorization: `Basic ${ENV.AUTHORIZATION}`,
+          Authorization: `Basic ${ENV.AUTH_AUTHORIZATION}`,
         },
         body: createBody({
           grant_type: 'authorization_code',
@@ -56,7 +56,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
       method: 'Post',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: `Basic ${ENV.AUTHORIZATION}`,
+        Authorization: `Basic ${ENV.AUTH_AUTHORIZATION}`,
       },
       body: createBody({
         grant_type: 'refresh_token',

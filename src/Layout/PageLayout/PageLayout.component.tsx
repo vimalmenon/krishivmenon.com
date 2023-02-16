@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { MetaData } from '@common';
+import { ErrorBoundaryProvider } from '@context';
 import CssBaseline from '@mui/material/CssBaseline';
 import { IBaseLayout, ReactChildren } from '@types';
 
@@ -15,7 +16,9 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
       <PageLayoutAsideMobile />
       <PageLayoutHeader />
       <PageLayoutAside />
-      <MainPageContent>{children}</MainPageContent>
+      <MainPageContent>
+        <ErrorBoundaryProvider>{children}</ErrorBoundaryProvider>
+      </MainPageContent>
       <PageLayoutFooter />
     </MainPageLayout>
   );

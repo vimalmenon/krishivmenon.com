@@ -20,7 +20,10 @@ High Priority:
   Redirect apis from api.krishivmenon.com
   Need to work on logout of auth
   Improve UI
+  Responsive UI on Notes
+  Responsive UI on Gallery
   First time Refresh token is failing (Bug)
+  Need to build unauthorized page
 Medium Priority
   Setup GitHub action
   Setup Quality Check (TSC/ eslint / test)
@@ -29,6 +32,9 @@ Medium Priority
   Pre signed image on request
   Testing of application
   Need to create a Tags for notes and Library
+  Creating Content for Home page
+  Need to build 400 Page
+  Need to build 500 page
 Less Priority
   Setting up sonar
   Search for library for Image viewer

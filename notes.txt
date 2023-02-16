@@ -10,7 +10,8 @@ Finished Task:
   Serverless
   Refresh API Token
   Responsive UI
-
+  Setup GitHub action
+  Setup Quality Check (TSC/ eslint / test)
 
 High Priority: 
   Create a page to update notes (WIP)
@@ -26,8 +27,6 @@ High Priority:
   Need to build unauthorized page
   Need to create "Not Authorized" page
 Medium Priority
-  Setup GitHub action
-  Setup Quality Check (TSC/ eslint / test)
   Automate Deployment from github action
   Pre signed image on request
   Testing of application

@@ -28,6 +28,7 @@ High Priority:
   First time Refresh token is failing (Bug)
   Need to build unauthorized page
   Need to create "Not Authorized" page
+  Need to show user detail in the Page
 Medium Priority
   Pre signed image on request
 

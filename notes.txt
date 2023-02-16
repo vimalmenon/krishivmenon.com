@@ -11,9 +11,9 @@ Finished Task:
   Refresh API Token
   Responsive UI
   Setup GitHub action
-  Setup Quality Check (TSC/ eslint / test)
 
 High Priority: 
+  Setup Quality Check (TSC/ eslint / test)
   Create a page to update notes (WIP)
   Able to Logout with AWS cognito
   Make the Website HTTPS

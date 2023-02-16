@@ -2,11 +2,14 @@ import React, { ReactNode } from 'react';
 
 import { ReactChildren } from '@types';
 
-import { IErrorBoundaryProps } from './ErrorBoundaryProvider';
-import { Context } from './ErrorBoundaryProvider.service';
+import { IErrorBoundaryProps, IErrorBoundaryChildren } from './ErrorBoundary';
+import { ErrorBoundaryBody } from './ErrorBoundary.style';
 
-class ErrorBoundary extends React.Component<ReactChildren, IErrorBoundaryProps> {
-  constructor(props: ReactChildren) {
+export class ErrorBoundary extends React.Component<
+  ReactChildren & IErrorBoundaryChildren,
+  IErrorBoundaryProps
+> {
+  constructor(props: ReactChildren & IErrorBoundaryChildren) {
     super(props);
     this.state = { hasError: false };
   }
@@ -24,17 +27,13 @@ class ErrorBoundary extends React.Component<ReactChildren, IErrorBoundaryProps> 
   render(): ReactNode {
     if (this.state.hasError) {
       // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
+      return (
+        <ErrorBoundaryBody sx={this.props.sx}>
+          <h1>Something went wrong.</h1>
+        </ErrorBoundaryBody>
+      );
     }
 
     return this.props.children;
   }
 }
-
-export const ErrorBoundaryProvider: React.FC<ReactChildren> = ({ children }) => {
-  return (
-    <Context.Provider value={{}}>
-      <ErrorBoundary>{children}</ErrorBoundary>
-    </Context.Provider>
-  );
-};

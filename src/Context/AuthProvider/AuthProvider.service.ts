@@ -7,6 +7,7 @@ import { NotImplemented } from '@utility';
 import { IAuthProvider, IUseCommonAuthProvider, ISignInUrl } from './AuthProvider';
 
 export const initialValue: IAuthProvider = {
+  signOut: NotImplemented,
   handleRefreshToken: NotImplemented,
   idToken: null,
   user: null,
@@ -14,12 +15,13 @@ export const initialValue: IAuthProvider = {
 export const AuthProviderContext = React.createContext<IAuthProvider>(initialValue);
 
 export const useCommonAuthProvider: IGenericReturn<IUseCommonAuthProvider> = () => {
-  const { user, idToken, handleRefreshToken } =
+  const { user, idToken, handleRefreshToken, signOut } =
     React.useContext<IAuthProvider>(AuthProviderContext);
 
   return {
     user,
     idToken,
+    signOut,
     handleRefreshToken,
   };
 };

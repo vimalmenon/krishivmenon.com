@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StorageKey } from '@constant';
-import { IGenericReturn } from '@types';
+import { IGenericParam, IGenericReturn } from '@types';
 import { NotImplemented } from '@utility';
 
 import {
@@ -29,7 +29,13 @@ export const useCommonLocalStorage: IGenericReturn<IUseCommonLocalStorage> = () 
   const getStorage = <T>(key: StorageKeyType): T => {
     return storage[key] as T;
   };
+  const removeStorage: IGenericParam<StorageKeyType> = (key) => {
+    delete storage[key];
+    localStorage.setItem(StorageKey, JSON.stringify(storage));
+    setStorage(storage);
+  };
   return {
+    removeStorage,
     saveStorage,
     getStorage,
   };

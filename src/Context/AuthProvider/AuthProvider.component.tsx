@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ENV } from '@constant';
 import { useCommonLocalStorage } from '@context';
-import { ReactChildren, IGenericReturn, IAuthResponse } from '@types';
+import { ReactChildren, IGenericReturn, IAuthResponse, IGenericMethod } from '@types';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
 
@@ -15,7 +15,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   const [idToken, setIdToken] = React.useState<string | null>(initialValue.idToken);
   const [user, setUser] = React.useState<IUser | null>(initialValue.user);
   const [tokenExpiry, setTokenExpiry] = React.useState<number>(0);
-  const { saveStorage, getStorage } = useCommonLocalStorage();
+  const { saveStorage, getStorage, removeStorage } = useCommonLocalStorage();
   const { setAuthorized } = useCommonContext();
   const router = useRouter();
   const getToken = async (code: string, state?: string): Promise<void> => {
@@ -40,7 +40,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
         const value = jwtDecode<IAuthResponse>(data.id_token);
         saveStorage('userProfile', value.picture);
         saveStorage('userEmail', value.email);
-        saveStorage('userEmail', value.given_name);
+        saveStorage('userName', value.given_name);
         saveStorage('tokenExpiry', String(value.exp * 1000));
         if (state) {
           router.replace(state);
@@ -69,6 +69,14 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     setIdToken(data.id_token);
     saveStorage('tokenExpiry', String(new Date().getTime() + 3000000));
     setAuthorized(true);
+  };
+  const signOut: IGenericMethod = () => {
+    removeStorage('refreshToken');
+    removeStorage('idToken');
+    removeStorage('userProfile');
+    removeStorage('userEmail');
+    removeStorage('userName');
+    removeStorage('tokenExpiry');
   };
   React.useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -106,7 +114,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     }
   }, [tokenExpiry]);
   return (
-    <AuthProviderContext.Provider value={{ idToken, user, handleRefreshToken }}>
+    <AuthProviderContext.Provider value={{ idToken, user, handleRefreshToken, signOut }}>
       {children}
     </AuthProviderContext.Provider>
   );

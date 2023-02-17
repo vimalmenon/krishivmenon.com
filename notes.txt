@@ -18,9 +18,8 @@ High Priority:
   Need to work on certificate
   Redirect apis from api.krishivmenon.com
   Need to work on logout of auth
-  Improve UI
-  Responsive UI on Notes
-  Responsive UI on Gallery
+  Improved UI on Notes
+  Improved UI on Gallery
   First time Refresh token is failing (Bug)
   Need to build unauthorized page
   Need to create "Not Authorized" page
@@ -29,6 +28,8 @@ Medium Priority
   Pre signed image on request
   Need to create a Tags for notes and Library
   Create content for Home page
+  Responsive UI on Notes
+  Responsive UI on Gallery
   Need to build 400 Page
   Need to build 500 page
 Less Priority

@@ -1,8 +1,11 @@
+import React from 'react';
+
 import { useCommonAuthProvider } from '@context';
 import { navigation } from '@data';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import { Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
+import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -19,6 +22,8 @@ export const SideNavigation: React.FC = () => {
   const { push, asPath } = useRouter();
   const { user, signOut } = useCommonAuthProvider();
   const { NavigationList } = navigation;
+  const [collapseNavigation] = React.useState<boolean>(true);
+  const [collapseOthers] = React.useState<boolean>(true);
   return (
     <SideNavigationRoot>
       {user && (
@@ -34,35 +39,39 @@ export const SideNavigation: React.FC = () => {
       <Divider></Divider>
       <div>
         <div>Navigation</div>
-        <SideNavigationList dense>
-          {NavigationList.map((navigation) => {
-            if (navigation.show) {
-              return (
-                <ListItemButton
-                  key={navigation.name}
-                  onClick={() => push(navigation.url)}
-                  selected={navigation.url === asPath}
-                >
-                  <ListItemIcon>
-                    <navigation.Icon />
-                  </ListItemIcon>
-                  <ListItemText primary={navigation.name} />
-                </ListItemButton>
-              );
-            }
-          })}
-        </SideNavigationList>
+        <Collapse in={collapseNavigation}>
+          <SideNavigationList dense>
+            {NavigationList.map((navigation) => {
+              if (navigation.show) {
+                return (
+                  <ListItemButton
+                    key={navigation.name}
+                    onClick={() => push(navigation.url)}
+                    selected={navigation.url === asPath}
+                  >
+                    <ListItemIcon>
+                      <navigation.Icon />
+                    </ListItemIcon>
+                    <ListItemText primary={navigation.name} />
+                  </ListItemButton>
+                );
+              }
+            })}
+          </SideNavigationList>
+        </Collapse>
       </div>
       <div>
-        <div>Other</div>
-        <SideNavigationList dense>
-          <ListItemButton onClick={signOut}>
-            <ListItemIcon>
-              <LogoutRoundedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Logout" />
-          </ListItemButton>
-        </SideNavigationList>
+        <div>Others</div>
+        <Collapse in={collapseOthers}>
+          <SideNavigationList dense>
+            <ListItemButton onClick={signOut}>
+              <ListItemIcon>
+                <LogoutRoundedIcon />
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
+            </ListItemButton>
+          </SideNavigationList>
+        </Collapse>
       </div>
     </SideNavigationRoot>
   );

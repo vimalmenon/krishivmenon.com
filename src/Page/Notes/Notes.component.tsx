@@ -33,9 +33,7 @@ export const Notes: React.FC = () => {
       <Confirm open={!!confirmDelete} handleClose={onDeleteCancel} handleConfirm={deleteNote}>
         <>Are you sure you want to delete {selectedNote?.title}</>
       </Confirm>
-      <NoteHeader />
-      <NoteList notes={notes} onNoteSelect={onNoteSelect} />
-      <NoteDetail
+      <NoteHeader
         mode={mode}
         selectedNote={selectedNote}
         createNote={createNote}
@@ -45,6 +43,8 @@ export const Notes: React.FC = () => {
         saveNote={saveNote}
         onDeleteConfirm={onDeleteConfirm}
       />
+      <NoteList notes={notes} onNoteSelect={onNoteSelect} />
+      <NoteDetail mode={mode} selectedNote={selectedNote} updateNote={updateNote} />
     </NotesRoot>
   );
 };

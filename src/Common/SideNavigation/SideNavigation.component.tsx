@@ -1,5 +1,6 @@
 import { useCommonAuthProvider } from '@context';
 import { navigation } from '@data';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import { Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
@@ -16,7 +17,7 @@ import {
 
 export const SideNavigation: React.FC = () => {
   const { push, asPath } = useRouter();
-  const { user } = useCommonAuthProvider();
+  const { user, signOut } = useCommonAuthProvider();
   const { NavigationList } = navigation;
   return (
     <SideNavigationRoot>
@@ -50,6 +51,17 @@ export const SideNavigation: React.FC = () => {
               );
             }
           })}
+        </SideNavigationList>
+      </div>
+      <div>
+        <div>Other</div>
+        <SideNavigationList dense>
+          <ListItemButton onClick={signOut}>
+            <ListItemIcon>
+              <LogoutRoundedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItemButton>
         </SideNavigationList>
       </div>
     </SideNavigationRoot>

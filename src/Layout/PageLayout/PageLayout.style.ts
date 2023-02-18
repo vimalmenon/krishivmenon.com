@@ -9,7 +9,7 @@ export const MainPageLayout = styled('div')(({ theme }) => ({
     gridTemplateRows: '60px 1fr 30px',
   },
   [theme.breakpoints.up('sm')]: {
-    gridTemplate: `"header header header""aside content content""aside footer footer"`,
+    gridTemplate: `"header header header""aside content content""footer content content"`,
     gridTemplateColumns: '300px 1fr',
     gridTemplateRows: '60px 1fr 30px',
   },

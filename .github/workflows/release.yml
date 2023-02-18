@@ -145,7 +145,7 @@ jobs:
       - uses: rickstaa/action-create-tag@v1
         with:
           tag: "v${{ needs.prepare.outputs.selected }}"
-          message: "Release v${{ needs.prepare.outputs.selected }} created on ${{ needs.prepare.outputs.date }} \n ${{ TAG }}"
+          message: "Release v${{ needs.prepare.outputs.selected }} created on ${{ needs.prepare.outputs.date }}"
   # Release:
   #   name: Create a release
   #   needs: [Build, Prepare, PushCode]

@@ -8,34 +8,42 @@ Finished Task:
   GitHub Action : Automate Deploy and add Tag
   UI : Small Screen not to show hamburger menu if the user is not logged in
   Error if the .env file is not created
-  Set up env file in the deployment
-
+  Set up Testing Library (React testing library)
+  Build 400 Page
+  Basic User detail in side navigation
 High Priority:
-  Testing of application (React testing library)
   Create a page to update notes (WIP)
-  Ability to Logout with AWS cognito
+  Improved UI for Notes (WIP)
+  First time Refresh token is failing (Bug)
+  Ability to Logout from UI
   Make the Website HTTPS
   Need to work on certificate
   Redirect apis from api.krishivmenon.com
   Need to work on logout of auth
-  Improve UI
-  Responsive UI on Notes
-  Responsive UI on Gallery
-  First time Refresh token is failing (Bug)
-  Need to build unauthorized page
-  Need to create "Not Authorized" page
-  Need to show user detail in the Page
+  Improve UI for 400 Page
+  Improved UI for Gallery
+  Need to build UI unauthorized page
+  Show Release version in UI
+  Update release version in the build
 Medium Priority
+  Increase the coverage to 80%
   Pre signed image on request
+  Ability to invalidate the Id token
   Need to create a Tags for notes and Library
   Create content for Home page
-  Need to build 400 Page
+  Responsive UI on Notes
+  Responsive UI on Gallery
   Need to build 500 page
+  Responsive UI for Gallery
+  Responsive UI for Notes
+  Create Release Page
 Less Priority
   Setting up sonar
   Search for library for Image viewer
   Add notes for image
   Logging for S3 Bucket for static website
+  Add favicon
+  Add images
 
 
 https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html

@@ -8,8 +8,7 @@ export const PageLayoutHeaderRoot = styled('div')(({ theme }) => {
     padding: theme.spacing(2),
     justifyContent: 'space-between',
     background: theme.palette.mode === 'dark' ? grey[900] : blueGrey[50],
-    borderBottom:
-      theme.palette.mode === 'dark' ? `1px solid ${grey[700]}` : `1px solid ${blueGrey[200]}`,
+    borderBottom: `1px solid`,
   };
 });
 

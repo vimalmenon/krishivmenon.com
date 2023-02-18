@@ -1,4 +1,4 @@
-import { IGenericReturn } from '@types';
+import { IGenericMethod, IGenericReturn } from '@types';
 
 export interface IUser {
   profile: string;
@@ -9,12 +9,14 @@ export interface IUser {
 export interface IAuthProvider {
   user: IUser | null;
   idToken: string | null;
+  signOut: IGenericMethod;
   handleRefreshToken: IGenericReturn<Promise<unknown>>;
 }
 
 export interface IUseCommonAuthProvider {
   user: IUser | null;
   idToken: string | null;
+  signOut: IGenericMethod;
 }
 
 export interface ISignInUrl {

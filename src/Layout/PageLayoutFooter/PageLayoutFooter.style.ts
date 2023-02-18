@@ -9,8 +9,7 @@ export const PageLayoutFooterRoot = styled('div')(({ theme }) => {
     padding: theme.spacing(0, 2),
     alignItems: 'center',
     background: theme.palette.mode === 'dark' ? grey[900] : blueGrey[50],
-    borderRight:
-      theme.palette.mode === 'dark' ? `1px solid ${grey[700]}` : `1px solid ${blueGrey[200]}`,
+    borderRight: `1px solid`,
   };
 });
 

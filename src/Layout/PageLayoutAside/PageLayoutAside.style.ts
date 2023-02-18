@@ -6,8 +6,7 @@ export const PageLayoutAsideRoot = styled('div')(({ theme }) => {
     gridArea: 'aside',
     padding: theme.spacing(1),
     background: theme.palette.mode === 'dark' ? grey[900] : blueGrey[50],
-    borderRight:
-      theme.palette.mode === 'dark' ? `1px solid ${grey[700]}` : `1px solid ${blueGrey[200]}`,
+    borderRight: `1px solid`,
     [theme.breakpoints.up('xs')]: {
       display: 'none',
     },

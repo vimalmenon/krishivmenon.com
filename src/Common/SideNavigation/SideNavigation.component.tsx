@@ -37,7 +37,7 @@ export const SideNavigation: React.FC = () => {
           </div>
         </SideNavigationProfile>
       )}
-      <Divider></Divider>
+      <Divider />
       <div>
         <SideNavigationList dense>
           <ListItemButton onClick={() => setCollapseNavigation(!collapseNavigation)}>
@@ -62,8 +62,7 @@ export const SideNavigation: React.FC = () => {
               }
             })}
           </Collapse>
-        </SideNavigationList>
-        <SideNavigationList dense>
+          <Divider />
           <ListItemButton onClick={() => setCollapseOthers(!collapseOthers)}>
             <ListItemText primary="Others" />
             <KeyboardArrowDownRoundedIcon />

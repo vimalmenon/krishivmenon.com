@@ -14,19 +14,21 @@ Finished Task:
 High Priority:
   Create a page to update notes (WIP)
   Improved UI for Notes (WIP)
-  Ability to Logout with AWS cognito
+  First time Refresh token is failing (Bug)
+  Ability to Logout from UI
   Make the Website HTTPS
   Need to work on certificate
   Redirect apis from api.krishivmenon.com
   Need to work on logout of auth
   Improve UI for 400 Page
   Improved UI for Gallery
-  First time Refresh token is failing (Bug)
-  Need to build unauthorized page
-  Need to create "Not Authorized" page
+  Need to build UI unauthorized page
+  Show Release version in UI
+  Update release version in the build
 Medium Priority
   Increase the coverage to 80%
   Pre signed image on request
+  Ability to invalidate the Id token
   Need to create a Tags for notes and Library
   Create content for Home page
   Responsive UI on Notes
@@ -34,11 +36,14 @@ Medium Priority
   Need to build 500 page
   Responsive UI for Gallery
   Responsive UI for Notes
+  Create Release Page
 Less Priority
   Setting up sonar
   Search for library for Image viewer
   Add notes for image
   Logging for S3 Bucket for static website
+  Add favicon
+  Add images
 
 
 https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html

@@ -7,5 +7,6 @@ export const NoteHeaderRoot = styled('section')(({ theme }) => {
     gridArea: 'note-header',
     background: theme.palette.mode === 'dark' ? grey[900] : blueGrey[50],
     justifyContent: 'end',
+    alignItems: 'center',
   };
 });

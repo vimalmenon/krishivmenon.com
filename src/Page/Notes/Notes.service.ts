@@ -79,6 +79,9 @@ export const useNotes: IGenericReturn<IUseNotes> = () => {
   };
   const onNoteCancel: IGenericMethod = () => {
     setMode('VIEW');
+    if (!selectedNote?.id) {
+      setSelectedNote(null);
+    }
   };
   const onDeleteCancel: IGenericMethod = () => {
     setConfirmDelete(null);

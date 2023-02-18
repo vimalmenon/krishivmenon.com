@@ -11,7 +11,7 @@ export const NoteDetail: React.FC<INoteDetail> = ({ mode, selectedNote, updateNo
       <Container component="div" sx={{ flex: '2' }} direction="column">
         {!selectedNote && (
           <Container component="div" direction="column">
-            No note is selected
+            No note selected.
           </Container>
         )}
         {selectedNote && (

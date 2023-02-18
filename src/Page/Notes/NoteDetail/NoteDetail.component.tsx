@@ -37,22 +37,29 @@ export const NoteDetail: React.FC<INoteDetail> = ({
             <Icon Icon={Icon.icons.Save} label="Save" onClick={saveNote} />
           )}
         </Container>
-        <Container component="div" sx={{}} direction="column">
-          <TextField
-            label="Title"
-            variant="standard"
-            size="small"
-            fullWidth
-            name="title"
-            value={selectedNote?.title || ''}
-            onChange={(e) => updateNote('title', e.target.value)}
-          />
-          <Editor
-            note={selectedNote?.content || ''}
-            setNote={(value) => updateNote('content', value)}
-            mode={mode}
-          />
-        </Container>
+        {!selectedNote && (
+          <Container component="div" direction="column">
+            No note is selected
+          </Container>
+        )}
+        {selectedNote && (
+          <Container component="div" direction="column">
+            <TextField
+              label="Title"
+              variant="standard"
+              size="small"
+              fullWidth
+              name="title"
+              value={selectedNote?.title || ''}
+              onChange={(e) => updateNote('title', e.target.value)}
+            />
+            <Editor
+              note={selectedNote?.content || ''}
+              setNote={(value) => updateNote('content', value)}
+              mode={mode}
+            />
+          </Container>
+        )}
       </Container>
     </NoteDetailRoot>
   );

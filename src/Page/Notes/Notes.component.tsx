@@ -3,6 +3,7 @@ import React from 'react';
 import { Confirm } from '@common';
 
 import { NoteDetail } from './NoteDetail';
+import { NoteHeader } from './NoteHeader';
 import { NoteList } from './NoteList';
 import { useNotes } from './Notes.service';
 import { NotesRoot } from './Notes.style';
@@ -32,6 +33,7 @@ export const Notes: React.FC = () => {
       <Confirm open={!!confirmDelete} handleClose={onDeleteCancel} handleConfirm={deleteNote}>
         <>Are you sure you want to delete {selectedNote?.title}</>
       </Confirm>
+      <NoteHeader />
       <NoteList notes={notes} onNoteSelect={onNoteSelect} />
       <NoteDetail
         mode={mode}

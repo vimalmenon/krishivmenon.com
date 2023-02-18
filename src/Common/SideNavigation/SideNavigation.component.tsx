@@ -1,5 +1,6 @@
 import { useCommonAuthProvider } from '@context';
 import { navigation } from '@data';
+import { Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -24,28 +25,33 @@ export const SideNavigation: React.FC = () => {
           <div className="profile">
             <Avatar alt={user.name} src={user.profile} />
           </div>
-          <div className="profile-detail">{user.name}</div>
+          <div className="profile-detail">
+            <Typography component="h2">{user.name}</Typography>
+          </div>
         </SideNavigationProfile>
       )}
       <Divider></Divider>
-      <SideNavigationList dense>
-        {NavigationList.map((navigation) => {
-          if (navigation.show) {
-            return (
-              <ListItemButton
-                key={navigation.name}
-                onClick={() => push(navigation.url)}
-                selected={navigation.url === asPath}
-              >
-                <ListItemIcon>
-                  <navigation.Icon />
-                </ListItemIcon>
-                <ListItemText primary={navigation.name} />
-              </ListItemButton>
-            );
-          }
-        })}
-      </SideNavigationList>
+      <div>
+        <div>Navigation</div>
+        <SideNavigationList dense>
+          {NavigationList.map((navigation) => {
+            if (navigation.show) {
+              return (
+                <ListItemButton
+                  key={navigation.name}
+                  onClick={() => push(navigation.url)}
+                  selected={navigation.url === asPath}
+                >
+                  <ListItemIcon>
+                    <navigation.Icon />
+                  </ListItemIcon>
+                  <ListItemText primary={navigation.name} />
+                </ListItemButton>
+              );
+            }
+          })}
+        </SideNavigationList>
+      </div>
     </SideNavigationRoot>
   );
 };

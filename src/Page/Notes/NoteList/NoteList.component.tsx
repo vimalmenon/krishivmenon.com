@@ -1,31 +1,39 @@
-import { Icon } from '@common';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import React from 'react';
+
 import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import TextField from '@mui/material/TextField';
 import { Container } from '@style';
 
-import { NoteListRoot } from './NoteList.style';
+import { NoteListRoot, NoteItemsContainer } from './NoteList.style';
 import { INoteListPage } from './Notes';
 
-export const NoteList: React.FC<INoteListPage> = ({ notes, onNoteSelect, onDeleteConfirm }) => {
+export const NoteList: React.FC<INoteListPage> = ({ notes, onNoteSelect }) => {
   return (
     <NoteListRoot>
       <Container component="div">
-        <TextField label="Search" variant="standard" size="small" fullWidth name="search" />
+        <TextField
+          label="Search"
+          variant="standard"
+          size="small"
+          fullWidth
+          name="search"
+          disabled
+        />
       </Container>
-      <Divider />
-      <Container component="div" direction="column">
+      <NoteItemsContainer dense>
         {notes.map((note) => {
           return (
-            <Card sx={{ display: 'flex' }} key={note.id} onClick={() => onNoteSelect(note)}>
-              <CardContent sx={{ display: 'flex', justifyContent: 'space-between', flex: '1' }}>
-                {note.title} <Icon.icons.Delete onClick={() => onDeleteConfirm(note)} />
-              </CardContent>
-            </Card>
+            <React.Fragment key={note.id}>
+              <ListItem onClick={() => onNoteSelect(note)}>
+                <ListItemText primary={note.title} />
+              </ListItem>
+              <Divider component="li" />
+            </React.Fragment>
           );
         })}
-      </Container>
+      </NoteItemsContainer>
     </NoteListRoot>
   );
 };

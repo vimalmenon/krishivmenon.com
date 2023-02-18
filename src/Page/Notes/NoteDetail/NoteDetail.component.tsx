@@ -13,12 +13,20 @@ export const NoteDetail: React.FC<INoteDetail> = ({
   updateNote,
   onNoteCancel,
   saveNote,
+  onDeleteConfirm,
 }) => {
   return (
     <NoteDetailRoot>
       <Container component="div" sx={{ flex: '2' }} direction="column">
         <Container component="div" sx={{ justifyContent: 'end' }}>
           {mode === 'VIEW' && <Icon Icon={Icon.icons.Add} label="Add" onClick={createNote} />}
+          {mode === 'VIEW' && selectedNote?.id && (
+            <Icon
+              Icon={Icon.icons.Delete}
+              label="Edit"
+              onClick={() => selectedNote && onDeleteConfirm(selectedNote)}
+            />
+          )}
           {selectedNote?.id && mode === 'VIEW' && (
             <Icon Icon={Icon.icons.Edit} label="Edit" onClick={onNoteEdit} />
           )}

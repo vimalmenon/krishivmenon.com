@@ -6,12 +6,12 @@ export const MainPageLayout = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('xs')]: {
     gridTemplate: `"header header header""content content content""footer footer footer"`,
     gridTemplateColumns: '300px 1fr',
-    gridTemplateRows: '60px 1fr 50px',
+    gridTemplateRows: '60px 1fr 30px',
   },
   [theme.breakpoints.up('sm')]: {
     gridTemplate: `"header header header""aside content content""aside footer footer"`,
     gridTemplateColumns: '300px 1fr',
-    gridTemplateRows: '60px 1fr 50px',
+    gridTemplateRows: '60px 1fr 30px',
   },
 }));
 

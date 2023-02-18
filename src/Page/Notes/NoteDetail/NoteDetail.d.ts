@@ -1,4 +1,4 @@
-import { PageModeType, INotes, IGenericMethod } from '@types';
+import { PageModeType, INotes, IGenericMethod, IGenericParam } from '@types';
 
 export interface INoteDetail {
   mode: PageModeType;
@@ -8,4 +8,5 @@ export interface INoteDetail {
   updateNote: (name: string, value: string) => void;
   onNoteCancel: IGenericMethod;
   saveNote: IGenericMethod;
+  onDeleteConfirm: IGenericParam<INotes>;
 }

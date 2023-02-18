@@ -1,11 +1,9 @@
-import { Footer } from '@common';
-
-import { PageLayoutFooterRoot } from './PageLayoutFooter.style';
+import { FooterStyle, PageLayoutFooterRoot } from './PageLayoutFooter.style';
 
 export const PageLayoutFooter: React.FC = () => {
   return (
     <PageLayoutFooterRoot>
-      <Footer />
+      <FooterStyle>&#169; 2023, All rights reserved</FooterStyle>
     </PageLayoutFooterRoot>
   );
 };

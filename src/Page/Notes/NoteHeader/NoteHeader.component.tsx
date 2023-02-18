@@ -19,7 +19,7 @@ export const NoteHeader: React.FC<INoteHeader> = ({
         {mode === 'VIEW' && selectedNote?.id && (
           <Icon
             Icon={Icon.icons.Delete}
-            label="Edit"
+            label="Delete"
             onClick={() => selectedNote && onDeleteConfirm(selectedNote)}
           />
         )}

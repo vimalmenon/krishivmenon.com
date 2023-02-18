@@ -38,7 +38,6 @@ export const Notes: React.FC = () => {
         selectedNote={selectedNote}
         createNote={createNote}
         onNoteEdit={onNoteEdit}
-        updateNote={updateNote}
         onNoteCancel={onNoteCancel}
         saveNote={saveNote}
         onDeleteConfirm={onDeleteConfirm}

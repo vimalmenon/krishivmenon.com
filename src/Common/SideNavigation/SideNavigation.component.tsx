@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useCommonAuthProvider } from '@context';
 import { navigation } from '@data';
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import { Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
@@ -22,8 +23,8 @@ export const SideNavigation: React.FC = () => {
   const { push, asPath } = useRouter();
   const { user, signOut } = useCommonAuthProvider();
   const { NavigationList } = navigation;
-  const [collapseNavigation] = React.useState<boolean>(true);
-  const [collapseOthers] = React.useState<boolean>(true);
+  const [collapseNavigation, setCollapseNavigation] = React.useState<boolean>(true);
+  const [collapseOthers, setCollapseOthers] = React.useState<boolean>(true);
   return (
     <SideNavigationRoot>
       {user && (
@@ -38,9 +39,12 @@ export const SideNavigation: React.FC = () => {
       )}
       <Divider></Divider>
       <div>
-        <div>Navigation</div>
-        <Collapse in={collapseNavigation}>
-          <SideNavigationList dense>
+        <SideNavigationList dense>
+          <ListItemButton onClick={() => setCollapseNavigation(!collapseNavigation)}>
+            <ListItemText primary="Navigation" />
+            <KeyboardArrowDownRoundedIcon />
+          </ListItemButton>
+          <Collapse in={collapseNavigation}>
             {NavigationList.map((navigation) => {
               if (navigation.show) {
                 return (
@@ -57,21 +61,22 @@ export const SideNavigation: React.FC = () => {
                 );
               }
             })}
-          </SideNavigationList>
-        </Collapse>
-      </div>
-      <div>
-        <div>Others</div>
-        <Collapse in={collapseOthers}>
-          <SideNavigationList dense>
+          </Collapse>
+        </SideNavigationList>
+        <SideNavigationList dense>
+          <ListItemButton onClick={() => setCollapseOthers(!collapseOthers)}>
+            <ListItemText primary="Others" />
+            <KeyboardArrowDownRoundedIcon />
+          </ListItemButton>
+          <Collapse in={collapseOthers}>
             <ListItemButton onClick={signOut}>
               <ListItemIcon>
                 <LogoutRoundedIcon />
               </ListItemIcon>
               <ListItemText primary="Logout" />
             </ListItemButton>
-          </SideNavigationList>
-        </Collapse>
+          </Collapse>
+        </SideNavigationList>
       </div>
     </SideNavigationRoot>
   );

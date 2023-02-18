@@ -1,3 +1,5 @@
+import { NoteHeaderRoot } from './NoteHeader.style';
+
 export const NoteHeader: React.FC = () => {
-  return null;
+  return <NoteHeaderRoot></NoteHeaderRoot>;
 };

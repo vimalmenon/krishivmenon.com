@@ -11,7 +11,10 @@
     "eslint:fix": "eslint ./ --ext .ts,.tsx --fix",
     "tsc": "tsc",
     "update": "ncu -u",
-    "test": "jest"
+    "test": "jest",
+    "test:v": "jest --verbose",
+    "test:c": "jest --coverage",
+    "test:u": "jest -u"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",

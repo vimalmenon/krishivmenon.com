@@ -8,9 +8,9 @@ Finished Task:
   GitHub Action : Automate Deploy and add Tag
   UI : Small Screen not to show hamburger menu if the user is not logged in
   Error if the .env file is not created
-  Set up env file in the deployment
   Set up Testing Library (React testing library)
-  Need to build 400 Page
+  Build 400 Page
+  Basic User detail in side navigation
 High Priority:
   Create a page to update notes (WIP)
   Improved UI for Notes (WIP)
@@ -24,7 +24,6 @@ High Priority:
   First time Refresh token is failing (Bug)
   Need to build unauthorized page
   Need to create "Not Authorized" page
-  Need to show user detail in the Page
 Medium Priority
   Increase the coverage to 80%
   Pre signed image on request

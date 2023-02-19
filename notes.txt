@@ -11,6 +11,8 @@ Finished Task:
   Set up Testing Library (React testing library)
   Build 400 Page
   Basic User detail in side navigation
+  Show Release version in UI
+  Update release version in the build
 High Priority:
   Create a page to update notes (WIP)
   Improved UI for Notes (WIP)
@@ -23,8 +25,6 @@ High Priority:
   Improve UI for 400 Page
   Improved UI for Gallery
   Need to build UI unauthorized page
-  Show Release version in UI
-  Update release version in the build
 Medium Priority
   Increase the coverage to 80%
   Pre signed image on request

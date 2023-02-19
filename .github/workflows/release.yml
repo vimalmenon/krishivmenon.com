@@ -141,41 +141,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: [Build, Prepare, Upload]
     steps:
-      - uses: actions/checkout@v3
-      - uses: rickstaa/action-create-tag@v1
+      - name: Checkout 
+        uses: actions/checkout@v3
+      - name: Update Package
+        run: |
+          sed -i 's/0.0.0.0/${{needs.prepare.outputs.selected}}/' package.json
+          sed -i 's/01-Jan-2023/${{needs.prepare.outputs.date}}/' package.json
+      - name: Create Tag
+        uses: rickstaa/action-create-tag@v1
         with:
           tag: "v${{ needs.prepare.outputs.selected }}"
           message: "Release v${{ needs.prepare.outputs.selected }} created on ${{ needs.prepare.outputs.date }}"
-  # Release:
-  #   name: Create a release
-  #   needs: [Build, Prepare, PushCode]
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     contents: write
-  #   steps:
-  #   - name: Download artifacts
-  #     uses: actions/download-artifact@v3
-  #     with:
-  #       name: build
-  #   - name: Create ${{ needs.prepare.outputs.selected }} release
-  #     uses: actions/create-release@v1
-  #     id: create_release
-  #     env:
-  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-  #     with:
-  #       tag_name: "v${{ needs.prepare.outputs.selected }}"
-  #       release_name: Release ${{ needs.prepare.outputs.selected }}
-  #       body: "Release v${{ needs.prepare.outputs.selected }} created on ${{ needs.prepare.outputs.date }}"
-  #       draft: false
-  #       prerelease: false
-  #   - name: Zip Folder
-  #     run: zip -r build.zip .
-  #   - name: Upload artifact
-  #     uses: actions/upload-release-asset@v1
-  #     env:
-  #       GITHUB_TOKEN: ${{ github.token }}
-  #     with:
-  #       upload_url: ${{ steps.create_release.outputs.upload_url }}
-  #       asset_path: build.zip
-  #       asset_name: build.zip
-  #       asset_content_type: application/zip

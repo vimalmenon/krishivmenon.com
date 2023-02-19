@@ -15,7 +15,7 @@ export const NoteDetailRoot = styled('section')(({ theme }) => {
 export const NoteDetailSelectedNote = styled('section')(({ theme }) => {
   return {
     display: 'grid',
-    gap: theme.spacing(2),
+    gap: theme.spacing(1),
     gridTemplateRows: 'auto 1fr',
   };
 });

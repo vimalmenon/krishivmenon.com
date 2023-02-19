@@ -13,10 +13,10 @@ Finished Task:
   Show Release version in UI
   Update release version in the build
   HTTPS connection to the website
+  Consistent UI for notes
 High Priority:
+  Need to work on loading animation for Notes
   Need to work on redirect rules
-  Create a page to update notes (WIP)
-  Improved UI for Notes (WIP)
   First time refresh token is failing (Bug)
   Ability to Logout from UI
   Redirect apis from api.krishivmenon.com

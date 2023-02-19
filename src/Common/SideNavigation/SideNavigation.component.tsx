@@ -64,7 +64,7 @@ export const SideNavigation: React.FC = () => {
           </Collapse>
           <Divider />
           <ListItemButton onClick={() => setCollapseOthers(!collapseOthers)}>
-            <ListItemText primary="Others" />
+            <ListItemText primary="Other" />
             <KeyboardArrowDownRoundedIcon />
           </ListItemButton>
           <Collapse in={collapseOthers}>

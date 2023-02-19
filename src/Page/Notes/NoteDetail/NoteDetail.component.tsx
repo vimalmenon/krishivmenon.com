@@ -21,7 +21,8 @@ export const NoteDetail: React.FC<INoteDetail> = ({ mode, selectedNote, updateNo
             size="small"
             fullWidth
             name="title"
-            value={selectedNote?.title || ''}
+            value={selectedNote.title || ''}
+            disabled={mode === 'VIEW'}
             onChange={(e) => updateNote('title', e.target.value)}
           />
           <Editor

@@ -107,8 +107,8 @@ jobs:
         echo NEXT_PUBLIC_AUTH_AUTHORIZATION=${{env.AUTH_AUTHORIZATION}} >> .env
     - name: Update Package
       run: |
-        sed -i '' 's/0.0.0.0/{{ needs.prepare.outputs.selected }}/' package.json
-        sed -i '' 's/01-Jan-2023/{{ needs.prepare.outputs.date }}/' package.json
+        sed -i '' 's/0.0.0.0/${{needs.prepare.outputs.selected}}/' package.json
+        sed -i '' 's/01-Jan-2023/${{needs.prepare.outputs.date}}/' package.json
     - name: Build
       run: npm run build:static
     - name: Upload artifacts

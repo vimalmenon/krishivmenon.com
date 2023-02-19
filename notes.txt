@@ -31,7 +31,7 @@ Medium Priority
   Ability to invalidate the Id token
   Need to create a tags for notes and Library
   Create content for Home page
-  Responsive UI on Notes
+  Mobile Responsive UI on Notes
   Responsive UI on Gallery
   Need to build 500 page
   Responsive UI for Gallery

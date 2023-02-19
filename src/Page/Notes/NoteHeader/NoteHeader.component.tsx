@@ -16,13 +16,6 @@ export const NoteHeader: React.FC<INoteHeader> = ({
     <NoteHeaderRoot>
       <div>
         {mode === 'VIEW' && <Icon Icon={Icon.icons.Add} label="Add" onClick={createNote} />}
-        {mode === 'VIEW' && selectedNote?.id && (
-          <Icon
-            Icon={Icon.icons.Delete}
-            label="Delete"
-            onClick={() => selectedNote && onDeleteConfirm(selectedNote)}
-          />
-        )}
         {selectedNote?.id && mode === 'VIEW' && (
           <Icon Icon={Icon.icons.Edit} label="Edit" onClick={onNoteEdit} />
         )}
@@ -31,6 +24,13 @@ export const NoteHeader: React.FC<INoteHeader> = ({
         )}
         {(mode === 'ADD' || mode === 'EDIT') && (
           <Icon Icon={Icon.icons.Save} label="Save" onClick={saveNote} />
+        )}
+        {mode === 'VIEW' && selectedNote?.id && (
+          <Icon
+            Icon={Icon.icons.Delete}
+            label="Delete"
+            onClick={() => selectedNote && onDeleteConfirm(selectedNote)}
+          />
         )}
       </div>
     </NoteHeaderRoot>

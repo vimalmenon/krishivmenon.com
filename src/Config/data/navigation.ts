@@ -12,7 +12,7 @@ export const Home = {
 
 export const Gallery = {
   name: 'Gallery',
-  url: '/gallery',
+  url: '/gallery/',
   Icon: InsertPhotoIcon,
   show: true,
   title: 'Gallery | Krishiv Menon',
@@ -20,7 +20,7 @@ export const Gallery = {
 
 export const Notes = {
   name: 'Notes',
-  url: '/notes',
+  url: '/notes/',
   Icon: NoteIcon,
   show: true,
   title: 'Notes | Krishiv Menon',
@@ -28,7 +28,7 @@ export const Notes = {
 
 export const Admin = {
   name: 'Admin',
-  url: '/admin',
+  url: '/admin/',
   Icon: Icon.icons.Admin,
   show: false,
   title: 'Admin | Krishiv Menon',
@@ -41,6 +41,14 @@ export const PageNotFound = {
   title: 'Page Not Found | Krishiv Menon',
 };
 
+export const Login = {
+  name: '',
+  url: '',
+  Icon: Icon.icons.Admin,
+  show: false,
+  title: 'Login | Krishiv Menon',
+};
+
 export const NavigationList = [Home, Gallery, Notes, Admin];
 
 export const navigation = {
@@ -50,4 +58,5 @@ export const navigation = {
   Gallery,
   Notes,
   Admin,
+  Login,
 };

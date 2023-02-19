@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useCommonContext } from '@context';
+import { navigation } from '@data';
 import { ThemeProvider } from '@mui/material/styles';
 import { getTheme } from '@style';
 import { ReactChildren, IBaseLayout } from '@types';
@@ -13,7 +14,7 @@ export const AppLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, tit
   const theme = getTheme(themeValue);
   return (
     <ThemeProvider theme={theme}>
-      {!authorized && <LoginLayout title="Login Page" />}
+      {!authorized && <LoginLayout title={navigation.Login.title} />}
       {authorized && <PageLayout title={title}>{children}</PageLayout>}
     </ThemeProvider>
   );

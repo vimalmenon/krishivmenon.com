@@ -4,12 +4,11 @@ Finished Task:
   Auth: Ability to Login with Google Auth
   Auth: Ability to refresh token
   Responsive UI : Basic Responsive page 
-  GitHub Action : Set up quality check on TSC and eslint
-  GitHub Action : Automate Deploy and add Tag
+  GitHub Action : Check and Deploy
   UI : Small Screen not to show hamburger menu if the user is not logged in
   Error if the .env file is not created
   Set up Testing Library (React testing library)
-  Build 400 Page
+  Basic 400 Page
   Basic User detail in side navigation
   Show Release version in UI
   Update release version in the build
@@ -18,7 +17,7 @@ High Priority:
   Need to work on redirect rules
   Create a page to update notes (WIP)
   Improved UI for Notes (WIP)
-  First time Refresh token is failing (Bug)
+  First time refresh token is failing (Bug)
   Ability to Logout from UI
   Redirect apis from api.krishivmenon.com
   Need to work on logout of auth
@@ -30,7 +29,7 @@ Medium Priority
   Increase the coverage to 80%
   Pre signed image on request
   Ability to invalidate the Id token
-  Need to create a Tags for notes and Library
+  Need to create a tags for notes and Library
   Create content for Home page
   Responsive UI on Notes
   Responsive UI on Gallery

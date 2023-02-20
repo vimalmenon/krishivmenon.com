@@ -1,4 +1,5 @@
 import { Editor } from '@common';
+import Skeleton from '@mui/material/Skeleton';
 import TextField from '@mui/material/TextField';
 import { Container } from '@style';
 
@@ -33,5 +34,15 @@ export const NoteDetail: React.FC<INoteDetail> = ({ mode, selectedNote, updateNo
         </NoteDetailSelectedNote>
       )}
     </NoteDetailRoot>
+  );
+};
+
+export const NoteDetailLoading: React.FC = () => {
+  return (
+    <Skeleton
+      variant="rounded"
+      height="100%"
+      sx={{ fontSize: '1rem', gridArea: 'note-detail', height: '100%' }}
+    />
   );
 };

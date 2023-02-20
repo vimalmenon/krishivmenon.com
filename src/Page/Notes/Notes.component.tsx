@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Confirm } from '@common';
 
-import { NoteDetail } from './NoteDetail';
-import { NoteHeader } from './NoteHeader';
-import { NoteList } from './NoteList';
+import { NoteDetail, NoteDetailLoading } from './NoteDetail';
+import { NoteHeader, NoteHeaderLoading } from './NoteHeader';
+import { NoteList, NodeListLoading } from './NoteList';
 import { useNotes } from './Notes.service';
 import { NotesRoot } from './Notes.style';
 
@@ -26,7 +26,13 @@ export const Notes: React.FC = () => {
     onDeleteConfirm,
   } = useNotes();
   if (loading) {
-    return <div>...loading</div>;
+    return (
+      <NotesRoot>
+        <NoteHeaderLoading />
+        <NodeListLoading />
+        <NoteDetailLoading />
+      </NotesRoot>
+    );
   }
   return (
     <NotesRoot>

@@ -1,4 +1,5 @@
 import { Icon } from '@common';
+import Skeleton from '@mui/material/Skeleton';
 
 import { INoteHeader } from './NoteHeader';
 import { NoteHeaderRoot } from './NoteHeader.style';
@@ -35,4 +36,8 @@ export const NoteHeader: React.FC<INoteHeader> = ({
       </div>
     </NoteHeaderRoot>
   );
+};
+
+export const NoteHeaderLoading: React.FC = () => {
+  return <Skeleton variant="text" sx={{ fontSize: '1rem', gridArea: 'note-header' }} />;
 };

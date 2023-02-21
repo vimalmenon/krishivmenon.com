@@ -14,7 +14,6 @@ Finished Task:
   Update release version in the build
   HTTPS connection to the website
   Consistent UI for notes
-  Loading animation for notes
 High Priority:
   Better Loading for notes
   Need to work on redirect rules

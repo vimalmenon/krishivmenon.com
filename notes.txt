@@ -14,17 +14,18 @@ Finished Task:
   Update release version in the build
   HTTPS connection to the website
   Consistent UI for notes
+  Loading animation for notes
 High Priority:
-  Need to work on loading animation for Notes
+  Better Loading for notes
   Need to work on redirect rules
   First time refresh token is failing (Bug)
   Ability to Logout from UI
-  Redirect apis from api.krishivmenon.com
   Need to work on logout of auth
   Improve UI for 400 Page
   Improved UI for Gallery
   Need to build UI for unauthorized page
   Need to fix the issue with redirect to /index page
+  Need to identify if user has authorization
 Medium Priority
   Increase the coverage to 80%
   Pre signed image on request
@@ -37,6 +38,7 @@ Medium Priority
   Responsive UI for Gallery
   Responsive UI for Notes
   Create Release Page
+  Need to work on loading indicator on sign in page
 Less Priority
   Setting up sonar
   Search for library for Image viewer

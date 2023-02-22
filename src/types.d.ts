@@ -89,3 +89,11 @@ export interface IAuthResponse {
   exp: number;
   iat: number;
 }
+
+export interface IProfile extends IBaseDB {
+  name: string;
+  role: string;
+  email: string;
+  picture: string;
+  provider: string;
+}

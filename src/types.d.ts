@@ -94,6 +94,6 @@ export interface IProfile extends IBaseDB {
   name: string;
   role: string;
   email: string;
-  picture: string;
+  avatar: string;
   provider: string;
 }

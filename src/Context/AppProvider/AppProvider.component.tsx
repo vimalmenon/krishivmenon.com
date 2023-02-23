@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactChildren, ThemeType } from '@types';
+import { IProfile, ReactChildren, ThemeType } from '@types';
 
 import { Context, initialValue } from './AppProvider.service';
 import { useCommonLocalStorage } from '../LocalStorageProvider';
@@ -11,6 +11,7 @@ export const AppProvider: React.FC<ReactChildren> = ({ children }) => {
   const [drawerOpen, setDrawerOpen] = React.useState(initialValue.drawerOpen);
   const [authorized, setAuthorized] = React.useState<boolean>(initialValue.authorized);
   const [authorizing, setAuthorizing] = React.useState<boolean>(initialValue.authorizing);
+  const [profile, setProfile] = React.useState<IProfile | null>(initialValue.profile);
   React.useEffect(() => {
     setTheme(getStorage<ThemeType>('theme') || 'dark');
   }, [getStorage<ThemeType>('theme')]);
@@ -18,7 +19,9 @@ export const AppProvider: React.FC<ReactChildren> = ({ children }) => {
     <Context.Provider
       value={{
         theme,
+        profile,
         setTheme,
+        setProfile,
         drawerOpen,
         authorized,
         authorizing,

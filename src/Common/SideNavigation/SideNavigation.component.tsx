@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useCommonAuthProvider } from '@context';
+import { useCommonAuthProvider, useCommonContext } from '@context';
 import { navigation } from '@data';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
@@ -21,19 +21,21 @@ import {
 
 export const SideNavigation: React.FC = () => {
   const { push, asPath } = useRouter();
-  const { user, signOut } = useCommonAuthProvider();
+  const { signOut } = useCommonAuthProvider();
+  const { profile } = useCommonContext();
   const { NavigationList } = navigation;
   const [collapseNavigation, setCollapseNavigation] = React.useState<boolean>(true);
   const [collapseOthers, setCollapseOthers] = React.useState<boolean>(true);
+  console.log(profile);
   return (
     <SideNavigationRoot>
-      {user && (
+      {profile && (
         <SideNavigationProfile>
           <div className="profile">
-            <Avatar alt={user.name} src={user.profile} />
+            <Avatar alt={profile.name} src={profile.avatar} />
           </div>
           <div className="profile-detail">
-            <Typography component="h2">{user.name}</Typography>
+            <Typography component="h2">{profile.name}</Typography>
           </div>
         </SideNavigationProfile>
       )}

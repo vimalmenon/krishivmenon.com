@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { MetaData, ErrorBoundary } from '@common';
+import { useUser } from '@hook';
 import CssBaseline from '@mui/material/CssBaseline';
 import { IBaseLayout, ReactChildren } from '@types';
 
@@ -14,6 +15,7 @@ import {
 } from '../';
 
 export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, title }) => {
+  useUser();
   return (
     <MainPageLayout>
       <CssBaseline />

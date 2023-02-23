@@ -12,4 +12,5 @@ export interface IUseCommon {
   getStorage: <T>(key: StorageKeyType) => T;
   removeStorage: IGenericParam<StorageKeyType>;
   switchTheme: IGenericMethod;
+  switchDrawer: IGenericMethod;
 }

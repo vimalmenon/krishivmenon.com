@@ -5,7 +5,7 @@ import { IGenericMethod, IGenericParam, StorageKeyType } from '@types';
 import { ISaveStorage, IUseCommon } from './useCommon';
 
 export const useCommon = (): IUseCommon => {
-  const { storage, setStorage, theme } = useCommonContext();
+  const { storage, setStorage, theme, setTheme, setDrawerOpen, drawerOpen } = useCommonContext();
   const saveStorage: ISaveStorage = (key, value) => {
     storage[key] = value;
     localStorage.setItem(StorageKey, JSON.stringify(storage));
@@ -21,12 +21,16 @@ export const useCommon = (): IUseCommon => {
   };
   const switchTheme: IGenericMethod = () => {
     saveStorage('theme', theme === 'dark' ? 'light' : 'dark');
-    // setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+  const switchDrawer: IGenericMethod = () => {
+    setDrawerOpen(!drawerOpen);
   };
   return {
     removeStorage,
     saveStorage,
     getStorage,
     switchTheme,
+    switchDrawer,
   };
 };

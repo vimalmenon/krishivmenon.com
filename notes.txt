@@ -26,6 +26,7 @@ High Priority:
   Need to build UI for unauthorized page
   Need to fix the issue with redirect to /index page
   Need to identify if user has authorization
+  Add framer for animation
 Medium Priority
   Increase the coverage to 80%
   Pre signed image on request

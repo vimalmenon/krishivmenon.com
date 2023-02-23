@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ThemeType, IGenericMethod, IProfile } from '@types';
+import { ThemeType, IProfile } from '@types';
 
 export interface IAppProvider {
   theme: ThemeType;
@@ -23,9 +23,9 @@ export interface IUseCommonContext {
   authorized: boolean;
   authorizing: boolean;
   profile: IProfile | null;
-  switchTheme: IGenericMethod;
-  switchDrawer: IGenericMethod;
   storage: Record<string, string>;
+  setTheme: React.Dispatch<React.SetStateAction<ThemeType>>;
+  setDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setAuthorized: React.Dispatch<React.SetStateAction<boolean>>;
   setAuthorized: React.Dispatch<React.SetStateAction<boolean>>;
   setProfile: React.Dispatch<React.SetStateAction<IProfile | null>>;

@@ -1,10 +1,9 @@
 import React from 'react';
 
-import { IGenericMethod, IGenericReturn } from '@types';
+import { IGenericReturn } from '@types';
 import { NotImplemented } from '@utility';
 
 import { IAppProvider, IUseCommonContext } from './AppProvider';
-import { useCommonLocalStorage } from '../index';
 
 export const initialValue: IAppProvider = {
   storage: {},
@@ -42,26 +41,18 @@ export const useCommonContext: IGenericReturn<IUseCommonContext> = () => {
     setAuthorized,
     setAuthorizing,
   } = React.useContext<IAppProvider>(Context);
-  const { saveStorage } = useCommonLocalStorage();
-  const switchDrawer: IGenericMethod = () => {
-    setDrawerOpen(!drawerOpen);
-  };
-  const switchTheme: IGenericMethod = () => {
-    saveStorage('theme', theme === 'dark' ? 'light' : 'dark');
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
   return {
     theme,
     storage,
     profile,
+    setTheme,
     setStorage,
     drawerOpen,
     authorized,
     setProfile,
-    switchTheme,
     authorizing,
-    switchDrawer,
     setAuthorized,
     setAuthorizing,
+    setDrawerOpen,
   };
 };

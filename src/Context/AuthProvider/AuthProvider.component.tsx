@@ -1,14 +1,13 @@
 import React from 'react';
 
 import { ENV } from '@constant';
-import { useCommonLocalStorage } from '@context';
+import { useCommonLocalStorage, useCommonContext } from '@context';
 import { ReactChildren, IGenericReturn, IAuthResponse, IGenericMethod } from '@types';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
 
 import { IUser } from './AuthProvider';
 import { AuthProviderContext, initialValue, createBody } from './AuthProvider.service';
-import { useCommonContext } from '../AppProvider/AppProvider.service';
 
 export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   const [refreshToken, setRefreshToken] = React.useState<string | null>(null);

@@ -1,2 +1,2 @@
 export * from './useUser';
-export * from './useLocalStorage';
+export * from './useCommon';

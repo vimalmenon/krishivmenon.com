@@ -1,4 +1,4 @@
-import { IGenericParam, StorageKeyType } from '@types';
+import { IGenericMethod, IGenericParam, StorageKeyType } from '@types';
 
 export interface ILocalStorageProvider {
   storage: Record<string, string>;
@@ -7,8 +7,9 @@ export interface ILocalStorageProvider {
 
 export type ISaveStorage = (key: StorageKeyType, value: string) => void;
 
-export interface IUseLocalStorage {
+export interface IUseCommon {
   saveStorage: ISaveStorage;
   getStorage: <T>(key: StorageKeyType) => T;
   removeStorage: IGenericParam<StorageKeyType>;
+  switchTheme: IGenericMethod;
 }

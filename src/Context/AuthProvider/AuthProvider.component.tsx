@@ -6,13 +6,11 @@ import { ReactChildren, IGenericReturn, IAuthResponse, IGenericMethod } from '@t
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
 
-import { IUser } from './AuthProvider';
 import { AuthProviderContext, initialValue, createBody } from './AuthProvider.service';
 
 export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   const [refreshToken, setRefreshToken] = React.useState<string | null>(null);
   const [idToken, setIdToken] = React.useState<string | null>(initialValue.idToken);
-  const [user, setUser] = React.useState<IUser | null>(initialValue.user);
   const [tokenExpiry, setTokenExpiry] = React.useState<number>(0);
   const { saveStorage, getStorage, removeStorage } = useCommonLocalStorage();
   const { setAuthorized } = useCommonContext();
@@ -37,9 +35,6 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
         saveStorage('refreshToken', data.refresh_token);
         saveStorage('idToken', data.id_token);
         const value = jwtDecode<IAuthResponse>(data.id_token);
-        saveStorage('userProfile', value.picture);
-        saveStorage('userEmail', value.email);
-        saveStorage('userName', value.given_name);
         saveStorage('tokenExpiry', String(value.exp * 1000));
         if (state) {
           router.replace(state);
@@ -72,9 +67,6 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   const signOut: IGenericMethod = () => {
     removeStorage('refreshToken');
     removeStorage('idToken');
-    removeStorage('userProfile');
-    removeStorage('userEmail');
-    removeStorage('userName');
     removeStorage('tokenExpiry');
   };
   React.useEffect(() => {
@@ -97,11 +89,6 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     if (getStorage<string>('refreshToken')) {
       setRefreshToken(getStorage<string>('refreshToken'));
       setTokenExpiry(parseInt(getStorage<string>('tokenExpiry')));
-      setUser({
-        profile: getStorage<string>('userProfile'),
-        email: getStorage<string>('userEmail'),
-        name: getStorage<string>('userName'),
-      });
       setAuthorized(true);
     }
   }, [getStorage<string>('refreshToken')]);
@@ -113,7 +100,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     }
   }, [tokenExpiry]);
   return (
-    <AuthProviderContext.Provider value={{ idToken, user, handleRefreshToken, signOut }}>
+    <AuthProviderContext.Provider value={{ idToken, handleRefreshToken, signOut }}>
       {children}
     </AuthProviderContext.Provider>
   );

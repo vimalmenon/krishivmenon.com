@@ -1,5 +1,5 @@
 import { SwitchTheme } from '@common';
-import { useCommonAuthProvider } from '@context';
+import { useCommonContext } from '@context';
 import { useCommon } from '@hook';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
@@ -13,11 +13,11 @@ import {
 
 export const PageLayoutHeader: React.FC = () => {
   const { switchDrawer } = useCommon();
-  const { user } = useCommonAuthProvider();
+  const { profile } = useCommonContext();
   return (
     <PageLayoutHeaderRoot sx={{ borderColor: 'divider' }}>
       <PageLayoutHeaderTitle>
-        {user && (
+        {profile && (
           <IconButton size="small" onClick={switchDrawer} sx={{ display: { sm: 'none' } }}>
             <MenuIcon />
           </IconButton>

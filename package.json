@@ -15,7 +15,8 @@
     "test": "jest",
     "test:v": "jest --verbose",
     "test:c": "jest --coverage",
-    "test:u": "jest -u"
+    "test:u": "jest -u",
+    "check:dev": "npm run eslint:fix & npm run tsc"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",

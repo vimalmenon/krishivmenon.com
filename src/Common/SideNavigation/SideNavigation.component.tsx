@@ -26,7 +26,6 @@ export const SideNavigation: React.FC = () => {
   const { NavigationList } = navigation;
   const [collapseNavigation, setCollapseNavigation] = React.useState<boolean>(true);
   const [collapseOthers, setCollapseOthers] = React.useState<boolean>(true);
-  console.log(profile);
   return (
     <SideNavigationRoot>
       {profile && (

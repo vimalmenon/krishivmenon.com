@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ENV } from '@constant';
+import { AuthStatus, ENV } from '@constant';
 import { useCommonLocalStorage, useCommonContext } from '@context';
 import { ReactChildren, IGenericReturn, IAuthResponse, IGenericMethod } from '@types';
 import jwtDecode from 'jwt-decode';
@@ -13,7 +13,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   const [idToken, setIdToken] = React.useState<string | null>(initialValue.idToken);
   const [tokenExpiry, setTokenExpiry] = React.useState<number>(0);
   const { saveStorage, getStorage, removeStorage } = useCommonLocalStorage();
-  const { setAuthorized } = useCommonContext();
+  const { setAuthStatus } = useCommonContext();
   const router = useRouter();
   const getToken = async (code: string, state?: string): Promise<void> => {
     try {
@@ -45,7 +45,6 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     }
   };
   const handleRefreshToken: IGenericReturn<Promise<unknown>> = async () => {
-    setAuthorized(false);
     const result = await fetch(ENV.AUTH_TOKEN_URL, {
       method: 'Post',
       headers: {
@@ -62,7 +61,6 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     saveStorage('idToken', data.id_token);
     setIdToken(data.id_token);
     saveStorage('tokenExpiry', String(new Date().getTime() + 3000000));
-    setAuthorized(true);
   };
   const signOut: IGenericMethod = () => {
     removeStorage('refreshToken');
@@ -80,16 +78,15 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   React.useEffect(() => {
     if (getStorage<string>('idToken')) {
       setIdToken(getStorage<string>('idToken'));
-      setAuthorized(true);
+      setAuthStatus(AuthStatus.Authenticating);
     } else {
-      setAuthorized(false);
+      setAuthStatus(AuthStatus.NotAuthenticated);
     }
   }, [getStorage<string>('idToken')]);
   React.useEffect(() => {
     if (getStorage<string>('refreshToken')) {
       setRefreshToken(getStorage<string>('refreshToken'));
       setTokenExpiry(parseInt(getStorage<string>('tokenExpiry')));
-      setAuthorized(true);
     }
   }, [getStorage<string>('refreshToken')]);
   React.useEffect(() => {

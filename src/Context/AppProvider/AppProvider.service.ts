@@ -1,23 +1,22 @@
 import React from 'react';
 
+import { AuthStatus } from '@constant';
 import { IGenericReturn } from '@types';
 import { NotImplemented } from '@utility';
 
-import { IAppProvider, IUseCommonContext } from './AppProvider';
+import { IAppProvider } from './AppProvider';
 
 export const initialValue: IAppProvider = {
   storage: {},
   theme: 'dark',
   profile: null,
-  authorized: false,
   drawerOpen: false,
-  authorizing: false,
   setTheme: NotImplemented,
   setProfile: NotImplemented,
   setStorage: NotImplemented,
+  setAuthStatus: NotImplemented,
   setDrawerOpen: NotImplemented,
-  setAuthorized: NotImplemented,
-  setAuthorizing: NotImplemented,
+  authStatus: AuthStatus.NotAuthenticated,
 };
 
 export const Context = React.createContext<IAppProvider>(initialValue);
@@ -26,7 +25,7 @@ export const useContext = (): IAppProvider => {
   return React.useContext<IAppProvider>(Context);
 };
 
-export const useCommonContext: IGenericReturn<IUseCommonContext> = () => {
+export const useCommonContext: IGenericReturn<IAppProvider> = () => {
   const {
     theme,
     profile,
@@ -34,25 +33,21 @@ export const useCommonContext: IGenericReturn<IUseCommonContext> = () => {
     storage,
     setStorage,
     drawerOpen,
-    authorized,
     setProfile,
-    authorizing,
+    authStatus,
+    setAuthStatus,
     setDrawerOpen,
-    setAuthorized,
-    setAuthorizing,
   } = React.useContext<IAppProvider>(Context);
   return {
     theme,
     storage,
     profile,
+    authStatus,
     setTheme,
     setStorage,
     drawerOpen,
-    authorized,
     setProfile,
-    authorizing,
-    setAuthorized,
-    setAuthorizing,
+    setAuthStatus,
     setDrawerOpen,
   };
 };

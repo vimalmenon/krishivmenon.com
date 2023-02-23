@@ -7,6 +7,7 @@ import { IAppProvider, IUseCommonContext } from './AppProvider';
 import { useCommonLocalStorage } from '../index';
 
 export const initialValue: IAppProvider = {
+  storage: {},
   theme: 'dark',
   profile: null,
   authorized: false,
@@ -14,6 +15,7 @@ export const initialValue: IAppProvider = {
   authorizing: false,
   setTheme: NotImplemented,
   setProfile: NotImplemented,
+  setStorage: NotImplemented,
   setDrawerOpen: NotImplemented,
   setAuthorized: NotImplemented,
   setAuthorizing: NotImplemented,
@@ -30,13 +32,14 @@ export const useCommonContext: IGenericReturn<IUseCommonContext> = () => {
     theme,
     profile,
     setTheme,
+    storage,
+    setStorage,
     drawerOpen,
     authorized,
     setProfile,
     authorizing,
     setDrawerOpen,
     setAuthorized,
-
     setAuthorizing,
   } = React.useContext<IAppProvider>(Context);
   const { saveStorage } = useCommonLocalStorage();
@@ -49,7 +52,9 @@ export const useCommonContext: IGenericReturn<IUseCommonContext> = () => {
   };
   return {
     theme,
+    storage,
     profile,
+    setStorage,
     drawerOpen,
     authorized,
     setProfile,

@@ -12,6 +12,8 @@ export const AppProvider: React.FC<ReactChildren> = ({ children }) => {
   const [authorized, setAuthorized] = React.useState<boolean>(initialValue.authorized);
   const [authorizing, setAuthorizing] = React.useState<boolean>(initialValue.authorizing);
   const [profile, setProfile] = React.useState<IProfile | null>(initialValue.profile);
+  const [storage, setStorage] = React.useState<Record<string, string>>(initialValue.storage);
+
   React.useEffect(() => {
     setTheme(getStorage<ThemeType>('theme') || 'dark');
   }, [getStorage<ThemeType>('theme')]);
@@ -19,8 +21,10 @@ export const AppProvider: React.FC<ReactChildren> = ({ children }) => {
     <Context.Provider
       value={{
         theme,
+        storage,
         profile,
         setTheme,
+        setStorage,
         setProfile,
         drawerOpen,
         authorized,

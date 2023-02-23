@@ -36,6 +36,15 @@ export interface IApi<T = unknown> {
   headers?: Record<string, string>;
 }
 
+export type StorageKeyType =
+  | 'theme'
+  | 'refreshToken'
+  | 'idToken'
+  | 'userProfile'
+  | 'userEmail'
+  | 'userName'
+  | 'tokenExpiry';
+
 export type PageModeType = 'ADD' | 'EDIT' | 'VIEW';
 
 export type IGenericMethod = () => void;

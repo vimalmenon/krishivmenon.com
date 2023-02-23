@@ -1,14 +1,13 @@
 import React from 'react';
 
 import { StorageKey } from '@constant';
-import { IGenericParam, IGenericReturn } from '@types';
+import { IGenericParam, IGenericReturn, StorageKeyType } from '@types';
 import { NotImplemented } from '@utility';
 
 import {
   IUseCommonLocalStorage,
   ISaveStorage,
   ILocalStorageProvider,
-  StorageKeyType,
 } from './LocalStorageProvider';
 
 export const initialValue: ILocalStorageProvider = {

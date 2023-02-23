@@ -24,45 +24,43 @@ export const SideNavigation: React.FC = () => {
     <SideNavigationRoot>
       <Profile />
       <Divider />
-      <div>
-        <SideNavigationList dense>
-          <ListItemButton onClick={() => setCollapseNavigation(!collapseNavigation)}>
-            <ListItemText primary="Navigation" />
-            <KeyboardArrowDownRoundedIcon />
+      <SideNavigationList dense>
+        <ListItemButton onClick={() => setCollapseNavigation(!collapseNavigation)}>
+          <ListItemText primary="Navigation" />
+          <KeyboardArrowDownRoundedIcon />
+        </ListItemButton>
+        <Collapse in={collapseNavigation}>
+          {NavigationList.map((navigation) => {
+            if (navigation.show) {
+              return (
+                <ListItemButton
+                  key={navigation.name}
+                  onClick={() => push(navigation.url)}
+                  selected={navigation.url === asPath}
+                >
+                  <ListItemIcon>
+                    <navigation.Icon />
+                  </ListItemIcon>
+                  <ListItemText primary={navigation.name} />
+                </ListItemButton>
+              );
+            }
+          })}
+        </Collapse>
+        <Divider />
+        <ListItemButton onClick={() => setCollapseOthers(!collapseOthers)}>
+          <ListItemText primary="Other" />
+          <KeyboardArrowDownRoundedIcon />
+        </ListItemButton>
+        <Collapse in={collapseOthers}>
+          <ListItemButton onClick={signOut}>
+            <ListItemIcon>
+              <LogoutRoundedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
           </ListItemButton>
-          <Collapse in={collapseNavigation}>
-            {NavigationList.map((navigation) => {
-              if (navigation.show) {
-                return (
-                  <ListItemButton
-                    key={navigation.name}
-                    onClick={() => push(navigation.url)}
-                    selected={navigation.url === asPath}
-                  >
-                    <ListItemIcon>
-                      <navigation.Icon />
-                    </ListItemIcon>
-                    <ListItemText primary={navigation.name} />
-                  </ListItemButton>
-                );
-              }
-            })}
-          </Collapse>
-          <Divider />
-          <ListItemButton onClick={() => setCollapseOthers(!collapseOthers)}>
-            <ListItemText primary="Other" />
-            <KeyboardArrowDownRoundedIcon />
-          </ListItemButton>
-          <Collapse in={collapseOthers}>
-            <ListItemButton onClick={signOut}>
-              <ListItemIcon>
-                <LogoutRoundedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Logout" />
-            </ListItemButton>
-          </Collapse>
-        </SideNavigationList>
-      </div>
+        </Collapse>
+      </SideNavigationList>
     </SideNavigationRoot>
   );
 };

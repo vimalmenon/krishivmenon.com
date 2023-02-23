@@ -15,7 +15,6 @@ Finished Task:
   HTTPS connection to the website
   Consistent UI for notes
 High Priority:
-  Moving Profile to separate component
   Better Loading for notes
   Need to work on redirect rules
   First time refresh token is failing (Bug)

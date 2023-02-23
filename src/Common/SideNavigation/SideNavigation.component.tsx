@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { useCommonAuthProvider, useCommonContext } from '@context';
+import { Profile } from '@common';
+import { useCommonAuthProvider } from '@context';
 import { navigation } from '@data';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import { Typography } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -13,31 +12,17 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { useRouter } from 'next/router';
 
-import {
-  SideNavigationList,
-  SideNavigationProfile,
-  SideNavigationRoot,
-} from './SideNavigation.style';
+import { SideNavigationList, SideNavigationRoot } from './SideNavigation.style';
 
 export const SideNavigation: React.FC = () => {
   const { push, asPath } = useRouter();
   const { signOut } = useCommonAuthProvider();
-  const { profile } = useCommonContext();
   const { NavigationList } = navigation;
   const [collapseNavigation, setCollapseNavigation] = React.useState<boolean>(true);
   const [collapseOthers, setCollapseOthers] = React.useState<boolean>(true);
   return (
     <SideNavigationRoot>
-      {profile && (
-        <SideNavigationProfile>
-          <div className="profile">
-            <Avatar alt={profile.name} src={profile.avatar} />
-          </div>
-          <div className="profile-detail">
-            <Typography component="h2">{profile.name}</Typography>
-          </div>
-        </SideNavigationProfile>
-      )}
+      <Profile />
       <Divider />
       <div>
         <SideNavigationList dense>

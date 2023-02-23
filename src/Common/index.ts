@@ -1,5 +1,6 @@
 export * from './Icon';
 export * from './Alert';
+export * from './Profile';
 export * from './Editor';
 export * from './Dialog';
 export * from './Profile';

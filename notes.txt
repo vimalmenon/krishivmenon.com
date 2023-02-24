@@ -15,7 +15,7 @@ Finished Task:
   HTTPS connection to the website
   Consistent UI for notes
 High Priority:
-  Need to work on Refactoring of Auth
+  Find better way to switch theme
   Better Loading for notes
   Need to work on redirect rules
   First time refresh token is failing (Bug)

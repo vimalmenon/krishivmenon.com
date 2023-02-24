@@ -27,10 +27,10 @@ export const useCommon = (): IUseCommon => {
     setDrawerOpen(!drawerOpen);
   };
   return {
-    removeStorage,
     saveStorage,
     getStorage,
     switchTheme,
     switchDrawer,
+    removeStorage,
   };
 };

@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { AuthStatus, ENV } from '@constant';
-import { useCommonLocalStorage, useCommonContext } from '@context';
+import { useCommonContext } from '@context';
+import { useCommon } from '@hook';
 import { ReactChildren, IGenericReturn, IAuthResponse, IGenericMethod } from '@types';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
@@ -12,7 +13,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   const [refreshToken, setRefreshToken] = React.useState<string | null>(null);
   const [idToken, setIdToken] = React.useState<string | null>(initialValue.idToken);
   const [tokenExpiry, setTokenExpiry] = React.useState<number>(0);
-  const { saveStorage, getStorage, removeStorage } = useCommonLocalStorage();
+  const { saveStorage, getStorage, removeStorage } = useCommon();
   const { setAuthStatus } = useCommonContext();
   const router = useRouter();
   const getToken = async (code: string, state?: string): Promise<void> => {

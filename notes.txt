@@ -5,17 +5,10 @@ Finished Task:
   Auth: Ability to refresh token
   Responsive UI : Basic Responsive page 
   GitHub Action : Check and Deploy
-  UI : Small Screen not to show hamburger menu if the user is not logged in
-  Error if the .env file is not created
-  Set up Testing Library (React testing library)
-  Basic 400 Page
-  Basic User detail in side navigation
-  Show Release version in UI
-  Update release version in the build
-  HTTPS connection to the website
-  Consistent UI for notes
+  Basic error Handling
+  Basic dev setup
+  Basic Layout UI
 High Priority:
-  Find better way to switch theme
   Better Loading for notes
   Need to work on redirect rules
   First time refresh token is failing (Bug)

@@ -10,16 +10,14 @@ export const initialValue: IAuthProvider = {
   signOut: NotImplemented,
   handleRefreshToken: NotImplemented,
   idToken: null,
-  user: null,
 };
 export const AuthProviderContext = React.createContext<IAuthProvider>(initialValue);
 
 export const useCommonAuthProvider: IGenericReturn<IUseCommonAuthProvider> = () => {
-  const { user, idToken, handleRefreshToken, signOut } =
+  const { idToken, handleRefreshToken, signOut } =
     React.useContext<IAuthProvider>(AuthProviderContext);
 
   return {
-    user,
     idToken,
     signOut,
     handleRefreshToken,

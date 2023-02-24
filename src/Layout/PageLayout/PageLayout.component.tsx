@@ -1,6 +1,9 @@
 import React from 'react';
 
 import { MetaData, ErrorBoundary } from '@common';
+import { AuthStatus } from '@constant';
+import { useCommonContext } from '@context';
+import { useUser } from '@hook';
 import CssBaseline from '@mui/material/CssBaseline';
 import { IBaseLayout, ReactChildren } from '@types';
 
@@ -14,6 +17,8 @@ import {
 } from '../';
 
 export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, title }) => {
+  useUser();
+  const { authStatus } = useCommonContext();
   return (
     <MainPageLayout>
       <CssBaseline />
@@ -26,13 +31,19 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
           alignItems: 'center',
         }}
       >
-        <EnvCheck>
-          <PageLayoutAside />
-          <PageLayoutAsideMobile />
-          <MainPageContent>
-            <ErrorBoundary>{children}</ErrorBoundary>
-          </MainPageContent>
-        </EnvCheck>
+        {authStatus === AuthStatus.Authorized && (
+          <EnvCheck>
+            <PageLayoutAside />
+            <PageLayoutAsideMobile />
+            <MainPageContent>
+              <ErrorBoundary>{children}</ErrorBoundary>
+            </MainPageContent>
+          </EnvCheck>
+        )}
+        {authStatus === AuthStatus.UnAuthorized && (
+          <div>You are not authorized to this website.</div>
+        )}
+        {authStatus === AuthStatus.Authenticating && <div>Authenticating...</div>}
       </ErrorBoundary>
       <PageLayoutFooter />
     </MainPageLayout>

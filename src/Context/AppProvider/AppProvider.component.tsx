@@ -1,30 +1,35 @@
 import React from 'react';
 
-import { ReactChildren, ThemeType } from '@types';
+import { AuthStatus, StorageKey } from '@constant';
+import { IProfile, ReactChildren, ThemeType } from '@types';
 
 import { Context, initialValue } from './AppProvider.service';
-import { useCommonLocalStorage } from '../LocalStorageProvider';
 
 export const AppProvider: React.FC<ReactChildren> = ({ children }) => {
-  const { getStorage } = useCommonLocalStorage();
   const [theme, setTheme] = React.useState<ThemeType>(initialValue.theme);
   const [drawerOpen, setDrawerOpen] = React.useState(initialValue.drawerOpen);
-  const [authorized, setAuthorized] = React.useState<boolean>(initialValue.authorized);
-  const [authorizing, setAuthorizing] = React.useState<boolean>(initialValue.authorizing);
+  const [profile, setProfile] = React.useState<IProfile | null>(initialValue.profile);
+  const [storage, setStorage] = React.useState<Record<string, string>>(initialValue.storage);
+  const [authStatus, setAuthStatus] = React.useState<AuthStatus>(AuthStatus.NotAuthenticated);
   React.useEffect(() => {
-    setTheme(getStorage<ThemeType>('theme') || 'dark');
-  }, [getStorage<ThemeType>('theme')]);
+    setStorage(JSON.parse(localStorage.getItem(StorageKey) || '{}'));
+  }, []);
+  React.useEffect(() => {
+    setTheme((storage.theme as ThemeType) || 'dark');
+  }, [storage]);
   return (
     <Context.Provider
       value={{
         theme,
+        storage,
+        profile,
         setTheme,
+        setStorage,
+        setProfile,
+        authStatus,
         drawerOpen,
-        authorized,
-        authorizing,
         setDrawerOpen,
-        setAuthorized,
-        setAuthorizing,
+        setAuthStatus,
       }}
     >
       {children}

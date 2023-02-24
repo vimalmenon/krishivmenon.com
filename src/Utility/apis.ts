@@ -1,5 +1,5 @@
 import { ENV } from '@constant';
-import { IGenericReturn, IApi, INotes, IFolder, AnyType } from '@types';
+import { IGenericReturn, IApi, INotes, IFolder, AnyType, IProfile } from '@types';
 
 import { IApiStorageApi, IApiS3Folder, IApiNote, IUploadToS3 } from './utility';
 
@@ -15,6 +15,7 @@ export const Apis = {
   Folder: 'folders/{id}',
   FolderParent: 'folders/parent/{id}',
   FolderData: 'folders/folder_data/{id}',
+  Me: '/me',
 };
 
 export const getFormData = <T>(body: T): FormData => {
@@ -123,6 +124,21 @@ export const apis = {
     return {
       url,
       method: 'GET',
+    };
+  },
+  getProfile: function (): IApi {
+    const url = Apis.Me;
+    return {
+      url,
+      method: 'GET',
+    };
+  },
+  updateProfile: function (data: IProfile): IApi {
+    const url = Apis.Me;
+    return {
+      url,
+      data,
+      method: 'POST',
     };
   },
 };

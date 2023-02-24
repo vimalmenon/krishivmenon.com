@@ -21,7 +21,7 @@ export const Editor: React.FC<IEditor> = ({ note, setNote, mode }) => {
       theme="snow"
       value={note}
       onChange={setNote}
-      style={{ width: '100%', height: '50vh' }}
+      style={{ width: '100%', height: '90%' }}
     />
   );
 };

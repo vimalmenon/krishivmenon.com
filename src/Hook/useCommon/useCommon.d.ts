@@ -1,23 +1,16 @@
-import { IGenericParam } from '@types';
+import { IGenericMethod, IGenericParam, StorageKeyType } from '@types';
 
 export interface ILocalStorageProvider {
   storage: Record<string, string>;
   setStorage: React.Dispatch<React.SetStateAction<ThemeType>>;
 }
 
-export type StorageKeyType =
-  | 'theme'
-  | 'refreshToken'
-  | 'idToken'
-  | 'userProfile'
-  | 'userEmail'
-  | 'userName'
-  | 'tokenExpiry';
-
 export type ISaveStorage = (key: StorageKeyType, value: string) => void;
 
-export interface IUseCommonLocalStorage {
+export interface IUseCommon {
   saveStorage: ISaveStorage;
   getStorage: <T>(key: StorageKeyType) => T;
   removeStorage: IGenericParam<StorageKeyType>;
+  switchTheme: IGenericMethod;
+  switchDrawer: IGenericMethod;
 }

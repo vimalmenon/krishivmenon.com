@@ -36,6 +36,8 @@ export interface IApi<T = unknown> {
   headers?: Record<string, string>;
 }
 
+export type StorageKeyType = 'theme' | 'refreshToken' | 'idToken' | 'tokenExpiry';
+
 export type PageModeType = 'ADD' | 'EDIT' | 'VIEW';
 
 export type IGenericMethod = () => void;
@@ -88,4 +90,12 @@ export interface IAuthResponse {
   given_name: string;
   exp: number;
   iat: number;
+}
+
+export interface IProfile extends IBaseDB {
+  name: string;
+  role: string;
+  email: string;
+  avatar: string;
+  provider: string;
 }

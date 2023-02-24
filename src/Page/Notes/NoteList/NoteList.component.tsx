@@ -3,6 +3,7 @@ import React from 'react';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import Skeleton from '@mui/material/Skeleton';
 import TextField from '@mui/material/TextField';
 import { Container } from '@style';
 
@@ -35,5 +36,11 @@ export const NoteList: React.FC<INoteListPage> = ({ notes, onNoteSelect }) => {
         })}
       </NoteItemsContainer>
     </NoteListRoot>
+  );
+};
+
+export const NodeListLoading: React.FC = () => {
+  return (
+    <Skeleton variant="rounded" height="100%" sx={{ fontSize: '1rem', gridArea: 'note-list' }} />
   );
 };

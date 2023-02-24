@@ -1,22 +1,20 @@
 import React from 'react';
 
-import { ENV } from '@constant';
-import { useCommonLocalStorage } from '@context';
+import { AuthStatus, ENV } from '@constant';
+import { useCommonContext } from '@context';
+import { useCommon } from '@hook';
 import { ReactChildren, IGenericReturn, IAuthResponse, IGenericMethod } from '@types';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
 
-import { IUser } from './AuthProvider';
 import { AuthProviderContext, initialValue, createBody } from './AuthProvider.service';
-import { useCommonContext } from '../AppProvider/AppProvider.service';
 
 export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   const [refreshToken, setRefreshToken] = React.useState<string | null>(null);
   const [idToken, setIdToken] = React.useState<string | null>(initialValue.idToken);
-  const [user, setUser] = React.useState<IUser | null>(initialValue.user);
   const [tokenExpiry, setTokenExpiry] = React.useState<number>(0);
-  const { saveStorage, getStorage, removeStorage } = useCommonLocalStorage();
-  const { setAuthorized } = useCommonContext();
+  const { saveStorage, getStorage, removeStorage } = useCommon();
+  const { setAuthStatus } = useCommonContext();
   const router = useRouter();
   const getToken = async (code: string, state?: string): Promise<void> => {
     try {
@@ -38,9 +36,6 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
         saveStorage('refreshToken', data.refresh_token);
         saveStorage('idToken', data.id_token);
         const value = jwtDecode<IAuthResponse>(data.id_token);
-        saveStorage('userProfile', value.picture);
-        saveStorage('userEmail', value.email);
-        saveStorage('userName', value.given_name);
         saveStorage('tokenExpiry', String(value.exp * 1000));
         if (state) {
           router.replace(state);
@@ -51,7 +46,6 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     }
   };
   const handleRefreshToken: IGenericReturn<Promise<unknown>> = async () => {
-    setAuthorized(false);
     const result = await fetch(ENV.AUTH_TOKEN_URL, {
       method: 'Post',
       headers: {
@@ -68,14 +62,10 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     saveStorage('idToken', data.id_token);
     setIdToken(data.id_token);
     saveStorage('tokenExpiry', String(new Date().getTime() + 3000000));
-    setAuthorized(true);
   };
   const signOut: IGenericMethod = () => {
     removeStorage('refreshToken');
     removeStorage('idToken');
-    removeStorage('userProfile');
-    removeStorage('userEmail');
-    removeStorage('userName');
     removeStorage('tokenExpiry');
   };
   React.useEffect(() => {
@@ -89,21 +79,15 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   React.useEffect(() => {
     if (getStorage<string>('idToken')) {
       setIdToken(getStorage<string>('idToken'));
-      setAuthorized(true);
+      setAuthStatus(AuthStatus.Authenticating);
     } else {
-      setAuthorized(false);
+      setAuthStatus(AuthStatus.NotAuthenticated);
     }
   }, [getStorage<string>('idToken')]);
   React.useEffect(() => {
     if (getStorage<string>('refreshToken')) {
       setRefreshToken(getStorage<string>('refreshToken'));
       setTokenExpiry(parseInt(getStorage<string>('tokenExpiry')));
-      setUser({
-        profile: getStorage<string>('userProfile'),
-        email: getStorage<string>('userEmail'),
-        name: getStorage<string>('userName'),
-      });
-      setAuthorized(true);
     }
   }, [getStorage<string>('refreshToken')]);
   React.useEffect(() => {
@@ -114,7 +98,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     }
   }, [tokenExpiry]);
   return (
-    <AuthProviderContext.Provider value={{ idToken, user, handleRefreshToken, signOut }}>
+    <AuthProviderContext.Provider value={{ idToken, handleRefreshToken, signOut }}>
       {children}
     </AuthProviderContext.Provider>
   );

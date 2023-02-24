@@ -1,13 +1,10 @@
 Finished Task:
-  Add library for notes
-  Quality: Minimize Eslint errors
-  Auth: Ability to Login with Google Auth
-  Auth: Ability to refresh token
-  Responsive UI : Basic Responsive page 
+  Basic Google Auth
   GitHub Action : Check and Deploy
   Basic dev setup
   Basic Layout and Responsive UI
 High Priority:
+  Need to clean up S3 bucket Next time
   Better Loading for notes
   Need to work on redirect rules
   Google picture is giving error
@@ -16,7 +13,6 @@ High Priority:
   Improve UI for 400 Page
   Improved UI for Gallery
   UI for unauthorized page
-  Need to fix the issue with redirect to /index page
   Add framer for animation
 Medium Priority
   Increase the coverage to 80%

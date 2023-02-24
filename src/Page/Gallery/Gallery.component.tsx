@@ -1,10 +1,8 @@
 import React from 'react';
 
 import { Confirm, useFileUpload } from '@common';
-import { Container } from '@style';
 import { IFolder } from '@types';
 
-import { AddEditFolder } from './AddEditFolder';
 import {
   useGallery,
   GalleryContext,
@@ -14,16 +12,10 @@ import {
 import { GalleryRoot } from './Gallery.style';
 import { GalleryContent } from './GalleryContent';
 import { GalleryHeader } from './GalleryHeader';
-import { UploadFiles } from './UploadFiles';
 
 const GalleryChildren: React.FC = () => {
-  const {
-    deleteConfirm,
-    addEditFolder,
-    showFileUploader,
-    onDeleteConfirmCancel,
-    onFolderDeleteConfirm,
-  } = useCommonGallery();
+  const { deleteConfirm, addEditFolder, onDeleteConfirmCancel, onFolderDeleteConfirm } =
+    useCommonGallery();
   return (
     <GalleryRoot>
       <Confirm
@@ -35,10 +27,6 @@ const GalleryChildren: React.FC = () => {
       </Confirm>
       <GalleryHeader />
       <GalleryContent />
-      <Container component={'section'} sx={{ flex: '1 1 100%' }}>
-        {addEditFolder && <AddEditFolder />}
-        {showFileUploader && <UploadFiles />}
-      </Container>
     </GalleryRoot>
   );
 };

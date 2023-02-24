@@ -5,8 +5,23 @@ export const GalleryContentRoot = styled('section')(({ theme }) => {
     display: 'grid',
     gap: theme.spacing(2),
     gridArea: 'gallery-content',
-    gridTemplate: `"gallery-content-files" "gallery-content-extra"`,
+    gridTemplate: `"gallery-content-files gallery-content-extra"`,
     gridTemplateColumns: '1fr auto',
     gridTemplateRows: '1fr',
+  };
+});
+
+export const GalleryContentFiles = styled('div')(({ theme }) => {
+  return {
+    gridArea: 'gallery-content-files',
+    gap: theme.spacing(2),
+  };
+});
+
+export const GalleryContentExtra = styled('div')(() => {
+  return {
+    gridArea: 'gallery-content-extra',
+    display: 'flex',
+    flex: '1 1 100%',
   };
 });

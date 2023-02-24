@@ -40,7 +40,9 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
             </MainPageContent>
           </EnvCheck>
         )}
-        {authStatus === AuthStatus.NotAuthenticated && <div>You are not authorized</div>}
+        {authStatus === AuthStatus.UnAuthorized && (
+          <div>You are not authorized to this website.</div>
+        )}
         {authStatus === AuthStatus.Authenticating && <div>Authenticating...</div>}
       </ErrorBoundary>
       <PageLayoutFooter />

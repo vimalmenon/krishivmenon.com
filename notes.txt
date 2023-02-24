@@ -5,20 +5,18 @@ Finished Task:
   Auth: Ability to refresh token
   Responsive UI : Basic Responsive page 
   GitHub Action : Check and Deploy
-  Basic error Handling
   Basic dev setup
-  Basic Layout UI
+  Basic Layout and Responsive UI
 High Priority:
   Better Loading for notes
   Need to work on redirect rules
-  First time refresh token is failing (Bug)
+  Google picture is giving error
   Ability to Logout from UI
   Need to work on logout of auth
   Improve UI for 400 Page
   Improved UI for Gallery
-  Need to build UI for unauthorized page
+  UI for unauthorized page
   Need to fix the issue with redirect to /index page
-  Need to identify if user has authorization
   Add framer for animation
 Medium Priority
   Increase the coverage to 80%
@@ -26,8 +24,6 @@ Medium Priority
   Ability to invalidate the Id token
   Need to create a tags for notes and Library
   Create content for Home page
-  Mobile Responsive UI on Notes
-  Responsive UI on Gallery
   Need to build 500 page
   Responsive UI for Gallery
   Responsive UI for Notes

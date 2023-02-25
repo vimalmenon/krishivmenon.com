@@ -13,8 +13,10 @@ export const GalleryContentRoot = styled('section')(({ theme }) => {
 
 export const GalleryContentFiles = styled('div')(({ theme }) => {
   return {
+    display: 'grid',
     gridArea: 'gallery-content-files',
     gap: theme.spacing(2),
+    gridTemplateColumns: 'auto auto auto auto auto',
   };
 });
 

@@ -13,11 +13,9 @@ export const GalleryContent: React.FC = () => {
   return (
     <GalleryContentRoot>
       <GalleryContentFiles>
-        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-          {folderMap[currentFolder].folders.map((value) => {
-            return <GalleryFolder key={value} folder={folderMap[value]} />;
-          })}
-        </div>
+        {folderMap[currentFolder].folders.map((value) => {
+          return <GalleryFolder key={value} folder={folderMap[value]} />;
+        })}
       </GalleryContentFiles>
       <GalleryContentExtra>
         {addEditFolder && <AddEditFolder />}

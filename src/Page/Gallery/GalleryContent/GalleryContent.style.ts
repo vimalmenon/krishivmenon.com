@@ -14,9 +14,17 @@ export const GalleryContentRoot = styled('section')(({ theme }) => {
 export const GalleryContentFiles = styled('div')(({ theme }) => {
   return {
     display: 'grid',
+    gap: theme.spacing(2),
+    gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+  };
+});
+
+export const GalleryContentFilesRoot = styled('div')(({ theme }) => {
+  return {
+    display: 'grid',
     gridArea: 'gallery-content-files',
     gap: theme.spacing(2),
-    gridTemplateColumns: 'auto auto auto auto auto',
+    gridTemplateRows: 'auto 1fr',
   };
 });
 

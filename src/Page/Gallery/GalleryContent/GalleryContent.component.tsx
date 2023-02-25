@@ -1,7 +1,10 @@
+import Divider from '@mui/material/Divider';
+
 import {
   GalleryContentRoot,
   GalleryContentFiles,
   GalleryContentExtra,
+  GalleryContentFilesRoot,
 } from './GalleryContent.style';
 import { AddEditFolder } from '../AddEditFolder';
 import { useCommonGallery } from '../Gallery.service';
@@ -15,11 +18,16 @@ export const GalleryContent: React.FC = () => {
       {folderMap.root.loading ? (
         <div>Loading...</div>
       ) : (
-        <GalleryContentFiles>
-          {folderMap[currentFolder].folders.map((value) => {
-            return <GalleryFolder key={value} folder={folderMap[value]} />;
-          })}
-        </GalleryContentFiles>
+        <GalleryContentFilesRoot>
+          <div>
+            <Divider textAlign="left">Folders</Divider>
+          </div>
+          <GalleryContentFiles>
+            {folderMap[currentFolder].folders.map((value) => {
+              return <GalleryFolder key={value} folder={folderMap[value]} />;
+            })}
+          </GalleryContentFiles>
+        </GalleryContentFilesRoot>
       )}
       <GalleryContentExtra>
         {addEditFolder && <AddEditFolder />}

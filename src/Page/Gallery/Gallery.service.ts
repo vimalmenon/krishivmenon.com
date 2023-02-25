@@ -14,10 +14,14 @@ import { apis, NotImplemented } from '@utility';
 
 import { IGalleryContext, IUseGallery, IUseCommonGalleryContext } from './Gallery';
 
-const initialValue: IFolder = {
+const initialValue: IGalleryFolder = {
   id: '',
   parent: 'root',
   label: '',
+  breadcrumbs: [],
+  folders: [],
+  loading: false,
+  files: [],
 };
 
 const rootFolder: IGalleryFolder = {

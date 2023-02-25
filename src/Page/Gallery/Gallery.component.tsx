@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Confirm, useFileUpload } from '@common';
-import { IFolder } from '@types';
+import { IGalleryFolder } from '@types';
 
 import {
   useGallery,
@@ -31,7 +31,7 @@ const GalleryChildren: React.FC = () => {
   );
 };
 export const Gallery: React.FC = () => {
-  const [addEditFolder, setAddEditFolder] = React.useState<IFolder | null>(
+  const [addEditFolder, setAddEditFolder] = React.useState<IGalleryFolder | null>(
     initialContextValue.addEditFolder
   );
   const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(

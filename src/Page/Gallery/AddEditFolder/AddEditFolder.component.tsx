@@ -19,9 +19,11 @@ export const AddEditFolder: React.FC = () => {
     <PaperStyle elevation={6}>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
         {addEditFolder?.id ? <span>Edit {addEditFolder.label}</span> : <span>Add Folder</span>}
-        {addEditFolder?.id && (
-          <Icon Icon={Icon.icons.Delete} label="Delete" onClick={onFolderDelete} />
-        )}
+        {addEditFolder?.id &&
+          addEditFolder.files.length === 0 &&
+          addEditFolder.folders.length === 0 && (
+            <Icon Icon={Icon.icons.Delete} label="Delete" onClick={onFolderDelete} />
+          )}
       </Container>
       <Container component={'div'} sx={{ flex: '0' }}>
         <TextField

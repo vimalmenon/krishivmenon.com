@@ -14,6 +14,7 @@ High Priority:
   UI for unauthorized page
   Add framer for animation
   First reload gives an issue with api refresh token (Bug)
+  Need to show loading animation
 Medium Priority
   Increase the coverage to 80%
   Pre signed image on request

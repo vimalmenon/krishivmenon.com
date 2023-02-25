@@ -4,9 +4,9 @@ import { IFileUploadExternal } from 'src/Common/FileUpload/FileUpload';
 export interface IGalleryContext extends IFileUploadExternal {
   currentFolder: string;
   folderMap: Record<string, IGalleryFolder>;
-  addEditFolder: IFolder | null;
+  addEditFolder: IGalleryFolder | null;
   onFolderSelect: IGenericParam<IGalleryFolder>;
-  setAddEditFolder: React.Dispatch<React.SetStateAction<IFolder | null>>;
+  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
   onFolderUpdate: (folders: IFolder[], currentFolder: IGalleryFolder) => void;
   deleteConfirm: boolean;
   setDeleteConfirm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,14 +20,14 @@ export interface IUseGallery {
 }
 
 export interface IUseCommonGalleryContext extends IFileUploadExternal {
-  addEditFolder: IFolder | null;
+  addEditFolder: IGalleryFolder | null;
   folderMap: Record<string, IGalleryFolder>;
   onFolderAdd: IGenericMethod;
   onSelectedFolderCancel: IGenericMethod;
   currentFolder: string;
   onFolderDelete: IGenericMethod;
   onAddFolderSave: IGenericReturn<Promise<unknown>>;
-  setAddEditFolder: React.Dispatch<React.SetStateAction<IFolder | null>>;
+  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
   onFolderSelect: IGenericParam<IGalleryFolder>;
   onSelectedFolderLabelUpdate: IGenericParam<string>;
   onFolderDeleteConfirm: IGenericMethod;

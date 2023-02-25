@@ -18,6 +18,7 @@ export interface IIcon<T> {
   Icon: T;
   label?: string;
   onClick?: IGenericMethod;
+  edge?: false | 'end' | 'start' | undefined;
 }
 
 export interface IIconStatic<T> {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { AcceptVideo, AcceptImages } from '@constant';
 import { useCommonApiContext } from '@context';
-import { IFolder, IGenericMethod, IGenericParam, IGenericReturn } from '@types';
+import { IFile, IFolder, IGenericMethod, IGenericParam, IGenericReturn } from '@types';
 import { apis, NotImplemented } from '@utility';
 
 import { IGalleryContext, IGalleryFolder, IUseGallery, IUseCommonGalleryContext } from './Gallery';
@@ -25,7 +25,6 @@ const rootFolder: IGalleryFolder = {
 };
 
 export const initialContextValue: IGalleryContext = {
-  loading: false,
   currentFolder: rootFolder.id,
   addEditFolder: null,
   setAddEditFolder: NotImplemented,
@@ -51,7 +50,6 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
   const {
     files,
     accept,
-    loading,
     folderMap,
     onDeleteFile,
     addEditFolder,
@@ -133,7 +131,6 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
   return {
     files,
     accept,
-    loading,
     folderMap,
     uploadFiles,
     onFolderAdd,
@@ -161,7 +158,6 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
 };
 
 export const useGallery: IGenericReturn<IUseGallery> = () => {
-  const [loading, setLoading] = React.useState<boolean>(initialContextValue.loading);
   const [folderMap, setFolderMap] = React.useState<Record<string, IGalleryFolder>>(
     initialContextValue.folderMap
   );
@@ -172,39 +168,32 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
     folder: IGalleryFolder,
     breadcrumbs: string[]
   ): Promise<void> => {
-    setFolderMap((folderMap) => {
-      return {
-        ...folderMap,
-        [folder.id]: {
-          ...folder,
-        },
-      };
-    });
     const result = await makeApiCall<IFolder[]>(apis.getFolderByParent({ id: folder.id }));
-    await Promise.all(
-      result.map(async (value) => {
-        setFolderMap((folderMap) => {
-          const parentFolder = folderMap[folder.id];
-          return {
-            ...folderMap,
-            [parentFolder.id]: {
-              ...parentFolder,
-              folders: [...parentFolder.folders, value.id],
-            },
-          };
-        });
-        const result = await createFolderMapping(
-          {
+    const folders = result.map((value) => {
+      setFolderMap((folderMap) => {
+        return {
+          ...folderMap,
+          [value.id]: {
             ...value,
             loading: true,
             breadcrumbs: [...breadcrumbs, value.id],
             folders: [],
+            files: [],
           },
-          [...breadcrumbs, value.id]
-        );
-        return result;
-      })
-    );
+        };
+      });
+      createFolderMapping(
+        {
+          ...value,
+          loading: true,
+          breadcrumbs: [...breadcrumbs, value.id],
+          folders: [],
+        },
+        [...breadcrumbs, value.id]
+      );
+      return value.id;
+    });
+    const files = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: folder.id }));
     setFolderMap((folderMap) => {
       const parentFolder = folderMap[folder.id];
       return {
@@ -212,6 +201,8 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
         [folder.id]: {
           ...parentFolder,
           loading: false,
+          folders,
+          files,
         },
       };
     });
@@ -247,15 +238,11 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
   };
   React.useEffect(() => {
     if (ref.current) {
-      setLoading(true);
-      createFolderMapping(rootFolder, rootFolder.breadcrumbs).then(() => {
-        setLoading(false);
-      });
+      createFolderMapping(rootFolder, rootFolder.breadcrumbs);
       ref.current = false;
     }
   }, []);
   return {
-    loading,
     folderMap,
     currentFolder,
     onFolderSelect,

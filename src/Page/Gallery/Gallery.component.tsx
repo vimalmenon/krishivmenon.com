@@ -37,7 +37,7 @@ export const Gallery: React.FC = () => {
   const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(
     initialContextValue.deleteConfirm
   );
-  const { loading, currentFolder, folderMap, onFolderSelect, onFolderUpdate } = useGallery();
+  const { currentFolder, folderMap, onFolderSelect, onFolderUpdate } = useGallery();
   const {
     files,
     onDropAccepted,
@@ -51,7 +51,6 @@ export const Gallery: React.FC = () => {
     <GalleryContext.Provider
       value={{
         files,
-        loading,
         folderMap,
         onDeleteFile,
         currentFolder,
@@ -69,7 +68,7 @@ export const Gallery: React.FC = () => {
         accept: initialContextValue.accept,
       }}
     >
-      {loading ? <div>...Loading</div> : <GalleryChildren />}
+      <GalleryChildren />
     </GalleryContext.Provider>
   );
 };

@@ -12,11 +12,15 @@ export const GalleryContent: React.FC = () => {
   const { folderMap, currentFolder, addEditFolder, showFileUploader } = useCommonGallery();
   return (
     <GalleryContentRoot>
-      <GalleryContentFiles>
-        {folderMap[currentFolder].folders.map((value) => {
-          return <GalleryFolder key={value} folder={folderMap[value]} />;
-        })}
-      </GalleryContentFiles>
+      {folderMap.root.loading ? (
+        <div>Loading...</div>
+      ) : (
+        <GalleryContentFiles>
+          {folderMap[currentFolder].folders.map((value) => {
+            return <GalleryFolder key={value} folder={folderMap[value]} />;
+          })}
+        </GalleryContentFiles>
+      )}
       <GalleryContentExtra>
         {addEditFolder && <AddEditFolder />}
         {showFileUploader && <UploadFiles />}

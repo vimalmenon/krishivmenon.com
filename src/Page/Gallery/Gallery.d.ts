@@ -8,7 +8,6 @@ export interface IGalleryFolder extends IFolder {
 }
 
 export interface IGalleryContext extends IFileUploadExternal {
-  loading: boolean;
   currentFolder: string;
   folderMap: Record<string, IGalleryFolder>;
   addEditFolder: IFolder | null;
@@ -20,7 +19,6 @@ export interface IGalleryContext extends IFileUploadExternal {
 }
 
 export interface IUseGallery {
-  loading: boolean;
   folderMap: Record<string, IGalleryFolder>;
   currentFolder: string;
   onFolderSelect: IGenericParam<IGalleryFolder>;
@@ -28,7 +26,6 @@ export interface IUseGallery {
 }
 
 export interface IUseCommonGalleryContext extends IFileUploadExternal {
-  loading: boolean;
   addEditFolder: IFolder | null;
   folderMap: Record<string, IGalleryFolder>;
   onFolderAdd: IGenericMethod;

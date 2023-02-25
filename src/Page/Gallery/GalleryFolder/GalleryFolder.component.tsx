@@ -11,11 +11,11 @@ import {
   FolderDetailStyle,
 } from './GalleryFolder.style';
 
-export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder }) => {
+export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) => {
   const { onFinalDoubleClick, onFinalSingleClick } = useGalleryFolder(folder);
   const { onClick } = useClick(onFinalSingleClick, onFinalDoubleClick);
   return (
-    <FolderStyleRoot onClick={onClick}>
+    <FolderStyleRoot onClick={onClick} className={isSelected ? 'active' : ''}>
       <FolderIconStyle>
         <Icon.icons.Folder fontSize="large" />
       </FolderIconStyle>

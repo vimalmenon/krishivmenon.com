@@ -4,6 +4,7 @@ import { Profile } from '@common';
 import { useCommonAuthProvider } from '@context';
 import { navigation } from '@data';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
@@ -27,7 +28,7 @@ export const SideNavigation: React.FC = () => {
       <SideNavigationList dense>
         <ListItemButton onClick={() => setCollapseNavigation(!collapseNavigation)}>
           <ListItemText primary="Navigation" />
-          <KeyboardArrowDownRoundedIcon />
+          {collapseNavigation ? <KeyboardArrowUpRoundedIcon /> : <KeyboardArrowDownRoundedIcon />}
         </ListItemButton>
         <Collapse in={collapseNavigation}>
           {NavigationList.map((navigation) => {
@@ -50,7 +51,7 @@ export const SideNavigation: React.FC = () => {
         <Divider />
         <ListItemButton onClick={() => setCollapseOthers(!collapseOthers)}>
           <ListItemText primary="Other" />
-          <KeyboardArrowDownRoundedIcon />
+          {collapseOthers ? <KeyboardArrowUpRoundedIcon /> : <KeyboardArrowDownRoundedIcon />}
         </ListItemButton>
         <Collapse in={collapseOthers}>
           <ListItemButton onClick={signOut}>

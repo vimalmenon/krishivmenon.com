@@ -26,7 +26,13 @@ export const GalleryContent: React.FC = () => {
           </div>
           <GalleryContentFolder>
             {folderMap[currentFolder].folders.map((value) => {
-              return <GalleryFolder key={value} folder={folderMap[value]} />;
+              return (
+                <GalleryFolder
+                  key={value}
+                  folder={folderMap[value]}
+                  isSelected={addEditFolder?.id === value}
+                />
+              );
             })}
           </GalleryContentFolder>
           <div>

@@ -1,3 +1,4 @@
+import { grey, blueGrey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
 export const FolderStyleRoot = styled('div')(({ theme }) => {
@@ -11,6 +12,9 @@ export const FolderStyleRoot = styled('div')(({ theme }) => {
     userSelect: 'none',
     gridTemplate: `"folder-icon" "folder-label" "folder-detail"`,
     gridTemplateRows: '1fr auto auto',
+    '&.active': {
+      background: theme.palette.mode === 'dark' ? grey[900] : blueGrey[50],
+    },
   };
 });
 

@@ -5,8 +5,9 @@ Finished Task:
   Basic Layout and Responsive UI
   Get Image for the gallery
 High Priority:
-  Need to clean up S3 bucket Next time
+  Need to clean up S3 bucket next time before upload
   Better Loading for notes
+  Loading on gallery
   Ability to Logout from UI
   Need to work on logout of auth
   Improve UI for 400 Page
@@ -14,10 +15,11 @@ High Priority:
   UI for unauthorized page
   Add framer for animation
   First reload gives an issue with api refresh token (Bug)
-  Need to show loading animation
+  Need to show loading animation on delete, add and update
+  Need to work on Delete of files
+  Show image in the full screen mode
 Medium Priority
   Increase the coverage to 80%
-  Pre signed image on request
   Ability to invalidate the Id token
   Need to create a tags for notes and Library
   Create content for Home page
@@ -33,6 +35,7 @@ Less Priority
   Logging for S3 Bucket for static website
   Add favicon
   Add images
+  Pre signed image on request
 
 
 https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html

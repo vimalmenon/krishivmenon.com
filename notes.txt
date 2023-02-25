@@ -3,18 +3,16 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
   Basic Layout and Responsive UI
+  Get Image for the gallery
 High Priority:
   Need to clean up S3 bucket Next time
   Better Loading for notes
-  Need to work on redirect rules
-  Google picture is giving error
   Ability to Logout from UI
   Need to work on logout of auth
   Improve UI for 400 Page
   Improved UI for Gallery
   UI for unauthorized page
   Add framer for animation
-  Get Image for the gallery
   First reload gives an issue with api refresh token (Bug)
 Medium Priority
   Increase the coverage to 80%

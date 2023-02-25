@@ -11,6 +11,13 @@ export const GalleryContentRoot = styled('section')(({ theme }) => {
   };
 });
 
+export const GalleryContentFolder = styled('div')(({ theme }) => {
+  return {
+    display: 'grid',
+    gap: theme.spacing(2),
+    gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+  };
+});
 export const GalleryContentFiles = styled('div')(({ theme }) => {
   return {
     display: 'grid',
@@ -21,10 +28,10 @@ export const GalleryContentFiles = styled('div')(({ theme }) => {
 
 export const GalleryContentFilesRoot = styled('div')(({ theme }) => {
   return {
-    display: 'grid',
+    display: 'flex',
     gridArea: 'gallery-content-files',
     gap: theme.spacing(2),
-    gridTemplateRows: 'auto 1fr',
+    flexDirection: 'column',
   };
 });
 

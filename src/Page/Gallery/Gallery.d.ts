@@ -1,11 +1,5 @@
-import { IFolder, IGenericMethod, IGenericParam } from '@types';
+import { IFolder, IGenericMethod, IGenericParam, IGalleryFolder } from '@types';
 import { IFileUploadExternal } from 'src/Common/FileUpload/FileUpload';
-
-export interface IGalleryFolder extends IFolder {
-  breadcrumbs: string[];
-  folders: string[];
-  loading: boolean;
-}
 
 export interface IGalleryContext extends IFileUploadExternal {
   currentFolder: string;

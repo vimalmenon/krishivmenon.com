@@ -40,7 +40,7 @@ export const GalleryContent: React.FC = () => {
                     src={`${ENV.S3_BUCKET}/${file.path}`}
                     alt={file.name}
                     height={'200px'}
-                    width={'150'}
+                    width={'150px'}
                   />
                 </div>
               );

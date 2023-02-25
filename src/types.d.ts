@@ -54,8 +54,6 @@ export interface IBaseContent {
 }
 
 export interface IBaseDB {
-  appKey?: string;
-  sortKey?: string;
   createdBy?: string;
   createdDate?: string;
   updatedDate?: string;
@@ -66,6 +64,12 @@ export interface IFolder extends IBaseDB {
   metadata?: Record<string, string>;
   label: string;
   parent: string;
+}
+
+export interface IGalleryFolder extends IFolder {
+  breadcrumbs: string[];
+  folders: string[];
+  loading: boolean;
   files: IFile[];
 }
 

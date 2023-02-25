@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { IGeneric, IGenericMethod, IGenericParam } from '@types';
+import { IGeneric, IGenericMethod, IGenericParam, IGalleryFolder } from '@types';
 
 import { IUseClick, IUseGalleryFolder } from './GalleryFolder';
-import { IGalleryFolder } from '../Gallery';
 import { useCommonGallery } from '../Gallery.service';
 
 export const useGalleryFolder: IGeneric<IGalleryFolder, IUseGalleryFolder> = (folder) => {

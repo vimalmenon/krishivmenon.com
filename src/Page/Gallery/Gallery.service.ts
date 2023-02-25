@@ -2,16 +2,22 @@ import React from 'react';
 
 import { AcceptVideo, AcceptImages } from '@constant';
 import { useCommonApiContext } from '@context';
-import { IFile, IFolder, IGenericMethod, IGenericParam, IGenericReturn } from '@types';
+import {
+  IFile,
+  IFolder,
+  IGenericMethod,
+  IGenericParam,
+  IGenericReturn,
+  IGalleryFolder,
+} from '@types';
 import { apis, NotImplemented } from '@utility';
 
-import { IGalleryContext, IGalleryFolder, IUseGallery, IUseCommonGalleryContext } from './Gallery';
+import { IGalleryContext, IUseGallery, IUseCommonGalleryContext } from './Gallery';
 
 const initialValue: IFolder = {
   id: '',
   parent: 'root',
   label: '',
-  files: [],
 };
 
 const rootFolder: IGalleryFolder = {
@@ -188,6 +194,7 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
           loading: true,
           breadcrumbs: [...breadcrumbs, value.id],
           folders: [],
+          files: [],
         },
         [...breadcrumbs, value.id]
       );
@@ -221,6 +228,7 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
           loading: true,
           breadcrumbs: [...currentFolder.breadcrumbs, data.id],
           folders: [],
+          files: [],
         },
         [...currentFolder.breadcrumbs, data.id]
       );

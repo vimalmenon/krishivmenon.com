@@ -44,6 +44,7 @@ https://mui.com/joy-ui/getting-started/templates/files/
 
 
 https://tokyo-black-nextjs.bloomui.com/applications/jobs-platform
+https://mantisdashboard.io/apps/profiles/account/basic
 
 KM - Krishiv Menon
 VM - Vimal Menon

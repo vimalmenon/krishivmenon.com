@@ -4,7 +4,6 @@ export interface IApiS3Folder {
 export interface IApiStorageApi extends IApiS3Folder {
   fileName: string;
   file?: File;
-  fileType: string;
 }
 
 export interface IApiNote {

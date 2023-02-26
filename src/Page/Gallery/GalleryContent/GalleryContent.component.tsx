@@ -11,11 +11,18 @@ import {
 import { AddEditFolder } from '../AddEditFolder';
 import { useCommonGallery } from '../Gallery.service';
 import { GalleryFolder } from '../GalleryFolder';
+import { SelectedFile } from '../SelectedFile';
 import { UploadFiles } from '../UploadFiles';
 
 export const GalleryContent: React.FC = () => {
-  const { folderMap, currentFolder, addEditFolder, showFileUploader, setSelectedFile } =
-    useCommonGallery();
+  const {
+    folderMap,
+    currentFolder,
+    addEditFolder,
+    showFileUploader,
+    setSelectedFile,
+    selectedFile,
+  } = useCommonGallery();
   return (
     <GalleryContentRoot>
       {folderMap.root.loading ? (
@@ -42,13 +49,12 @@ export const GalleryContent: React.FC = () => {
           <GalleryContentFiles>
             {folderMap[currentFolder].files.map((file) => {
               return (
-                <div key={file.id}>
+                <div key={file.id} role="presentation" onClick={() => setSelectedFile(file)}>
                   <img
                     src={`${ENV.S3_BUCKET}/${file.path}`}
                     alt={file.name}
                     height={'200px'}
                     width={'175px'}
-                    onClick={() => setSelectedFile(file)}
                   />
                   {file.name}
                 </div>
@@ -60,6 +66,7 @@ export const GalleryContent: React.FC = () => {
       <GalleryContentExtra>
         {addEditFolder && <AddEditFolder />}
         {showFileUploader && <UploadFiles />}
+        {selectedFile && <SelectedFile />}
       </GalleryContentExtra>
     </GalleryContentRoot>
   );

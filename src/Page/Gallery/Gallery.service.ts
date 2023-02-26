@@ -142,6 +142,11 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
       })
     );
   };
+  const onFileDelete: IGenericMethod = () => {
+    if (selectedFile) {
+      makeApiCall(apis.deleteFromS3({ folder: currentFolder, fileName: selectedFile.id }));
+    }
+  };
   return {
     files,
     accept,
@@ -169,6 +174,7 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     closeShowUploadFolder,
     onSelectedFolderCancel,
     toggleShowUploadFolder,
+    onFileDelete,
     onSelectedFolderLabelUpdate,
   };
 };

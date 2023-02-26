@@ -41,4 +41,5 @@ export interface IUseCommonGalleryContext extends IFileUploadExternal {
   uploadFiles: IGenericMethod;
   selectedFile: IFile | null;
   setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
+  onFileDelete: IGenericMethod;
 }

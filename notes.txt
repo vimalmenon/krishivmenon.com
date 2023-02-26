@@ -18,8 +18,7 @@ High Priority:
   Need to show loading animation on delete, add and update
   Need to work on Delete of files
   Show image in the full screen mode (Lightbox)
-  Bug with create Folder(gives Error)
-  Bug with  update Folder(doesn't update folder name)
+  Need to work on loading icon for delete
 Medium Priority
   Increase the coverage to 80%
   Ability to invalidate the Id token

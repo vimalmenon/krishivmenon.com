@@ -23,8 +23,12 @@ export const Confirm: React.FC<IConfirm & ReactChildren> = ({
     >
       <Dialog.Body>{children}</Dialog.Body>
       <Dialog.Footer>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleConfirm}>Confirm</Button>
+        <Button variant="outlined" onClick={handleClose}>
+          Cancel
+        </Button>
+        <Button variant="contained" onClick={handleConfirm}>
+          Confirm
+        </Button>
       </Dialog.Footer>
     </Dialog>
   );

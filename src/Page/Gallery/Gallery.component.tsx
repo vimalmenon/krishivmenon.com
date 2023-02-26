@@ -43,12 +43,12 @@ export const Gallery: React.FC = () => {
   const { currentFolder, folderMap, onFolderSelect, onFolderUpdate } = useGallery();
   const {
     files,
+    onDeleteFile,
     onDropAccepted,
     onDropRejected,
-    onDeleteFile,
+    onFileSetLoading,
     showFileUploader,
     setShowFileUploader,
-    onFileSetLoading,
   } = useFileUpload();
   return (
     <GalleryContext.Provider

@@ -19,6 +19,7 @@ High Priority:
   Need to work on Delete of files
   Show image in the full screen mode (Lightbox)
   Need to work on loading icon for delete
+  Support for HEIC files
 Medium Priority
   Increase the coverage to 80%
   Ability to invalidate the Id token

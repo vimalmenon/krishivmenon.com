@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Confirm, useFileUpload } from '@common';
-import { IGalleryFolder } from '@types';
+import { IFile, IGalleryFolder } from '@types';
 
 import {
   useGallery,
@@ -34,6 +34,9 @@ export const Gallery: React.FC = () => {
   const [addEditFolder, setAddEditFolder] = React.useState<IGalleryFolder | null>(
     initialContextValue.addEditFolder
   );
+  const [selectedFile, setSelectedFile] = React.useState<IFile | null>(
+    initialContextValue.selectedFile
+  );
   const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(
     initialContextValue.deleteConfirm
   );
@@ -52,6 +55,7 @@ export const Gallery: React.FC = () => {
       value={{
         files,
         folderMap,
+        selectedFile,
         onDeleteFile,
         currentFolder,
         addEditFolder,
@@ -64,6 +68,7 @@ export const Gallery: React.FC = () => {
         onFileSetLoading,
         showFileUploader,
         setDeleteConfirm,
+        setSelectedFile,
         setShowFileUploader,
         accept: initialContextValue.accept,
       }}

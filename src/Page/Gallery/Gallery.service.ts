@@ -52,6 +52,8 @@ export const initialContextValue: IGalleryContext = {
   accept: { ...AcceptVideo, ...AcceptImages },
   onDropAccepted: NotImplemented,
   onDeleteFile: NotImplemented,
+  selectedFile: null,
+  setSelectedFile: NotImplemented,
 };
 
 export const GalleryContext = React.createContext<IGalleryContext>(initialContextValue);
@@ -61,6 +63,8 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     files,
     accept,
     folderMap,
+    selectedFile,
+    setSelectedFile,
     onDeleteFile,
     addEditFolder,
     currentFolder,
@@ -146,6 +150,7 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     onFolderAdd,
     onDeleteFile,
     addEditFolder,
+    selectedFile,
     currentFolder,
     deleteConfirm,
     onDropRejected,
@@ -153,9 +158,10 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     onFolderDelete,
     onFolderSelect,
     onAddFolderSave,
-    setAddEditFolder,
+    setSelectedFile,
     showFileUploader,
     onFileSetLoading,
+    setAddEditFolder,
     setShowFileUploader,
     openShowUploadFolder,
     onFolderDeleteConfirm,

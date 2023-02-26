@@ -14,7 +14,8 @@ import { GalleryFolder } from '../GalleryFolder';
 import { UploadFiles } from '../UploadFiles';
 
 export const GalleryContent: React.FC = () => {
-  const { folderMap, currentFolder, addEditFolder, showFileUploader } = useCommonGallery();
+  const { folderMap, currentFolder, addEditFolder, showFileUploader, setSelectedFile } =
+    useCommonGallery();
   return (
     <GalleryContentRoot>
       {folderMap.root.loading ? (
@@ -47,6 +48,7 @@ export const GalleryContent: React.FC = () => {
                     alt={file.name}
                     height={'200px'}
                     width={'175px'}
+                    onClick={() => setSelectedFile(file)}
                   />
                   {file.name}
                 </div>

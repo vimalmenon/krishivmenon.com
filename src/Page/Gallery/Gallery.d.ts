@@ -1,4 +1,4 @@
-import { IFolder, IGenericMethod, IGenericParam, IGalleryFolder } from '@types';
+import { IFolder, IGenericMethod, IGenericParam, IGalleryFolder, IFile } from '@types';
 import { IFileUploadExternal } from 'src/Common/FileUpload/FileUpload';
 
 export interface IGalleryContext extends IFileUploadExternal {
@@ -9,6 +9,8 @@ export interface IGalleryContext extends IFileUploadExternal {
   setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
   onFolderUpdate: (folders: IFolder[], currentFolder: IGalleryFolder) => void;
   deleteConfirm: boolean;
+  selectedFile: IFile | null;
+  setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
   setDeleteConfirm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -37,4 +39,6 @@ export interface IUseCommonGalleryContext extends IFileUploadExternal {
   onDeleteConfirmCancel: IGenericMethod;
   toggleShowUploadFolder: IGenericMethod;
   uploadFiles: IGenericMethod;
+  selectedFile: IFile | null;
+  setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
 }

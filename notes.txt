@@ -17,17 +17,17 @@ High Priority:
   First reload gives an issue with api refresh token (Bug)
   Need to show loading animation on delete, add and update
   Need to work on Delete of files
-  Show image in the full screen mode
+  Show image in the full screen mode (Lightbox)
+  Bug with create Folder(gives Error)
+  Bug with  update Folder(doesn't update folder name)
 Medium Priority
   Increase the coverage to 80%
   Ability to invalidate the Id token
   Need to create a tags for notes and Library
   Create content for Home page
-  Need to build 500 page
   Responsive UI for Gallery
   Responsive UI for Notes
   Create Release Page
-  Need to work on loading indicator on sign in page
 Less Priority
   Setting up sonar
   Search for library for Image viewer

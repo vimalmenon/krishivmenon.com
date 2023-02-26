@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icon } from '@common';
+import { Icon, PromiseLoadingButton } from '@common';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -55,10 +55,14 @@ export const AddEditFolder: React.FC = () => {
         &nbsp;
       </Container>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
-        <Button variant="contained" onClick={onAddFolderSave}>
-          {addEditFolder?.id ? 'Update' : 'Create'}
-        </Button>
-        <Button variant="contained" onClick={onSelectedFolderCancel}>
+        <PromiseLoadingButton
+          variant="contained"
+          onClick={onAddFolderSave}
+          startIcon={<Icon.icons.Save />}
+        >
+          <span>{addEditFolder?.id ? 'Update' : 'Create'}</span>
+        </PromiseLoadingButton>
+        <Button variant="outlined" onClick={onSelectedFolderCancel}>
           Cancel
         </Button>
       </Container>

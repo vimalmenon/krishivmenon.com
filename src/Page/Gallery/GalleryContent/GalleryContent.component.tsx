@@ -50,12 +50,7 @@ export const GalleryContent: React.FC = () => {
             {folderMap[currentFolder].files.map((file) => {
               return (
                 <div key={file.id} role="presentation" onClick={() => setSelectedFile(file)}>
-                  <img
-                    src={`${ENV.S3_BUCKET}/${file.path}`}
-                    alt={file.name}
-                    height={'200px'}
-                    width={'175px'}
-                  />
+                  <img src={`${ENV.S3_BUCKET}/${file.path}`} alt={file.name} width={'175px'} />
                   {file.name}
                 </div>
               );

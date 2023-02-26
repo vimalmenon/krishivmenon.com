@@ -239,6 +239,18 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
     currentFolder: IGalleryFolder
   ): Promise<void> => {
     const folderIds = folders.map((data) => {
+      setFolderMap((folderMap) => {
+        return {
+          ...folderMap,
+          [data.id]: {
+            ...data,
+            loading: true,
+            breadcrumbs: [...currentFolder.breadcrumbs, data.id],
+            folders: [],
+            files: [],
+          },
+        };
+      });
       createFolderMapping(
         {
           ...data,

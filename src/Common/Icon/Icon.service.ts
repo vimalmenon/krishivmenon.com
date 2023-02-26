@@ -8,6 +8,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import FolderIcon from '@mui/icons-material/Folder';
 import HomeIcon from '@mui/icons-material/Home';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import SaveIcon from '@mui/icons-material/Save';
 
 import { GoogleIcon } from './custom';
@@ -26,4 +28,6 @@ export const CommonIcons: Record<IconTypes, typeof SaveIcon | typeof GoogleIcon>
   Check: CheckIcon,
   Folder: FolderIcon,
   CloudUpload: CloudUploadIcon,
+  UpArrow: KeyboardArrowUpRoundedIcon,
+  DownArrow: KeyboardArrowDownRoundedIcon,
 };

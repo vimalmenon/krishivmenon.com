@@ -1,4 +1,6 @@
+import { Icon } from '@common';
 import { ENV } from '@constant';
+import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 
 import {
@@ -30,7 +32,9 @@ export const GalleryContent: React.FC = () => {
       ) : (
         <GalleryContentFilesRoot>
           <div>
-            <Divider textAlign="left">Folders</Divider>
+            <Divider textAlign="left">
+              <Chip label="Folders" icon={<Icon.icons.UpArrow />} />
+            </Divider>
           </div>
           <GalleryContentFolder>
             {folderMap[currentFolder].folders.map((value) => {
@@ -44,7 +48,9 @@ export const GalleryContent: React.FC = () => {
             })}
           </GalleryContentFolder>
           <div>
-            <Divider textAlign="left">Files</Divider>
+            <Divider textAlign="left">
+              <Chip label="Files" icon={<Icon.icons.UpArrow />} />
+            </Divider>
           </div>
           <GalleryContentFiles>
             {folderMap[currentFolder].files.map((file) => {

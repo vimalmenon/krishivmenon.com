@@ -1,4 +1,4 @@
-import { FileUpload } from '@common';
+import { FileUpload, Icon } from '@common';
 import Button from '@mui/material/Button';
 import { Container } from '@style';
 
@@ -27,10 +27,15 @@ export const UploadFiles: React.FC = () => {
         />
       </Container>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
-        <Button variant="contained" disabled={!files.length} onClick={uploadFiles}>
+        <Button
+          variant="contained"
+          disabled={!files.length}
+          onClick={uploadFiles}
+          startIcon={<Icon.icons.CloudUpload />}
+        >
           Upload
         </Button>
-        <Button variant="contained" onClick={toggleShowUploadFolder}>
+        <Button variant="outlined" onClick={toggleShowUploadFolder}>
           Cancel
         </Button>
       </Container>

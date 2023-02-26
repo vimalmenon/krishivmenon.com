@@ -27,9 +27,15 @@ export const GalleryHeader: React.FC = () => {
         </div>
         <div>
           {folderMap[currentFolder].id !== 'root' && (
-            <Icon Icon={Icon.icons.CloudUpload} label="Upload" onClick={toggleShowUploadFolder} />
+            <Icon
+              Icon={Icon.icons.CloudUpload}
+              label="Upload files"
+              onClick={toggleShowUploadFolder}
+            />
           )}
-          <Icon Icon={Icon.icons.Add} label="Add Folder" onClick={onFolderAdd} />
+          {folderMap[currentFolder].breadcrumbs.length < 4 && (
+            <Icon Icon={Icon.icons.Add} label="Add folder" onClick={onFolderAdd} />
+          )}
         </div>
       </Container>
     </GalleryHeaderRoot>

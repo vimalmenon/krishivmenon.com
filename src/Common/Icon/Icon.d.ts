@@ -12,7 +12,9 @@ export type IconTypes =
   | 'Add'
   | 'Check'
   | 'Folder'
-  | 'CloudUpload';
+  | 'CloudUpload'
+  | 'UpArrow'
+  | 'DownArrow';
 
 export interface IIcon<T> {
   Icon: T;

@@ -6,10 +6,10 @@ import { apis } from '@data';
 import {
   IFile,
   IFolder,
-  IGenericMethod,
   IGenericParam,
   IGenericReturn,
   IGalleryFolder,
+  IGenericMethod,
 } from '@types';
 import { NotImplemented } from '@utility';
 
@@ -17,44 +17,44 @@ import { IGalleryContext, IUseGallery, IUseCommonGalleryContext } from './Galler
 
 const initialValue: IGalleryFolder = {
   id: '',
-  parent: 'root',
   label: '',
-  breadcrumbs: [],
+  files: [],
   folders: [],
   loading: false,
-  files: [],
+  parent: 'root',
+  breadcrumbs: [],
 };
 
 const rootFolder: IGalleryFolder = {
-  breadcrumbs: ['root'],
+  files: [],
+  id: 'root',
+  parent: '',
   folders: [],
   loading: true,
-  id: 'root',
   label: 'My Gallery',
-  parent: '',
-  files: [],
+  breadcrumbs: ['root'],
 };
 
 export const initialContextValue: IGalleryContext = {
-  currentFolder: rootFolder.id,
+  files: [],
+  selectedFile: null,
   addEditFolder: null,
-  setAddEditFolder: NotImplemented,
-  onFolderSelect: NotImplemented,
-  onFolderUpdate: NotImplemented,
   deleteConfirm: false,
+  showFileUploader: false,
+  onDeleteFile: NotImplemented,
+  currentFolder: rootFolder.id,
+  onFolderUpdate: NotImplemented,
+  onFolderSelect: NotImplemented,
+  onDropAccepted: NotImplemented,
+  setSelectedFile: NotImplemented,
   setDeleteConfirm: NotImplemented,
+  setAddEditFolder: NotImplemented,
+  onFileSetLoading: NotImplemented,
+  setShowFileUploader: NotImplemented,
+  accept: { ...AcceptVideo, ...AcceptImages },
   folderMap: {
     [rootFolder.id]: rootFolder,
   },
-  showFileUploader: false,
-  onFileSetLoading: NotImplemented,
-  setShowFileUploader: NotImplemented,
-  files: [],
-  accept: { ...AcceptVideo, ...AcceptImages },
-  onDropAccepted: NotImplemented,
-  onDeleteFile: NotImplemented,
-  selectedFile: null,
-  setSelectedFile: NotImplemented,
 };
 
 export const GalleryContext = React.createContext<IGalleryContext>(initialContextValue);
@@ -65,7 +65,6 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     accept,
     folderMap,
     selectedFile,
-    setSelectedFile,
     onDeleteFile,
     addEditFolder,
     currentFolder,
@@ -74,6 +73,7 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     onFolderSelect,
     onDropRejected,
     onDropAccepted,
+    setSelectedFile,
     onFileSetLoading,
     setAddEditFolder,
     setDeleteConfirm,

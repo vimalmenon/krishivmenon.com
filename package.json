@@ -25,6 +25,7 @@
     "@emotion/styled": "^11.10.6",
     "@fontsource/public-sans": "^4.5.12",
     "@mui/icons-material": "^5.11.9",
+    "@mui/lab": "^5.0.0-alpha.120",
     "@mui/material": "^5.11.10",
     "@mui/system": "^5.11.9",
     "@next/font": "13.2.1",

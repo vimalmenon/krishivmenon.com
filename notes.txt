@@ -42,6 +42,9 @@ https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html
 https://docs.aws.amazon.com/cognito/latest/developerguide/logout-endpoint.html
 https://mui.com/joy-ui/getting-started/templates/files/
 
+
+https://tokyo-black-nextjs.bloomui.com/applications/jobs-platform
+
 KM - Krishiv Menon
 VM - Vimal Menon
 NK - Nitya Kurup

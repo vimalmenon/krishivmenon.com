@@ -2,6 +2,7 @@ import React from 'react';
 
 import { AcceptVideo, AcceptImages } from '@constant';
 import { useCommonApiContext } from '@context';
+import { apis } from '@data';
 import {
   IFile,
   IFolder,
@@ -10,7 +11,7 @@ import {
   IGenericReturn,
   IGalleryFolder,
 } from '@types';
-import { apis, NotImplemented } from '@utility';
+import { NotImplemented } from '@utility';
 
 import { IGalleryContext, IUseGallery, IUseCommonGalleryContext } from './Gallery';
 

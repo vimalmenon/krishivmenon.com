@@ -23,6 +23,8 @@ const initialValue: IGalleryFolder = {
   loading: false,
   parent: 'root',
   breadcrumbs: [],
+  isFolderFolded: false,
+  isFileFolded: false,
 };
 
 const rootFolder: IGalleryFolder = {
@@ -33,6 +35,8 @@ const rootFolder: IGalleryFolder = {
   loading: true,
   label: 'My Gallery',
   breadcrumbs: ['root'],
+  isFolderFolded: false,
+  isFileFolded: false,
 };
 
 export const initialContextValue: IGalleryContext = {
@@ -41,6 +45,7 @@ export const initialContextValue: IGalleryContext = {
   addEditFolder: null,
   deleteConfirm: false,
   showFileUploader: false,
+  setFolderMap: NotImplemented,
   onDeleteFile: NotImplemented,
   currentFolder: rootFolder.id,
   onFolderUpdate: NotImplemented,
@@ -69,6 +74,7 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     addEditFolder,
     currentFolder,
     deleteConfirm,
+    setFolderMap,
     onFolderUpdate,
     onFolderSelect,
     onDropRejected,
@@ -148,17 +154,42 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
       makeApiCall(apis.deleteFromS3({ folder: currentFolder, fileName: selectedFile.id }));
     }
   };
+  const onFolderToggle: IGenericParam<IGalleryFolder> = (folder) => {
+    setFolderMap((folderMap) => {
+      return {
+        ...folderMap,
+        [folder.id]: {
+          ...folder,
+          isFolderFolded: !folder.isFolderFolded,
+        },
+      };
+    });
+  };
+  const onFileToggle: IGenericParam<IGalleryFolder> = (folder) => {
+    setFolderMap((folderMap) => {
+      return {
+        ...folderMap,
+        [folder.id]: {
+          ...folder,
+          isFileFolded: !folder.isFileFolded,
+        },
+      };
+    });
+  };
   return {
     files,
     accept,
     folderMap,
     uploadFiles,
     onFolderAdd,
+    onFileDelete,
     onDeleteFile,
+    onFileToggle,
     addEditFolder,
     selectedFile,
     currentFolder,
     deleteConfirm,
+    onFolderToggle,
     onDropRejected,
     onDropAccepted,
     onFolderDelete,
@@ -175,7 +206,6 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     closeShowUploadFolder,
     onSelectedFolderCancel,
     toggleShowUploadFolder,
-    onFileDelete,
     onSelectedFolderLabelUpdate,
   };
 };
@@ -202,6 +232,8 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
             breadcrumbs: [...breadcrumbs, value.id],
             folders: [],
             files: [],
+            isFolderFolded: false,
+            isFileFolded: false,
           },
         };
       });
@@ -212,6 +244,8 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
           breadcrumbs: [...breadcrumbs, value.id],
           folders: [],
           files: [],
+          isFolderFolded: false,
+          isFileFolded: false,
         },
         [...breadcrumbs, value.id]
       );
@@ -248,6 +282,8 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
             breadcrumbs: [...currentFolder.breadcrumbs, data.id],
             folders: [],
             files: [],
+            isFolderFolded: false,
+            isFileFolded: false,
           },
         };
       });
@@ -258,6 +294,8 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
           breadcrumbs: [...currentFolder.breadcrumbs, data.id],
           folders: [],
           files: [],
+          isFolderFolded: false,
+          isFileFolded: false,
         },
         [...currentFolder.breadcrumbs, data.id]
       );
@@ -281,6 +319,7 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
   }, []);
   return {
     folderMap,
+    setFolderMap,
     currentFolder,
     onFolderSelect,
     onFolderUpdate,

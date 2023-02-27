@@ -71,6 +71,8 @@ export interface IGalleryFolder extends IFolder {
   folders: string[];
   loading: boolean;
   files: IFile[];
+  isFolderFolded: boolean;
+  isFileFolded: boolean;
 }
 
 export interface IFile extends IBaseDB {

@@ -12,6 +12,7 @@ export interface IGalleryContext extends IFileUploadExternal {
   setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
   onFolderUpdate: (folders: IFolder[], currentFolder: IGalleryFolder) => void;
   setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
+  setFolderMap: React.Dispatch<React.SetStateAction<Record<string, IGalleryFolder>>>;
 }
 
 export interface IUseGallery {
@@ -19,6 +20,7 @@ export interface IUseGallery {
   folderMap: Record<string, IGalleryFolder>;
   onFolderSelect: IGenericParam<IGalleryFolder>;
   onFolderUpdate: (folder: IFolder[], currentFolder: IGalleryFolder) => void;
+  setFolderMap: React.Dispatch<React.SetStateAction<Record<string, IGalleryFolder>>>;
 }
 
 export interface IUseCommonGalleryContext extends IFileUploadExternal {
@@ -42,4 +44,6 @@ export interface IUseCommonGalleryContext extends IFileUploadExternal {
   selectedFile: IFile | null;
   setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
   onFileDelete: IGenericMethod;
+  onFolderToggle: IGenericParam<IGalleryFolder>;
+  onFileToggle: IGenericParam<IGalleryFolder>;
 }

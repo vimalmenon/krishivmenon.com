@@ -16,8 +16,7 @@ High Priority:
   Add framer for animation
   First reload gives an issue with api refresh token (Bug)
   Need to show loading animation on delete, add and update
-  Need to work on Delete of files
-  Show image in the full screen mode (Lightbox)
+  Search for library for Image viewer (Lightbox)
   Need to work on loading icon for delete
   Support for HEIC files
   Need to working on loading indicator
@@ -29,9 +28,11 @@ Medium Priority
   Responsive UI for Gallery
   Responsive UI for Notes
   Create Release Page
+  Report a Bug Feature
+  Alow push only on 80% coverage
+  Minimize folder and files
 Less Priority
   Setting up sonar
-  Search for library for Image viewer
   Add notes for image
   Logging for S3 Bucket for static website
   Add favicon

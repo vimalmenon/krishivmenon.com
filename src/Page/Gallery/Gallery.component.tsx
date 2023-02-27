@@ -40,7 +40,7 @@ export const Gallery: React.FC = () => {
   const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(
     initialContextValue.deleteConfirm
   );
-  const { currentFolder, folderMap, onFolderSelect, onFolderUpdate } = useGallery();
+  const { currentFolder, folderMap, onFolderSelect, onFolderUpdate, setFolderMap } = useGallery();
   const {
     files,
     onDeleteFile,
@@ -56,6 +56,7 @@ export const Gallery: React.FC = () => {
         files,
         folderMap,
         selectedFile,
+        setFolderMap,
         onDeleteFile,
         currentFolder,
         addEditFolder,

@@ -28,8 +28,6 @@ export const AcceptVideo = {
 
 export const StorageKey = 'KM';
 
-export const FolderDepth = 4;
-
 export const AuthRefreshTime = 6300000;
 
 export enum AuthStatus {
@@ -38,3 +36,5 @@ export enum AuthStatus {
   UnAuthorized,
   Authorized,
 }
+
+export const MaxFolderUploadDepth = 4;

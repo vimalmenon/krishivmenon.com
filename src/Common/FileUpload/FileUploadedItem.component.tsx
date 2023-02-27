@@ -1,5 +1,4 @@
 import { Icon } from '@common';
-import ChangeCircleRoundedIcon from '@mui/icons-material/ChangeCircleRounded';
 import Skeleton from '@mui/material/Skeleton';
 import { Container } from '@style';
 
@@ -21,25 +20,41 @@ export const FileUploadedItem: React.FC<IFileUploadedItem> = ({
           sx={{ position: 'absolute' }}
         />
       )}
+      {file.isFormatSupported ? (
+        <>
+          <Container component="div" sx={{ flex: '0' }}>
+            <img
+              src={URL.createObjectURL(file.file)}
+              alt={file.file.name}
+              style={{
+                height: '60px',
+                width: '40px',
+              }}
+              onLoad={() => {
+                URL.createObjectURL(file.file);
+              }}
+            />
+          </Container>
+          <Container component="div" sx={{ flex: '1' }}>
+            {file.label}
+          </Container>
+        </>
+      ) : (
+        <Container component="div" sx={{ flex: '1' }}>
+          {' '}
+          Convert the file before uploading
+        </Container>
+      )}
       <Container component="div" sx={{ flex: '0' }}>
-        <img
-          src={URL.createObjectURL(file.file)}
-          alt={file.file.name}
-          style={{
-            height: '60px',
-            width: '40px',
-          }}
-          onLoad={() => {
-            URL.createObjectURL(file.file);
-          }}
-        />
-      </Container>
-      <Container component="div" sx={{ flex: '1' }}>
-        {file.label}
-      </Container>
-      <Container component="div" sx={{ flex: '0' }}>
-        <Icon Icon={Icon.icons.Delete} label="Delete" onClick={onDelete} />
-        <ChangeCircleRoundedIcon onClick={() => onConvertFile(file, index)} />
+        {file.isFormatSupported ? (
+          <Icon Icon={Icon.icons.Delete} label="Delete" onClick={onDelete} />
+        ) : (
+          <Icon
+            Icon={Icon.icons.Process}
+            label="Convert"
+            onClick={() => onConvertFile(file, index)}
+          />
+        )}
       </Container>
     </Container>
   );

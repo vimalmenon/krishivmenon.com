@@ -45,6 +45,7 @@ https://mui.com/joy-ui/getting-started/templates/files/
 
 https://tokyo-black-nextjs.bloomui.com/applications/jobs-platform
 https://mantisdashboard.io/apps/profiles/account/basic
+https://github.com/birros/heic2jpeg/blob/master/pages/index.tsx (Image conversion)
 
 KM - Krishiv Menon
 VM - Vimal Menon

@@ -59,27 +59,35 @@ export const GalleryContent: React.FC = () => {
               })}
             </GalleryContentFolder>
           </Collapse>
-          <div>
-            <Divider textAlign="left">
-              <Chip
-                label="Files"
-                icon={folder.isFileFolded ? <Icon.icons.DownArrow /> : <Icon.icons.UpArrow />}
-                onClick={() => onFileToggle(folder)}
-              />
-            </Divider>
-          </div>
-          <Collapse in={!folder.isFileFolded}>
-            <GalleryContentFiles>
-              {folder.files.map((file) => {
-                return (
-                  <div key={file.id} role="presentation" onClick={() => setSelectedFile(file)}>
-                    <img src={`${ENV.S3_BUCKET}/${file.path}`} alt={file.name} width={'175px'} />
-                    {file.name}
-                  </div>
-                );
-              })}
-            </GalleryContentFiles>
-          </Collapse>
+          {folder.files.length ? (
+            <>
+              <div>
+                <Divider textAlign="left">
+                  <Chip
+                    label="Files"
+                    icon={folder.isFileFolded ? <Icon.icons.DownArrow /> : <Icon.icons.UpArrow />}
+                    onClick={() => onFileToggle(folder)}
+                  />
+                </Divider>
+              </div>
+              <Collapse in={!folder.isFileFolded}>
+                <GalleryContentFiles>
+                  {folder.files.map((file) => {
+                    return (
+                      <div key={file.id} role="presentation" onClick={() => setSelectedFile(file)}>
+                        <img
+                          src={`${ENV.S3_BUCKET}/${file.path}`}
+                          alt={file.name}
+                          width={'175px'}
+                        />
+                        {file.name}
+                      </div>
+                    );
+                  })}
+                </GalleryContentFiles>
+              </Collapse>
+            </>
+          ) : null}
         </GalleryContentFilesRoot>
       )}
       <GalleryContentExtra>

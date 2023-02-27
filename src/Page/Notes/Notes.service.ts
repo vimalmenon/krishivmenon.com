@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { useCommonApiContext } from '@context';
+import { apis } from '@data';
 import { IGenericMethod, IGenericParam, IGenericReturn, INotes, PageModeType } from '@types';
-import { apis } from '@utility';
 
 import { IUseNotes } from './Notes';
 

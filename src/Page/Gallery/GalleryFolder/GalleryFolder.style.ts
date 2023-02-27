@@ -1,13 +1,40 @@
+import { grey, blueGrey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
-export const FolderStyle = styled('div')({
-  border: '1px solid gray',
-  height: '130px',
-  width: '150px',
-  display: 'flex',
-  borderRadius: '15px',
-  justifyContent: 'space-evenly',
-  padding: '20px',
-  cursor: 'pointer',
-  userSelect: 'none',
+export const FolderStyleRoot = styled('div')(({ theme }) => {
+  return {
+    border: '1px solid gray',
+    height: '150px',
+    display: 'grid',
+    borderRadius: '15px',
+    padding: theme.spacing(1.5),
+    cursor: 'pointer',
+    userSelect: 'none',
+    gridTemplate: `"folder-icon" "folder-label" "folder-detail"`,
+    gridTemplateRows: '1fr auto auto',
+    '&.active': {
+      background: theme.palette.mode === 'dark' ? grey[900] : blueGrey[50],
+    },
+  };
+});
+
+export const FolderIconStyle = styled('div')(() => {
+  return {
+    gridArea: 'folder-icon',
+  };
+});
+
+export const FolderLabelStyle = styled('div')(() => {
+  return {
+    gridArea: 'folder-label',
+  };
+});
+
+export const FolderDetailStyle = styled('div')(() => {
+  return {
+    display: 'flex',
+    justifyContent: 'space-between',
+    gridArea: 'folder-detail',
+    fontSize: '12px',
+  };
 });

@@ -1,46 +1,52 @@
 Finished Task:
-  Add library for notes
-  Quality: Minimize Eslint errors
-  Auth: Ability to Login with Google Auth
-  Auth: Ability to refresh token
-  Responsive UI : Basic Responsive page 
+  Basic Google Auth
   GitHub Action : Check and Deploy
   Basic dev setup
   Basic Layout and Responsive UI
+  Get Image for the gallery
 High Priority:
+  Need to clean up S3 bucket next time before upload
   Better Loading for notes
-  Need to work on redirect rules
-  Google picture is giving error
+  Loading on gallery
   Ability to Logout from UI
   Need to work on logout of auth
   Improve UI for 400 Page
   Improved UI for Gallery
   UI for unauthorized page
-  Need to fix the issue with redirect to /index page
   Add framer for animation
+  First reload gives an issue with api refresh token (Bug)
+  Need to show loading animation on delete, add and update
+  Search for library for Image viewer (Lightbox)
+  Need to work on loading icon for delete
+  Support for HEIC files
+  Need to working on loading indicator
 Medium Priority
   Increase the coverage to 80%
-  Pre signed image on request
   Ability to invalidate the Id token
   Need to create a tags for notes and Library
   Create content for Home page
-  Need to build 500 page
   Responsive UI for Gallery
   Responsive UI for Notes
   Create Release Page
-  Need to work on loading indicator on sign in page
+  Report a Bug Feature
+  Alow push only on 80% coverage
+  Minimize folder and files
 Less Priority
   Setting up sonar
-  Search for library for Image viewer
   Add notes for image
   Logging for S3 Bucket for static website
   Add favicon
   Add images
+  Pre signed image on request
 
 
 https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html
 https://docs.aws.amazon.com/cognito/latest/developerguide/logout-endpoint.html
 https://mui.com/joy-ui/getting-started/templates/files/
+
+
+https://tokyo-black-nextjs.bloomui.com/applications/jobs-platform
+https://mantisdashboard.io/apps/profiles/account/basic
 
 KM - Krishiv Menon
 VM - Vimal Menon

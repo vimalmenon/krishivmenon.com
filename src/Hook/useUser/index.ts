@@ -2,8 +2,8 @@ import React from 'react';
 
 import { AuthStatus } from '@constant';
 import { useCommonApiContext, useCommonContext } from '@context';
+import { apis } from '@data';
 import { IGenericMethod, IProfile } from '@types';
-import { apis } from '@utility';
 
 export const useUser: IGenericMethod = () => {
   const { setProfile, setAuthStatus } = useCommonContext();

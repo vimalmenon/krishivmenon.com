@@ -1,0 +1,1 @@
+export * from './GalleryHeader.component';

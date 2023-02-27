@@ -7,10 +7,10 @@ import { IIcon, IIconStatic } from './Icon';
 import { CommonIcons } from './Icon.service';
 
 export const Icon: IIconStatic<typeof SaveIcon | typeof GoogleIcon> &
-  React.FC<IIcon<typeof SaveIcon | typeof GoogleIcon>> = ({ label, Icon, onClick }) => {
+  React.FC<IIcon<typeof SaveIcon | typeof GoogleIcon>> = ({ label, Icon, onClick, edge }) => {
   return (
     <Tooltip title={label}>
-      <IconButton onClick={onClick}>
+      <IconButton onClick={onClick} edge={edge}>
         <Icon />
       </IconButton>
     </Tooltip>

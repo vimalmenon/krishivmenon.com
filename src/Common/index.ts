@@ -10,3 +10,4 @@ export * from './FileUpload';
 export * from './SwitchTheme';
 export * from './ErrorBoundary';
 export * from './SideNavigation';
+export * from './PromiseLoadingButton';

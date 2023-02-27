@@ -1,49 +1,49 @@
-import { IFolder, IGenericMethod, IGenericParam } from '@types';
+import { IFolder, IGenericMethod, IGenericParam, IGalleryFolder, IFile } from '@types';
 import { IFileUploadExternal } from 'src/Common/FileUpload/FileUpload';
 
-export interface IGalleryFolder extends IFolder {
-  breadcrumbs: string[];
-  folders: string[];
-  loading: boolean;
-}
-
 export interface IGalleryContext extends IFileUploadExternal {
-  loading: boolean;
   currentFolder: string;
-  folderMap: Record<string, IGalleryFolder>;
-  addEditFolder: IFolder | null;
-  onFolderSelect: IGenericParam<IGalleryFolder>;
-  setAddEditFolder: React.Dispatch<React.SetStateAction<IFolder | null>>;
-  onFolderUpdate: (folders: IFolder[], currentFolder: IGalleryFolder) => void;
   deleteConfirm: boolean;
+  selectedFile: IFile | null;
+  addEditFolder: IGalleryFolder | null;
+  folderMap: Record<string, IGalleryFolder>;
+  onFolderSelect: IGenericParam<IGalleryFolder>;
   setDeleteConfirm: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
+  onFolderUpdate: (folders: IFolder[], currentFolder: IGalleryFolder) => void;
+  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
+  setFolderMap: React.Dispatch<React.SetStateAction<Record<string, IGalleryFolder>>>;
 }
 
 export interface IUseGallery {
-  loading: boolean;
-  folderMap: Record<string, IGalleryFolder>;
   currentFolder: string;
+  folderMap: Record<string, IGalleryFolder>;
   onFolderSelect: IGenericParam<IGalleryFolder>;
   onFolderUpdate: (folder: IFolder[], currentFolder: IGalleryFolder) => void;
+  setFolderMap: React.Dispatch<React.SetStateAction<Record<string, IGalleryFolder>>>;
 }
 
 export interface IUseCommonGalleryContext extends IFileUploadExternal {
-  loading: boolean;
-  addEditFolder: IFolder | null;
-  folderMap: Record<string, IGalleryFolder>;
-  onFolderAdd: IGenericMethod;
-  onSelectedFolderCancel: IGenericMethod;
   currentFolder: string;
-  onFolderDelete: IGenericMethod;
-  onAddFolderSave: IGenericReturn<Promise<unknown>>;
-  setAddEditFolder: React.Dispatch<React.SetStateAction<IFolder | null>>;
-  onFolderSelect: IGenericParam<IGalleryFolder>;
-  onSelectedFolderLabelUpdate: IGenericParam<string>;
-  onFolderDeleteConfirm: IGenericMethod;
   deleteConfirm: boolean;
+  onFolderAdd: IGenericMethod;
+  onFolderDelete: IGenericMethod;
+  addEditFolder: IGalleryFolder | null;
+  onFolderDeleteConfirm: IGenericMethod;
+  onSelectedFolderCancel: IGenericMethod;
+  folderMap: Record<string, IGalleryFolder>;
+  onFolderSelect: IGenericParam<IGalleryFolder>;
+  onAddFolderSave: IGenericReturn<Promise<unknown>>;
+  onSelectedFolderLabelUpdate: IGenericParam<string>;
+  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
   closeShowUploadFolder: IGenericMethod;
   openShowUploadFolder: IGenericMethod;
   onDeleteConfirmCancel: IGenericMethod;
   toggleShowUploadFolder: IGenericMethod;
   uploadFiles: IGenericMethod;
+  selectedFile: IFile | null;
+  setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
+  onFileDelete: IGenericMethod;
+  onFolderToggle: IGenericParam<IGalleryFolder>;
+  onFileToggle: IGenericParam<IGalleryFolder>;
 }

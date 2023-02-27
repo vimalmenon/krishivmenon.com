@@ -1,99 +1,62 @@
 import React from 'react';
 
-import { Icon, Confirm, useFileUpload } from '@common';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Chip from '@mui/material/Chip';
-import Divider from '@mui/material/Divider';
-import { Container, Spacing } from '@style';
-import { IFolder } from '@types';
+import { Confirm, useFileUpload } from '@common';
+import { IFile, IGalleryFolder } from '@types';
 
-import { AddEditFolder } from './AddEditFolder';
 import {
   useGallery,
   GalleryContext,
   useCommonGallery,
   initialContextValue,
 } from './Gallery.service';
-import { GalleryFolder } from './GalleryFolder';
-import { UploadFiles } from './UploadFiles';
+import { GalleryRoot } from './Gallery.style';
+import { GalleryContent } from './GalleryContent';
+import { GalleryHeader } from './GalleryHeader';
 
 const GalleryChildren: React.FC = () => {
-  const {
-    folderMap,
-    onFolderAdd,
-    deleteConfirm,
-    currentFolder,
-    addEditFolder,
-    onFolderSelect,
-    showFileUploader,
-    onDeleteConfirmCancel,
-    onFolderDeleteConfirm,
-    toggleShowUploadFolder,
-  } = useCommonGallery();
+  const { deleteConfirm, addEditFolder, onDeleteConfirmCancel, onFolderDeleteConfirm } =
+    useCommonGallery();
   return (
-    <Container component={'section'} sx={{ flex: '1 1 100%' }}>
-      <Container component={'div'} direction="column" sx={{ gap: Spacing.md, flex: '1 1 100%' }}>
-        <Container component={'div'} sx={{ gap: Spacing.md, justifyContent: 'space-between' }}>
-          <div>
-            <Breadcrumbs>
-              {folderMap[currentFolder].breadcrumbs.map((value) => {
-                return (
-                  <Chip
-                    key={value}
-                    label={folderMap[value].label}
-                    onClick={() => onFolderSelect(folderMap[value])}
-                  />
-                );
-              })}
-            </Breadcrumbs>
-          </div>
-          <div>
-            <Icon Icon={Icon.icons.CloudUpload} label="Upload" onClick={toggleShowUploadFolder} />
-            <Icon Icon={Icon.icons.Add} label="Add" onClick={onFolderAdd} />
-          </div>
-        </Container>
-        <Divider />
-        <Confirm
-          open={deleteConfirm}
-          handleClose={onDeleteConfirmCancel}
-          handleConfirm={onFolderDeleteConfirm}
-        >
-          <>Are you sure you want to delete {addEditFolder?.label}</>
-        </Confirm>
-        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-          {folderMap[currentFolder].folders.map((value) => {
-            return <GalleryFolder key={value} folder={folderMap[value]} />;
-          })}
-        </div>
-      </Container>
-      {addEditFolder && <AddEditFolder />}
-      {showFileUploader && <UploadFiles />}
-    </Container>
+    <GalleryRoot>
+      <Confirm
+        open={deleteConfirm}
+        handleClose={onDeleteConfirmCancel}
+        handleConfirm={onFolderDeleteConfirm}
+      >
+        <>Are you sure you want to delete {addEditFolder?.label}</>
+      </Confirm>
+      <GalleryHeader />
+      <GalleryContent />
+    </GalleryRoot>
   );
 };
 export const Gallery: React.FC = () => {
-  const [addEditFolder, setAddEditFolder] = React.useState<IFolder | null>(
+  const [addEditFolder, setAddEditFolder] = React.useState<IGalleryFolder | null>(
     initialContextValue.addEditFolder
+  );
+  const [selectedFile, setSelectedFile] = React.useState<IFile | null>(
+    initialContextValue.selectedFile
   );
   const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(
     initialContextValue.deleteConfirm
   );
-  const { loading, currentFolder, folderMap, onFolderSelect, onFolderUpdate } = useGallery();
+  const { currentFolder, folderMap, onFolderSelect, onFolderUpdate, setFolderMap } = useGallery();
   const {
     files,
+    onDeleteFile,
     onDropAccepted,
     onDropRejected,
-    onDeleteFile,
+    onFileSetLoading,
     showFileUploader,
     setShowFileUploader,
-    onFileSetLoading,
   } = useFileUpload();
   return (
     <GalleryContext.Provider
       value={{
         files,
-        loading,
         folderMap,
+        selectedFile,
+        setFolderMap,
         onDeleteFile,
         currentFolder,
         addEditFolder,
@@ -106,11 +69,12 @@ export const Gallery: React.FC = () => {
         onFileSetLoading,
         showFileUploader,
         setDeleteConfirm,
+        setSelectedFile,
         setShowFileUploader,
         accept: initialContextValue.accept,
       }}
     >
-      {loading ? <div>...Loading</div> : <GalleryChildren />}
+      <GalleryChildren />
     </GalleryContext.Provider>
   );
 };

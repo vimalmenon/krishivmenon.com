@@ -1,7 +1,8 @@
 import React from 'react';
 
+import { getBaseUrl } from '@data';
 import { IApi, IBaseResponse, IGenericReturn } from '@types';
-import { getBaseUrl, NotImplemented } from '@utility';
+import { NotImplemented } from '@utility';
 import axios from 'axios';
 
 import { IUseApiProvider, IAlert, IUseApiProviderExposed } from './ApiProvider';

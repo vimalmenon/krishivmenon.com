@@ -4,6 +4,7 @@ import { IGalleryFolder } from '../Gallery';
 
 export interface IGalleryFolder {
   folder: IGalleryFolder;
+  isSelected: boolean;
 }
 
 export interface IUseClick {

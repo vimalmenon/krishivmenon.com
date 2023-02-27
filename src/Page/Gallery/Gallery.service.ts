@@ -45,6 +45,7 @@ export const initialContextValue: IGalleryContext = {
   addEditFolder: null,
   deleteConfirm: false,
   showFileUploader: false,
+  clearFiles: NotImplemented,
   currentFolder: rootFolder.id,
   setFolderMap: NotImplemented,
   onDeleteFile: NotImplemented,
@@ -70,6 +71,7 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     files,
     accept,
     folderMap,
+    clearFiles,
     selectedFile,
     onDeleteFile,
     addEditFolder,
@@ -149,6 +151,19 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
         onFileSetLoading(key, false);
       })
     );
+    const result = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: currentFolder }));
+    setFolderMap((folderMap) => {
+      const selectedFolder = folderMap[currentFolder];
+      return {
+        ...folderMap,
+        [currentFolder]: {
+          ...selectedFolder,
+          files: result,
+        },
+      };
+    });
+    setShowFileUploader(false);
+    clearFiles();
   };
   const onFileDelete: IGenericMethod = () => {
     if (selectedFile) {

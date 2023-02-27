@@ -6,10 +6,11 @@ export type OnConvertFileType = (file: IUploadedFile, index: number) => Promise<
 export interface IGalleryContext extends IFileUploadExternal {
   currentFolder: string;
   deleteConfirm: boolean;
+  clearFiles: IGenericMethod;
   selectedFile: IFile | null;
+  onConvertFile: OnConvertFileType;
   addEditFolder: IGalleryFolder | null;
   folderMap: Record<string, IGalleryFolder>;
-  onConvertFile: OnConvertFileType;
   onFolderSelect: IGenericParam<IGalleryFolder>;
   setDeleteConfirm: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
@@ -29,25 +30,25 @@ export interface IUseGallery {
 export interface IUseCommonGalleryContext extends IFileUploadExternal {
   currentFolder: string;
   deleteConfirm: boolean;
+  selectedFile: IFile | null;
+  uploadFiles: IGenericMethod;
   onFolderAdd: IGenericMethod;
   onFolderDelete: IGenericMethod;
   addEditFolder: IGalleryFolder | null;
   onFolderDeleteConfirm: IGenericMethod;
+  closeShowUploadFolder: IGenericMethod;
+  openShowUploadFolder: IGenericMethod;
+  onDeleteConfirmCancel: IGenericMethod;
+  toggleShowUploadFolder: IGenericMethod;
   onSelectedFolderCancel: IGenericMethod;
   folderMap: Record<string, IGalleryFolder>;
   onFolderSelect: IGenericParam<IGalleryFolder>;
   onAddFolderSave: IGenericReturn<Promise<unknown>>;
   onSelectedFolderLabelUpdate: IGenericParam<string>;
-  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
-  closeShowUploadFolder: IGenericMethod;
-  openShowUploadFolder: IGenericMethod;
-  onDeleteConfirmCancel: IGenericMethod;
-  toggleShowUploadFolder: IGenericMethod;
-  uploadFiles: IGenericMethod;
-  selectedFile: IFile | null;
   setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
+  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
   onFileDelete: IGenericMethod;
+  onConvertFile: OnConvertFileType;
   onFolderToggle: IGenericParam<IGalleryFolder>;
   onFileToggle: IGenericParam<IGalleryFolder>;
-  onConvertFile: OnConvertFileType;
 }

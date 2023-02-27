@@ -43,11 +43,12 @@ export const Gallery: React.FC = () => {
   const { currentFolder, folderMap, onFolderSelect, onFolderUpdate, setFolderMap } = useGallery();
   const {
     files,
+    clearFiles,
     onDeleteFile,
-    onDropAccepted,
-    onFileSetLoading,
-    showFileUploader,
     onConvertFile,
+    onDropAccepted,
+    showFileUploader,
+    onFileSetLoading,
     setShowFileUploader,
   } = useFileUpload();
   return (
@@ -55,6 +56,7 @@ export const Gallery: React.FC = () => {
       value={{
         files,
         folderMap,
+        clearFiles,
         selectedFile,
         setFolderMap,
         onDeleteFile,

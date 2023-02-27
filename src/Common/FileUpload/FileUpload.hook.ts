@@ -40,6 +40,12 @@ export const useFileUpload: IGenericReturn<IUseFileUploadHook> = () => {
   };
 
   const onConvertFile: OnConvertFileType = async (value, index) => {
+    let newFiles = [...files];
+    newFiles.splice(index, 1, {
+      ...value,
+      loading: true,
+    });
+    setFiles([...newFiles]);
     const heic2any = (await import('heic2any')).default;
     // convert to JPG - response is blob
     const result = await heic2any({
@@ -48,7 +54,7 @@ export const useFileUpload: IGenericReturn<IUseFileUploadHook> = () => {
       quality: 0.9,
     });
     const blob = Array.isArray(result) ? result[0] : result;
-    const newFiles = [...files];
+    newFiles = [...files];
     newFiles.splice(index, 1, {
       isFormatSupported: true,
       loading: false,

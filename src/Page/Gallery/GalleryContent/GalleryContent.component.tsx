@@ -76,7 +76,7 @@ export const GalleryContent: React.FC = () => {
                     return (
                       <div key={file.id} role="presentation" onClick={() => setSelectedFile(file)}>
                         <img
-                          src={`${ENV.S3_BUCKET}/${file.path}`}
+                          src={`${ENV.ASSET_S3_BUCKET}/${file.path}`}
                           alt={file.name}
                           width={'175px'}
                         />

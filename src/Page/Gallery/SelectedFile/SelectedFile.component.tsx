@@ -11,7 +11,7 @@ export const SelectedFile: React.FC = () => {
         <div>{selectedFile.id}</div>
         <div>
           <img
-            src={`${ENV.S3_BUCKET}/${selectedFile.path}`}
+            src={`${ENV.ASSET_S3_BUCKET}/${selectedFile.path}`}
             alt={selectedFile.name}
             width={'175px'}
           />

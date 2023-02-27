@@ -12,8 +12,8 @@ export const UploadFiles: React.FC = () => {
     uploadFiles,
     onDeleteFile,
     onDropAccepted,
-    onDropRejected,
     toggleShowUploadFolder,
+    onConvertFile,
   } = useCommonGallery();
   return (
     <PaperStyle>
@@ -22,8 +22,8 @@ export const UploadFiles: React.FC = () => {
           files={files}
           accept={accept}
           onDropAccepted={onDropAccepted}
-          onDropRejected={onDropRejected}
           onDeleteFile={onDeleteFile}
+          onConvertFile={onConvertFile}
         />
       </Container>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>

@@ -1,12 +1,15 @@
 import { IFolder, IGenericMethod, IGenericParam, IGalleryFolder, IFile } from '@types';
 import { IFileUploadExternal } from 'src/Common/FileUpload/FileUpload';
 
+export type OnConvertFileType = (file: IUploadedFile, index: number) => Promise<unknown>;
+
 export interface IGalleryContext extends IFileUploadExternal {
   currentFolder: string;
   deleteConfirm: boolean;
   selectedFile: IFile | null;
   addEditFolder: IGalleryFolder | null;
   folderMap: Record<string, IGalleryFolder>;
+  onConvertFile: OnConvertFileType;
   onFolderSelect: IGenericParam<IGalleryFolder>;
   setDeleteConfirm: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
@@ -46,4 +49,5 @@ export interface IUseCommonGalleryContext extends IFileUploadExternal {
   onFileDelete: IGenericMethod;
   onFolderToggle: IGenericParam<IGalleryFolder>;
   onFileToggle: IGenericParam<IGalleryFolder>;
+  onConvertFile: OnConvertFileType;
 }

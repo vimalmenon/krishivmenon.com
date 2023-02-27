@@ -1,15 +1,16 @@
 import { IGenericMethod, IGenericParam } from '@types';
-import { DropEvent, FileRejection } from 'react-dropzone';
+import { DropEvent } from 'react-dropzone';
 
 export type OnDropAcceptedType = (files: File[], event: DropEvent) => void;
-export type OnDropRejectedType = (fileRejections: FileRejection[], event: DropEvent) => void;
+
+export type OnConvertFileType = (file: IUploadedFile, index: number) => Promise<unknown>;
 
 export interface IFileUpload {
   files: IUploadedFile[];
   accept: Record<string, string[]>;
   onDropAccepted: OnDropAcceptedType;
-  onDropRejected?: OnDropRejectedType;
   onDeleteFile: IGenericParam<number>;
+  onConvertFile: OnConvertFileType;
 }
 export interface IFileUploadExternal extends IFileUpload {
   showFileUploader: boolean;
@@ -22,11 +23,14 @@ export interface IUploadedFile {
   label: string;
   message?: string;
   status: 'accepted' | 'rejected';
+  isFormatSupported: boolean;
 }
 
 export interface IFileUploadedItem {
   file: IUploadedFile;
   onDelete: IGenericMethod;
+  index: number;
+  onConvertFile: OnConvertFileType;
 }
 
 export interface IUseFileUploadHook {
@@ -34,8 +38,8 @@ export interface IUseFileUploadHook {
   showFileUploader: boolean;
   clearFiles: IGenericMethod;
   onDropAccepted: OnDropAcceptedType;
-  onDropRejected: OnDropRejectedType;
   onDeleteFile: IGenericParam<number>;
+  onConvertFile: OnConvertFileType;
   onFileSetLoading: (index: number, loading: boolean) => void;
   setShowFileUploader: React.Dispatch<React.SetStateAction<boolean>>;
 }

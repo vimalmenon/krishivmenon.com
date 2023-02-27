@@ -1,10 +1,16 @@
 import { Icon } from '@common';
+import ChangeCircleRoundedIcon from '@mui/icons-material/ChangeCircleRounded';
 import Skeleton from '@mui/material/Skeleton';
 import { Container } from '@style';
 
 import { IFileUploadedItem } from './FileUpload';
 
-export const FileUploadedItem: React.FC<IFileUploadedItem> = ({ file, onDelete }) => {
+export const FileUploadedItem: React.FC<IFileUploadedItem> = ({
+  file,
+  onDelete,
+  onConvertFile,
+  index,
+}) => {
   return (
     <Container component="div" sx={{ position: 'relative', gap: 1 }}>
       {file.loading && (
@@ -33,6 +39,7 @@ export const FileUploadedItem: React.FC<IFileUploadedItem> = ({ file, onDelete }
       </Container>
       <Container component="div" sx={{ flex: '0' }}>
         <Icon Icon={Icon.icons.Delete} label="Delete" onClick={onDelete} />
+        <ChangeCircleRoundedIcon onClick={() => onConvertFile(file, index)} />
       </Container>
     </Container>
   );

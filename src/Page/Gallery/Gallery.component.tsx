@@ -45,9 +45,9 @@ export const Gallery: React.FC = () => {
     files,
     onDeleteFile,
     onDropAccepted,
-    onDropRejected,
     onFileSetLoading,
     showFileUploader,
+    onConvertFile,
     setShowFileUploader,
   } = useFileUpload();
   return (
@@ -64,12 +64,12 @@ export const Gallery: React.FC = () => {
         onDropAccepted,
         onFolderUpdate,
         onFolderSelect,
-        onDropRejected,
+        onConvertFile,
+        setSelectedFile,
         setAddEditFolder,
         onFileSetLoading,
         showFileUploader,
         setDeleteConfirm,
-        setSelectedFile,
         setShowFileUploader,
         accept: initialContextValue.accept,
       }}

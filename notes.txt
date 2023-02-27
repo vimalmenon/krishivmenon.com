@@ -5,7 +5,6 @@ Finished Task:
   Basic Layout and Responsive UI
   Get Image for the gallery
 High Priority:
-  Need to clean up S3 bucket next time before upload
   Better Loading for notes
   Loading on gallery
   Ability to Logout from UI
@@ -17,7 +16,7 @@ High Priority:
   First reload gives an issue with api refresh token (Bug)
   Need to show loading animation on delete, add and update
   Search for library for Image viewer (Lightbox)
-  Need to work on loading icon for delete
+  [Feature] Need to work on loading icon for delete
   Support for HEIC files
   Need to working on loading indicator
 Medium Priority
@@ -27,10 +26,9 @@ Medium Priority
   Create content for Home page
   Responsive UI for Gallery
   Responsive UI for Notes
-  Create Release Page
-  Report a Bug Feature
+  [Feature] Create Release Page
+  [Feature] Report a Bug
   Alow push only on 80% coverage
-  Minimize folder and files
 Less Priority
   Setting up sonar
   Add notes for image

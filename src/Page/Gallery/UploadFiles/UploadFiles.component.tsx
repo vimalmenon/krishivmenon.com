@@ -1,4 +1,4 @@
-import { FileUpload, Icon } from '@common';
+import { FileUpload, Icon, PromiseLoadingButton } from '@common';
 import Button from '@mui/material/Button';
 import { Container } from '@style';
 
@@ -12,8 +12,8 @@ export const UploadFiles: React.FC = () => {
     uploadFiles,
     onDeleteFile,
     onDropAccepted,
-    onDropRejected,
     toggleShowUploadFolder,
+    onConvertFile,
   } = useCommonGallery();
   return (
     <PaperStyle>
@@ -22,19 +22,19 @@ export const UploadFiles: React.FC = () => {
           files={files}
           accept={accept}
           onDropAccepted={onDropAccepted}
-          onDropRejected={onDropRejected}
           onDeleteFile={onDeleteFile}
+          onConvertFile={onConvertFile}
         />
       </Container>
       <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
-        <Button
+        <PromiseLoadingButton
           variant="contained"
           disabled={!files.length}
           onClick={uploadFiles}
           startIcon={<Icon.icons.CloudUpload />}
         >
           Upload
-        </Button>
+        </PromiseLoadingButton>
         <Button variant="outlined" onClick={toggleShowUploadFolder}>
           Cancel
         </Button>

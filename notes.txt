@@ -5,7 +5,6 @@ Finished Task:
   Basic Layout and Responsive UI
   Get Image for the gallery
 High Priority:
-  Need to clean up S3 bucket next time before upload
   Better Loading for notes
   Loading on gallery
   Ability to Logout from UI
@@ -17,9 +16,10 @@ High Priority:
   First reload gives an issue with api refresh token (Bug)
   Need to show loading animation on delete, add and update
   Search for library for Image viewer (Lightbox)
-  Need to work on loading icon for delete
+  [Feature] Need to work on loading icon for delete
   Support for HEIC files
   Need to working on loading indicator
+  Check the page in IPad
 Medium Priority
   Increase the coverage to 80%
   Ability to invalidate the Id token
@@ -27,10 +27,9 @@ Medium Priority
   Create content for Home page
   Responsive UI for Gallery
   Responsive UI for Notes
-  Create Release Page
-  Report a Bug Feature
+  [Feature] Create Release Page
+  [Feature] Report a Bug
   Alow push only on 80% coverage
-  Minimize folder and files
 Less Priority
   Setting up sonar
   Add notes for image
@@ -47,6 +46,10 @@ https://mui.com/joy-ui/getting-started/templates/files/
 
 https://tokyo-black-nextjs.bloomui.com/applications/jobs-platform
 https://mantisdashboard.io/apps/profiles/account/basic
+https://github.com/birros/heic2jpeg/blob/master/pages/index.tsx (Image conversion)
+https://codesandbox.io/s/react-heic-forked-6p18nd?file=/src/App.js:170-784
+https://codesandbox.io/s/74xh7p?file=/components/Navigation.tsx:774-863
+https://bareynol.github.io/mui-theme-creator/
 
 KM - Krishiv Menon
 VM - Vimal Menon

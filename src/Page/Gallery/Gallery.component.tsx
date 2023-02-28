@@ -14,7 +14,7 @@ import { GalleryContent } from './GalleryContent';
 import { GalleryHeader } from './GalleryHeader';
 
 const GalleryChildren: React.FC = () => {
-  const { deleteConfirm, addEditFolder, onDeleteConfirmCancel, onFolderDeleteConfirm } =
+  const { deleteConfirm, selectedItem, onDeleteConfirmCancel, onFolderDeleteConfirm } =
     useCommonGallery();
   return (
     <GalleryRoot>
@@ -23,7 +23,7 @@ const GalleryChildren: React.FC = () => {
         handleClose={onDeleteConfirmCancel}
         handleConfirm={onFolderDeleteConfirm}
       >
-        <>Are you sure you want to delete {addEditFolder?.label}</>
+        <>Are you sure you want to delete {selectedItem?.label}</>
       </Confirm>
       <GalleryHeader />
       <GalleryContent />
@@ -31,11 +31,8 @@ const GalleryChildren: React.FC = () => {
   );
 };
 export const Gallery: React.FC = () => {
-  const [addEditFolder, setAddEditFolder] = React.useState<IGalleryFolder | null>(
-    initialContextValue.addEditFolder
-  );
-  const [selectedFile, setSelectedFile] = React.useState<IFile | null>(
-    initialContextValue.selectedFile
+  const [selectedItem, setSelectedItem] = React.useState<IGalleryFolder | IFile | null>(
+    initialContextValue.selectedItem
   );
   const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(
     initialContextValue.deleteConfirm
@@ -43,11 +40,12 @@ export const Gallery: React.FC = () => {
   const { currentFolder, folderMap, onFolderSelect, onFolderUpdate, setFolderMap } = useGallery();
   const {
     files,
+    clearFiles,
     onDeleteFile,
+    onConvertFile,
     onDropAccepted,
-    onDropRejected,
-    onFileSetLoading,
     showFileUploader,
+    onFileSetLoading,
     setShowFileUploader,
   } = useFileUpload();
   return (
@@ -55,21 +53,20 @@ export const Gallery: React.FC = () => {
       value={{
         files,
         folderMap,
-        selectedFile,
+        clearFiles,
         setFolderMap,
         onDeleteFile,
+        selectedItem,
+        onConvertFile,
         currentFolder,
-        addEditFolder,
         deleteConfirm,
         onDropAccepted,
         onFolderUpdate,
         onFolderSelect,
-        onDropRejected,
-        setAddEditFolder,
+        setSelectedItem,
         onFileSetLoading,
         showFileUploader,
         setDeleteConfirm,
-        setSelectedFile,
         setShowFileUploader,
         accept: initialContextValue.accept,
       }}

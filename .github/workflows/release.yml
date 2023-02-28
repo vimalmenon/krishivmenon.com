@@ -105,6 +105,7 @@ jobs:
         echo NEXT_PUBLIC_API_URL=${{env.API_URL}} >> .env
         echo NEXT_PUBLIC_API_VERSION=${{env.API_VERSION}} >> .env
         echo NEXT_PUBLIC_AUTH_AUTHORIZATION=${{env.AUTH_AUTHORIZATION}} >> .env
+        echo NEXT_PUBLIC_S3_BUCKET=${{env.ASSET_S3_BUCKET}} >> .env
     - name: Update Package
       run: |
         sed -i 's/0.0.0.0/${{needs.prepare.outputs.selected}}/' package.json

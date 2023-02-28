@@ -6,14 +6,14 @@ import { IUseClick, IUseGalleryFolder } from './GalleryFolder';
 import { useCommonGallery } from '../Gallery.service';
 
 export const useGalleryFolder: IGeneric<IGalleryFolder, IUseGalleryFolder> = (folder) => {
-  const { setAddEditFolder, onFolderSelect, closeShowUploadFolder } = useCommonGallery();
+  const { onFolderSelect, closeShowUploadFolder, setSelectedItem } = useCommonGallery();
   const onFinalSingleClick: IGenericMethod = () => {
-    setAddEditFolder(folder);
+    setSelectedItem(folder);
     closeShowUploadFolder();
   };
   const onFinalDoubleClick: IGenericMethod = () => {
     onFolderSelect(folder);
-    setAddEditFolder(null);
+    setSelectedItem(null);
     closeShowUploadFolder();
   };
   return {

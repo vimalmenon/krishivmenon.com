@@ -1,8 +1,8 @@
+import { Dialog, Icon } from '@common';
 import Button from '@mui/material/Button';
 import { ReactChildren } from '@types';
 
 import { IConfirm } from './Confirm';
-import { Dialog } from '../';
 
 export const Confirm: React.FC<IConfirm & ReactChildren> = ({
   open,
@@ -23,10 +23,10 @@ export const Confirm: React.FC<IConfirm & ReactChildren> = ({
     >
       <Dialog.Body>{children}</Dialog.Body>
       <Dialog.Footer>
-        <Button variant="outlined" onClick={handleClose}>
+        <Button variant="outlined" onClick={handleClose} endIcon={<Icon.icons.Cancel />}>
           Cancel
         </Button>
-        <Button variant="contained" onClick={handleConfirm}>
+        <Button variant="contained" onClick={handleConfirm} endIcon={<Icon.icons.Check />}>
           Confirm
         </Button>
       </Dialog.Footer>

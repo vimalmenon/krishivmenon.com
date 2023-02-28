@@ -16,7 +16,7 @@ export const ENV = {
   API_URL: process.env.NEXT_PUBLIC_API_URL || '',
   API_VERSION: process.env.NEXT_PUBLIC_API_VERSION || '',
   AUTH_AUTHORIZATION: process.env.NEXT_PUBLIC_AUTH_AUTHORIZATION || '',
-  S3_BUCKET: process.env.NEXT_PUBLIC_S3_BUCKET || '',
+  ASSET_S3_BUCKET: process.env.NEXT_PUBLIC_ASSET_S3_BUCKET || '',
 };
 
 export const AcceptImages = {
@@ -28,8 +28,6 @@ export const AcceptVideo = {
 
 export const StorageKey = 'KM';
 
-export const FolderDepth = 4;
-
 export const AuthRefreshTime = 6300000;
 
 export enum AuthStatus {
@@ -38,3 +36,5 @@ export enum AuthStatus {
   UnAuthorized,
   Authorized,
 }
+
+export const MaxFolderUploadDepth = 4;

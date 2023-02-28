@@ -41,19 +41,19 @@ const rootFolder: IGalleryFolder = {
 
 export const initialContextValue: IGalleryContext = {
   files: [],
-  selectedFile: null,
-  addEditFolder: null,
+  selectedItem: null,
   deleteConfirm: false,
   showFileUploader: false,
+  clearFiles: NotImplemented,
+  currentFolder: rootFolder.id,
   setFolderMap: NotImplemented,
   onDeleteFile: NotImplemented,
-  currentFolder: rootFolder.id,
-  onFolderUpdate: NotImplemented,
+  onConvertFile: NotImplemented,
   onFolderSelect: NotImplemented,
   onDropAccepted: NotImplemented,
-  setSelectedFile: NotImplemented,
+  onFolderUpdate: NotImplemented,
+  setSelectedItem: NotImplemented,
   setDeleteConfirm: NotImplemented,
-  setAddEditFolder: NotImplemented,
   onFileSetLoading: NotImplemented,
   setShowFileUploader: NotImplemented,
   accept: { ...AcceptVideo, ...AcceptImages },
@@ -69,57 +69,58 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     files,
     accept,
     folderMap,
-    selectedFile,
+    clearFiles,
+    setFolderMap,
     onDeleteFile,
-    addEditFolder,
+    selectedItem,
     currentFolder,
     deleteConfirm,
-    setFolderMap,
+    onConvertFile,
     onFolderUpdate,
     onFolderSelect,
-    onDropRejected,
     onDropAccepted,
-    setSelectedFile,
+    setSelectedItem,
     onFileSetLoading,
-    setAddEditFolder,
     setDeleteConfirm,
     showFileUploader,
     setShowFileUploader,
   } = React.useContext<IGalleryContext>(GalleryContext);
   const { makeApiCall } = useCommonApiContext();
   const onFolderAdd: IGenericMethod = () => {
-    setAddEditFolder({ ...initialValue, parent: currentFolder });
+    setSelectedItem({ ...initialValue, parent: currentFolder });
     setShowFileUploader(false);
   };
   const onSelectedFolderCancel: IGenericMethod = () => {
-    setAddEditFolder(null);
+    setSelectedItem(null);
   };
   const onSelectedFolderLabelUpdate: IGenericParam<string> = (value) => {
-    if (addEditFolder) {
-      setAddEditFolder({
-        ...addEditFolder,
+    if (selectedItem) {
+      setSelectedItem({
+        ...selectedItem,
         label: value,
       });
     }
   };
   const onAddFolderSave: IGenericReturn<Promise<unknown>> = async () => {
-    if (addEditFolder) {
-      const result = await makeApiCall<IFolder[]>(
-        addEditFolder.id
-          ? apis.updateFolderData({ id: addEditFolder.id }, addEditFolder)
-          : apis.createFolder(addEditFolder)
-      );
-      onFolderUpdate(result, folderMap[currentFolder]);
-      setAddEditFolder(null);
+    if (selectedItem) {
+      if ('breadcrumbs' in selectedItem) {
+        const result = await makeApiCall<IFolder[]>(
+          selectedItem.id
+            ? apis.updateFolderData({ id: selectedItem.id }, selectedItem)
+            : apis.createFolder(selectedItem)
+        );
+        onFolderUpdate(result, folderMap[currentFolder]);
+        setSelectedItem(null);
+      }
     }
   };
   const onFolderDelete: IGenericMethod = () => {
     setDeleteConfirm(true);
   };
   const onFolderDeleteConfirm: IGenericReturn<Promise<unknown>> = async () => {
-    const result = await makeApiCall<IFolder[]>(apis.deleteFolder({ id: addEditFolder?.id || '' }));
+    const result = await makeApiCall<IFolder[]>(apis.deleteFolder({ id: selectedItem?.id || '' }));
     onFolderUpdate(result, folderMap[currentFolder]);
-    setAddEditFolder(null);
+    setSelectedItem(null);
     setDeleteConfirm(false);
   };
   const onDeleteConfirmCancel: IGenericMethod = () => {
@@ -133,7 +134,7 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
   };
   const toggleShowUploadFolder: IGenericMethod = () => {
     setShowFileUploader(!showFileUploader);
-    setAddEditFolder(null);
+    setSelectedItem(null);
   };
   const uploadFiles: IGenericMethod = async () => {
     await Promise.all(
@@ -148,10 +149,36 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
         onFileSetLoading(key, false);
       })
     );
+    const result = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: currentFolder }));
+    setFolderMap((folderMap) => {
+      const selectedFolder = folderMap[currentFolder];
+      return {
+        ...folderMap,
+        [currentFolder]: {
+          ...selectedFolder,
+          files: result,
+        },
+      };
+    });
+    setShowFileUploader(false);
+    clearFiles();
   };
-  const onFileDelete: IGenericMethod = () => {
-    if (selectedFile) {
-      makeApiCall(apis.deleteFromS3({ folder: currentFolder, fileName: selectedFile.id }));
+  const onFileDelete: IGenericMethod = async () => {
+    if (selectedItem && 'type' in selectedItem) {
+      await makeApiCall(apis.deleteFromS3({ folder: currentFolder, fileName: selectedItem.id }));
+      const files = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: currentFolder }));
+      setFolderMap((folderMap) => {
+        const folder = folderMap[currentFolder];
+        return {
+          ...folderMap,
+          [currentFolder]: {
+            ...folder,
+            files,
+          },
+        };
+      });
+      setSelectedItem(null);
+      setDeleteConfirm(false);
     }
   };
   const onFolderToggle: IGenericParam<IGalleryFolder> = (folder) => {
@@ -185,20 +212,18 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     onFileDelete,
     onDeleteFile,
     onFileToggle,
-    addEditFolder,
-    selectedFile,
+    selectedItem,
     currentFolder,
     deleteConfirm,
+    onConvertFile,
     onFolderToggle,
-    onDropRejected,
     onDropAccepted,
     onFolderDelete,
     onFolderSelect,
+    setSelectedItem,
     onAddFolderSave,
-    setSelectedFile,
     showFileUploader,
     onFileSetLoading,
-    setAddEditFolder,
     setShowFileUploader,
     openShowUploadFolder,
     onFolderDeleteConfirm,

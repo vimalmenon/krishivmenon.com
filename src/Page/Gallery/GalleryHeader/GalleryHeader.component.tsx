@@ -1,4 +1,5 @@
 import { Icon } from '@common';
+import { MaxFolderUploadDepth } from '@constant';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import { Container, Spacing } from '@style';
@@ -33,7 +34,7 @@ export const GalleryHeader: React.FC = () => {
               onClick={toggleShowUploadFolder}
             />
           )}
-          {folderMap[currentFolder].breadcrumbs.length < 4 && (
+          {folderMap[currentFolder].breadcrumbs.length < MaxFolderUploadDepth && (
             <Icon Icon={Icon.icons.Add} label="Add folder" onClick={onFolderAdd} />
           )}
         </div>

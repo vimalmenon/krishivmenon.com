@@ -1,7 +1,7 @@
 import { ENV } from '@constant';
 import { IGenericReturn, IApi, INotes, IFolder, AnyType, IProfile } from '@types';
 
-import { IApiStorageApi, IApiS3Folder, IApiNote, IUploadToS3 } from './apis';
+import { IApiStorageApi, IApiS3Folder, IApiNote, IUploadToS3 } from './utility';
 
 export const getBaseUrl: IGenericReturn<string> = () => {
   return `${ENV.API_URL}${ENV.API_VERSION}`;
@@ -18,7 +18,7 @@ export const Apis = {
   Me: '/me',
 };
 
-export const createFormData = <T>(body: T): FormData => {
+export const getFormData = <T>(body: T): FormData => {
   const result = new FormData();
   if (body) {
     Object.keys(body).forEach((data) => {
@@ -34,7 +34,7 @@ export const apis = {
     return {
       url,
       method: 'POST',
-      data: createFormData<IUploadToS3>(data),
+      data: getFormData<IUploadToS3>(data),
       params: {
         code: '3',
       },
@@ -45,9 +45,6 @@ export const apis = {
     return {
       url,
       method: 'DELETE',
-      params: {
-        code: '3',
-      },
     };
   },
   getFilesFromS3: function ({ folder }: IApiS3Folder): IApi {

@@ -11,13 +11,12 @@ export const FileUpload: React.FC<IFileUpload> = ({
   files,
   accept,
   onDeleteFile,
+  onConvertFile,
   onDropAccepted,
-  onDropRejected,
 }) => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: accept,
     onDropAccepted: onDropAccepted,
-    onDropRejected: onDropRejected,
   });
   return (
     <Container component={'section'} direction="column" sx={{ flex: '1 1 100%' }}>
@@ -29,7 +28,13 @@ export const FileUpload: React.FC<IFileUpload> = ({
       <div style={{ flex: 4, display: 'flex', flexDirection: 'column', gap: '10px' }}>
         {files.map((file, key) => {
           return (
-            <FileUploadedItem key={file.label} file={file} onDelete={() => onDeleteFile(key)} />
+            <FileUploadedItem
+              key={file.label}
+              file={file}
+              onDelete={() => onDeleteFile(key)}
+              onConvertFile={onConvertFile}
+              index={key}
+            />
           );
         })}
       </div>

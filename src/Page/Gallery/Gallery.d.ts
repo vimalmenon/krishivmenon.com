@@ -1,18 +1,20 @@
 import { IFolder, IGenericMethod, IGenericParam, IGalleryFolder, IFile } from '@types';
 import { IFileUploadExternal } from 'src/Common/FileUpload/FileUpload';
 
+export type OnConvertFileType = (file: IUploadedFile, index: number) => Promise<unknown>;
+
 export interface IGalleryContext extends IFileUploadExternal {
   currentFolder: string;
   deleteConfirm: boolean;
-  selectedFile: IFile | null;
-  addEditFolder: IGalleryFolder | null;
+  clearFiles: IGenericMethod;
+  onConvertFile: OnConvertFileType;
+  selectedItem: IGalleryFolder | IFile | null;
   folderMap: Record<string, IGalleryFolder>;
   onFolderSelect: IGenericParam<IGalleryFolder>;
   setDeleteConfirm: React.Dispatch<React.SetStateAction<boolean>>;
-  setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
   onFolderUpdate: (folders: IFolder[], currentFolder: IGalleryFolder) => void;
-  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
   setFolderMap: React.Dispatch<React.SetStateAction<Record<string, IGalleryFolder>>>;
+  setSelectedItem: React.Dispatch<React.SetStateAction<IGalleryFolder | IFile | null>>;
 }
 
 export interface IUseGallery {
@@ -26,24 +28,23 @@ export interface IUseGallery {
 export interface IUseCommonGalleryContext extends IFileUploadExternal {
   currentFolder: string;
   deleteConfirm: boolean;
+  uploadFiles: IGenericMethod;
   onFolderAdd: IGenericMethod;
+  onFileDelete: IGenericMethod;
   onFolderDelete: IGenericMethod;
-  addEditFolder: IGalleryFolder | null;
   onFolderDeleteConfirm: IGenericMethod;
-  onSelectedFolderCancel: IGenericMethod;
-  folderMap: Record<string, IGalleryFolder>;
-  onFolderSelect: IGenericParam<IGalleryFolder>;
-  onAddFolderSave: IGenericReturn<Promise<unknown>>;
-  onSelectedFolderLabelUpdate: IGenericParam<string>;
-  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
   closeShowUploadFolder: IGenericMethod;
   openShowUploadFolder: IGenericMethod;
   onDeleteConfirmCancel: IGenericMethod;
   toggleShowUploadFolder: IGenericMethod;
-  uploadFiles: IGenericMethod;
-  selectedFile: IFile | null;
-  setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
-  onFileDelete: IGenericMethod;
+  onSelectedFolderCancel: IGenericMethod;
+  folderMap: Record<string, IGalleryFolder>;
+  selectedItem: IGalleryFolder | IFile | null;
+  onFolderSelect: IGenericParam<IGalleryFolder>;
+  onAddFolderSave: IGenericReturn<Promise<unknown>>;
+  onSelectedFolderLabelUpdate: IGenericParam<string>;
+  setSelectedItem: React.Dispatch<React.SetStateAction<IGalleryFolder | IFile | null>>;
+  onConvertFile: OnConvertFileType;
   onFolderToggle: IGenericParam<IGalleryFolder>;
   onFileToggle: IGenericParam<IGalleryFolder>;
 }

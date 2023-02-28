@@ -22,50 +22,56 @@ export const AddEditFolder: React.FC = () => {
   const [edit, setEdit] = React.useState<boolean>(false);
   return (
     <PaperStyle>
-      <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
-        {addEditFolder?.id ? <span>Edit {addEditFolder.label}</span> : <span>Add Folder</span>}
-        {addEditFolder?.id &&
-          addEditFolder.files.length === 0 &&
-          addEditFolder.folders.length === 0 && (
-            <Icon Icon={Icon.icons.Delete} label="Delete" onClick={onFolderDelete} />
-          )}
-      </Container>
-      <div>
-        <FormControl variant="outlined" fullWidth size="small">
-          <InputLabel htmlFor="folder-name">Folder name</InputLabel>
-          <OutlinedInput
-            id="folder-name"
-            value={addEditFolder?.label}
-            onChange={(e) => onSelectedFolderLabelUpdate(e.target.value)}
-            disabled={!edit}
-            endAdornment={
-              <InputAdornment position="end">
-                <Icon
-                  Icon={edit ? Icon.icons.Cancel : Icon.icons.Edit}
-                  edge="end"
-                  onClick={() => setEdit(!edit)}
-                />
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
-      </div>
-      <Container component={'div'} sx={{ flex: '1' }}>
-        &nbsp;
-      </Container>
-      <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
-        <PromiseLoadingButton
-          variant="contained"
-          onClick={onAddFolderSave}
-          startIcon={<Icon.icons.Save />}
-        >
-          <span>{addEditFolder?.id ? 'Update' : 'Create'}</span>
-        </PromiseLoadingButton>
-        <Button variant="outlined" onClick={onSelectedFolderCancel}>
-          Cancel
-        </Button>
-      </Container>
+      {addEditFolder && 'breadcrumbs' in addEditFolder ? (
+        <>
+          <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
+            {addEditFolder?.id ? <span>Edit {addEditFolder.label}</span> : <span>Add Folder</span>}
+            {addEditFolder?.id &&
+              addEditFolder.files.length === 0 &&
+              addEditFolder.folders.length === 0 && (
+                <Icon Icon={Icon.icons.Delete} label="Delete" onClick={onFolderDelete} />
+              )}
+          </Container>
+          <div>
+            <FormControl variant="outlined" fullWidth size="small">
+              <InputLabel htmlFor="folder-name">Folder name</InputLabel>
+              <OutlinedInput
+                id="folder-name"
+                value={addEditFolder?.label}
+                onChange={(e) => onSelectedFolderLabelUpdate(e.target.value)}
+                disabled={!edit}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <Icon
+                      Icon={edit ? Icon.icons.Cancel : Icon.icons.Edit}
+                      edge="end"
+                      onClick={() => setEdit(!edit)}
+                    />
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+            </FormControl>
+          </div>
+          <Container component={'div'} sx={{ flex: '1' }}>
+            &nbsp;
+          </Container>
+          <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
+            <PromiseLoadingButton
+              variant="contained"
+              onClick={onAddFolderSave}
+              startIcon={<Icon.icons.Save />}
+            >
+              <span>{addEditFolder?.id ? 'Update' : 'Create'}</span>
+            </PromiseLoadingButton>
+            <Button variant="outlined" onClick={onSelectedFolderCancel}>
+              Cancel
+            </Button>
+          </Container>
+        </>
+      ) : (
+        <div></div>
+      )}
     </PaperStyle>
   );
 };

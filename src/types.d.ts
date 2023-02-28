@@ -113,4 +113,9 @@ declare module '@mui/material/styles' {
       background: string;
     };
   }
+  interface Theme {
+    custom: {
+      background: string;
+    };
+  }
 }

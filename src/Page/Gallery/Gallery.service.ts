@@ -107,13 +107,15 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
   };
   const onAddFolderSave: IGenericReturn<Promise<unknown>> = async () => {
     if (addEditFolder) {
-      const result = await makeApiCall<IFolder[]>(
-        addEditFolder.id
-          ? apis.updateFolderData({ id: addEditFolder.id }, addEditFolder)
-          : apis.createFolder(addEditFolder)
-      );
-      onFolderUpdate(result, folderMap[currentFolder]);
-      setAddEditFolder(null);
+      if ('breadcrumbs' in addEditFolder) {
+        const result = await makeApiCall<IFolder[]>(
+          addEditFolder.id
+            ? apis.updateFolderData({ id: addEditFolder.id }, addEditFolder)
+            : apis.createFolder(addEditFolder)
+        );
+        onFolderUpdate(result, folderMap[currentFolder]);
+        setAddEditFolder(null);
+      }
     }
   };
   const onFolderDelete: IGenericMethod = () => {

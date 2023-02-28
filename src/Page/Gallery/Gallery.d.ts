@@ -9,13 +9,13 @@ export interface IGalleryContext extends IFileUploadExternal {
   clearFiles: IGenericMethod;
   selectedFile: IFile | null;
   onConvertFile: OnConvertFileType;
-  addEditFolder: IGalleryFolder | null;
+  addEditFolder: IGalleryFolder | IFile | null;
   folderMap: Record<string, IGalleryFolder>;
   onFolderSelect: IGenericParam<IGalleryFolder>;
   setDeleteConfirm: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
   onFolderUpdate: (folders: IFolder[], currentFolder: IGalleryFolder) => void;
-  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
+  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | IFile | null>>;
   setFolderMap: React.Dispatch<React.SetStateAction<Record<string, IGalleryFolder>>>;
 }
 
@@ -34,7 +34,7 @@ export interface IUseCommonGalleryContext extends IFileUploadExternal {
   uploadFiles: IGenericMethod;
   onFolderAdd: IGenericMethod;
   onFolderDelete: IGenericMethod;
-  addEditFolder: IGalleryFolder | null;
+  addEditFolder: IGalleryFolder | IFile | null;
   onFolderDeleteConfirm: IGenericMethod;
   closeShowUploadFolder: IGenericMethod;
   openShowUploadFolder: IGenericMethod;
@@ -46,7 +46,7 @@ export interface IUseCommonGalleryContext extends IFileUploadExternal {
   onAddFolderSave: IGenericReturn<Promise<unknown>>;
   onSelectedFolderLabelUpdate: IGenericParam<string>;
   setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
-  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
+  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | IFile | null>>;
   onFileDelete: IGenericMethod;
   onConvertFile: OnConvertFileType;
   onFolderToggle: IGenericParam<IGalleryFolder>;

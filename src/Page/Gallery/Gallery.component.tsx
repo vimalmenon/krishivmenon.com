@@ -31,7 +31,7 @@ const GalleryChildren: React.FC = () => {
   );
 };
 export const Gallery: React.FC = () => {
-  const [addEditFolder, setAddEditFolder] = React.useState<IGalleryFolder | null>(
+  const [addEditFolder, setAddEditFolder] = React.useState<IGalleryFolder | IFile | null>(
     initialContextValue.addEditFolder
   );
   const [selectedFile, setSelectedFile] = React.useState<IFile | null>(

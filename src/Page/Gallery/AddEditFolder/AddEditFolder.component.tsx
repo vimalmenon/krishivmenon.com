@@ -15,6 +15,7 @@ import { useCommonGallery } from '../Gallery.service';
 export const AddEditFolder: React.FC = () => {
   const {
     selectedItem,
+    onFileDelete,
     onFolderDelete,
     onAddFolderSave,
     setSelectedItem,
@@ -59,41 +60,46 @@ export const AddEditFolder: React.FC = () => {
             <Container component={'div'} sx={{ flex: '1' }}>
               &nbsp;
             </Container>
+            <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
+              <PromiseLoadingButton
+                variant="contained"
+                onClick={onAddFolderSave}
+                startIcon={<Icon.icons.Save />}
+              >
+                <span>{selectedItem?.id ? 'Update' : 'Create'}</span>
+              </PromiseLoadingButton>
+              <Button variant="outlined" onClick={onSelectedFolderCancel}>
+                Cancel
+              </Button>
+            </Container>
           </>
         ) : (
-          <Container component={'div'} sx={{ justifyContent: 'space-between' }} direction="column">
-            <span>Edit file</span>
+          <>
+            <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
+              <span>Edit file</span>
+              <Icon Icon={Icon.icons.Delete} label="Delete" onClick={onFileDelete} />
+            </Container>
             <div>{selectedItem.id}</div>
-            <div>
-              <img
-                src={`${ENV.ASSET_S3_BUCKET}/${selectedItem.path}`}
-                alt={selectedItem.name}
-                width={'175px'}
-              />
-              {selectedItem.name}
-            </div>
-            <div>
+            <Container component={'div'} sx={{ flex: '1' }}>
+              <div>
+                <img
+                  src={`${ENV.ASSET_S3_BUCKET}/${selectedItem.path}`}
+                  alt={selectedItem.name}
+                  width={'175px'}
+                />
+                {selectedItem.name}
+              </div>
+            </Container>
+            <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
               <Button variant="contained" onClick={onFolderDelete}>
                 Delete
               </Button>
-              <Button variant="contained" onClick={() => setSelectedItem(null)}>
+              <Button variant="outlined" onClick={() => setSelectedItem(null)}>
                 Cancel
               </Button>
-            </div>
-          </Container>
+            </Container>
+          </>
         )}
-        <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
-          <PromiseLoadingButton
-            variant="contained"
-            onClick={onAddFolderSave}
-            startIcon={<Icon.icons.Save />}
-          >
-            <span>{selectedItem?.id ? 'Update' : 'Create'}</span>
-          </PromiseLoadingButton>
-          <Button variant="outlined" onClick={onSelectedFolderCancel}>
-            Cancel
-          </Button>
-        </Container>
       </PaperStyle>
     );
   }

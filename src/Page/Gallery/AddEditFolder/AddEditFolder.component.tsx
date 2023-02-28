@@ -8,6 +8,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { Container } from '@style';
+import Imgix from 'react-imgix';
 
 import { PaperStyle } from './AddEditFolder.style';
 import { useCommonGallery } from '../Gallery.service';
@@ -86,10 +87,10 @@ export const AddEditFolder: React.FC = () => {
             <div>{selectedItem.id}</div>
             <Container component={'div'} sx={{ flex: '1' }}>
               <div>
-                <img
+                <Imgix
                   src={`${ENV.ASSET_S3_BUCKET}/${selectedItem.path}`}
-                  alt={selectedItem.name}
-                  width={'175px'}
+                  width={200} // This sets what resolution the component should load from the CDN and the size of the resulting image
+                  height={300}
                 />
                 {selectedItem.name}
               </div>

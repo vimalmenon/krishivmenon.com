@@ -163,9 +163,22 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     setShowFileUploader(false);
     clearFiles();
   };
-  const onFileDelete: IGenericMethod = () => {
+  const onFileDelete: IGenericMethod = async () => {
     if (selectedItem && 'type' in selectedItem) {
-      makeApiCall(apis.deleteFromS3({ folder: currentFolder, fileName: selectedItem.id }));
+      await makeApiCall(apis.deleteFromS3({ folder: currentFolder, fileName: selectedItem.id }));
+      const files = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: currentFolder }));
+      setFolderMap((folderMap) => {
+        const folder = folderMap[currentFolder];
+        return {
+          ...folderMap,
+          [currentFolder]: {
+            ...folder,
+            files,
+          },
+        };
+      });
+      setSelectedItem(null);
+      setDeleteConfirm(false);
     }
   };
   const onFolderToggle: IGenericParam<IGalleryFolder> = (folder) => {

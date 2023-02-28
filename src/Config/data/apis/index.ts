@@ -45,6 +45,9 @@ export const apis = {
     return {
       url,
       method: 'DELETE',
+      params: {
+        code: '3',
+      },
     };
   },
   getFilesFromS3: function ({ folder }: IApiS3Folder): IApi {

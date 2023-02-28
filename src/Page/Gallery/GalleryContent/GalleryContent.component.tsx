@@ -16,19 +16,17 @@ import {
 import { AddEditFolder } from '../AddEditFolder';
 import { useCommonGallery } from '../Gallery.service';
 import { GalleryFolder } from '../GalleryFolder';
-import { SelectedFile } from '../SelectedFile';
 import { UploadFiles } from '../UploadFiles';
 
 export const GalleryContent: React.FC = () => {
   const {
     folderMap,
-    selectedFile,
-    currentFolder,
-    addEditFolder,
-    setSelectedFile,
-    showFileUploader,
-    onFolderToggle,
+    selectedItem,
     onFileToggle,
+    currentFolder,
+    onFolderToggle,
+    setSelectedItem,
+    showFileUploader,
   } = useCommonGallery();
   const folder = React.useMemo(() => folderMap[currentFolder], [folderMap[currentFolder]]);
   return (
@@ -53,7 +51,7 @@ export const GalleryContent: React.FC = () => {
                   <GalleryFolder
                     key={value}
                     folder={folderMap[value]}
-                    isSelected={addEditFolder?.id === value}
+                    isSelected={selectedItem?.id === value}
                   />
                 );
               })}
@@ -74,7 +72,7 @@ export const GalleryContent: React.FC = () => {
                 <GalleryContentFiles>
                   {folder.files.map((file) => {
                     return (
-                      <div key={file.id} role="presentation" onClick={() => setSelectedFile(file)}>
+                      <div key={file.id} role="presentation" onClick={() => setSelectedItem(file)}>
                         <img
                           src={`${ENV.ASSET_S3_BUCKET}/${file.path}`}
                           alt={file.name}
@@ -91,9 +89,8 @@ export const GalleryContent: React.FC = () => {
         </GalleryContentFilesRoot>
       )}
       <GalleryContentExtra>
-        {addEditFolder && <AddEditFolder />}
+        {selectedItem && <AddEditFolder />}
         {showFileUploader && <UploadFiles />}
-        {selectedFile && <SelectedFile />}
       </GalleryContentExtra>
     </GalleryContentRoot>
   );

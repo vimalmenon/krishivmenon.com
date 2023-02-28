@@ -9,14 +9,14 @@ export interface IGalleryContext extends IFileUploadExternal {
   clearFiles: IGenericMethod;
   selectedFile: IFile | null;
   onConvertFile: OnConvertFileType;
-  addEditFolder: IGalleryFolder | IFile | null;
+  selectedItem: IGalleryFolder | IFile | null;
   folderMap: Record<string, IGalleryFolder>;
   onFolderSelect: IGenericParam<IGalleryFolder>;
   setDeleteConfirm: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
   onFolderUpdate: (folders: IFolder[], currentFolder: IGalleryFolder) => void;
-  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | IFile | null>>;
   setFolderMap: React.Dispatch<React.SetStateAction<Record<string, IGalleryFolder>>>;
+  setSelectedItem: React.Dispatch<React.SetStateAction<IGalleryFolder | IFile | null>>;
 }
 
 export interface IUseGallery {
@@ -33,8 +33,8 @@ export interface IUseCommonGalleryContext extends IFileUploadExternal {
   selectedFile: IFile | null;
   uploadFiles: IGenericMethod;
   onFolderAdd: IGenericMethod;
+  onFileDelete: IGenericMethod;
   onFolderDelete: IGenericMethod;
-  addEditFolder: IGalleryFolder | IFile | null;
   onFolderDeleteConfirm: IGenericMethod;
   closeShowUploadFolder: IGenericMethod;
   openShowUploadFolder: IGenericMethod;
@@ -42,12 +42,12 @@ export interface IUseCommonGalleryContext extends IFileUploadExternal {
   toggleShowUploadFolder: IGenericMethod;
   onSelectedFolderCancel: IGenericMethod;
   folderMap: Record<string, IGalleryFolder>;
+  selectedItem: IGalleryFolder | IFile | null;
   onFolderSelect: IGenericParam<IGalleryFolder>;
   onAddFolderSave: IGenericReturn<Promise<unknown>>;
   onSelectedFolderLabelUpdate: IGenericParam<string>;
   setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
-  setAddEditFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | IFile | null>>;
-  onFileDelete: IGenericMethod;
+  setSelectedItem: React.Dispatch<React.SetStateAction<IGalleryFolder | IFile | null>>;
   onConvertFile: OnConvertFileType;
   onFolderToggle: IGenericParam<IGalleryFolder>;
   onFileToggle: IGenericParam<IGalleryFolder>;

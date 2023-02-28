@@ -13,7 +13,7 @@ import { useCommonGallery } from '../Gallery.service';
 
 export const AddEditFolder: React.FC = () => {
   const {
-    addEditFolder,
+    selectedItem,
     onFolderDelete,
     onAddFolderSave,
     onSelectedFolderCancel,
@@ -22,13 +22,13 @@ export const AddEditFolder: React.FC = () => {
   const [edit, setEdit] = React.useState<boolean>(false);
   return (
     <PaperStyle>
-      {addEditFolder && 'breadcrumbs' in addEditFolder ? (
+      {selectedItem && 'breadcrumbs' in selectedItem ? (
         <>
           <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
-            {addEditFolder?.id ? <span>Edit {addEditFolder.label}</span> : <span>Add Folder</span>}
-            {addEditFolder?.id &&
-              addEditFolder.files.length === 0 &&
-              addEditFolder.folders.length === 0 && (
+            {selectedItem?.id ? <span>Edit {selectedItem.label}</span> : <span>Add Folder</span>}
+            {selectedItem?.id &&
+              selectedItem.files.length === 0 &&
+              selectedItem.folders.length === 0 && (
                 <Icon Icon={Icon.icons.Delete} label="Delete" onClick={onFolderDelete} />
               )}
           </Container>
@@ -37,7 +37,7 @@ export const AddEditFolder: React.FC = () => {
               <InputLabel htmlFor="folder-name">Folder name</InputLabel>
               <OutlinedInput
                 id="folder-name"
-                value={addEditFolder?.label}
+                value={selectedItem?.label}
                 onChange={(e) => onSelectedFolderLabelUpdate(e.target.value)}
                 disabled={!edit}
                 endAdornment={
@@ -56,22 +56,22 @@ export const AddEditFolder: React.FC = () => {
           <Container component={'div'} sx={{ flex: '1' }}>
             &nbsp;
           </Container>
-          <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
-            <PromiseLoadingButton
-              variant="contained"
-              onClick={onAddFolderSave}
-              startIcon={<Icon.icons.Save />}
-            >
-              <span>{addEditFolder?.id ? 'Update' : 'Create'}</span>
-            </PromiseLoadingButton>
-            <Button variant="outlined" onClick={onSelectedFolderCancel}>
-              Cancel
-            </Button>
-          </Container>
         </>
       ) : (
         <div></div>
       )}
+      <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
+        <PromiseLoadingButton
+          variant="contained"
+          onClick={onAddFolderSave}
+          startIcon={<Icon.icons.Save />}
+        >
+          <span>{selectedItem?.id ? 'Update' : 'Create'}</span>
+        </PromiseLoadingButton>
+        <Button variant="outlined" onClick={onSelectedFolderCancel}>
+          Cancel
+        </Button>
+      </Container>
     </PaperStyle>
   );
 };

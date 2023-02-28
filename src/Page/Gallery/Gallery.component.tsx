@@ -14,7 +14,7 @@ import { GalleryContent } from './GalleryContent';
 import { GalleryHeader } from './GalleryHeader';
 
 const GalleryChildren: React.FC = () => {
-  const { deleteConfirm, addEditFolder, onDeleteConfirmCancel, onFolderDeleteConfirm } =
+  const { deleteConfirm, selectedItem, onDeleteConfirmCancel, onFolderDeleteConfirm } =
     useCommonGallery();
   return (
     <GalleryRoot>
@@ -23,7 +23,7 @@ const GalleryChildren: React.FC = () => {
         handleClose={onDeleteConfirmCancel}
         handleConfirm={onFolderDeleteConfirm}
       >
-        <>Are you sure you want to delete {addEditFolder?.label}</>
+        <>Are you sure you want to delete {selectedItem?.label}</>
       </Confirm>
       <GalleryHeader />
       <GalleryContent />
@@ -31,8 +31,8 @@ const GalleryChildren: React.FC = () => {
   );
 };
 export const Gallery: React.FC = () => {
-  const [addEditFolder, setAddEditFolder] = React.useState<IGalleryFolder | IFile | null>(
-    initialContextValue.addEditFolder
+  const [selectedItem, setSelectedItem] = React.useState<IGalleryFolder | IFile | null>(
+    initialContextValue.selectedItem
   );
   const [selectedFile, setSelectedFile] = React.useState<IFile | null>(
     initialContextValue.selectedFile
@@ -57,18 +57,18 @@ export const Gallery: React.FC = () => {
         files,
         folderMap,
         clearFiles,
-        selectedFile,
         setFolderMap,
         onDeleteFile,
+        selectedFile,
+        selectedItem,
+        onConvertFile,
         currentFolder,
-        addEditFolder,
         deleteConfirm,
         onDropAccepted,
         onFolderUpdate,
         onFolderSelect,
-        onConvertFile,
+        setSelectedItem,
         setSelectedFile,
-        setAddEditFolder,
         onFileSetLoading,
         showFileUploader,
         setDeleteConfirm,

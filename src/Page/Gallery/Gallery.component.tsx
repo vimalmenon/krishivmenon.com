@@ -34,9 +34,6 @@ export const Gallery: React.FC = () => {
   const [selectedItem, setSelectedItem] = React.useState<IGalleryFolder | IFile | null>(
     initialContextValue.selectedItem
   );
-  const [selectedFile, setSelectedFile] = React.useState<IFile | null>(
-    initialContextValue.selectedFile
-  );
   const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(
     initialContextValue.deleteConfirm
   );
@@ -59,7 +56,6 @@ export const Gallery: React.FC = () => {
         clearFiles,
         setFolderMap,
         onDeleteFile,
-        selectedFile,
         selectedItem,
         onConvertFile,
         currentFolder,
@@ -68,7 +64,6 @@ export const Gallery: React.FC = () => {
         onFolderUpdate,
         onFolderSelect,
         setSelectedItem,
-        setSelectedFile,
         onFileSetLoading,
         showFileUploader,
         setDeleteConfirm,

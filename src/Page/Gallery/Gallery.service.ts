@@ -41,7 +41,6 @@ const rootFolder: IGalleryFolder = {
 
 export const initialContextValue: IGalleryContext = {
   files: [],
-  selectedFile: null,
   selectedItem: null,
   deleteConfirm: false,
   showFileUploader: false,
@@ -54,7 +53,6 @@ export const initialContextValue: IGalleryContext = {
   onDropAccepted: NotImplemented,
   onFolderUpdate: NotImplemented,
   setSelectedItem: NotImplemented,
-  setSelectedFile: NotImplemented,
   setDeleteConfirm: NotImplemented,
   onFileSetLoading: NotImplemented,
   setShowFileUploader: NotImplemented,
@@ -73,7 +71,6 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     folderMap,
     clearFiles,
     setFolderMap,
-    selectedFile,
     onDeleteFile,
     selectedItem,
     currentFolder,
@@ -82,7 +79,6 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     onFolderUpdate,
     onFolderSelect,
     onDropAccepted,
-    setSelectedFile,
     setSelectedItem,
     onFileSetLoading,
     setDeleteConfirm,
@@ -168,8 +164,8 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     clearFiles();
   };
   const onFileDelete: IGenericMethod = () => {
-    if (selectedFile) {
-      makeApiCall(apis.deleteFromS3({ folder: currentFolder, fileName: selectedFile.id }));
+    if (selectedItem && 'type' in selectedItem) {
+      makeApiCall(apis.deleteFromS3({ folder: currentFolder, fileName: selectedItem.id }));
     }
   };
   const onFolderToggle: IGenericParam<IGalleryFolder> = (folder) => {
@@ -204,7 +200,6 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     onDeleteFile,
     onFileToggle,
     selectedItem,
-    selectedFile,
     currentFolder,
     deleteConfirm,
     onConvertFile,
@@ -214,7 +209,6 @@ export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => 
     onFolderSelect,
     setSelectedItem,
     onAddFolderSave,
-    setSelectedFile,
     showFileUploader,
     onFileSetLoading,
     setShowFileUploader,

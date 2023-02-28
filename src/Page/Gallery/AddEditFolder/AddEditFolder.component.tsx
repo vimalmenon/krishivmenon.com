@@ -89,8 +89,7 @@ export const AddEditFolder: React.FC = () => {
               <div>
                 <Imgix
                   src={`${ENV.ASSET_S3_BUCKET}/${selectedItem.path}`}
-                  width={200} // This sets what resolution the component should load from the CDN and the size of the resulting image
-                  height={300}
+                  width={300} // This sets what resolution the component should load from the CDN and the size of the resulting image
                 />
                 {selectedItem.name}
               </div>

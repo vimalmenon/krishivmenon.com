@@ -73,11 +73,15 @@ export const GalleryContent: React.FC = () => {
                 <GalleryContentFiles>
                   {folder.files.map((file) => {
                     return (
-                      <div key={file.id} role="presentation" onClick={() => setSelectedItem(file)}>
+                      <div
+                        key={file.id}
+                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                        role="presentation"
+                        onClick={() => setSelectedItem(file)}
+                      >
                         <Imgix
                           src={`${ENV.ASSET_S3_BUCKET}/${file.path}`}
-                          width={200} // This sets what resolution the component should load from the CDN and the size of the resulting image
-                          height={300}
+                          width={300} // This sets what resolution the component should load from the CDN and the size of the resulting image
                         />
                         {file.name}
                       </div>

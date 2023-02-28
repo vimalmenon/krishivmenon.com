@@ -68,7 +68,11 @@ export const AddEditFolder: React.FC = () => {
               >
                 <span>{selectedItem?.id ? 'Update' : 'Create'}</span>
               </PromiseLoadingButton>
-              <Button variant="outlined" onClick={onSelectedFolderCancel}>
+              <Button
+                variant="outlined"
+                onClick={onSelectedFolderCancel}
+                startIcon={<Icon.icons.Cancel />}
+              >
                 Cancel
               </Button>
             </Container>
@@ -91,10 +95,14 @@ export const AddEditFolder: React.FC = () => {
               </div>
             </Container>
             <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
-              <Button variant="contained" onClick={onFolderDelete}>
+              <Button variant="contained" onClick={onFolderDelete} startIcon={<Icon.icons.Save />}>
                 Delete
               </Button>
-              <Button variant="outlined" onClick={() => setSelectedItem(null)}>
+              <Button
+                variant="outlined"
+                onClick={() => setSelectedItem(null)}
+                startIcon={<Icon.icons.Cancel />}
+              >
                 Cancel
               </Button>
             </Container>

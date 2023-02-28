@@ -19,6 +19,7 @@ High Priority:
   [Feature] Need to work on loading icon for delete
   Support for HEIC files
   Need to working on loading indicator
+  Check the page in IPad
 Medium Priority
   Increase the coverage to 80%
   Ability to invalidate the Id token
@@ -46,6 +47,9 @@ https://mui.com/joy-ui/getting-started/templates/files/
 https://tokyo-black-nextjs.bloomui.com/applications/jobs-platform
 https://mantisdashboard.io/apps/profiles/account/basic
 https://github.com/birros/heic2jpeg/blob/master/pages/index.tsx (Image conversion)
+https://codesandbox.io/s/react-heic-forked-6p18nd?file=/src/App.js:170-784
+https://codesandbox.io/s/74xh7p?file=/components/Navigation.tsx:774-863
+https://bareynol.github.io/mui-theme-creator/
 
 KM - Krishiv Menon
 VM - Vimal Menon

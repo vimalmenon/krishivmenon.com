@@ -105,3 +105,12 @@ export interface IProfile extends IBaseDB {
   avatar: string;
   provider: string;
 }
+
+declare module '@mui/material/styles' {
+  // allow configuration using `createTheme`
+  interface ThemeOptions {
+    custom: {
+      background: string;
+    };
+  }
+}

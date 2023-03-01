@@ -82,7 +82,12 @@ export const AddEditFolder: React.FC = () => {
           <>
             <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
               <span>Edit file</span>
-              <Icon Icon={Icon.icons.Delete} label="Delete" onClick={onFileDelete} />
+              <Icon
+                Icon={Icon.icons.Delete}
+                label="Delete"
+                onClick={onFileDelete}
+                showLoading={true}
+              />
             </Container>
             <div>{selectedItem.id}</div>
             <Container component={'div'} sx={{ flex: '1' }}>

@@ -7,5 +7,6 @@ export const PaperStyle = styled(Paper)(({ theme }) => ({
   width: '400px',
   gap: theme.spacing(Spacing.md),
   padding: theme.spacing(Spacing.md),
+  border: `1px solid ${theme.palette.divider}`,
   flexDirection: 'column',
 }));

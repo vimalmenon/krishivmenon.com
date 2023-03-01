@@ -24,14 +24,15 @@ High Priority:
   SidePanel for Add Edit Item
   Support to upload the videos
   Handling of fetch error
+  Fixing the scroll issue
 Medium Priority
   Increase the test coverage to 80%
+  Allow push only on 80% coverage
   Ability to invalidate the Id token
   Need to create a tags for notes and Library
   Create content for Home page
   [Feature] Create Release Page
   [Feature] Report a Bug
-  Allow push only on 80% coverage
 Less Priority
   Setting up sonar
   Add notes for image

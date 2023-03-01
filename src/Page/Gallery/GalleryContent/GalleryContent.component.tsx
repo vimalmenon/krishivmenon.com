@@ -74,7 +74,12 @@ export const GalleryContent: React.FC = () => {
                     return (
                       <div
                         key={file.id}
-                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          cursor: 'pointer',
+                        }}
                         role="presentation"
                         onClick={() => setSelectedItem(file)}
                       >

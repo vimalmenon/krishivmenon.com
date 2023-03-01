@@ -5,6 +5,6 @@ export const GalleryRoot = styled('section')(({ theme }) => {
     display: 'grid',
     gap: theme.spacing(2),
     gridTemplate: `"gallery-header" "gallery-content"`,
-    gridTemplateRows: '50px 1fr',
+    gridTemplateRows: 'auto 1fr',
   };
 });

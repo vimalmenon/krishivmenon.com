@@ -31,73 +31,75 @@ export const GalleryContent: React.FC = () => {
   const folder = React.useMemo(() => folderMap[currentFolder], [folderMap[currentFolder]]);
   return (
     <GalleryContentRoot>
-        <GalleryContentFilesRoot>
-          <div>
-            <Divider textAlign="left">
-              <Chip
-                label="Folders"
-                icon={folder.isFolderFolded ? <Icon.icons.DownArrow /> : <Icon.icons.UpArrow />}
-                onClick={() => onFolderToggle(folder)}
-              />
-            </Divider>
-          </div>
-          <Collapse in={!folder.isFolderFolded}>
-            <GalleryContentFolder>
-              {folderMap.root.loading ? <>
+      <GalleryContentFilesRoot>
+        <div>
+          <Divider textAlign="left">
+            <Chip
+              label="Folders"
+              icon={folder.isFolderFolded ? <Icon.icons.DownArrow /> : <Icon.icons.UpArrow />}
+              onClick={() => onFolderToggle(folder)}
+            />
+          </Divider>
+        </div>
+        <Collapse in={!folder.isFolderFolded}>
+          <GalleryContentFolder>
+            {folderMap.root.loading ? (
+              <>
                 <GalleryFolderLoading />
                 <GalleryFolderLoading />
-                <GalleryFolderLoading /></> :
-                <>
-                  {folder.folders.map((value) => {
-                    return (
-                      <GalleryFolder
-                        key={value}
-                        folder={folderMap[value]}
-                        isSelected={selectedItem?.id === value}
-                      />
-                    );
-                  })}
-                </>
-
-              }
-            </GalleryContentFolder>
-          </Collapse>
-          {folder.files.length ? (
-            <>
-              <div>
-                <Divider textAlign="left">
-                  <Chip
-                    label="Files"
-                    icon={folder.isFileFolded ? <Icon.icons.DownArrow /> : <Icon.icons.UpArrow />}
-                    onClick={() => onFileToggle(folder)}
-                  />
-                </Divider>
-              </div>
-              <Collapse in={!folder.isFileFolded}>
-                <GalleryContentFiles>
-                  {folder.files.map((file) => {
-                    return (
-                      <div
-                        key={file.id}
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          cursor: 'pointer',
-                        }}
-                        role="presentation"
-                        onClick={() => setSelectedItem(file)}
-                      >
-                        <Image src={`${ENV.ASSET_S3_BUCKET}/${file.path}`} width={300} />
-                        {file.name}
-                      </div>
-                    );
-                  })}
-                </GalleryContentFiles>
-              </Collapse>
-            </>
-          ) : null}
-        </GalleryContentFilesRoot>
+                <GalleryFolderLoading />
+              </>
+            ) : (
+              <>
+                {folder.folders.map((value) => {
+                  return (
+                    <GalleryFolder
+                      key={value}
+                      folder={folderMap[value]}
+                      isSelected={selectedItem?.id === value}
+                    />
+                  );
+                })}
+              </>
+            )}
+          </GalleryContentFolder>
+        </Collapse>
+        {folder.files.length ? (
+          <>
+            <div>
+              <Divider textAlign="left">
+                <Chip
+                  label="Files"
+                  icon={folder.isFileFolded ? <Icon.icons.DownArrow /> : <Icon.icons.UpArrow />}
+                  onClick={() => onFileToggle(folder)}
+                />
+              </Divider>
+            </div>
+            <Collapse in={!folder.isFileFolded}>
+              <GalleryContentFiles>
+                {folder.files.map((file) => {
+                  return (
+                    <div
+                      key={file.id}
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        cursor: 'pointer',
+                      }}
+                      role="presentation"
+                      onClick={() => setSelectedItem(file)}
+                    >
+                      <Image src={`${ENV.ASSET_S3_BUCKET}/${file.path}`} width={300} />
+                      {file.name}
+                    </div>
+                  );
+                })}
+              </GalleryContentFiles>
+            </Collapse>
+          </>
+        ) : null}
+      </GalleryContentFilesRoot>
       <GalleryContentExtra>
         {selectedItem && <AddEditFolder />}
         {showFileUploader && <UploadFiles />}

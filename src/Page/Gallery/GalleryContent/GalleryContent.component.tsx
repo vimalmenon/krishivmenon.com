@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { Icon } from '@common';
+import { Icon, Image } from '@common';
 import { ENV } from '@constant';
 import Chip from '@mui/material/Chip';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
-import Imgix from 'react-imgix';
 
 import {
   GalleryContentRoot,
@@ -79,10 +78,7 @@ export const GalleryContent: React.FC = () => {
                         role="presentation"
                         onClick={() => setSelectedItem(file)}
                       >
-                        <Imgix
-                          src={`${ENV.ASSET_S3_BUCKET}/${file.path}`}
-                          width={300} // This sets what resolution the component should load from the CDN and the size of the resulting image
-                        />
+                        <Image src={`${ENV.ASSET_S3_BUCKET}/${file.path}`} width={300} />
                         {file.name}
                       </div>
                     );

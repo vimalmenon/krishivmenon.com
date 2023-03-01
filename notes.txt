@@ -11,25 +11,27 @@ High Priority:
   Need to work on logout of auth
   Improve UI for 400 Page
   Improved UI for Gallery
+  Responsive UI for Gallery
+  Responsive UI for Notes
   UI for unauthorized page
   Add framer for animation
   First reload gives an issue with api refresh token (Bug)
   Need to show loading animation on delete, add and update
   Search for library for Image viewer (Lightbox)
-  [Feature] Need to work on loading icon for delete
-  Support for HEIC files
   Need to working on loading indicator
   Check the page in IPad
+  Fix caching in cloudfront (Bug)
+  SidePanel for Add Edit Item
+  Support to upload the videos
+  Handling of fetch error
 Medium Priority
-  Increase the coverage to 80%
+  Increase the test coverage to 80%
   Ability to invalidate the Id token
   Need to create a tags for notes and Library
   Create content for Home page
-  Responsive UI for Gallery
-  Responsive UI for Notes
   [Feature] Create Release Page
   [Feature] Report a Bug
-  Alow push only on 80% coverage
+  Allow push only on 80% coverage
 Less Priority
   Setting up sonar
   Add notes for image

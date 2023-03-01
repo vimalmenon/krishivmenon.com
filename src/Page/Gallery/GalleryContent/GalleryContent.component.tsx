@@ -15,7 +15,7 @@ import {
 } from './GalleryContent.style';
 import { AddEditFolder } from '../AddEditFolder';
 import { useCommonGallery } from '../Gallery.service';
-import { GalleryFolder } from '../GalleryFolder';
+import { GalleryFolder, GalleryFolderLoading } from '../GalleryFolder';
 import { UploadFiles } from '../UploadFiles';
 
 export const GalleryContent: React.FC = () => {
@@ -31,9 +31,6 @@ export const GalleryContent: React.FC = () => {
   const folder = React.useMemo(() => folderMap[currentFolder], [folderMap[currentFolder]]);
   return (
     <GalleryContentRoot>
-      {folderMap.root.loading ? (
-        <div>Loading...</div>
-      ) : (
         <GalleryContentFilesRoot>
           <div>
             <Divider textAlign="left">
@@ -46,15 +43,23 @@ export const GalleryContent: React.FC = () => {
           </div>
           <Collapse in={!folder.isFolderFolded}>
             <GalleryContentFolder>
-              {folder.folders.map((value) => {
-                return (
-                  <GalleryFolder
-                    key={value}
-                    folder={folderMap[value]}
-                    isSelected={selectedItem?.id === value}
-                  />
-                );
-              })}
+              {folderMap.root.loading ? <>
+                <GalleryFolderLoading />
+                <GalleryFolderLoading />
+                <GalleryFolderLoading /></> :
+                <>
+                  {folder.folders.map((value) => {
+                    return (
+                      <GalleryFolder
+                        key={value}
+                        folder={folderMap[value]}
+                        isSelected={selectedItem?.id === value}
+                      />
+                    );
+                  })}
+                </>
+
+              }
             </GalleryContentFolder>
           </Collapse>
           {folder.files.length ? (
@@ -93,7 +98,6 @@ export const GalleryContent: React.FC = () => {
             </>
           ) : null}
         </GalleryContentFilesRoot>
-      )}
       <GalleryContentExtra>
         {selectedItem && <AddEditFolder />}
         {showFileUploader && <UploadFiles />}

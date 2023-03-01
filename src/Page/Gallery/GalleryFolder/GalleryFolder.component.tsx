@@ -34,3 +34,15 @@ export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) 
     </FolderStyleRoot>
   );
 };
+
+export const GalleryFolderLoading: React.FC = () => {
+  return (<FolderStyleRoot>
+    <FolderIconStyle>
+      <Skeleton variant="circular" height="30px" width="30px" />
+    </FolderIconStyle>
+    <FolderLabelStyle><Skeleton width="100%" /></FolderLabelStyle>
+    <FolderDetailStyle>
+    <Skeleton width="100%" />
+    </FolderDetailStyle>
+  </FolderStyleRoot>);
+};

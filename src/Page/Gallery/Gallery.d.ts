@@ -32,6 +32,7 @@ export interface IUseCommonGalleryContext extends IFileUploadExternal {
   onFolderAdd: IGenericMethod;
   onFileDelete: IGenericMethod;
   onFolderDelete: IGenericMethod;
+  onConvertFile: OnConvertFileType;
   onFolderDeleteConfirm: IGenericMethod;
   closeShowUploadFolder: IGenericMethod;
   openShowUploadFolder: IGenericMethod;
@@ -39,12 +40,11 @@ export interface IUseCommonGalleryContext extends IFileUploadExternal {
   toggleShowUploadFolder: IGenericMethod;
   onSelectedFolderCancel: IGenericMethod;
   folderMap: Record<string, IGalleryFolder>;
+  onFileToggle: IGenericParam<IGalleryFolder>;
   selectedItem: IGalleryFolder | IFile | null;
   onFolderSelect: IGenericParam<IGalleryFolder>;
+  onFolderToggle: IGenericParam<IGalleryFolder>;
   onAddFolderSave: IGenericReturn<Promise<unknown>>;
   onSelectedFolderLabelUpdate: IGenericParam<string>;
   setSelectedItem: React.Dispatch<React.SetStateAction<IGalleryFolder | IFile | null>>;
-  onConvertFile: OnConvertFileType;
-  onFolderToggle: IGenericParam<IGalleryFolder>;
-  onFileToggle: IGenericParam<IGalleryFolder>;
 }

@@ -1,9 +1,8 @@
-import { grey, blueGrey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
 export const FolderStyleRoot = styled('div')(({ theme }) => {
   return {
-    border: '1px solid gray',
+    border: `1px solid ${theme.palette.divider}`,
     height: '150px',
     display: 'grid',
     borderRadius: '15px',
@@ -13,7 +12,7 @@ export const FolderStyleRoot = styled('div')(({ theme }) => {
     gridTemplate: `"folder-icon" "folder-label" "folder-detail"`,
     gridTemplateRows: '1fr auto auto',
     '&.active': {
-      background: theme.palette.mode === 'dark' ? grey[900] : blueGrey[50],
+      background: theme.custom.background,
     },
   };
 });

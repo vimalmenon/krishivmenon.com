@@ -22,17 +22,17 @@ export const AppProvider: React.FC<ReactChildren> = ({ children }) => {
     <Context.Provider
       value={{
         theme,
-        storage,
         profile,
+        storage,
         setTheme,
+        apiCount,
         setStorage,
         setProfile,
         authStatus,
         drawerOpen,
-        apiCount,
+        setApiCount,
         setDrawerOpen,
         setAuthStatus,
-        setApiCount,
       }}
     >
       {children}

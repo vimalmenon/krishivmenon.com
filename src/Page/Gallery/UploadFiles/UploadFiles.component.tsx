@@ -1,6 +1,6 @@
 import { FileUpload, Icon, PromiseLoadingButton } from '@common';
 import Button from '@mui/material/Button';
-import { Container } from '@style';
+import { Container, PageTitle } from '@style';
 
 import { PaperStyle } from './UploadFiles.style';
 import { useCommonGallery } from '../Gallery.service';
@@ -17,6 +17,9 @@ export const UploadFiles: React.FC = () => {
   } = useCommonGallery();
   return (
     <PaperStyle>
+      <Container component={'div'} sx={{ flex: '0 0 30px', alignItems: 'center' }}>
+        <PageTitle>Upload Files</PageTitle>
+      </Container>
       <Container component={'div'} sx={{ flex: '1' }}>
         <FileUpload
           files={files}
@@ -35,7 +38,11 @@ export const UploadFiles: React.FC = () => {
         >
           Upload
         </PromiseLoadingButton>
-        <Button variant="outlined" onClick={toggleShowUploadFolder}>
+        <Button
+          variant="outlined"
+          onClick={toggleShowUploadFolder}
+          startIcon={<Icon.icons.Cancel />}
+        >
           Cancel
         </Button>
       </Container>

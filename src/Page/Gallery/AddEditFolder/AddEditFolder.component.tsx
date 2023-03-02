@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { Icon, PromiseLoadingButton } from '@common';
+import { Icon, PromiseLoadingButton, Image } from '@common';
 import { ENV } from '@constant';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import { Container } from '@style';
+import { Container, PageTitle } from '@style';
 
 import { PaperStyle } from './AddEditFolder.style';
 import { useCommonGallery } from '../Gallery.service';
@@ -28,8 +28,17 @@ export const AddEditFolder: React.FC = () => {
       <PaperStyle>
         {selectedItem && 'breadcrumbs' in selectedItem ? (
           <>
-            <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
-              {selectedItem?.id ? <span>Edit {selectedItem.label}</span> : <span>Add Folder</span>}
+            <Container
+              component={'div'}
+              sx={{ justifyContent: 'space-between', alignItems: 'center' }}
+            >
+              <PageTitle>
+                {selectedItem?.id ? (
+                  <span>Edit {selectedItem.label}</span>
+                ) : (
+                  <span>Add Folder</span>
+                )}
+              </PageTitle>
               {selectedItem?.id &&
                 selectedItem.files.length === 0 &&
                 selectedItem.folders.length === 0 && (
@@ -79,19 +88,25 @@ export const AddEditFolder: React.FC = () => {
           </>
         ) : (
           <>
-            <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
-              <span>Edit file</span>
-              <Icon Icon={Icon.icons.Delete} label="Delete" onClick={onFileDelete} />
+            <Container
+              component={'div'}
+              sx={{ justifyContent: 'space-between', alignItems: 'center' }}
+            >
+              <PageTitle>Edit file</PageTitle>
+              <Icon
+                Icon={Icon.icons.Delete}
+                label="Delete"
+                onClick={onFileDelete}
+                showLoading={true}
+              />
             </Container>
-            <div>{selectedItem.id}</div>
-            <Container component={'div'} sx={{ flex: '1' }}>
+            <Container component={'div'} sx={{ flex: '1', justifyContent: 'center' }}>
               <div>
-                <img
+                <Image
                   src={`${ENV.ASSET_S3_BUCKET}/${selectedItem.path}`}
-                  alt={selectedItem.name}
-                  width={'175px'}
+                  height={200} // This sets what resolution the component should load from the CDN and the size of the resulting image
                 />
-                {selectedItem.name}
+                {selectedItem.id}
               </div>
             </Container>
             <Container component={'div'} sx={{ justifyContent: 'space-between' }}>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Icon } from '@common';
+import Skeleton from '@mui/material/Skeleton';
 
 import { IGalleryFolder } from './GalleryFolder';
 import { useGalleryFolder, useClick } from './GalleryFolder.hook';
@@ -22,13 +23,29 @@ export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) 
       <FolderLabelStyle>{folder.label}</FolderLabelStyle>
       <FolderDetailStyle>
         {folder.loading ? (
-          <div>Loading...</div>
+          <Skeleton width="100%" />
         ) : (
           <>
             <span>Folder: {folder.folders.length}</span>
             <span>Files: {folder.files.length}</span>
           </>
         )}
+      </FolderDetailStyle>
+    </FolderStyleRoot>
+  );
+};
+
+export const GalleryFolderLoading: React.FC = () => {
+  return (
+    <FolderStyleRoot>
+      <FolderIconStyle>
+        <Skeleton variant="circular" height="30px" width="30px" />
+      </FolderIconStyle>
+      <FolderLabelStyle>
+        <Skeleton width="100%" />
+      </FolderLabelStyle>
+      <FolderDetailStyle>
+        <Skeleton width="100%" />
       </FolderDetailStyle>
     </FolderStyleRoot>
   );

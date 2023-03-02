@@ -5,5 +5,8 @@ export const GalleryHeaderRoot = styled('section')(({ theme }) => {
     display: 'grid',
     gap: theme.spacing(2),
     gridArea: 'gallery-header',
+    justifyContent: 'space-between',
+    gridAutoFlow: 'column',
+    alignItems: 'center',
   };
 });

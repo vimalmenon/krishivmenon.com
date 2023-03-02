@@ -20,8 +20,8 @@ export const fontSize = {
   xs: '0.8em',
   sm: '0.9em',
   md: '1em',
-  lg: '',
-  xl: '',
+  lg: '1.1em',
+  xl: '1.2em',
   xxl: '',
 };
 

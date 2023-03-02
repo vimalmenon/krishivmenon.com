@@ -5,31 +5,36 @@ Finished Task:
   Basic Layout and Responsive UI
   Get Image for the gallery
 High Priority:
-  Better Loading for notes
-  Loading on gallery
-  Ability to Logout from UI
-  Need to work on logout of auth
-  Improve UI for 400 Page
-  Improved UI for Gallery
-  UI for unauthorized page
-  Add framer for animation
-  First reload gives an issue with api refresh token (Bug)
-  Need to show loading animation on delete, add and update
-  Search for library for Image viewer (Lightbox)
-  [Feature] Need to work on loading icon for delete
-  Support for HEIC files
-  Need to working on loading indicator
-  Check the page in IPad
+  [Feature] Ability to Logout from UI
+  [Feature] Need to work on logout of auth
+  [Feature] Search for library for Image viewer (Lightbox)
+  [Loading] Loading for notes
+  [Loading] Loading on gallery
+  [UI] Improve UI for 400 Page
+  [UI] Improve UI for Gallery
+  [UI] Improve UI for upload of file
+  [UI] Improve UI for unauthorized page
+  [UI] Improve UI for authorizing page
+  [UI] Responsive UI for Gallery
+  [UI] Responsive UI for Notes
+  [UI] Fixing the scrolls
+  [Bug] First reload gives an issue with api refresh token
+  [Check] Check the page in IPad
+  [Bug] Fix caching in cloudfront (Bug)
+  [Problem]Support to upload the videos
+  [Bug] Handling errors for fetch
+  [Feature] Need to show loading indicator at top (nprogress)
 Medium Priority
-  Increase the coverage to 80%
+  Add framer for animation
+  Increase the test coverage to 80%
+  Allow push only on 80% coverage
   Ability to invalidate the Id token
-  Need to create a tags for notes and Library
+  [Feature] Need to create a tags for notes and Library
   Create content for Home page
-  Responsive UI for Gallery
-  Responsive UI for Notes
   [Feature] Create Release Page
   [Feature] Report a Bug
-  Alow push only on 80% coverage
+  [Feature] Profile page
+  Setup Google Analytics 
 Less Priority
   Setting up sonar
   Add notes for image
@@ -37,6 +42,7 @@ Less Priority
   Add favicon
   Add images
   Pre signed image on request
+  [Feature] Set up roles
 
 
 https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html

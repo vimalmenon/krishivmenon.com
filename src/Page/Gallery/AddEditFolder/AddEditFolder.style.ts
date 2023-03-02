@@ -5,6 +5,7 @@ export const PaperStyle = styled('div')(({ theme }) => {
   return {
     display: 'flex',
     width: '400px',
+    border: `1px solid ${theme.palette.divider}`,
     gap: theme.spacing(Spacing.md),
     padding: theme.spacing(Spacing.md),
     flexDirection: 'column',

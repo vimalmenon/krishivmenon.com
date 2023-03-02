@@ -22,6 +22,7 @@ export interface IIcon<T> {
   label?: string;
   onClick?: IGenericMethod;
   edge?: false | 'end' | 'start' | undefined;
+  showLoading?: boolean;
 }
 
 export interface IIconStatic<T> {

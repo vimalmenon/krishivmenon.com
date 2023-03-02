@@ -86,6 +86,7 @@ export const GalleryContent: React.FC = () => {
                         justifyContent: 'center',
                         alignItems: 'center',
                         cursor: 'pointer',
+                        flex: '0 0 250px',
                       }}
                       role="presentation"
                       onClick={() => setSelectedItem(file)}

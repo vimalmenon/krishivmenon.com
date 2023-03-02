@@ -19,10 +19,8 @@ High Priority:
   [UI] Responsive UI for Notes
   [UI] Fixing the scrolls
   [Bug] First reload gives an issue with api refresh token
-  [Loading] Need to show loading animation on delete, add and update
   [Check] Check the page in IPad
   [Bug] Fix caching in cloudfront (Bug)
-  SidePanel for Add Edit Item
   [Problem]Support to upload the videos
   [Bug] Handling errors for fetch
   [Feature] Need to show loading indicator at top (nprogress)

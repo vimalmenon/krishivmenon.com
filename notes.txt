@@ -5,8 +5,9 @@ Finished Task:
   Basic Layout and Responsive UI
   Get Image for the gallery
 High Priority:
-  Ability to Logout from UI
+  [Feature] Ability to Logout from UI
   [Feature] Need to work on logout of auth
+  [Feature] Search for library for Image viewer (Lightbox)
   [Loading] Loading for notes
   [Loading] Loading on gallery
   [UI] Improve UI for 400 Page
@@ -16,16 +17,15 @@ High Priority:
   [UI] Improve UI for authorizing page
   [UI] Responsive UI for Gallery
   [UI] Responsive UI for Notes
-  First reload gives an issue with api refresh token (Bug)
-  Need to show loading animation on delete, add and update
-  Search for library for Image viewer (Lightbox)
-  Check the page in IPad
-  Fix caching in cloudfront (Bug)
+  [UI] Fixing the scrolls
+  [Bug] First reload gives an issue with api refresh token
+  [Loading] Need to show loading animation on delete, add and update
+  [Check] Check the page in IPad
+  [Bug] Fix caching in cloudfront (Bug)
   SidePanel for Add Edit Item
-  Support to upload the videos
-  Handling errors for fetch
-  Fixing the scroll issue
-  Need to show loading indicator at top
+  [Problem]Support to upload the videos
+  [Bug] Handling errors for fetch
+  [Feature] Need to show loading indicator at top
 Medium Priority
   Add framer for animation
   Increase the test coverage to 80%

@@ -25,7 +25,7 @@ High Priority:
   SidePanel for Add Edit Item
   [Problem]Support to upload the videos
   [Bug] Handling errors for fetch
-  [Feature] Need to show loading indicator at top
+  [Feature] Need to show loading indicator at top (nprogress)
 Medium Priority
   Add framer for animation
   Increase the test coverage to 80%

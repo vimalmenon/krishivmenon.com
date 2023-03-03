@@ -18,6 +18,7 @@ High Priority:
   [UI] Responsive UI for Gallery
   [UI] Responsive UI for Notes
   [UI] Fixing the scrolls
+  [UI] Improve the UI for Add Edit Item
   [Bug] First reload gives an issue with api refresh token
   [Check] Check the page in IPad
   [Bug] Fix caching in cloudfront (Bug)

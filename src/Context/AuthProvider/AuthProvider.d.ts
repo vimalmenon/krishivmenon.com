@@ -9,6 +9,7 @@ export interface IAuthProvider {
 export interface IUseCommonAuthProvider {
   idToken: string | null;
   signOut: IGenericMethod;
+  handleRefreshToken: IGenericReturn<Promise<unknown>>;
 }
 
 export interface ISignInUrl {

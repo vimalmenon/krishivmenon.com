@@ -9,8 +9,8 @@ export type ISaveStorage = (key: StorageKeyType, value: string) => void;
 
 export interface IUseCommon {
   saveStorage: ISaveStorage;
-  getStorage: <T>(key: StorageKeyType) => T;
-  removeStorage: IGenericParam<StorageKeyType>;
   switchTheme: IGenericMethod;
   switchDrawer: IGenericMethod;
+  getStorage: <T>(key: StorageKeyType) => T;
+  removeStorage: IGenericParam<StorageKeyType>;
 }

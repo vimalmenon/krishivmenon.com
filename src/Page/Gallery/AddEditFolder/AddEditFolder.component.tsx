@@ -48,22 +48,40 @@ export const AddEditFolder: React.FC = () => {
             <div>
               <FormControl variant="outlined" fullWidth size="small">
                 <InputLabel htmlFor="folder-name">Folder name</InputLabel>
-                <OutlinedInput
-                  id="folder-name"
-                  value={selectedItem?.label}
-                  onChange={(e) => onSelectedFolderLabelUpdate(e.target.value)}
-                  disabled={!edit}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <Icon
-                        Icon={edit ? Icon.icons.Cancel : Icon.icons.Edit}
-                        edge="end"
-                        onClick={() => setEdit(!edit)}
-                      />
-                    </InputAdornment>
-                  }
-                  label="Password"
-                />
+                {selectedItem.id ? (
+                  <OutlinedInput
+                    id="folder-name"
+                    value={selectedItem?.label}
+                    onChange={(e) => onSelectedFolderLabelUpdate(e.target.value)}
+                    disabled={!edit}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <Icon
+                          Icon={edit ? Icon.icons.Cancel : Icon.icons.Edit}
+                          edge="end"
+                          onClick={() => setEdit(!edit)}
+                        />
+                      </InputAdornment>
+                    }
+                    label="Folder name"
+                  />
+                ) : (
+                  <OutlinedInput
+                    id="folder-name"
+                    value={selectedItem?.label}
+                    onChange={(e) => onSelectedFolderLabelUpdate(e.target.value)}
+                    label="Folder name"
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <Icon
+                          Icon={edit ? Icon.icons.Cancel : Icon.icons.Edit}
+                          edge="end"
+                          disabled={true}
+                        />
+                      </InputAdornment>
+                    }
+                  />
+                )}
               </FormControl>
             </div>
             <Container component={'div'} sx={{ flex: '1' }}>

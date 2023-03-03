@@ -12,10 +12,11 @@ import { CommonIcons } from './Icon.service';
 
 export const Icon: IIconStatic<typeof SaveIcon | typeof GoogleIcon> &
   React.FC<IIcon<typeof SaveIcon | typeof GoogleIcon>> = ({
-  label,
-  Icon,
-  onClick,
   edge,
+  Icon,
+  label,
+  onClick,
+  disabled = false,
   showLoading = false,
 }) => {
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -28,9 +29,16 @@ export const Icon: IIconStatic<typeof SaveIcon | typeof GoogleIcon> &
       onClick && onClick();
     }
   };
+  if (disabled) {
+    return (
+      <IconButton onClick={onButtonClick} edge={edge} disabled={loading || disabled}>
+        {loading ? <CircularProgress size={'20px'} /> : <Icon />}
+      </IconButton>
+    );
+  }
   return (
     <Tooltip title={label}>
-      <IconButton onClick={onButtonClick} edge={edge} disabled={loading}>
+      <IconButton onClick={onButtonClick} edge={edge} disabled={loading || disabled}>
         {loading ? <CircularProgress size={'20px'} /> : <Icon />}
       </IconButton>
     </Tooltip>

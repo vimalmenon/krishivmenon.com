@@ -11,6 +11,7 @@ export const AppProvider: React.FC<ReactChildren> = ({ children }) => {
   const [profile, setProfile] = React.useState<IProfile | null>(initialValue.profile);
   const [storage, setStorage] = React.useState<Record<string, string>>(initialValue.storage);
   const [authStatus, setAuthStatus] = React.useState<AuthStatus>(AuthStatus.NotAuthenticated);
+  const [apiCount, setApiCount] = React.useState<number>(initialValue.apiCount);
   React.useEffect(() => {
     setStorage(JSON.parse(localStorage.getItem(StorageKey) || '{}'));
   }, []);
@@ -21,13 +22,15 @@ export const AppProvider: React.FC<ReactChildren> = ({ children }) => {
     <Context.Provider
       value={{
         theme,
-        storage,
         profile,
+        storage,
         setTheme,
+        apiCount,
         setStorage,
         setProfile,
         authStatus,
         drawerOpen,
+        setApiCount,
         setDrawerOpen,
         setAuthStatus,
       }}

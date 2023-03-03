@@ -18,12 +18,16 @@ High Priority:
   [UI] Responsive UI for Gallery
   [UI] Responsive UI for Notes
   [UI] Fixing the scrolls
+  [UI] Improve the UI for Add Edit Item
   [Bug] First reload gives an issue with api refresh token
   [Check] Check the page in IPad
   [Bug] Fix caching in cloudfront (Bug)
   [Problem]Support to upload the videos
   [Bug] Handling errors for fetch
-  [Feature] Need to show loading indicator at top (nprogress)
+  [Feature] Need to show loading indicator at top when making API call
+  [Enhance] Make a better ErrorBoundary
+  [Enhance] Initial load looks bad (CSS missing)
+  [Fix] Don't need to click on Edit when new folder is created
 Medium Priority
   Add framer for animation
   Increase the test coverage to 80%
@@ -89,3 +93,8 @@ INote:
   title: string;
   content: string;
   metadata: Record<string,string>
+
+Common Commit
+# Refactor of code
+# Notes Updated
+# Package Updated

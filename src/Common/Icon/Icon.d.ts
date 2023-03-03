@@ -23,6 +23,7 @@ export interface IIcon<T> {
   onClick?: IGenericMethod;
   edge?: false | 'end' | 'start' | undefined;
   showLoading?: boolean;
+  disabled?: boolean;
 }
 
 export interface IIconStatic<T> {

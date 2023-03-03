@@ -8,12 +8,14 @@ import { IAppProvider } from './AppProvider';
 
 export const initialValue: IAppProvider = {
   storage: {},
+  apiCount: 0,
   theme: 'dark',
   profile: null,
   drawerOpen: false,
   setTheme: NotImplemented,
   setProfile: NotImplemented,
   setStorage: NotImplemented,
+  setApiCount: NotImplemented,
   setAuthStatus: NotImplemented,
   setDrawerOpen: NotImplemented,
   authStatus: AuthStatus.NotAuthenticated,
@@ -29,24 +31,29 @@ export const useCommonContext: IGenericReturn<IAppProvider> = () => {
   const {
     theme,
     profile,
-    setTheme,
     storage,
+    setTheme,
+    apiCount,
     setStorage,
     drawerOpen,
     setProfile,
     authStatus,
+    setApiCount,
     setAuthStatus,
+
     setDrawerOpen,
   } = React.useContext<IAppProvider>(Context);
   return {
     theme,
     storage,
     profile,
-    authStatus,
+    apiCount,
     setTheme,
+    authStatus,
     setStorage,
     drawerOpen,
     setProfile,
+    setApiCount,
     setAuthStatus,
     setDrawerOpen,
   };

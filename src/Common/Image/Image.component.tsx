@@ -7,6 +7,9 @@ import { IImage } from './Image';
 
 export const Image: React.FC<IImage> = ({ src, height, width }) => {
   const [loading, setLoading] = React.useState<boolean>(true);
+  React.useEffect(() => {
+    setLoading(true);
+  }, [src]);
   const style = loading ? { display: 'none' } : {};
   return (
     <div>

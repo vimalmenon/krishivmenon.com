@@ -25,8 +25,7 @@ export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
       }),
     [idToken]
   );
-  async function makeApiCall<K, T>(value: IApi<T>): Promise<K> {
-    await handleRefreshToken();
+  function makeApiCall<K, T>(value: IApi<T>): Promise<K> {
     addApiCount();
     return instance
       .request<IBaseResponse<K>>(value)

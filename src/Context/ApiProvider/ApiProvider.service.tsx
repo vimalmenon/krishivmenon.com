@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { getBaseUrl } from '@data';
+import { useApiCount } from '@hook';
 import { IApi, IBaseResponse, IGenericReturn } from '@types';
 import { NotImplemented } from '@utility';
 import axios from 'axios';
@@ -12,6 +13,7 @@ const baseURL = getBaseUrl();
 
 export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
   const { idToken } = useCommonAuthProvider();
+  const { addApiCount, reduceApiCount } = useApiCount();
   const [alert, setAlert] = React.useState<IAlert | null>(null);
   const instance = React.useMemo(
     () =>
@@ -24,6 +26,7 @@ export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
     [idToken]
   );
   function makeApiCall<K, T>(value: IApi<T>): Promise<K> {
+    addApiCount();
     return instance
       .request<IBaseResponse<K>>(value)
       .then((result) => result.data)
@@ -44,6 +47,9 @@ export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
           });
         }
         throw new Error('Error while trying to fetch notes');
+      })
+      .finally(() => {
+        reduceApiCount();
       });
   }
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string): void => {

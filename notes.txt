@@ -28,6 +28,7 @@ High Priority:
   [Enhance] Make a better ErrorBoundary
   [Enhance] Initial load looks bad (CSS missing)
   [Fix] Don't need to click on Edit when new folder is created
+  [Bug] Http doesn't redirect the Https connection.
 Medium Priority
   Add framer for animation
   Increase the test coverage to 80%

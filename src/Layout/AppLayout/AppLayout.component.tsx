@@ -19,7 +19,14 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 export const AppLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, title }) => {
-  const { theme: themeValue, authStatus } = useCommonContext();
+  const { theme: themeValue, authStatus, apiCount } = useCommonContext();
+
+  React.useEffect(() => {
+    NProgress.start();
+    if (apiCount === 0) {
+      NProgress.done();
+    }
+  }, [apiCount]);
   const theme = getTheme(themeValue);
   return (
     <ThemeProvider theme={theme}>

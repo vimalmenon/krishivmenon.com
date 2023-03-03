@@ -26,8 +26,9 @@ High Priority:
   [Enhance] Initial load looks bad (CSS missing)
   [Bug] Http doesn't redirect the Https connection.
   [UI] Fixing the folder structure
+  [UI] Add a splash Screen
 Medium Priority
-  Add framer motion for animation
+  [Feature] Add framer motion for animation
   Increase the test coverage to 80%
   Allow push only on 80% coverage
   Ability to invalidate the Id token

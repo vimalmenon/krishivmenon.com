@@ -12,7 +12,7 @@ import { useCommonAuthProvider } from '../AuthProvider';
 const baseURL = getBaseUrl();
 
 export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
-  const { idToken, handleRefreshToken } = useCommonAuthProvider();
+  const { idToken } = useCommonAuthProvider();
   const { addApiCount, reduceApiCount } = useApiCount();
   const [alert, setAlert] = React.useState<IAlert | null>(null);
   const instance = React.useMemo(

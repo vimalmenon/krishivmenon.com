@@ -40,7 +40,7 @@ Medium Priority
   [Feature] Setup Google Analytics
   [UI] Need to make component adapt to Mobile screen
 Less Priority
-  Setting up sonar
+  [Feature] Setting up sonar
   Add notes for image
   Logging for S3 Bucket for static website
   Add favicon
@@ -98,3 +98,4 @@ Common Commit
 # Refactor of code
 # Notes Updated
 # Package Updated
+# Fix build

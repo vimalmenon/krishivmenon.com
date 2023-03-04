@@ -97,6 +97,6 @@ INote:
 
 Common Commit
 # Refactor of code
-# Notes Updated
-# Package Updated
+# Notes updated
+# Package updated
 # Fix build

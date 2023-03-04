@@ -27,6 +27,7 @@ High Priority:
   [Bug] Http doesn't redirect the Https connection.
   [UI] Fixing the folder structure
   [UI] Add a splash Screen
+  [Improvement] Convert EnvCheck to hooks
 Medium Priority
   [Feature] Add framer motion for animation
   Increase the test coverage to 80%

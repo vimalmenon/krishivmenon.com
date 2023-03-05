@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 
 export const MainPageLayout = styled('div')(({ theme }) => ({
   display: 'grid',
-  minHeight: '100vh',
+  height: '100vh',
   [theme.breakpoints.up('xs')]: {
     gridTemplate: `"header header header""content content content""footer footer footer"`,
     gridTemplateColumns: '300px 1fr',

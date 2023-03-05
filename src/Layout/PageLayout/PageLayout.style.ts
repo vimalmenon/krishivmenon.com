@@ -22,3 +22,11 @@ export const MainPageContent = styled('div')(({ theme }) => {
     padding: theme.spacing(2),
   };
 });
+
+export const OtherLayout = styled('div')(() => ({
+  display: 'grid',
+  height: '100vh',
+  gridTemplate: `"header header header""content content content""footer footer footer"`,
+  gridTemplateColumns: '300px 1fr',
+  gridTemplateRows: '60px 1fr 30px',
+}));

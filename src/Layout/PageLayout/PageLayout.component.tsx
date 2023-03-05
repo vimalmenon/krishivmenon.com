@@ -22,9 +22,9 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
   const { authStatus } = useCommonContext();
   if (authStatus === AuthStatus.NotAuthenticated) {
     return (
-      <OtherPage title={navigation.Login.title}>
+      <NotAuthenticatedPage title={navigation.Login.title}>
         <Login />
-      </OtherPage>
+      </NotAuthenticatedPage>
     );
   }
   if (authStatus === AuthStatus.UnAuthorized) {
@@ -42,7 +42,7 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
     );
   }
   return (
-    <UserPage title={title}>
+    <AuthorizedPage title={title}>
       <ErrorBoundary
         sx={{
           gridArea: 'content',
@@ -58,11 +58,14 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
           </MainPageContent>
         </EnvCheck>
       </ErrorBoundary>
-    </UserPage>
+    </AuthorizedPage>
   );
 };
 
-export const OtherPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
+export const NotAuthenticatedPage: React.FC<ReactChildren & IBaseLayout> = ({
+  title,
+  children,
+}) => {
   return (
     <OtherLayout>
       <CssBaseline />
@@ -76,10 +79,10 @@ export const OtherPage: React.FC<ReactChildren & IBaseLayout> = ({ title, childr
 
 export const UnauthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
   useUser();
-  return <OtherPage title={title}>{children}</OtherPage>;
+  return <NotAuthenticatedPage title={title}>{children}</NotAuthenticatedPage>;
 };
 
-export const UserPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
+export const AuthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
   useUser();
   return (
     <MainPageLayout>

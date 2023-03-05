@@ -30,8 +30,8 @@ High Priority:
   [Improvement] Convert EnvCheck to hooks
 Medium Priority
   [Feature] Add framer motion for animation
-  Increase the test coverage to 80%
-  Allow push only on 80% coverage
+  [Improvement] Increase the test coverage to 80%
+  [Feature] Allow push only on 80% coverage
   Ability to invalidate the Id token
   [Feature] Need to create a tags for notes and Library
   Create content for Home page

@@ -9,7 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Login } from '@page';
 import { IBaseLayout, ReactChildren } from '@types';
 
-import { MainPageLayout, MainPageContent, OtherLayout } from './PageLayout.style';
+import { MainLayout, MainPageContent, OtherLayout } from './PageLayout.style';
 import {
   PageLayoutHeader,
   PageLayoutAside,
@@ -85,12 +85,12 @@ export const UnauthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title,
 export const AuthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
   useUser();
   return (
-    <MainPageLayout>
+    <MainLayout>
       <CssBaseline />
       <MetaData title={title} />
       <PageLayoutHeader />
       {children}
       <PageLayoutFooter />
-    </MainPageLayout>
+    </MainLayout>
   );
 };

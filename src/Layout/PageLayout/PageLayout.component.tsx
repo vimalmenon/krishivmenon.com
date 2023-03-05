@@ -3,6 +3,7 @@ import React from 'react';
 import { MetaData, ErrorBoundary } from '@common';
 import { AuthStatus } from '@constant';
 import { useCommonContext } from '@context';
+import { navigation } from '@data';
 import { useUser } from '@hook';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Login } from '@page';
@@ -24,7 +25,7 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
     return (
       <OtherLayout>
         <CssBaseline />
-        <MetaData title={title} />
+        <MetaData title={navigation.Login.title} />
         <PageLayoutHeader />
         <MainPageContent>
           <Login />
@@ -37,7 +38,7 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
     return (
       <OtherLayout>
         <CssBaseline />
-        <MetaData title={title} />
+        <MetaData title={navigation.Unauthenticated.title} />
         <PageLayoutHeader />
         <MainPageContent>
           <div>You are not authorized to this website.</div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Icon, Profile } from '@common';
 import { useCommonAuthProvider } from '@context';
-import { navigation } from '@data';
+import { NavigationList } from '@data';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
@@ -16,7 +16,6 @@ import { SideNavigationList, SideNavigationRoot } from './SideNavigation.style';
 export const SideNavigation: React.FC = () => {
   const { push, asPath } = useRouter();
   const { signOut } = useCommonAuthProvider();
-  const { NavigationList } = navigation;
   const [collapseNavigation, setCollapseNavigation] = React.useState<boolean>(true);
   const [collapseOthers, setCollapseOthers] = React.useState<boolean>(true);
   return (

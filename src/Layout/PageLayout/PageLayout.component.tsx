@@ -76,15 +76,7 @@ export const OtherPage: React.FC<ReactChildren & IBaseLayout> = ({ title, childr
 
 export const UnauthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
   useUser();
-  return (
-    <OtherLayout>
-      <CssBaseline />
-      <MetaData title={title} />
-      <PageLayoutHeader />
-      <MainPageContent>{children}</MainPageContent>
-      <PageLayoutFooter />
-    </OtherLayout>
-  );
+  return <OtherPage title={title}>{children}</OtherPage>;
 };
 
 export const UserPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {

@@ -26,7 +26,7 @@ export const AddEditFolder: React.FC = () => {
   if (selectedItem) {
     return (
       <PaperStyle>
-        {selectedItem && 'breadcrumbs' in selectedItem ? (
+        {'breadcrumbs' in selectedItem ? (
           <>
             <Container
               component={'div'}
@@ -118,14 +118,16 @@ export const AddEditFolder: React.FC = () => {
                 showLoading={true}
               />
             </Container>
-            <Container component={'div'} sx={{ flex: '1', justifyContent: 'center' }}>
+            <Container component={'div'} sx={{ justifyContent: 'center' }}>
               <div>
                 <Image
                   src={`${ENV.ASSET_S3_BUCKET}/${selectedItem.path}`}
                   height={200} // This sets what resolution the component should load from the CDN and the size of the resulting image
                 />
-                {selectedItem.id}
               </div>
+            </Container>
+            <Container component={'div'} sx={{ flex: '1', justifyContent: 'center' }}>
+              {selectedItem.id}
             </Container>
             <Container component={'div'} sx={{ justifyContent: 'space-between' }}>
               <Button variant="contained" onClick={onFolderDelete} startIcon={<Icon.icons.Save />}>

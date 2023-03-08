@@ -20,6 +20,7 @@ export const MainPageContent = styled('div')(({ theme }) => {
     display: 'grid',
     gridArea: 'content',
     padding: theme.spacing(2),
+    overflow: 'auto',
   };
 });
 

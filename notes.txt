@@ -40,6 +40,7 @@ Medium Priority
   [Feature] Profile page
   [Feature] Setup Google Analytics
   [UI] Need to make component adapt to Mobile screen
+  [Feature] Add to slim scroll
 Less Priority
   [Feature] Setting up sonar
   Add notes for image

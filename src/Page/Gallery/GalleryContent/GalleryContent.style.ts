@@ -15,7 +15,7 @@ export const GalleryContentFolder = styled('div')(({ theme }) => {
   return {
     display: 'grid',
     gap: theme.spacing(2),
-    gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fill, 300px)',
   };
 });
 export const GalleryContentFiles = styled('div')(({ theme }) => {

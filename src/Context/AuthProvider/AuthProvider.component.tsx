@@ -79,7 +79,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     const code = query.get('code');
     const state = query.get('state');
     if (code) {
-      getToken(code || '', state || '');
+      getToken(code, state || '');
     }
   }, []);
   React.useEffect(() => {

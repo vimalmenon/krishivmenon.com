@@ -42,6 +42,7 @@ Medium Priority
   [Feature] Setup Google Analytics
   [UI] Need to make component adapt to Mobile screen
   [Feature] Add to slim scroll
+  [Feature] Ability to Logout when unauthorized
 Less Priority
   [Feature] Setting up sonar
   Add notes for image

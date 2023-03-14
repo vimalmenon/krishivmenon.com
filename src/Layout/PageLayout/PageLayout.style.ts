@@ -20,6 +20,8 @@ export const MainPageContent = styled('div')(({ theme }) => {
     display: 'grid',
     gridArea: 'content',
     padding: theme.spacing(2),
+    gridTemplateColumns: '1fr',
+    gridTemplateRows: '1fr',
     overflow: 'auto',
   };
 });

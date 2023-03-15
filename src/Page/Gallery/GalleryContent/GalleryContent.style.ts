@@ -8,6 +8,7 @@ export const GalleryContentRoot = styled('section')(({ theme }) => {
     gridTemplate: `"gallery-content-files gallery-content-extra"`,
     gridTemplateColumns: '1fr auto',
     gridTemplateRows: '1fr',
+    overflow: 'auto',
   };
 });
 

@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import { ReactChildren } from '@types';
+import { BoundaryError } from '@utility';
 
 import { IErrorBoundaryProps, IErrorBoundaryChildren } from './ErrorBoundary';
 import { ErrorBoundaryBody } from './ErrorBoundary.style';
@@ -19,17 +20,20 @@ export class ErrorBoundary extends React.Component<
     return { hasError: true };
   }
 
-  // componentDidCatch(error, errorInfo) {
-  //   // You can also log the error to an error reporting service
-  //   logErrorToMyService(error, errorInfo);
-  // }
+  componentDidCatch(value: BoundaryError): void {
+    if (value.showError) {
+      this.setState({
+        error: value.message,
+      });
+    }
+  }
 
   render(): ReactNode {
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
         <ErrorBoundaryBody sx={this.props.sx}>
-          <h1>Something went wrong.</h1>
+          <h1>{this.state.error ? this.state.error : 'Something went wrong.'} </h1>
         </ErrorBoundaryBody>
       );
     }

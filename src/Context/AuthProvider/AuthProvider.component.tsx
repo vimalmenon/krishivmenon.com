@@ -46,24 +46,28 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     }
   };
   const handleRefreshToken: IGenericReturn<Promise<unknown>> = async () => {
-    setAuthStatus(AuthStatus.Authenticating);
-    const result = await fetch(ENV.AUTH_TOKEN_URL, {
-      method: 'Post',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: `Basic ${ENV.AUTH_AUTHORIZATION}`,
-      },
-      body: createBody({
-        grant_type: 'refresh_token',
-        client_id: ENV.AUTH_CLIENT_ID,
-        refresh_token: refreshToken || '',
-      }),
-    });
-    const data = await result.json();
-    saveStorage('idToken', data.id_token);
-    setIdToken(data.id_token);
-    saveStorage('tokenExpiry', String(new Date().getTime() + 3000000));
-    setAuthStatus(AuthStatus.Authorized);
+    if (tokenExpiry) {
+      if (tokenExpiry < new Date().getTime()) {
+        setAuthStatus(AuthStatus.Authenticating);
+        const result = await fetch(ENV.AUTH_TOKEN_URL, {
+          method: 'Post',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization: `Basic ${ENV.AUTH_AUTHORIZATION}`,
+          },
+          body: createBody({
+            grant_type: 'refresh_token',
+            client_id: ENV.AUTH_CLIENT_ID,
+            refresh_token: refreshToken || '',
+          }),
+        });
+        const data = await result.json();
+        saveStorage('idToken', data.id_token);
+        setIdToken(data.id_token);
+        saveStorage('tokenExpiry', String(new Date().getTime() + 3000000));
+        setAuthStatus(AuthStatus.Authorized);
+      }
+    }
   };
   const signOut: IGenericMethod = () => {
     removeStorage('refreshToken');
@@ -75,7 +79,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     const code = query.get('code');
     const state = query.get('state');
     if (code) {
-      getToken(code || '', state || '');
+      getToken(code, state || '');
     }
   }, []);
   React.useEffect(() => {
@@ -93,11 +97,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     }
   }, [getStorage<string>('refreshToken')]);
   React.useEffect(() => {
-    if (tokenExpiry) {
-      if (tokenExpiry < new Date().getTime()) {
-        handleRefreshToken();
-      }
-    }
+    handleRefreshToken();
   }, [tokenExpiry]);
   return (
     <AuthProviderContext.Provider value={{ idToken, handleRefreshToken, signOut }}>

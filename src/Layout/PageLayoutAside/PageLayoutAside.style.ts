@@ -1,12 +1,12 @@
-import { grey, blueGrey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
-export const PageLayoutAsideRoot = styled('div')(({ theme }) => {
+export const PageLayoutAsideRoot = styled('aside')(({ theme }) => {
   return {
     gridArea: 'aside',
     padding: theme.spacing(1),
-    background: theme.palette.mode === 'dark' ? grey[900] : blueGrey[50],
-    borderRight: `1px solid`,
+    background: theme.custom.background,
+    borderRight: `1px solid ${theme.palette.divider}`,
+    overflow: 'auto',
     [theme.breakpoints.up('xs')]: {
       display: 'none',
     },

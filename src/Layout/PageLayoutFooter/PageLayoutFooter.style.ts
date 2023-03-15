@@ -1,4 +1,3 @@
-import { grey, blueGrey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 import { fontSize } from '@style';
 
@@ -8,8 +7,9 @@ export const PageLayoutFooterRoot = styled('div')(({ theme }) => {
     gridArea: 'footer',
     padding: theme.spacing(0, 2),
     alignItems: 'center',
-    background: theme.palette.mode === 'dark' ? grey[900] : blueGrey[50],
-    borderRight: `1px solid`,
+    background: theme.custom.background,
+    borderTop: `1px solid ${theme.palette.divider}`,
+    justifyContent: 'end',
   };
 });
 

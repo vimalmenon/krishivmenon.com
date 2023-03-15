@@ -1,4 +1,3 @@
-import { grey, blueGrey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
 export const PageLayoutHeaderRoot = styled('div')(({ theme }) => {
@@ -7,8 +6,8 @@ export const PageLayoutHeaderRoot = styled('div')(({ theme }) => {
     gridArea: 'header',
     padding: theme.spacing(2),
     justifyContent: 'space-between',
-    background: theme.palette.mode === 'dark' ? grey[900] : blueGrey[50],
-    borderBottom: `1px solid`,
+    background: theme.custom.background,
+    borderBottom: `1px solid ${theme.palette.divider}`,
   };
 });
 

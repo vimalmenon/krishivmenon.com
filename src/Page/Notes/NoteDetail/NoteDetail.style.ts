@@ -1,4 +1,3 @@
-import { grey, blueGrey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 
 export const NoteDetailRoot = styled('section')(({ theme }) => {
@@ -6,7 +5,7 @@ export const NoteDetailRoot = styled('section')(({ theme }) => {
     display: 'grid',
     gap: theme.spacing(2),
     gridArea: 'note-detail',
-    background: theme.palette.mode === 'dark' ? grey[900] : blueGrey[50],
+    background: theme.custom.background,
     padding: theme.spacing(1),
     gridTemplateRows: '1fr',
   };

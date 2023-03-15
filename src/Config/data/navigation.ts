@@ -26,6 +26,14 @@ export const Notes = {
   title: 'Notes | Krishiv Menon',
 };
 
+export const Unauthenticated = {
+  name: 'Notes',
+  url: '/notes/',
+  Icon: NoteIcon,
+  show: true,
+  title: 'Unauthenticated | Krishiv Menon',
+};
+
 export const Admin = {
   name: 'Admin',
   url: '/admin/',
@@ -52,11 +60,11 @@ export const Login = {
 export const NavigationList = [Home, Gallery, Notes, Admin];
 
 export const navigation = {
-  NavigationList,
+  Unauthenticated,
   PageNotFound,
-  Home,
   Gallery,
   Notes,
   Admin,
   Login,
+  Home,
 };

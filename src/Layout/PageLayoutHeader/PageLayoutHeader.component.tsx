@@ -15,7 +15,7 @@ export const PageLayoutHeader: React.FC = () => {
   const { switchDrawer } = useCommon();
   const { profile } = useCommonContext();
   return (
-    <PageLayoutHeaderRoot sx={{ borderColor: 'divider' }}>
+    <PageLayoutHeaderRoot>
       <PageLayoutHeaderTitle>
         {profile && (
           <IconButton size="small" onClick={switchDrawer} sx={{ display: { sm: 'none' } }}>

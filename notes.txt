@@ -29,6 +29,7 @@ High Priority:
   [UI] Add a splash Screen
   [Improvement] Convert EnvCheck to hooks
   [Bug] Overlapping UI on side panel
+  [Feature] Check if first API is unauthorized or API not found
 Medium Priority
   [Feature] Add framer motion for animation
   [Improvement] Increase the test coverage to 80%

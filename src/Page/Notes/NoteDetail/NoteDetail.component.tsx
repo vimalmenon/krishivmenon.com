@@ -1,6 +1,7 @@
-import { Editor } from '@common';
 import Skeleton from '@mui/material/Skeleton';
 import TextField from '@mui/material/TextField';
+
+import { Editor } from '@common';
 import { Container } from '@style';
 
 import { INoteDetail } from './NoteDetail';

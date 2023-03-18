@@ -1,11 +1,12 @@
 import React from 'react';
 
+import CssBaseline from '@mui/material/CssBaseline';
+
 import { MetaData, ErrorBoundary } from '@common';
 import { AuthStatus } from '@constant';
 import { useCommonContext } from '@context';
 import { navigation } from '@data';
 import { useUser } from '@hook';
-import CssBaseline from '@mui/material/CssBaseline';
 import { Login } from '@page';
 import { IBaseLayout, ReactChildren } from '@types';
 

@@ -1,11 +1,13 @@
 import '../styles/globals.css';
 import React from 'react';
 
+import { CacheProvider, EmotionCache } from '@emotion/react';
+import type { AppProps } from 'next/app';
+
 import { ErrorBoundary } from '@common';
 import { AppProvider, AuthProvider, ApiProvider } from '@context';
-import { CacheProvider, EmotionCache } from '@emotion/react';
 import { clientSideEmotionCache } from '@style';
-import type { AppProps } from 'next/app';
+
 import '@fontsource/public-sans';
 
 const MyApp: React.FC<AppProps & { emotionCache: EmotionCache }> = ({

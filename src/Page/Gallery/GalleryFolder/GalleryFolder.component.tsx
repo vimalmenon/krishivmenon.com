@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { Icon } from '@common';
 import Skeleton from '@mui/material/Skeleton';
+
+import { Icon } from '@common';
 
 import { IGalleryFolder } from './GalleryFolder';
 import { useGalleryFolder, useClick } from './GalleryFolder.hook';

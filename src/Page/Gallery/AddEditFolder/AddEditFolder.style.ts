@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+
 import { Spacing } from '@style';
 
 export const PaperStyle = styled('div')(({ theme }) => {

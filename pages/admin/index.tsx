@@ -1,7 +1,8 @@
+import { NextPage } from 'next/types';
+
 import { navigation } from '@data';
 import { AppLayout } from '@layout';
 import { Admin as AdminPage } from '@page';
-import { NextPage } from 'next/types';
 
 const Admin: NextPage = () => {
   return (

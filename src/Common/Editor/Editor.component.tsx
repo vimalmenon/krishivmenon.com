@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { Container } from '@style';
 import dynamic from 'next/dynamic';
+
+import { Container } from '@style';
 
 import { IEditor } from './Editor';
 import 'react-quill/dist/quill.snow.css';

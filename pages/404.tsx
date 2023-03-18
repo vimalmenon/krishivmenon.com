@@ -1,6 +1,7 @@
+import { NextPage } from 'next/types';
+
 import { navigation } from '@data';
 import { AppLayout } from '@layout';
-import { NextPage } from 'next/types';
 
 const PageNotFound: NextPage = () => {
   return <AppLayout title={navigation.PageNotFound.title}>Requested page is not found</AppLayout>;

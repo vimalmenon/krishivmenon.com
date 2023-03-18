@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { Container } from '@style';
 import { useDropzone } from 'react-dropzone';
+
+import { Container } from '@style';
 
 import { IFileUpload } from './FileUpload';
 import { UploadInputStyle } from './FileUpload.style';

@@ -1,11 +1,12 @@
 import React from 'react';
 
+import jwtDecode from 'jwt-decode';
+import { useRouter } from 'next/router';
+
 import { AuthStatus, ENV } from '@constant';
 import { useCommonContext } from '@context';
 import { useCommon } from '@hook';
 import { ReactChildren, IGenericReturn, IAuthResponse, IGenericMethod } from '@types';
-import jwtDecode from 'jwt-decode';
-import { useRouter } from 'next/router';
 
 import { AuthProviderContext, initialValue, createBody } from './AuthProvider.service';
 

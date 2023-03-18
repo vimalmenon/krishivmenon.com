@@ -1,4 +1,5 @@
 import { Breakpoint } from '@mui/material/styles';
+
 import { IGenericMethod, ReactChildren } from '@types';
 
 export interface IDialog {

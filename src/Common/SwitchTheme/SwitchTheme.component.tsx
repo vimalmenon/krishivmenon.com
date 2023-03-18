@@ -1,8 +1,9 @@
-import { useCommonContext } from '@context';
-import { useCommon } from '@hook';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import IconButton from '@mui/material/IconButton';
+
+import { useCommonContext } from '@context';
+import { useCommon } from '@hook';
 
 import { SwitchThemeStyle } from './SwitchTheme.style';
 

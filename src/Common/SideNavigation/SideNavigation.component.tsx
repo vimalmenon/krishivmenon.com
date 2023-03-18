@@ -1,8 +1,5 @@
 import React from 'react';
 
-import { Icon, Profile } from '@common';
-import { useCommonAuthProvider } from '@context';
-import { NavigationList } from '@data';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
@@ -10,6 +7,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { useRouter } from 'next/router';
+
+import { Icon, Profile } from '@common';
+import { useCommonAuthProvider } from '@context';
+import { NavigationList } from '@data';
 
 import { SideNavigationList, SideNavigationRoot } from './SideNavigation.style';
 

@@ -1,5 +1,6 @@
-import { SideNavigation } from '@common';
 import { Scrollbars } from 'rc-scrollbars';
+
+import { SideNavigation } from '@common';
 
 import { PageLayoutAsideRoot } from './PageLayoutAside.style';
 

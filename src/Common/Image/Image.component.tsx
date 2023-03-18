@@ -5,7 +5,7 @@ import Imgix from 'react-imgix';
 
 import { IImage } from './Image';
 
-export const Image: React.FC<IImage> = ({ src, height, width }) => {
+export const Image: React.FC<IImage> = ({ src, height, width, alt }) => {
   const [loading, setLoading] = React.useState<boolean>(true);
   React.useEffect(() => {
     setLoading(true);
@@ -21,6 +21,7 @@ export const Image: React.FC<IImage> = ({ src, height, width }) => {
         width={width}
         height={height}
         htmlAttributes={{
+          alt,
           onLoad: () => {
             setLoading(false);
           },

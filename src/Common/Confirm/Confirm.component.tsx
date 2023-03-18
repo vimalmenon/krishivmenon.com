@@ -1,5 +1,6 @@
-import { Dialog, Icon } from '@common';
 import Button from '@mui/material/Button';
+
+import { Dialog, Icon } from '@common';
 import { ReactChildren } from '@types';
 
 import { IConfirm } from './Confirm';

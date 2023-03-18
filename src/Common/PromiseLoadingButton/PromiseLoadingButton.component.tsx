@@ -1,6 +1,7 @@
 import React from 'react';
 
 import LoadingButton from '@mui/lab/LoadingButton';
+
 import { IGenericMethod } from '@types';
 
 export const PromiseLoadingButton: typeof LoadingButton = ({ ...props }) => {

@@ -30,6 +30,8 @@ High Priority:
   [Improvement] Convert EnvCheck to hooks
   [Bug] Overlapping UI on side panel
   [Feature] Check if first API is unauthorized or API not found
+  [Feature] Need to show a message when no found or files is available
+  [Feature] Need to work on main loading indicator
 Medium Priority
   [Feature] Add framer motion for animation
   [Improvement] Increase the test coverage to 80%

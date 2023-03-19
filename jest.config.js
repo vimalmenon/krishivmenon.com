@@ -5,6 +5,7 @@ module.exports = {
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
   },
+  testEnvironment: "jsdom",
   transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],
   moduleNameMapper: {
     '\\.(css|less)$': '<rootDir>/__mocks__/fileMock.js',

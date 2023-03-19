@@ -7,7 +7,7 @@ import { AuthStatus } from '@constant';
 import { useCommonContext } from '@context';
 import { navigation } from '@data';
 import { useUser } from '@hook';
-import { Login } from '@page';
+import { Login, Unauthorized } from '@page';
 import { IBaseLayout, ReactChildren } from '@types';
 
 import { MainLayout, MainPageContent, OtherLayout } from './PageLayout.style';
@@ -31,7 +31,7 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
   if (authStatus === AuthStatus.UnAuthorized) {
     return (
       <UnauthorizedPage title={navigation.Unauthenticated.title}>
-        <div>You are not authorized to this website.</div>
+        <Unauthorized />
       </UnauthorizedPage>
     );
   }

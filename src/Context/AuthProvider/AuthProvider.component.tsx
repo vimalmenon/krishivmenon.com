@@ -1,11 +1,12 @@
 import React from 'react';
 
+import jwtDecode from 'jwt-decode';
+import { useRouter } from 'next/router';
+
 import { AuthStatus, ENV } from '@constant';
 import { useCommonContext } from '@context';
 import { useCommon } from '@hook';
 import { ReactChildren, IGenericReturn, IAuthResponse, IGenericMethod } from '@types';
-import jwtDecode from 'jwt-decode';
-import { useRouter } from 'next/router';
 
 import { AuthProviderContext, initialValue, createBody } from './AuthProvider.service';
 
@@ -14,7 +15,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
   const [idToken, setIdToken] = React.useState<string | null>(initialValue.idToken);
   const [tokenExpiry, setTokenExpiry] = React.useState<number>(0);
   const { saveStorage, getStorage, removeStorage } = useCommon();
-  const { setAuthStatus } = useCommonContext();
+  const { setAuthStatus, setProfile } = useCommonContext();
   const router = useRouter();
   const getToken = async (code: string, state?: string): Promise<void> => {
     try {
@@ -73,6 +74,7 @@ export const AuthProvider: React.FC<ReactChildren> = ({ children }) => {
     removeStorage('refreshToken');
     removeStorage('idToken');
     removeStorage('tokenExpiry');
+    setProfile(null);
   };
   React.useEffect(() => {
     const query = new URLSearchParams(window.location.search);

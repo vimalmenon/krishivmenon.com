@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { useCommonContext } from '@context';
 import { ThemeProvider } from '@mui/material/styles';
-import { getTheme } from '@style';
-import { ReactChildren, IBaseLayout } from '@types';
 import Router from 'next/router';
 import NProgress from 'nprogress';
+
+import { useCommonContext } from '@context';
+import { getTheme } from '@style';
+import { ReactChildren, IBaseLayout } from '@types';
 
 import { PageLayout } from '../PageLayout';
 

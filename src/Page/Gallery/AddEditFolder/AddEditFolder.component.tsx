@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { Icon, PromiseLoadingButton, Image } from '@common';
-import { ENV } from '@constant';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
+
+import { Icon, PromiseLoadingButton, Image } from '@common';
+import { ENV } from '@constant';
 import { Container, PageTitle } from '@style';
 
 import { PaperStyle } from './AddEditFolder.style';
@@ -121,6 +122,7 @@ export const AddEditFolder: React.FC = () => {
             <Container component={'div'} sx={{ justifyContent: 'center' }}>
               <div>
                 <Image
+                  alt={selectedItem.name}
                   src={`${ENV.ASSET_S3_BUCKET}/${selectedItem.path}`}
                   height={200} // This sets what resolution the component should load from the CDN and the size of the resulting image
                 />

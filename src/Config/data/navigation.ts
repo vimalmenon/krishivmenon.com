@@ -1,6 +1,7 @@
-import { Icon } from '@common';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import NoteIcon from '@mui/icons-material/Note';
+
+import { Icon } from '@common';
 
 export const Home = {
   name: 'Home',

@@ -1,5 +1,6 @@
-import { IGenericMethod, IGenericParam } from '@types';
 import { DropEvent } from 'react-dropzone';
+
+import { IGenericMethod, IGenericParam } from '@types';
 
 export type OnDropAcceptedType = (files: File[], event: DropEvent) => void;
 

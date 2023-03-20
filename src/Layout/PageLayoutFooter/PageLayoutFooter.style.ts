@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+
 import { fontSize } from '@style';
 
 export const PageLayoutFooterRoot = styled('div')(({ theme }) => {

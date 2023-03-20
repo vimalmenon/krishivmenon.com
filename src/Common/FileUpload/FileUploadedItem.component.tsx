@@ -1,5 +1,7 @@
-import { Icon } from '@common';
 import Skeleton from '@mui/material/Skeleton';
+import Image from 'next/image';
+
+import { Icon } from '@common';
 import { Container } from '@style';
 
 import { IFileUploadedItem } from './FileUpload';
@@ -23,7 +25,7 @@ export const FileUploadedItem: React.FC<IFileUploadedItem> = ({
       {file.isFormatSupported ? (
         <>
           <Container component="div" sx={{ flex: '0' }}>
-            <img
+            <Image
               src={URL.createObjectURL(file.file)}
               alt={file.file.name}
               style={{

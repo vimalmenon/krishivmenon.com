@@ -1,11 +1,26 @@
-import { useCommonContext } from '@context';
+import { Skeleton } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+
+import { AuthStatus } from '@constant';
+import { useCommonContext } from '@context';
 
 import { ProfileRoot } from './Profile.style';
 
 export const Profile: React.FC = () => {
-  const { profile } = useCommonContext();
+  const { profile, authStatus } = useCommonContext();
+  if (authStatus === AuthStatus.Authenticating) {
+    return (
+      <ProfileRoot>
+        <div className="profile">
+          <Skeleton variant="circular" height={50} width={50} />
+        </div>
+        <div className="profile-detail">
+          <Skeleton variant="text" width={120} />
+        </div>
+      </ProfileRoot>
+    );
+  }
   if (profile) {
     return (
       <ProfileRoot>

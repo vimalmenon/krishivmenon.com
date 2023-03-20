@@ -5,6 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Skeleton from '@mui/material/Skeleton';
 import TextField from '@mui/material/TextField';
+
 import { Container } from '@style';
 
 import { NoteListRoot, NoteItemsContainer } from './NoteList.style';

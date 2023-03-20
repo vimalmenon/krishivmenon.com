@@ -1,5 +1,6 @@
-import { Icon } from '@common';
 import Skeleton from '@mui/material/Skeleton';
+
+import { Icon } from '@common';
 
 import { INoteHeader } from './NoteHeader';
 import { NoteHeaderRoot } from './NoteHeader.style';

@@ -1,10 +1,11 @@
 import React from 'react';
 
+import axios from 'axios';
+
 import { getBaseUrl } from '@data';
 import { useApiCount } from '@hook';
 import { IApi, IBaseResponse, IGenericReturn } from '@types';
 import { NotImplemented } from '@utility';
-import axios from 'axios';
 
 import { IUseApiProvider, IAlert, IUseApiProviderExposed } from './ApiProvider';
 import { useCommonAuthProvider } from '../AuthProvider';

@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+
 import { fontSize } from '@style';
 
 export const PageTitle = styled('section')(() => {

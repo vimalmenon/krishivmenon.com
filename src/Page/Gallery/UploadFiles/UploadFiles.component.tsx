@@ -1,5 +1,6 @@
-import { FileUpload, Icon, PromiseLoadingButton } from '@common';
 import Button from '@mui/material/Button';
+
+import { FileUpload, Icon, PromiseLoadingButton } from '@common';
 import { Container, PageTitle } from '@style';
 
 import { PaperStyle } from './UploadFiles.style';

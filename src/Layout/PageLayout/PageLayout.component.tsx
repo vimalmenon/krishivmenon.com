@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { MetaData, ErrorBoundary } from '@common';
+import CssBaseline from '@mui/material/CssBaseline';
+
+import { MetaData, ErrorBoundary, Authenticating } from '@common';
 import { AuthStatus } from '@constant';
 import { useCommonContext } from '@context';
 import { navigation } from '@data';
 import { useUser } from '@hook';
-import CssBaseline from '@mui/material/CssBaseline';
-import { Login } from '@page';
+import { Login, Unauthorized } from '@page';
 import { IBaseLayout, ReactChildren } from '@types';
 
 import { MainLayout, MainPageContent, OtherLayout } from './PageLayout.style';
@@ -29,16 +30,48 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
   }
   if (authStatus === AuthStatus.UnAuthorized) {
     return (
-      <UnauthorizedPage title={navigation.Unauthenticated.title}>
-        <div>You are not authorized to this website.</div>
-      </UnauthorizedPage>
+      <AuthorizedPage title={title}>
+        <ErrorBoundary
+          sx={{
+            gridArea: 'content',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <EnvCheck>
+            <PageLayoutAside />
+            <PageLayoutAsideMobile />
+            <MainPageContent>
+              <ErrorBoundary>
+                <Unauthorized />
+              </ErrorBoundary>
+            </MainPageContent>
+          </EnvCheck>
+        </ErrorBoundary>
+      </AuthorizedPage>
     );
   }
   if (authStatus === AuthStatus.Authenticating) {
     return (
-      <UnauthorizedPage title={title}>
-        <div>Authenticating...</div>
-      </UnauthorizedPage>
+      <AuthorizedPage title={title}>
+        <ErrorBoundary
+          sx={{
+            gridArea: 'content',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <EnvCheck>
+            <PageLayoutAside />
+            <PageLayoutAsideMobile />
+            <MainPageContent>
+              <ErrorBoundary>
+                <Authenticating />
+              </ErrorBoundary>
+            </MainPageContent>
+          </EnvCheck>
+        </ErrorBoundary>
+      </AuthorizedPage>
     );
   }
   return (
@@ -62,10 +95,7 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
   );
 };
 
-export const NotAuthenticatedPage: React.FC<ReactChildren & IBaseLayout> = ({
-  title,
-  children,
-}) => {
+const NotAuthenticatedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
   return (
     <OtherLayout>
       <CssBaseline />
@@ -77,12 +107,7 @@ export const NotAuthenticatedPage: React.FC<ReactChildren & IBaseLayout> = ({
   );
 };
 
-export const UnauthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
-  useUser();
-  return <NotAuthenticatedPage title={title}>{children}</NotAuthenticatedPage>;
-};
-
-export const AuthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
+const AuthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
   useUser();
   return (
     <MainLayout>

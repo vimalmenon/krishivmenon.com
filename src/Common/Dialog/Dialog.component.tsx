@@ -4,6 +4,7 @@ import MuiDialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
+
 import { ReactChildren } from '@types';
 
 import { IDialog, IDialogStatic } from './Dialog';

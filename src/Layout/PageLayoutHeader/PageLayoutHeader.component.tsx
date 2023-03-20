@@ -1,9 +1,10 @@
-import { SwitchTheme } from '@common';
-import { useCommonContext } from '@context';
-import { useCommon } from '@hook';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+
+import { SwitchTheme } from '@common';
+import { useCommonContext } from '@context';
+import { useCommon } from '@hook';
 
 import {
   PageLayoutHeaderRoot,

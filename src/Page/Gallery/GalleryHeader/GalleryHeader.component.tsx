@@ -1,8 +1,9 @@
-import { Icon } from '@common';
-import { MaxFolderUploadDepth } from '@constant';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import Skeleton from '@mui/material/Skeleton';
+
+import { Icon } from '@common';
+import { MaxFolderUploadDepth } from '@constant';
 import { Container } from '@style';
 
 import { GalleryHeaderRoot } from './GalleryHeader.style';

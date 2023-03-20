@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { Icon, Image } from '@common';
-import { ENV } from '@constant';
 import Chip from '@mui/material/Chip';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
+
+import { Icon, Image } from '@common';
+import { ENV } from '@constant';
 
 import {
   GalleryContentRoot,
@@ -91,7 +92,11 @@ export const GalleryContent: React.FC = () => {
                       role="presentation"
                       onClick={() => setSelectedItem(file)}
                     >
-                      <Image src={`${ENV.ASSET_S3_BUCKET}/${file.path}`} width={300} />
+                      <Image
+                        src={`${ENV.ASSET_S3_BUCKET}/${file.path}`}
+                        alt={file.name}
+                        width={300}
+                      />
                       {file.name}
                     </div>
                   );

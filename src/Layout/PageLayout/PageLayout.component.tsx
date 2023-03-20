@@ -30,9 +30,25 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
   }
   if (authStatus === AuthStatus.UnAuthorized) {
     return (
-      <UnauthorizedPage title={navigation.Unauthenticated.title}>
-        <Unauthorized />
-      </UnauthorizedPage>
+      <AuthorizedPage title={title}>
+        <ErrorBoundary
+          sx={{
+            gridArea: 'content',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <EnvCheck>
+            <PageLayoutAside />
+            <PageLayoutAsideMobile />
+            <MainPageContent>
+              <ErrorBoundary>
+                <Unauthorized />
+              </ErrorBoundary>
+            </MainPageContent>
+          </EnvCheck>
+        </ErrorBoundary>
+      </AuthorizedPage>
     );
   }
   if (authStatus === AuthStatus.Authenticating) {

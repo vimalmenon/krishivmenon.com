@@ -1,10 +1,10 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { Unauthorized } from '.';
 
 describe('<Unauthorized>', () => {
-  it('Snapshot Testing', () => {
+  it('Unauthorized message', async () => {
     render(<Unauthorized />);
-    expect(true).toBe(true);
+    expect(screen.getByTestId("unauthorized-message")).toHaveTextContent("You are not authorized to this website.")
   });
 });

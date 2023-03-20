@@ -1,3 +1,5 @@
+import {UnauthorizedRoot} from "./Unauthorized.style";
+
 export const Unauthorized: React.FC = () => {
-  return <div>You are not authorized to this website.</div>;
+  return <UnauthorizedRoot data-testid="unauthorized-message">You are not authorized to this website.</UnauthorizedRoot>;
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 import CssBaseline from '@mui/material/CssBaseline';
 
-import { MetaData, ErrorBoundary } from '@common';
+import { MetaData, ErrorBoundary, Authenticating } from '@common';
 import { AuthStatus } from '@constant';
 import { useCommonContext } from '@context';
 import { navigation } from '@data';
@@ -54,7 +54,7 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
   if (authStatus === AuthStatus.Authenticating) {
     return (
       <UnauthorizedPage title={title}>
-        <div>Authenticating...</div>
+        <Authenticating />
       </UnauthorizedPage>
     );
   }
@@ -79,10 +79,7 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
   );
 };
 
-export const NotAuthenticatedPage: React.FC<ReactChildren & IBaseLayout> = ({
-  title,
-  children,
-}) => {
+const NotAuthenticatedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
   return (
     <OtherLayout>
       <CssBaseline />
@@ -94,12 +91,12 @@ export const NotAuthenticatedPage: React.FC<ReactChildren & IBaseLayout> = ({
   );
 };
 
-export const UnauthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
+const UnauthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
   useUser();
   return <NotAuthenticatedPage title={title}>{children}</NotAuthenticatedPage>;
 };
 
-export const AuthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
+const AuthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
   useUser();
   return (
     <MainLayout>

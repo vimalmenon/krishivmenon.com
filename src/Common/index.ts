@@ -10,5 +10,6 @@ export * from './MetaData';
 export * from './FileUpload';
 export * from './SwitchTheme';
 export * from './ErrorBoundary';
+export * from './Authenticating';
 export * from './SideNavigation';
 export * from './PromiseLoadingButton';

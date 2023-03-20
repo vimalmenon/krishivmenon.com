@@ -25,7 +25,7 @@ High Priority:
   [Enhance] Initial load looks bad (CSS missing)
   [Bug] Http doesn't redirect the Https connection.
   [UI] Fixing the folder structure
-  [UI] Add a splash Screen
+  [UI] Add a splash screen
   [Improvement] Convert EnvCheck to hooks
   [Bug] Overlapping UI on side panel
   [Feature] Check if first API is unauthorized or API not found

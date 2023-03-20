@@ -53,9 +53,25 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
   }
   if (authStatus === AuthStatus.Authenticating) {
     return (
-      <UnauthorizedPage title={title}>
-        <Authenticating />
-      </UnauthorizedPage>
+      <AuthorizedPage title={title}>
+        <ErrorBoundary
+          sx={{
+            gridArea: 'content',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <EnvCheck>
+            <PageLayoutAside />
+            <PageLayoutAsideMobile />
+            <MainPageContent>
+              <ErrorBoundary>
+                <Authenticating />
+              </ErrorBoundary>
+            </MainPageContent>
+          </EnvCheck>
+        </ErrorBoundary>
+      </AuthorizedPage>
     );
   }
   return (
@@ -89,11 +105,6 @@ const NotAuthenticatedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, ch
       <PageLayoutFooter />
     </OtherLayout>
   );
-};
-
-const UnauthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
-  useUser();
-  return <NotAuthenticatedPage title={title}>{children}</NotAuthenticatedPage>;
 };
 
 const AuthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {

@@ -23,7 +23,7 @@ export const SideNavigation: React.FC = () => {
   const [collapseOthers, setCollapseOthers] = React.useState<boolean>(true);
   return (
     <SideNavigationRoot>
-      {authStatus === AuthStatus.Authorized && (
+      {(authStatus === AuthStatus.Authorized || authStatus === AuthStatus.Authenticating) && (
         <>
           <Profile />
           <Divider />

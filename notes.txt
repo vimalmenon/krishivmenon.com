@@ -3,7 +3,6 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
 High Priority:
-  [Feature] Ability to Logout from UI
   [Feature] Need to work on logout of auth
   [Feature] Search for library for Image viewer (Lightbox)
   [Loading] Loading for notes

@@ -7,13 +7,14 @@ High Priority:
   [Feature] Search for library for Image viewer (Lightbox)
   [Loading] Loading for notes
   [Loading] Loading on gallery
+  [Feature] Clicking on name at the top should redirect to Home page
   [UI] Improve UI for 400 Page
-  [UI] Improve UI for Gallery
+  [UI] Improve UI for gallery
   [UI] Improve UI for upload of file
   [UI] Improve UI for unauthorized page
   [UI] Improve UI for authorizing page
-  [UI] Responsive UI for Gallery
-  [UI] Responsive UI for Notes
+  [UI] Responsive UI for gallery
+  [UI] Responsive UI for notes
   [UI] Fixing the scrolls
   [UI] Improve the UI for Add Edit Item
   [Bug] First reload gives an issue with api refresh token

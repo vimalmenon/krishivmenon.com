@@ -10,7 +10,7 @@ import { useUser } from '@hook';
 import { Login, Unauthorized } from '@page';
 import { IBaseLayout, ReactChildren } from '@types';
 
-import { MainLayout, MainPageContent, OtherLayout } from './PageLayout.style';
+import { MainLayout, MainPageContent, NoAsideLayout } from './PageLayout.style';
 import {
   PageLayoutHeader,
   PageLayoutAside,
@@ -54,56 +54,40 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
   if (authStatus === AuthStatus.Authenticating) {
     return (
       <AuthorizedPage title={title}>
-        <ErrorBoundary
-          sx={{
-            gridArea: 'content',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <EnvCheck>
-            <PageLayoutAside />
-            <PageLayoutAsideMobile />
-            <MainPageContent>
-              <ErrorBoundary>
-                <Authenticating />
-              </ErrorBoundary>
-            </MainPageContent>
-          </EnvCheck>
-        </ErrorBoundary>
+        <EnvCheck>
+          <PageLayoutAside />
+          <PageLayoutAsideMobile />
+          <MainPageContent>
+            <ErrorBoundary>
+              <Authenticating />
+            </ErrorBoundary>
+          </MainPageContent>
+        </EnvCheck>
       </AuthorizedPage>
     );
   }
   return (
     <AuthorizedPage title={title}>
-      <ErrorBoundary
-        sx={{
-          gridArea: 'content',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <EnvCheck>
-          <PageLayoutAside />
-          <PageLayoutAsideMobile />
-          <MainPageContent>
-            <ErrorBoundary>{children}</ErrorBoundary>
-          </MainPageContent>
-        </EnvCheck>
-      </ErrorBoundary>
+      <EnvCheck>
+        <PageLayoutAside />
+        <PageLayoutAsideMobile />
+        <MainPageContent>
+          <ErrorBoundary>{children}</ErrorBoundary>
+        </MainPageContent>
+      </EnvCheck>
     </AuthorizedPage>
   );
 };
 
 const NotAuthenticatedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {
   return (
-    <OtherLayout>
+    <NoAsideLayout>
       <CssBaseline />
       <MetaData title={title} />
       <PageLayoutHeader />
       <MainPageContent>{children}</MainPageContent>
       <PageLayoutFooter />
-    </OtherLayout>
+    </NoAsideLayout>
   );
 };
 
@@ -114,7 +98,15 @@ const AuthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children
       <CssBaseline />
       <MetaData title={title} />
       <PageLayoutHeader />
-      {children}
+      <ErrorBoundary
+        sx={{
+          gridArea: 'content',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        {children}
+      </ErrorBoundary>
       <PageLayoutFooter />
     </MainLayout>
   );

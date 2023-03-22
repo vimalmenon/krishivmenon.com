@@ -31,42 +31,36 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
   if (authStatus === AuthStatus.UnAuthorized) {
     return (
       <AuthorizedPage title={title}>
-        <EnvCheck>
-          <PageLayoutAside />
-          <PageLayoutAsideMobile />
-          <MainPageContent>
-            <ErrorBoundary>
-              <Unauthorized />
-            </ErrorBoundary>
-          </MainPageContent>
-        </EnvCheck>
+        <PageLayoutAside />
+        <PageLayoutAsideMobile />
+        <MainPageContent>
+          <ErrorBoundary>
+            <Unauthorized />
+          </ErrorBoundary>
+        </MainPageContent>
       </AuthorizedPage>
     );
   }
   if (authStatus === AuthStatus.Authenticating) {
     return (
       <AuthorizedPage title={title}>
-        <EnvCheck>
-          <PageLayoutAside />
-          <PageLayoutAsideMobile />
-          <MainPageContent>
-            <ErrorBoundary>
-              <Authenticating />
-            </ErrorBoundary>
-          </MainPageContent>
-        </EnvCheck>
+        <PageLayoutAside />
+        <PageLayoutAsideMobile />
+        <MainPageContent>
+          <ErrorBoundary>
+            <Authenticating />
+          </ErrorBoundary>
+        </MainPageContent>
       </AuthorizedPage>
     );
   }
   return (
     <AuthorizedPage title={title}>
-      <EnvCheck>
-        <PageLayoutAside />
-        <PageLayoutAsideMobile />
-        <MainPageContent>
-          <ErrorBoundary>{children}</ErrorBoundary>
-        </MainPageContent>
-      </EnvCheck>
+      <PageLayoutAside />
+      <PageLayoutAsideMobile />
+      <MainPageContent>
+        <ErrorBoundary>{children}</ErrorBoundary>
+      </MainPageContent>
     </AuthorizedPage>
   );
 };
@@ -97,7 +91,7 @@ const AuthorizedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children
           alignItems: 'center',
         }}
       >
-        {children}
+        <EnvCheck>{children}</EnvCheck>
       </ErrorBoundary>
       <PageLayoutFooter />
     </MainLayout>

@@ -3,10 +3,9 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
 High Priority:
-  [Feature] Need to work on logout of auth
+  [Feature] Logout auth permenantly
   [Feature] Search for library for Image viewer (Lightbox)
   [Loading] Loading for notes
-  [Loading] Loading on gallery
   [Feature] Clicking on name at the top should redirect to Home page
   [UI] Improve UI for 400 Page
   [UI] Improve UI for gallery
@@ -15,7 +14,7 @@ High Priority:
   [UI] Improve UI for authorizing page
   [UI] Responsive UI for gallery
   [UI] Responsive UI for notes
-  [UI] Fixing the scrolls
+  [UI] Fixing the scroll
   [UI] Improve the UI for Add Edit Item
   [Bug] First reload gives an issue with api refresh token
   [Check] Check the page in IPad
@@ -37,9 +36,9 @@ Medium Priority
   [Feature] Add framer motion for animation
   [Improvement] Increase the test coverage to 80%
   [Feature] Allow push only on 80% coverage
-  Ability to invalidate the Id token
+  [Feature] Ability to invalidate the Id token
   [Feature] Need to create a tags for notes and Library
-  Create content for Home page
+  [Feature] Create content for Home page
   [Feature] Create Release Page
   [Feature] Report a Bug
   [Feature] Profile page
@@ -50,7 +49,6 @@ Medium Priority
 Less Priority
   [Feature] Setting up sonar
   Add notes for image
-  Logging for S3 Bucket for static website
   Add favicon
   Add images
   Pre signed image on request

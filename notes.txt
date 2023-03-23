@@ -12,24 +12,24 @@ High Priority:
   [UI] Improve UI for upload of file
   [UI] Improve UI for unauthorized page
   [UI] Improve UI for authorizing page
-  [UI] Responsive UI for gallery
-  [UI] Responsive UI for notes
+  [Responsive] Responsive UI for gallery
+  [Responsive] Responsive UI for notes
   [UI] Fixing the scroll
   [UI] Improve the UI for Add Edit Item
+  [UI] Improve the UI for no file and folder found
   [Bug] First reload gives an issue with api refresh token
   [Check] Check the page in IPad
-  [Bug] Fix caching in cloudfront (Bug)
   [Problem] Support to upload the videos
+  [Bug] Fix caching in cloudfront (Bug)
   [Bug] Handling errors for fetch
-  [Enhance] Make a better ErrorBoundary
-  [Enhance] Initial load looks bad (CSS missing)
+  [Enhancement] Make a better ErrorBoundary
+  [Enhancement] Initial load looks bad (CSS missing)
   [Bug] Http doesn't redirect the Https connection.
   [UI] Fixing the folder structure
   [UI] Add a splash screen
   [Improvement] Convert EnvCheck to hooks
   [Bug] Overlapping UI on side panel
   [Feature] Check if first API is unauthorized or API not found
-  [Feature] Need to show a message when no found or files is available
   [Feature] Need to work on main loading indicator
   [Bug] Images not working in Prod Website
 Medium Priority

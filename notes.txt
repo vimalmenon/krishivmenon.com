@@ -66,6 +66,7 @@ https://github.com/birros/heic2jpeg/blob/master/pages/index.tsx (Image conversio
 https://codesandbox.io/s/react-heic-forked-6p18nd?file=/src/App.js:170-784
 https://codesandbox.io/s/74xh7p?file=/components/Navigation.tsx:774-863
 https://bareynol.github.io/mui-theme-creator/
+https://stackoverflow.com/questions/48048957/react-long-press-event
 
 KM - Krishiv Menon
 VM - Vimal Menon

@@ -19,10 +19,10 @@
     "check:dev": "npm run eslint:fix & npm run tsc"
   },
   "dependencies": {
-    "@emotion/cache": "^11.10.7",
-    "@emotion/react": "^11.10.6",
+    "@emotion/cache": "^11.10.8",
+    "@emotion/react": "^11.10.8",
     "@emotion/server": "^11.10.0",
-    "@emotion/styled": "^11.10.6",
+    "@emotion/styled": "^11.10.8",
     "@fontsource/public-sans": "^4.5.12",
     "@mui/icons-material": "^5.11.16",
     "@mui/lab": "^5.0.0-alpha.128",

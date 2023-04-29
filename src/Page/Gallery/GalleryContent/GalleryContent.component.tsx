@@ -30,6 +30,37 @@ export const GalleryContent: React.FC = () => {
     showFileUploader,
   } = useCommonGallery();
   const folder = React.useMemo(() => folderMap[currentFolder], [folderMap[currentFolder]]);
+  if (folder.loading) {
+    return (
+      <GalleryContentRoot>
+        <GalleryContentFilesRoot>
+          <div>
+            <Divider textAlign="left">
+              <Chip
+                label="Folders"
+                icon={folder.isFolderFolded ? <Icon.icons.DownArrow /> : <Icon.icons.UpArrow />}
+                onClick={() => onFolderToggle(folder)}
+              />
+            </Divider>
+          </div>
+          <Collapse in={!folder.isFolderFolded}>
+            <GalleryContentFolder>
+              <GalleryFolderLoading />
+              <GalleryFolderLoading />
+              <GalleryFolderLoading />
+            </GalleryContentFolder>
+          </Collapse>
+        </GalleryContentFilesRoot>
+      </GalleryContentRoot>
+    );
+  }
+  if (folder.files.length === 0 && folder.folders.length === 0) {
+    return (
+      <GalleryContentRoot>
+        <GalleryContentFilesRoot>No files and folder found.</GalleryContentFilesRoot>
+      </GalleryContentRoot>
+    );
+  }
   return (
     <GalleryContentRoot>
       <GalleryContentFilesRoot>
@@ -44,25 +75,15 @@ export const GalleryContent: React.FC = () => {
         </div>
         <Collapse in={!folder.isFolderFolded}>
           <GalleryContentFolder>
-            {folderMap.root.loading ? (
-              <>
-                <GalleryFolderLoading />
-                <GalleryFolderLoading />
-                <GalleryFolderLoading />
-              </>
-            ) : (
-              <>
-                {folder.folders.map((value) => {
-                  return (
-                    <GalleryFolder
-                      key={value}
-                      folder={folderMap[value]}
-                      isSelected={selectedItem?.id === value}
-                    />
-                  );
-                })}
-              </>
-            )}
+            {folder.folders.map((value) => {
+              return (
+                <GalleryFolder
+                  key={value}
+                  folder={folderMap[value]}
+                  isSelected={selectedItem?.id === value}
+                />
+              );
+            })}
           </GalleryContentFolder>
         </Collapse>
         {folder.files.length ? (

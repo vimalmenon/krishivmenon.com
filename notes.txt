@@ -3,10 +3,12 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
 High Priority:
-  [Feature] Logout auth permenantly
+  [Feature] Logout auth permanently
+  [Feature] selecting of notes
   [Feature] Search for library for Image viewer (Lightbox)
   [Loading] Loading for notes
   [Feature] Clicking on name at the top should redirect to Home page
+  [UI] List on non indexed file
   [UI] Improve UI for 400 Page
   [UI] Improve UI for gallery
   [UI] Improve UI for upload of file
@@ -32,6 +34,8 @@ High Priority:
   [Feature] Check if first API is unauthorized or API not found
   [Feature] Need to work on main loading indicator
   [Bug] Images not working in Prod Website
+  [Bug] Showing loading icon when the image is not present
+  [Feature] move the upload to Modal
 Medium Priority
   [Feature] Add framer motion for animation
   [Improvement] Increase the test coverage to 80%

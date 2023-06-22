@@ -73,6 +73,7 @@ export interface IGalleryFolder extends IFolder {
   files: IFile[];
   isFolderFolded: boolean;
   isFileFolded: boolean;
+  isFixed?: boolean;
 }
 
 export interface IFile extends IBaseDB {

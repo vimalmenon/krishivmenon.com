@@ -35,7 +35,7 @@ High Priority:
   [Feature] Need to work on main loading indicator
   [Bug] Images not working in Prod Website
   [Bug] Showing loading icon when the image is not present
-  [Feature] move the upload to Modal
+  [Feature] Move the upload to Modal
 Medium Priority
   [Feature] Add framer motion for animation
   [Improvement] Increase the test coverage to 80%

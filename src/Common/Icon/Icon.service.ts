@@ -8,11 +8,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import FolderIcon from '@mui/icons-material/Folder';
 import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import SaveIcon from '@mui/icons-material/Save';
-import InfoIcon from '@mui/icons-material/Info';
 
 import { GoogleIcon } from './custom';
 import { IconTypes } from './Icon';
@@ -33,5 +33,5 @@ export const CommonIcons: Record<IconTypes, typeof SaveIcon | typeof GoogleIcon>
   UpArrow: KeyboardArrowUpRoundedIcon,
   DownArrow: KeyboardArrowDownRoundedIcon,
   Process: ChangeCircleRoundedIcon,
-  Info: InfoIcon
+  Info: InfoIcon,
 };

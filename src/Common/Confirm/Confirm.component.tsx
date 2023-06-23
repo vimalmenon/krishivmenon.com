@@ -22,7 +22,7 @@ export const Confirm: React.FC<IConfirm & ReactChildren> = ({
       fullWidth={fullWidth}
       maxWidth={maxWidth}
     >
-      <Dialog.Body>{children}</Dialog.Body>
+      <Dialog.BodyText>{children}</Dialog.BodyText>
       <Dialog.Footer>
         <Button variant="outlined" onClick={handleClose} endIcon={<Icon.icons.Cancel />}>
           Cancel

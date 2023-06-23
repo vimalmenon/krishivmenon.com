@@ -8,7 +8,7 @@ import { TransitionProps } from '@mui/material/transitions';
 import { ReactChildren } from '@types';
 
 import { IDialog, IDialogStatic } from './Dialog';
-import { DialogBody } from './DialogBody.component';
+import { DialogBody, DialogBodyText } from './DialogBody.component';
 import { DialogFooter } from './DialogFooter.component';
 
 const Transition = React.forwardRef(function Transition(
@@ -44,5 +44,7 @@ export const Dialog: IDialogStatic & React.FC<IDialog & ReactChildren> = ({
 };
 
 Dialog.Body = DialogBody;
+
+Dialog.BodyText = DialogBodyText;
 
 Dialog.Footer = DialogFooter;

@@ -15,7 +15,8 @@ export type IconTypes =
   | 'CloudUpload'
   | 'UpArrow'
   | 'DownArrow'
-  | 'Process';
+  | 'Process'
+  | 'Info';
 
 export interface IIcon<T> {
   Icon: T;

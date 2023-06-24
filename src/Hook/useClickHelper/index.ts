@@ -1,22 +1,22 @@
 import React from 'react';
 
-import { IGenericMethod, IGenericParam } from '@types';
+import { IGenericParam } from '@types';
 
 import { IUseClickHelper } from './UseClickHelper';
 
-export const useClickHelper = (
-  singleClick: IGenericMethod,
-  doubleClick: IGenericMethod
-): IUseClickHelper => {
+export const useClickHelper = <T = unknown>(
+  singleClick: IGenericParam<T>,
+  doubleClick: IGenericParam<T>
+): IUseClickHelper<T> => {
   const ref = React.useRef<NodeJS.Timeout>();
-  const onClick: IGenericParam<React.MouseEvent<HTMLDivElement>> = (e) => {
+  const onClick = (e: React.MouseEvent<HTMLDivElement>, value: T) => {
     switch (e.detail) {
       case 1:
-        ref.current = setTimeout(singleClick, 220);
+        ref.current = setTimeout(singleClick, 220, value);
         break;
       case 2:
         clearTimeout(ref.current);
-        doubleClick();
+        doubleClick(value);
         break;
     }
   };

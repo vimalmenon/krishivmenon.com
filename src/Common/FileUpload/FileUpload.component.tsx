@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useDropzone } from 'react-dropzone';
 
+import { AcceptVideo, AcceptImages } from '@constant';
 import { Container } from '@style';
 
 import { IFileUpload } from './FileUpload';
@@ -10,13 +11,12 @@ import { FileUploadedItem } from './FileUploadedItem.component';
 
 export const FileUpload: React.FC<IFileUpload> = ({
   files,
-  accept,
   onDeleteFile,
   onConvertFile,
   onDropAccepted,
 }) => {
   const { getRootProps, getInputProps } = useDropzone({
-    accept: accept,
+    accept: { ...AcceptVideo, ...AcceptImages },
     onDropAccepted: onDropAccepted,
   });
   return (

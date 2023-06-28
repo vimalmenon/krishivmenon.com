@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { AcceptVideo, AcceptImages } from '@constant';
 import { useCommonApiContext } from '@context';
 import { apis } from '@data';
+import { useClickHelper } from '@hook';
 import {
   IFile,
   IFolder,
@@ -10,24 +10,25 @@ import {
   IGenericReturn,
   IGalleryFolder,
   IGenericMethod,
+  IGeneric,
 } from '@types';
 import { NotImplemented } from '@utility';
 
-import { IGalleryContext, IUseGallery, IUseCommonGalleryContext } from './Gallery';
+import { IGalleryContext, IUseGallery } from './Gallery';
 
-const initialValue: IGalleryFolder = {
-  id: '',
-  label: '',
-  files: [],
-  folders: [],
-  loading: false,
-  parent: 'root',
-  breadcrumbs: [],
-  isFolderFolded: false,
-  isFileFolded: false,
-};
+// const initialValue: IGalleryFolder = {
+//   id: '',
+//   label: '',
+//   files: [],
+//   folders: [],
+//   loading: false,
+//   parent: 'root',
+//   breadcrumbs: [],
+//   isFolderFolded: false,
+//   isFileFolded: false,
+// };
 
-const rootFolder: IGalleryFolder = {
+export const rootFolder: IGalleryFolder = {
   files: [],
   id: 'root',
   parent: '',
@@ -37,209 +38,47 @@ const rootFolder: IGalleryFolder = {
   breadcrumbs: ['root'],
   isFolderFolded: false,
   isFileFolded: false,
+  isFileLocked: true,
 };
 
 export const initialContextValue: IGalleryContext = {
   files: [],
-  selectedItem: null,
+  folder: null,
+  selectedFile: null,
   deleteConfirm: false,
+  selectedFolder: null,
   showFileUploader: false,
   clearFiles: NotImplemented,
-  currentFolder: rootFolder.id,
+  currentFolderId: rootFolder.id,
+  addEditFolder: 'VIEW',
+  setFolder: NotImplemented,
   setFolderMap: NotImplemented,
   onDeleteFile: NotImplemented,
   onConvertFile: NotImplemented,
-  onFolderSelect: NotImplemented,
   onDropAccepted: NotImplemented,
   onFolderUpdate: NotImplemented,
-  setSelectedItem: NotImplemented,
+  setSelectedFile: NotImplemented,
+  setCurrentFolderId: NotImplemented,
   setDeleteConfirm: NotImplemented,
   onFileSetLoading: NotImplemented,
+  setSelectedFolder: NotImplemented,
   setShowFileUploader: NotImplemented,
-  accept: { ...AcceptVideo, ...AcceptImages },
+  setAddEditFolder: NotImplemented,
+  syncAllFolders: NotImplemented,
   folderMap: {
     [rootFolder.id]: rootFolder,
   },
+  currentFolder: rootFolder,
+  fileAction: null,
+  setFileAction: NotImplemented,
 };
 
 export const GalleryContext = React.createContext<IGalleryContext>(initialContextValue);
-
-export const useCommonGallery: IGenericReturn<IUseCommonGalleryContext> = () => {
-  const {
-    files,
-    accept,
-    folderMap,
-    clearFiles,
-    setFolderMap,
-    onDeleteFile,
-    selectedItem,
-    currentFolder,
-    deleteConfirm,
-    onConvertFile,
-    onFolderUpdate,
-    onFolderSelect,
-    onDropAccepted,
-    setSelectedItem,
-    onFileSetLoading,
-    setDeleteConfirm,
-    showFileUploader,
-    setShowFileUploader,
-  } = React.useContext<IGalleryContext>(GalleryContext);
-  const { makeApiCall } = useCommonApiContext();
-  const onFolderAdd: IGenericMethod = () => {
-    setSelectedItem({ ...initialValue, parent: currentFolder });
-    setShowFileUploader(false);
-  };
-  const onSelectedFolderCancel: IGenericMethod = () => {
-    setSelectedItem(null);
-  };
-  const onSelectedFolderLabelUpdate: IGenericParam<string> = (value) => {
-    if (selectedItem) {
-      setSelectedItem({
-        ...selectedItem,
-        label: value,
-      });
-    }
-  };
-  const onAddFolderSave: IGenericReturn<Promise<unknown>> = async () => {
-    if (selectedItem) {
-      if ('breadcrumbs' in selectedItem) {
-        const result = await makeApiCall<IFolder[]>(
-          selectedItem.id
-            ? apis.updateFolderData({ id: selectedItem.id }, selectedItem)
-            : apis.createFolder(selectedItem)
-        );
-        onFolderUpdate(result, folderMap[currentFolder]);
-        setSelectedItem(null);
-      }
-    }
-  };
-  const onFolderDelete: IGenericMethod = () => {
-    setDeleteConfirm(true);
-  };
-  const onFolderDeleteConfirm: IGenericReturn<Promise<unknown>> = async () => {
-    const result = await makeApiCall<IFolder[]>(apis.deleteFolder({ id: selectedItem?.id || '' }));
-    onFolderUpdate(result, folderMap[currentFolder]);
-    setSelectedItem(null);
-    setDeleteConfirm(false);
-  };
-  const onDeleteConfirmCancel: IGenericMethod = () => {
-    setDeleteConfirm(false);
-  };
-  const closeShowUploadFolder: IGenericMethod = () => {
-    setShowFileUploader(false);
-  };
-  const openShowUploadFolder: IGenericMethod = () => {
-    setShowFileUploader(true);
-  };
-  const toggleShowUploadFolder: IGenericMethod = () => {
-    setShowFileUploader(!showFileUploader);
-    setSelectedItem(null);
-  };
-  const uploadFiles: IGenericMethod = async () => {
-    await Promise.all(
-      files.map(async (file, key) => {
-        onFileSetLoading(key, true);
-        await makeApiCall(
-          apis.uploadToS3(currentFolder, {
-            data: file.file,
-            fileName: file.label,
-          })
-        );
-        onFileSetLoading(key, false);
-      })
-    );
-    const result = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: currentFolder }));
-    setFolderMap((folderMap) => {
-      const selectedFolder = folderMap[currentFolder];
-      return {
-        ...folderMap,
-        [currentFolder]: {
-          ...selectedFolder,
-          files: result,
-        },
-      };
-    });
-    setShowFileUploader(false);
-    clearFiles();
-  };
-  const onFileDelete: IGenericMethod = async () => {
-    if (selectedItem && 'type' in selectedItem) {
-      await makeApiCall(apis.deleteFromS3({ folder: currentFolder, fileName: selectedItem.id }));
-      const files = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: currentFolder }));
-      setFolderMap((folderMap) => {
-        const folder = folderMap[currentFolder];
-        return {
-          ...folderMap,
-          [currentFolder]: {
-            ...folder,
-            files,
-          },
-        };
-      });
-      setSelectedItem(null);
-      setDeleteConfirm(false);
-    }
-  };
-  const onFolderToggle: IGenericParam<IGalleryFolder> = (folder) => {
-    setFolderMap((folderMap) => {
-      return {
-        ...folderMap,
-        [folder.id]: {
-          ...folder,
-          isFolderFolded: !folder.isFolderFolded,
-        },
-      };
-    });
-  };
-  const onFileToggle: IGenericParam<IGalleryFolder> = (folder) => {
-    setFolderMap((folderMap) => {
-      return {
-        ...folderMap,
-        [folder.id]: {
-          ...folder,
-          isFileFolded: !folder.isFileFolded,
-        },
-      };
-    });
-  };
-  return {
-    files,
-    accept,
-    folderMap,
-    uploadFiles,
-    onFolderAdd,
-    onFileDelete,
-    onDeleteFile,
-    onFileToggle,
-    selectedItem,
-    currentFolder,
-    deleteConfirm,
-    onConvertFile,
-    onFolderToggle,
-    onDropAccepted,
-    onFolderDelete,
-    onFolderSelect,
-    setSelectedItem,
-    onAddFolderSave,
-    showFileUploader,
-    onFileSetLoading,
-    setShowFileUploader,
-    openShowUploadFolder,
-    onFolderDeleteConfirm,
-    onDeleteConfirmCancel,
-    closeShowUploadFolder,
-    onSelectedFolderCancel,
-    toggleShowUploadFolder,
-    onSelectedFolderLabelUpdate,
-  };
-};
 
 export const useGallery: IGenericReturn<IUseGallery> = () => {
   const [folderMap, setFolderMap] = React.useState<Record<string, IGalleryFolder>>(
     initialContextValue.folderMap
   );
-  const [currentFolder, setCurrentFolder] = React.useState<string>(rootFolder.id);
   const ref = React.useRef<boolean>(true);
   const { makeApiCall } = useCommonApiContext();
   const createFolderMapping = async (
@@ -290,9 +129,6 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
       };
     });
   };
-  const onFolderSelect: IGenericParam<IGalleryFolder> = (folder): void => {
-    setCurrentFolder(folder.id);
-  };
   const onFolderUpdate = async (
     folders: IFolder[],
     currentFolder: IGalleryFolder
@@ -342,11 +178,305 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
       ref.current = false;
     }
   }, []);
+  const syncAllFolders: IGenericMethod = () => {
+    createFolderMapping(rootFolder, rootFolder.breadcrumbs);
+  };
   return {
     folderMap,
     setFolderMap,
-    currentFolder,
-    onFolderSelect,
     onFolderUpdate,
+    syncAllFolders,
+  };
+};
+
+export const useFolderHelper = () => {
+  const {
+    folder,
+    setFolder,
+    folderMap,
+    selectedFolder,
+    currentFolderId,
+    setSelectedFolder,
+    setSelectedFile,
+    setDeleteConfirm,
+    onFolderUpdate,
+    setAddEditFolder,
+    addEditFolder,
+    currentFolder,
+    setCurrentFolderId,
+    setFolderMap,
+    deleteConfirm,
+  } = React.useContext<IGalleryContext>(GalleryContext);
+
+  const { makeApiCall } = useCommonApiContext();
+
+  const onFolderSingleClick: IGenericParam<IGalleryFolder> = (value) => {
+    setSelectedFolder(value);
+    setSelectedFile(null);
+  };
+  const onFolderDoubleClick: IGenericParam<IGalleryFolder> = (value) => {
+    onFolderChange(value);
+    setSelectedFile(null);
+  };
+  const { onClick } = useClickHelper<IGalleryFolder>(onFolderSingleClick, onFolderDoubleClick);
+
+  // All the delete methods
+  const onFolderDelete = async () => {
+    if (folder) {
+      const result = await makeApiCall<IFolder[]>(apis.deleteFolder({ id: folder.id }));
+      onFolderUpdate(result, currentFolder);
+      setFolder(null);
+      setDeleteConfirm(false);
+    }
+  };
+  const onFolderDeleteRequest: IGenericParam<IGalleryFolder> = (folder) => {
+    setFolder(folder);
+    setDeleteConfirm(true);
+  };
+
+  // All the ADD and EDIT Folder
+  const onFolderAdd: IGenericMethod = () => {
+    setAddEditFolder('ADD');
+  };
+  const onFolderEdit: IGenericParam<IGalleryFolder> = (folder) => {
+    setFolder(folder);
+    setAddEditFolder('EDIT');
+  };
+  const onFolderAddEditCancel = () => {
+    setAddEditFolder('VIEW');
+    setFolder(null);
+  };
+  const onFolderAddEditSave: IGeneric<string, Promise<unknown>> = async (label) => {
+    if (addEditFolder === 'ADD') {
+      const createdFolder: IFolder = {
+        id: '',
+        label: label,
+        parent: currentFolderId,
+      };
+      const result = await makeApiCall<IFolder[]>(apis.createFolder(createdFolder));
+      onFolderUpdate(result, currentFolder);
+    }
+    if (folder && addEditFolder === 'EDIT') {
+      const result = await makeApiCall<IFolder[]>(
+        apis.updateFolderData({ id: folder.id }, { ...folder, label })
+      );
+      onFolderUpdate(result, currentFolder);
+      setFolder(null);
+    }
+    setAddEditFolder('VIEW');
+  };
+
+  // Navigation to different folder
+  const onFolderChange = (value: IGalleryFolder) => {
+    setCurrentFolderId(value.id);
+  };
+  // Toggle folder
+  const onFolderToggle: IGenericParam<IGalleryFolder> = (folder) => {
+    setFolderMap((folderMap) => {
+      return {
+        ...folderMap,
+        [folder.id]: {
+          ...folder,
+          isFolderFolded: !folder.isFolderFolded,
+        },
+      };
+    });
+  };
+  const onDeleteConfirmCancel: IGenericMethod = () => {
+    setDeleteConfirm(false);
+    setSelectedFile(null);
+    setSelectedFolder(null);
+  };
+  return {
+    folder,
+    folderMap,
+    onFolderAdd,
+    onFolderEdit,
+    deleteConfirm,
+    addEditFolder,
+    currentFolder,
+    selectedFolder,
+    onFolderChange,
+    onFolderDelete,
+    onFolderToggle,
+    onFolderAddEditSave,
+    onFolderAddEditCancel,
+    onFolderDeleteRequest,
+    onDeleteConfirmCancel,
+    onFolderClick: onClick,
+  };
+};
+
+export const useFileHelper = () => {
+  const {
+    currentFolderId,
+    selectedFile,
+    setSelectedFile,
+    setDeleteConfirm,
+    setSelectedFolder,
+    setFolderMap,
+    setFileAction,
+    fileAction,
+  } = React.useContext<IGalleryContext>(GalleryContext);
+  const { makeApiCall } = useCommonApiContext();
+  const onFileSelect: IGenericParam<IFile> = (file) => {
+    setSelectedFile(file);
+    setSelectedFolder(null);
+  };
+  const onFileToggle: IGenericParam<IGalleryFolder> = (folder) => {
+    setFolderMap((folderMap) => {
+      return {
+        ...folderMap,
+        [folder.id]: {
+          ...folder,
+          isFileFolded: !folder.isFileFolded,
+        },
+      };
+    });
+  };
+  const onFileDeleteRequest: IGenericParam<IFile> = (file) => {
+    setDeleteConfirm(true);
+    setSelectedFile(file);
+  };
+  const onFileDelete = async () => {
+    if (selectedFile) {
+      await makeApiCall(apis.deleteFromS3({ folder: currentFolderId, fileName: selectedFile.id }));
+      const files = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: currentFolderId }));
+      setFolderMap((folderMap) => {
+        const folder = folderMap[currentFolderId];
+        return {
+          ...folderMap,
+          [currentFolderId]: {
+            ...folder,
+            files,
+          },
+        };
+      });
+      setDeleteConfirm(false);
+      setSelectedFile(null);
+    }
+  };
+
+  const onFileMoveRequest: IGenericParam<IFile> = (file) => {
+    setFileAction('MOVE_FILE');
+    setSelectedFile(file);
+  };
+  return {
+    fileAction,
+    onFileToggle,
+    selectedFile,
+    onFileSelect,
+    onFileDelete,
+    onFileMoveRequest,
+    onFileDeleteRequest,
+  };
+};
+
+export const useFileUploadHelper = () => {
+  const {
+    files,
+    clearFiles,
+    setFolderMap,
+    onDeleteFile,
+    currentFolderId,
+    onConvertFile,
+    onDropAccepted,
+    setSelectedFile,
+    onFileSetLoading,
+    setDeleteConfirm,
+    fileAction,
+    setFileAction,
+  } = React.useContext<IGalleryContext>(GalleryContext);
+  const { makeApiCall } = useCommonApiContext();
+
+  const onFileUploadOpen: IGenericMethod = () => {
+    setFileAction('UPLOAD_FILE');
+  };
+  const onFileUploadCancel: IGenericMethod = () => {
+    setFileAction(null);
+  };
+
+  const uploadFiles: IGenericMethod = async () => {
+    await Promise.all(
+      files.map(async (file, key) => {
+        onFileSetLoading(key, true);
+        await makeApiCall(
+          apis.uploadToS3(currentFolderId, {
+            data: file.file,
+            name: file.label,
+          })
+        );
+        onFileSetLoading(key, false);
+      })
+    );
+    const result = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: currentFolderId }));
+    setFolderMap((folderMap) => {
+      const selectedFolder = folderMap[currentFolderId];
+      return {
+        ...folderMap,
+        [currentFolderId]: {
+          ...selectedFolder,
+          files: result,
+        },
+      };
+    });
+    setFileAction(null);
+    clearFiles();
+  };
+  const onFileDeleteRequest: IGenericParam<IFile> = (file) => {
+    setSelectedFile(file);
+    setDeleteConfirm(true);
+  };
+  return {
+    files,
+    fileAction,
+    uploadFiles,
+    onDeleteFile,
+    onConvertFile,
+    onDropAccepted,
+    onFileUploadOpen,
+    onFileUploadCancel,
+    onFileDeleteRequest,
+  };
+};
+
+export const useFileMoveHelper = () => {
+  const { folderMap, setSelectedFile, setFileAction, fileAction } =
+    React.useContext<IGalleryContext>(GalleryContext);
+  const [selectedFolder, setSelectedFolder] = React.useState<IGalleryFolder | null>(null);
+  const [currentFolderId, setCurrentFolderId] = React.useState<string>(rootFolder.id);
+  const folder = React.useMemo(() => folderMap[currentFolderId], [folderMap[currentFolderId]]);
+  React.useEffect(() => {
+    if (!fileAction) {
+      setCurrentFolderId(rootFolder.id);
+      setSelectedFolder(null);
+    }
+  }, [fileAction]);
+  const onFileMoveCancel = () => {
+    setFileAction(null);
+    setSelectedFile(null);
+  };
+  const onFileMoveRequest: IGenericParam<IFile> = (file) => {
+    setFileAction('MOVE_FILE');
+    setSelectedFile(file);
+  };
+  const onFolderSingleClick: IGenericParam<IGalleryFolder> = (value) => {
+    setSelectedFolder(value);
+  };
+  const onFolderDoubleClick: IGenericParam<IGalleryFolder> = (value) => {
+    setCurrentFolderId(value.id);
+    setSelectedFile(null);
+    setSelectedFolder(null);
+  };
+  const { onClick } = useClickHelper<IGalleryFolder>(onFolderSingleClick, onFolderDoubleClick);
+  return {
+    folder,
+    onClick,
+    folderMap,
+    fileAction,
+    selectedFolder,
+    onFileMoveCancel,
+    onFileMoveRequest,
+    onFolderChange: onFolderDoubleClick,
   };
 };

@@ -29,6 +29,7 @@ export interface INotes extends IBaseDB {
 export type MethodType = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 export interface IApi<T = unknown> {
+  baseURL: string;
   url: string;
   method?: MethodType;
   data?: T;
@@ -64,6 +65,9 @@ export interface IFolder extends IBaseDB {
   metadata?: Record<string, string>;
   label: string;
   parent: string;
+  isFixed?: boolean;
+  isFolderLocked?: boolean;
+  isFileLocked?: boolean;
 }
 
 export interface IGalleryFolder extends IFolder {
@@ -73,7 +77,6 @@ export interface IGalleryFolder extends IFolder {
   files: IFile[];
   isFolderFolded: boolean;
   isFileFolded: boolean;
-  isFixed?: boolean;
 }
 
 export interface IFile extends IBaseDB {

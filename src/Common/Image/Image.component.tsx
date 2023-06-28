@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Skeleton from '@mui/material/Skeleton';
-import Imgix from 'react-imgix';
 
 import { IImage } from './Image';
 
@@ -16,17 +15,14 @@ export const Image: React.FC<IImage> = ({ src, height, width, alt }) => {
       {loading && (
         <Skeleton variant="rectangular" width={width || '100%'} height={height || '350px'} />
       )}
-      <Imgix
+      <img
         src={src}
+        onLoad={() => setLoading(false)}
+        onError={() => setLoading(false)}
         width={width}
         height={height}
-        htmlAttributes={{
-          alt,
-          onLoad: () => {
-            setLoading(false);
-          },
-          style,
-        }}
+        alt={alt}
+        style={style}
       />
     </div>
   );

@@ -16,7 +16,8 @@ export type IconTypes =
   | 'UpArrow'
   | 'DownArrow'
   | 'Process'
-  | 'Info';
+  | 'Info'
+  | 'Move';
 
 export interface IIcon<T> {
   Icon: T;

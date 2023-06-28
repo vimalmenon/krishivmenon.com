@@ -17,6 +17,7 @@ export const ENV = {
   API_VERSION: process.env.NEXT_PUBLIC_API_VERSION || '',
   AUTH_AUTHORIZATION: process.env.NEXT_PUBLIC_AUTH_AUTHORIZATION || '',
   ASSET_S3_BUCKET: process.env.NEXT_PUBLIC_ASSET_S3_BUCKET || '',
+  FILE_UPLOAD_API: process.env.NEXT_PUBLIC_FILE_UPLOAD_API || '',
 };
 
 export const AcceptImages = {

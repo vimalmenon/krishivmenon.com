@@ -12,5 +12,5 @@ export interface IApiNote {
 
 export interface IUploadToS3 {
   data: File;
-  fileName: string;
+  name: string;
 }

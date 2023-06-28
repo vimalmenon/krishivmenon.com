@@ -24,7 +24,7 @@ export const FileUploadedItem: React.FC<IFileUploadedItem> = ({
       {file.isFormatSupported ? (
         <>
           <Container component="div" sx={{ flex: '0' }}>
-            <Image src={URL.createObjectURL(file.file)} alt={file.file.name} />
+            <Image src={URL.createObjectURL(file.file)} alt={file.file.name} height={80} />
           </Container>
           <Container component="div" sx={{ flex: '1' }}>
             {file.label}
@@ -36,7 +36,7 @@ export const FileUploadedItem: React.FC<IFileUploadedItem> = ({
           Convert the file before uploading
         </Container>
       )}
-      <Container component="div" sx={{ flex: '0' }}>
+      <Container component="div" sx={{ flex: '0 0 auto', alignItems: 'center' }}>
         {file.isFormatSupported ? (
           <Icon Icon={Icon.icons.Delete} label="Delete" onClick={onDelete} />
         ) : (

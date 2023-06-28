@@ -1,25 +1,41 @@
 import React from 'react';
 
 import Skeleton from '@mui/material/Skeleton';
+import { clsx } from 'clsx';
 
 import { Icon } from '@common';
+import { Container } from '@style';
 
 import { IGalleryFolder } from './GalleryFolder';
-import { useGalleryFolder, useClick } from './GalleryFolder.hook';
 import {
   FolderStyleRoot,
   FolderIconStyle,
   FolderLabelStyle,
   FolderDetailStyle,
 } from './GalleryFolder.style';
+import { useFolderHelper } from '../../../Gallery.service';
 
 export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) => {
-  const { onFinalDoubleClick, onFinalSingleClick } = useGalleryFolder(folder);
-  const { onClick } = useClick(onFinalSingleClick, onFinalDoubleClick);
+  const { onFolderClick, onFolderEdit, onFolderDeleteRequest } = useFolderHelper();
+  const onEdit = (e: any) => {
+    e.stopPropagation();
+    onFolderEdit(folder);
+  };
   return (
-    <FolderStyleRoot onClick={onClick} className={isSelected ? 'active' : ''}>
+    <FolderStyleRoot
+      onClick={(e) => onFolderClick(e, folder)}
+      className={clsx({ active: isSelected })}
+    >
       <FolderIconStyle>
-        <Icon.icons.Folder fontSize="large" />
+        <Container component={'div'} sx={{ flex: '0' }}>
+          <Icon.icons.Folder fontSize="large" />
+        </Container>
+        {!folder.isFixed ? (
+          <Container component={'div'} sx={{ flex: '0' }}>
+            <Icon.icons.Edit onClick={onEdit} fontSize="small" />
+            <Icon.icons.Delete onClick={() => onFolderDeleteRequest(folder)} fontSize="small" />
+          </Container>
+        ) : null}
       </FolderIconStyle>
       <FolderLabelStyle>{folder.label}</FolderLabelStyle>
       <FolderDetailStyle>

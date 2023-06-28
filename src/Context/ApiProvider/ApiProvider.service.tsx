@@ -2,15 +2,12 @@ import React from 'react';
 
 import axios from 'axios';
 
-import { getBaseUrl } from '@data';
 import { useApiCount } from '@hook';
 import { IApi, IBaseResponse, IGenericReturn } from '@types';
 import { NotImplemented } from '@utility';
 
 import { IUseApiProvider, IAlert, IUseApiProviderExposed } from './ApiProvider';
 import { useCommonAuthProvider } from '../AuthProvider';
-
-const baseURL = getBaseUrl();
 
 export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
   const { idToken } = useCommonAuthProvider();
@@ -19,7 +16,6 @@ export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
   const instance = React.useMemo(
     () =>
       axios.create({
-        baseURL: baseURL,
         headers: {
           Authorization: idToken || '',
         },

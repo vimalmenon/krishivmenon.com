@@ -1,43 +1,47 @@
 import React from 'react';
 
-import { Confirm, useFileUpload } from '@common';
-import { IFile, IGalleryFolder } from '@types';
+import { useFileUpload } from '@common';
+import { IFile, IGalleryFolder, PageModeType } from '@types';
 
-import {
-  useGallery,
-  GalleryContext,
-  useCommonGallery,
-  initialContextValue,
-} from './Gallery.service';
+import { FileActionType } from './Gallery';
+import { useGallery, GalleryContext, initialContextValue, rootFolder } from './Gallery.service';
 import { GalleryRoot } from './Gallery.style';
 import { GalleryContent } from './GalleryContent';
 import { GalleryHeader } from './GalleryHeader';
 
 const GalleryChildren: React.FC = () => {
-  const { deleteConfirm, selectedItem, onDeleteConfirmCancel, onFolderDeleteConfirm } =
-    useCommonGallery();
   return (
     <GalleryRoot>
-      <Confirm
-        open={deleteConfirm}
-        handleClose={onDeleteConfirmCancel}
-        handleConfirm={onFolderDeleteConfirm}
-      >
-        <>Are you sure you want to delete {selectedItem?.label}</>
-      </Confirm>
       <GalleryHeader />
       <GalleryContent />
     </GalleryRoot>
   );
 };
 export const Gallery: React.FC = () => {
-  const [selectedItem, setSelectedItem] = React.useState<IGalleryFolder | IFile | null>(
-    initialContextValue.selectedItem
+  const [selectedFolder, setSelectedFolder] = React.useState<IGalleryFolder | null>(
+    initialContextValue.selectedFolder
+  );
+  const [selectedFile, setSelectedFile] = React.useState<IFile | null>(
+    initialContextValue.selectedFile
   );
   const [deleteConfirm, setDeleteConfirm] = React.useState<boolean>(
     initialContextValue.deleteConfirm
   );
-  const { currentFolder, folderMap, onFolderSelect, onFolderUpdate, setFolderMap } = useGallery();
+  const [addEditFolder, setAddEditFolder] = React.useState<PageModeType>(
+    initialContextValue.addEditFolder
+  );
+  const [currentFolderId, setCurrentFolderId] = React.useState<string>(rootFolder.id);
+  const { folderMap, onFolderUpdate, setFolderMap, syncAllFolders } = useGallery();
+  const currentFolder = React.useMemo(
+    () => folderMap[currentFolderId],
+    [folderMap[currentFolderId]]
+  );
+
+  // This is used for edit and delete folder
+  const [folder, setFolder] = React.useState<IGalleryFolder | null>(null);
+
+  const [fileAction, setFileAction] = React.useState<FileActionType>(null);
+
   const {
     files,
     clearFiles,
@@ -52,23 +56,32 @@ export const Gallery: React.FC = () => {
     <GalleryContext.Provider
       value={{
         files,
+        folder,
         folderMap,
         clearFiles,
+        fileAction,
+        selectedFile,
         setFolderMap,
-        onDeleteFile,
-        selectedItem,
-        onConvertFile,
         currentFolder,
+        setFolder,
+        onDeleteFile,
+        addEditFolder,
+        selectedFolder,
+        onConvertFile,
+        setFileAction,
+        currentFolderId,
         deleteConfirm,
         onDropAccepted,
         onFolderUpdate,
-        onFolderSelect,
-        setSelectedItem,
+        syncAllFolders,
+        setAddEditFolder,
+        setSelectedFile,
         onFileSetLoading,
         showFileUploader,
+        setCurrentFolderId,
         setDeleteConfirm,
+        setSelectedFolder,
         setShowFileUploader,
-        accept: initialContextValue.accept,
       }}
     >
       <GalleryChildren />

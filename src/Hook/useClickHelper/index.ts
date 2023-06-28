@@ -9,7 +9,7 @@ export const useClickHelper = <T = unknown>(
   doubleClick: IGenericParam<T>
 ): IUseClickHelper<T> => {
   const ref = React.useRef<NodeJS.Timeout>();
-  const onClick = (e: React.MouseEvent<HTMLDivElement>, value: T) => {
+  const onClick = (e: React.MouseEvent<HTMLDivElement>, value: T): void => {
     switch (e.detail) {
       case 1:
         ref.current = setTimeout(singleClick, 220, value);

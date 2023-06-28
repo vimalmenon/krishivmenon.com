@@ -1,7 +1,7 @@
 import { ENV } from '@constant';
-import { IGenericReturn, IApi, INotes, IFolder, AnyType, IProfile } from '@types';
+import { IGenericReturn, IApi, INotes, IFolder, AnyType, IProfile, IFile } from '@types';
 
-import { IApiStorageApi, IApiS3Folder, IApiNote, IUploadToS3 } from './apis';
+import { IApiStorageApi, IApiS3Folder, IApiNote, IUploadToS3, IMoveFileApi } from './apis';
 
 export const getBaseUrl: IGenericReturn<string> = () => {
   return `${ENV.API_URL}${ENV.API_VERSION}`;
@@ -14,6 +14,7 @@ export const Apis = {
   S3Drive: 'drive/{folder}',
   S3DriveFile: 'drive/{folder}/{fileName}',
   S3DriveUpload: '{folder}',
+  S3MoveFiles: '/drive/directory/{folder}',
   Notes: 'notes',
   Note: 'notes/{id}',
   Folders: 'folders',
@@ -63,6 +64,18 @@ export const apis = {
       baseURL: getBaseUrl(),
       url,
       method: 'GET',
+    };
+  },
+  moveFileToFolder: function ({ folder, data }: IMoveFileApi): IApi<IFile> {
+    const url = Apis.S3MoveFiles.replace('{folder}', folder);
+    return {
+      baseURL: getBaseUrl(),
+      url,
+      method: 'PUT',
+      data,
+      params: {
+        code: '3',
+      },
     };
   },
   getNotes: function (): IApi {

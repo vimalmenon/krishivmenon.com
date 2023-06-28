@@ -18,6 +18,7 @@ export const MoveFile: React.FC = () => {
     onClick,
     selectedFolder,
     onFolderChange,
+    onFileMove,
   } = useFileMoveHelper();
   return (
     <Dialog open={fileAction === 'MOVE_FILE'} title={'Move files'}>
@@ -57,6 +58,7 @@ export const MoveFile: React.FC = () => {
           variant="contained"
           startIcon={<Icon.icons.Save />}
           disabled={!selectedFolder}
+          onClick={onFileMove}
         >
           Move
         </PromiseLoadingButton>

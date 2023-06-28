@@ -27,7 +27,7 @@ export const GalleryContentFiles: React.FC = () => {
           </div>
           <Collapse in={!currentFolder.isFileFolded}>
             <GalleryContentFilesStyle>
-              {currentFolder.files.map((file) => {
+              {[...currentFolder.files.slice(0, 10)].map((file) => {
                 return (
                   <div
                     key={file.id}

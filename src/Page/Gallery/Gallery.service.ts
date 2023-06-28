@@ -441,8 +441,10 @@ export const useFileUploadHelper = () => {
 };
 
 export const useFileMoveHelper = () => {
-  const { folderMap, setSelectedFile, setFileAction, fileAction } =
+  const { folderMap, setSelectedFile, setFileAction, fileAction, selectedFile, syncAllFolders } =
     React.useContext<IGalleryContext>(GalleryContext);
+  const { makeApiCall } = useCommonApiContext();
+
   const [selectedFolder, setSelectedFolder] = React.useState<IGalleryFolder | null>(null);
   const [currentFolderId, setCurrentFolderId] = React.useState<string>(rootFolder.id);
   const folder = React.useMemo(() => folderMap[currentFolderId], [folderMap[currentFolderId]]);
@@ -469,11 +471,23 @@ export const useFileMoveHelper = () => {
     setSelectedFolder(null);
   };
   const { onClick } = useClickHelper<IGalleryFolder>(onFolderSingleClick, onFolderDoubleClick);
+  const onFileMove = async () => {
+    if (selectedFolder && selectedFile) {
+      await makeApiCall(apis.moveFileToFolder({ folder: selectedFolder.id, data: selectedFile }));
+      syncAllFolders;
+      setFileAction(null);
+      setSelectedFile(null);
+      setSelectedFolder(null);
+      setCurrentFolderId(rootFolder.id);
+      syncAllFolders;
+    }
+  };
   return {
     folder,
     onClick,
     folderMap,
     fileAction,
+    onFileMove,
     selectedFolder,
     onFileMoveCancel,
     onFileMoveRequest,

@@ -361,12 +361,22 @@ export const useFileHelper = () => {
     setFileAction('MOVE_FILE');
     setSelectedFile(file);
   };
+  const onViewFile: IGenericParam<IFile> = (file) => {
+    setSelectedFile(file);
+    setFileAction('VIEW_FILE');
+  };
+  const onViewFileCancel: IGenericMethod = () => {
+    setSelectedFile(null);
+    setFileAction(null);
+  };
   return {
+    onViewFile,
     fileAction,
     onFileToggle,
     selectedFile,
     onFileSelect,
     onFileDelete,
+    onViewFileCancel,
     onFileMoveRequest,
     onFileDeleteRequest,
   };

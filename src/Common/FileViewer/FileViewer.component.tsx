@@ -5,10 +5,11 @@ import { getS3BucketFullPath } from '@utility';
 import { IFileViewer } from './FileViewer';
 
 export const FileViewer: React.FC<IFileViewer> = ({
-  onFileMoveRequest,
   file,
-  height,
   width,
+  height,
+  onViewFile,
+  onFileMoveRequest,
   onFileDeleteRequest,
 }) => {
   return (
@@ -32,6 +33,7 @@ export const FileViewer: React.FC<IFileViewer> = ({
       </Container>
       <Container component={'div'} sx={{ justifyContent: 'space-between', flex: '0 0 40px' }}>
         <Icon Icon={Icon.icons.Move} onClick={() => onFileMoveRequest(file)} label="Move" />
+        <Icon Icon={Icon.icons.OpenInFull} onClick={() => onViewFile(file)} label="Move" />
         <Icon Icon={Icon.icons.Delete} onClick={() => onFileDeleteRequest(file)} label="Move" />
       </Container>
     </Container>

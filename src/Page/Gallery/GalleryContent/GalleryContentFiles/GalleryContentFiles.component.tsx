@@ -12,7 +12,7 @@ import { GalleryContentFilesStyle } from '../GalleryContent.style';
 
 export const GalleryContentFiles: React.FC = () => {
   const { currentFolder } = useFolderHelper();
-  const { onFileToggle, onFileMoveRequest, onFileDeleteRequest } = useFileHelper();
+  const { onFileToggle, onFileMoveRequest, onFileDeleteRequest, onViewFile } = useFileHelper();
   const [page, setPage] = React.useState<number>(0);
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value - 1);
@@ -54,6 +54,7 @@ export const GalleryContentFiles: React.FC = () => {
                       file={file}
                       onFileMoveRequest={onFileMoveRequest}
                       onFileDeleteRequest={onFileDeleteRequest}
+                      onViewFile={onViewFile}
                       width={400}
                       height={450}
                     />

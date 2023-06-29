@@ -17,7 +17,8 @@ export type IconTypes =
   | 'DownArrow'
   | 'Process'
   | 'Info'
-  | 'Move';
+  | 'Move'
+  | 'OpenInFull';
 
 export interface IIcon<T> {
   Icon: T;

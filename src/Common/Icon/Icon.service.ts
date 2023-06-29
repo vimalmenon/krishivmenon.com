@@ -13,6 +13,7 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import MoveUpIcon from '@mui/icons-material/MoveUp';
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import SaveIcon from '@mui/icons-material/Save';
 
 import { GoogleIcon } from './custom';
@@ -36,4 +37,5 @@ export const CommonIcons: Record<IconTypes, typeof SaveIcon | typeof GoogleIcon>
   Process: ChangeCircleRoundedIcon,
   Info: InfoIcon,
   Move: MoveUpIcon,
+  OpenInFull: OpenInFullIcon,
 };

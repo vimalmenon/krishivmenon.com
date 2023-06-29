@@ -17,6 +17,7 @@ import { GalleryContentFolders } from './GalleryContentFolders';
 import { GalleryFolderLoading } from './GalleryContentFolders/GalleryFolder';
 import { MoveFile } from './MoveFile';
 import { UploadFiles } from './UploadFiles';
+import { ViewFile } from './ViewFile';
 import { useFileHelper, useFolderHelper } from '../Gallery.service';
 
 export const GalleryContent: React.FC = () => {
@@ -70,6 +71,7 @@ export const GalleryContent: React.FC = () => {
       <AddEditFolder />
       <UploadFiles />
       <MoveFile />
+      <ViewFile />
       {currentFolder.files.length === 0 && currentFolder.folders.length === 0 ? (
         <GalleryContentFilesRoot>No files and folder found.</GalleryContentFilesRoot>
       ) : (

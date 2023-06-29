@@ -474,12 +474,11 @@ export const useFileMoveHelper = () => {
   const onFileMove = async () => {
     if (selectedFolder && selectedFile) {
       await makeApiCall(apis.moveFileToFolder({ folder: selectedFolder.id, data: selectedFile }));
-      syncAllFolders;
+      syncAllFolders();
       setFileAction(null);
       setSelectedFile(null);
       setSelectedFolder(null);
       setCurrentFolderId(rootFolder.id);
-      syncAllFolders;
     }
   };
   return {

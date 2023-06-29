@@ -1,3 +1,5 @@
+import TextField from '@mui/material/TextField';
+
 import { Icon, Image, Video } from '@common';
 import { Container } from '@style';
 import { getS3BucketFullPath } from '@utility';
@@ -14,11 +16,17 @@ export const FileViewer: React.FC<IFileViewer> = ({
 }) => {
   return (
     <Container component={'div'} direction="column" sx={{ flex: '1 1 100%' }}>
-      <Container component={'div'} sx={{ justifyContent: 'space-between', flex: '0 0 40px' }}>
-        {file.label}
+      <Container
+        component={'div'}
+        sx={{ justifyContent: 'space-between', flex: '0 0 40px', my: 1 }}
+      >
+        <TextField value={file.label} size="small" label="Name" fullWidth />
         <Icon Icon={Icon.icons.Edit} label="Edit" />
       </Container>
-      <Container component={'div'} sx={{ flex: '1 1 100%' }}>
+      <Container
+        component={'div'}
+        sx={{ flex: '1 1 100%', justifyContent: 'center', alignItems: 'center' }}
+      >
         {file.type === 'image/jpeg' ? (
           <Image
             src={getS3BucketFullPath(file.path)}

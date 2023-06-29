@@ -30,14 +30,13 @@ export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) 
         <Container component={'div'} sx={{ flex: '0' }}>
           <Icon.icons.Folder fontSize="large" />
         </Container>
-        {!folder.isFixed ? (
-          <Container component={'div'} sx={{ flex: '0' }}>
-            <Icon.icons.Edit onClick={onEdit} fontSize="small" />
-            {folder.files.length === 0 && folder.folders.length === 0 ? (
-              <Icon.icons.Delete onClick={() => onFolderDeleteRequest(folder)} fontSize="small" />
-            ) : null}
-          </Container>
-        ) : null}
+
+        <Container component={'div'} sx={{ flex: '0' }}>
+          <Icon.icons.Edit onClick={onEdit} fontSize="small" />
+          {folder.files.length === 0 && folder.folders.length === 0 && !folder.isFixed ? (
+            <Icon.icons.Delete onClick={() => onFolderDeleteRequest(folder)} fontSize="small" />
+          ) : null}
+        </Container>
       </FolderIconStyle>
       <FolderLabelStyle>{folder.label}</FolderLabelStyle>
       <FolderDetailStyle>

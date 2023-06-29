@@ -4,9 +4,9 @@ Finished Task:
   Basic dev setup
 High Priority:
   [Problem] Support to upload the videos
+  [Bug] Fix the authentication issue after no activity for long time
   [Feature] Logout auth permanently
   [Feature] selecting of notes
-  [Feature] Search for library for Image viewer (Lightbox)
   [Loading] Loading for notes
   [Feature] Clicking on name at the top should redirect to Home page
   [UI] Improve UI for 400 Page
@@ -33,11 +33,15 @@ High Priority:
   [Feature] Check if first API is unauthorized or API not found
   [Feature] Need to work on main loading indicator
   [Bug] Images not working in Prod Website
-  [Feature] shouldn't allow to delete Unindexed
   [Feature] Edit File
   [Feature] Show images properly
   [Feature] Only show folder collapse when folder is present
+  [fix] Fix the breadcrumbs width
+  [Feature] Add notes for image
+  [feature] Ability to do next or previous on Image
+  [Fix] Fix the message when the file has been moved
 Medium Priority
+  [Feature] Search for library for Image viewer (Lightbox)
   [Feature] Add framer motion for animation
   [Improvement] Increase the test coverage to 80%
   [Feature] Allow push only on 80% coverage
@@ -46,6 +50,7 @@ Medium Priority
   [Feature] Create content for Home page
   [Feature] Create Release Page
   [Feature] Report a Bug
+  [Feature] Setting up Sonar
   [Feature] Profile page
   [Feature] Setup Google Analytics
   [UI] Need to make component adapt to Mobile screen
@@ -53,7 +58,6 @@ Medium Priority
   [Feature] Ability to Logout when unauthorized
 Less Priority
   [Feature] Setting up sonar
-  Add notes for image
   Add favicon
   Add images
   Pre signed image on request

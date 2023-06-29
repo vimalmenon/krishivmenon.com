@@ -37,6 +37,7 @@ export const GalleryContentFiles: React.FC = () => {
               count={Math.ceil(currentFolder.files.length / 10)}
               page={page + 1}
               onChange={handleChange}
+              size="large"
             />
             <GalleryContentFilesStyle>
               {[...currentFolder.files.slice(page * 10, page * 10 + 10)].map((file) => {

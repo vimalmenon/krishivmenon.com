@@ -2,20 +2,31 @@ import React from 'react';
 
 import Button from '@mui/material/Button';
 
-import { Icon, Dialog } from '@common';
+import { Icon, Dialog, FileViewer } from '@common';
+import { NotImplemented } from '@utility';
 
 import { useFileHelper } from '../../Gallery.service';
 
 export const ViewFile: React.FC = () => {
-  const { fileAction, onViewFileCancel } = useFileHelper();
-  return (
-    <Dialog open={fileAction === 'VIEW_FILE'} title={'View files'}>
-      <Dialog.Body>test</Dialog.Body>
-      <Dialog.Footer>
-        <Button variant="outlined" startIcon={<Icon.icons.Cancel />} onClick={onViewFileCancel}>
-          Cancel
-        </Button>
-      </Dialog.Footer>
-    </Dialog>
-  );
+  const { fileAction, onViewFileCancel, selectedFile } = useFileHelper();
+  if (selectedFile) {
+    return (
+      <Dialog open={fileAction === 'VIEW_FILE'} title={'View file'} maxWidth="xl">
+        <Dialog.Body>
+          <FileViewer
+            file={selectedFile}
+            onViewFile={NotImplemented}
+            onFileMoveRequest={NotImplemented}
+            onFileDeleteRequest={NotImplemented}
+          />
+        </Dialog.Body>
+        <Dialog.Footer>
+          <Button variant="outlined" startIcon={<Icon.icons.Cancel />} onClick={onViewFileCancel}>
+            Cancel
+          </Button>
+        </Dialog.Footer>
+      </Dialog>
+    );
+  }
+  return null;
 };

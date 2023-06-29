@@ -19,8 +19,7 @@ export const Image: React.FC<IImage> = ({ src, height, width, alt }) => {
         src={src}
         onLoad={() => setLoading(false)}
         onError={() => setLoading(false)}
-        width={width}
-        height={height}
+        width={'100%'}
         alt={alt}
         style={style}
       />

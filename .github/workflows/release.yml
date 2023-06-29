@@ -36,7 +36,7 @@ env:
   AUTH_CLIENT_ID : ${{secrets.AUTH_CLIENT_ID}}
   AUTH_AUTHORIZATION : ${{secrets.AUTH_AUTHORIZATION}}
   ASSET_S3_BUCKET : ${{secrets.ASSET_S3_BUCKET}}
-
+  FILE_UPLOAD_API : ${{secrets.FILE_UPLOAD_API}}
 jobs:
   Prepare:
     name: Prepare release
@@ -107,6 +107,7 @@ jobs:
         echo NEXT_PUBLIC_API_VERSION=${{env.API_VERSION}} >> .env
         echo NEXT_PUBLIC_AUTH_AUTHORIZATION=${{env.AUTH_AUTHORIZATION}} >> .env
         echo NEXT_PUBLIC_ASSET_S3_BUCKET=${{env.ASSET_S3_BUCKET}} >> .env
+        echo NEXT_PUBLIC_FILE_UPLOAD_API=${{env.FILE_UPLOAD_API}} >> .env
     - name: Update Package
       run: |
         sed -i 's/0.0.0.0/${{needs.prepare.outputs.selected}}/' package.json

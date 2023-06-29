@@ -15,7 +15,7 @@ export const FileViewer: React.FC<IFileViewer> = ({
     <Container component={'div'} direction="column" sx={{ flex: '1 1 100%' }}>
       <Container component={'div'} sx={{ justifyContent: 'space-between', flex: '0 0 40px' }}>
         {file.label}
-        <Icon Icon={Icon.icons.Edit} onClick={() => onFileMoveRequest(file)} label="Edit" />
+        <Icon Icon={Icon.icons.Edit} label="Edit" />
       </Container>
       <Container component={'div'} sx={{ flex: '1 1 100%' }}>
         {file.type === 'image/jpeg' ? (

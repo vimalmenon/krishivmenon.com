@@ -467,7 +467,6 @@ export const useFileMoveHelper = () => {
   };
   const onFolderDoubleClick: IGenericParam<IGalleryFolder> = (value) => {
     setCurrentFolderId(value.id);
-    setSelectedFile(null);
     setSelectedFolder(null);
   };
   const { onClick } = useClickHelper<IGalleryFolder>(onFolderSingleClick, onFolderDoubleClick);

@@ -39,7 +39,6 @@ export const GalleryHeader: React.FC = () => {
             {currentFolder.breadcrumbs.length < MaxFolderUploadDepth && (
               <Icon Icon={Icon.icons.Add} label="Add folder" onClick={onFolderAdd} />
             )}
-            <Icon Icon={Icon.icons.Info} label="Show Detail" />
           </>
         )}
       </div>

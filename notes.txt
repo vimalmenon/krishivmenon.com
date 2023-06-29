@@ -3,12 +3,12 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
 High Priority:
+  [Problem] Support to upload the videos
   [Feature] Logout auth permanently
   [Feature] selecting of notes
   [Feature] Search for library for Image viewer (Lightbox)
   [Loading] Loading for notes
   [Feature] Clicking on name at the top should redirect to Home page
-  [UI] List on non indexed file
   [UI] Improve UI for 400 Page
   [UI] Improve UI for gallery
   [UI] Improve UI for upload of file
@@ -22,7 +22,6 @@ High Priority:
   [Bug] First reload gives an issue with api refresh token
   [Bug] Bug while uploading images
   [Check] Check the page in IPad
-  [Problem] Support to upload the videos
   [Bug] Fix caching in cloudfront (Bug)
   [Bug] Handling errors for fetch
   [Enhancement] Make a better ErrorBoundary
@@ -31,13 +30,13 @@ High Priority:
   [UI] Fixing the folder structure
   [UI] Add a splash screen
   [Improvement] Convert EnvCheck to hooks
-  [Bug] Overlapping UI on side panel
   [Feature] Check if first API is unauthorized or API not found
   [Feature] Need to work on main loading indicator
   [Bug] Images not working in Prod Website
-  [Bug] Showing loading icon when the image is not present
-  [Feature] Move the upload to Modal
   [Feature] shouldn't allow to delete Unindexed
+  [Feature] Edit File
+  [Feature] Show images properly
+  [Feature] Only show folder collapse when folder is present
 Medium Priority
   [Feature] Add framer motion for animation
   [Improvement] Increase the test coverage to 80%

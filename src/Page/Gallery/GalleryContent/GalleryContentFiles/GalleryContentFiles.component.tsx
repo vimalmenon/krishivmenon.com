@@ -2,7 +2,7 @@ import React from 'react';
 
 import Pagination from '@mui/material/Pagination';
 
-import { FileViewer } from '@common';
+import { FileAction } from '@common';
 
 import { useFileHelper, useFolderHelper } from '../../Gallery.service';
 import { GalleryContentFilesStyle } from '../GalleryContent.style';
@@ -36,7 +36,7 @@ export const GalleryContentFiles: React.FC = () => {
                     flex: '0 0 250px',
                   }}
                 >
-                  <FileViewer
+                  <FileAction
                     file={file}
                     onFileMoveRequest={onFileMoveRequest}
                     onFileDeleteRequest={onFileDeleteRequest}

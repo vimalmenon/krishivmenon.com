@@ -369,6 +369,20 @@ export const useFileHelper = () => {
     setSelectedFile(null);
     setFileAction(null);
   };
+  const onFileEditSave: IGeneric<IFile, Promise<unknown>> = async (file) => {
+    await makeApiCall(apis.updateFileFromS3({ folder: currentFolderId, data: file }));
+    const files = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: currentFolderId }));
+    setFolderMap((folderMap) => {
+      const folder = folderMap[currentFolderId];
+      return {
+        ...folderMap,
+        [currentFolderId]: {
+          ...folder,
+          files,
+        },
+      };
+    });
+  };
   return {
     onViewFile,
     fileAction,
@@ -376,6 +390,7 @@ export const useFileHelper = () => {
     selectedFile,
     onFileSelect,
     onFileDelete,
+    onFileEditSave,
     onViewFileCancel,
     onFileMoveRequest,
     onFileDeleteRequest,

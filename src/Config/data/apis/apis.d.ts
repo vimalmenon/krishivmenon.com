@@ -17,6 +17,6 @@ export interface IUploadToS3 {
   name: string;
 }
 
-export interface IMoveFileApi extends IApiS3Folder {
+export interface IApiS3FolderWithData extends IApiS3Folder {
   data: IFile;
 }

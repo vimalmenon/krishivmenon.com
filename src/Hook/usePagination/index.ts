@@ -12,11 +12,13 @@ export const usePagination: IGeneric<IUsePaginationParams, IUsePagination> = ({
   const handleChange = (event: React.ChangeEvent<unknown>, value: number): void => {
     setPage(value);
   };
+
   return {
     page,
     handleChange,
     paginationCount: Math.ceil(fileLength / pageSize),
     pageStart: (page - 1) * pageSize,
+    hasPagination: fileLength > pageSize,
     pageEnd: (page - 1) * pageSize + pageSize,
   };
 };

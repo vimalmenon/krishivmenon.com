@@ -11,7 +11,7 @@ import { GalleryContentFilesStyle } from '../GalleryContent.style';
 export const GalleryContentFiles: React.FC = () => {
   const { currentFolder } = useFolderHelper();
   const { onFileMoveRequest, onFileDeleteRequest, onViewFile, onFileEditSave } = useFileHelper();
-  const { page, handleChange, paginationCount, pageStart, pageEnd } = usePagination({
+  const { page, handleChange, paginationCount, pageStart, pageEnd, hasPagination } = usePagination({
     fileLength: currentFolder.files.length,
     pageSize: 10,
   });
@@ -19,7 +19,9 @@ export const GalleryContentFiles: React.FC = () => {
     <>
       {currentFolder.files.length ? (
         <>
-          <Pagination count={paginationCount} page={page} onChange={handleChange} size="large" />
+          {hasPagination ? (
+            <Pagination count={paginationCount} page={page} onChange={handleChange} />
+          ) : null}
           <GalleryContentFilesStyle>
             {[...currentFolder.files.slice(pageStart, pageEnd)].map((file) => {
               return (

@@ -23,7 +23,7 @@ export const FileAction: React.FC<IFileAction> = ({
     setIsEdit(!isEdit);
     setLabel(file.label);
   };
-  const onSave = async () => {
+  const onSave = async (): Promise<void> => {
     await onFileEditSave({ ...file, label });
     setIsEdit(!isEdit);
     setLabel(file.label);

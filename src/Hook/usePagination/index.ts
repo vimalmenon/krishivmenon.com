@@ -9,7 +9,7 @@ export const usePagination: IGeneric<IUsePaginationParams, IUsePagination> = ({
   fileLength,
 }) => {
   const [page, setPage] = React.useState<number>(1);
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number): void => {
     setPage(value);
   };
   return {

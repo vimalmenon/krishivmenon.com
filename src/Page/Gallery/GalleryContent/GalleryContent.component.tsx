@@ -4,9 +4,10 @@ import Chip from '@mui/material/Chip';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
 
-import { Icon, Confirm } from '@common';
+import { Icon } from '@common';
 
 import { AddEditFolder } from './AddEditFolder';
+import { DeleteFileFolder } from './DeleteFileFolder';
 import {
   GalleryContentRoot,
   GalleryContentFolderStyle,
@@ -18,18 +19,10 @@ import { GalleryFolderLoading } from './GalleryContentFolders/GalleryFolder';
 import { MoveFile } from './MoveFile';
 import { UploadFiles } from './UploadFiles';
 import { ViewFile } from './ViewFile';
-import { useFileHelper, useFolderHelper } from '../Gallery.service';
+import { useFolderHelper } from '../Gallery.service';
 
 export const GalleryContent: React.FC = () => {
-  const {
-    currentFolder,
-    onFolderToggle,
-    onFolderDelete,
-    selectedFolder,
-    deleteConfirm,
-    onDeleteConfirmCancel,
-  } = useFolderHelper();
-  const { selectedFile, onFileDelete } = useFileHelper();
+  const { currentFolder, onFolderToggle } = useFolderHelper();
 
   if (currentFolder.loading) {
     return (
@@ -59,15 +52,7 @@ export const GalleryContent: React.FC = () => {
   }
   return (
     <GalleryContentRoot>
-      <Confirm
-        open={deleteConfirm}
-        handleClose={onDeleteConfirmCancel}
-        handleConfirmPromise={() => (selectedFile ? onFileDelete() : onFolderDelete())}
-      >
-        <>
-          Are you sure you want to delete {selectedFolder?.label} {selectedFile?.label}{' '}
-        </>
-      </Confirm>
+      <DeleteFileFolder />
       <AddEditFolder />
       <UploadFiles />
       <MoveFile />

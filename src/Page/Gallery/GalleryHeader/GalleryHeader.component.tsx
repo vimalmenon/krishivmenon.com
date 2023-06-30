@@ -7,40 +7,36 @@ import { MaxFolderUploadDepth } from '@constant';
 import { Container } from '@style';
 
 import { GalleryHeaderRoot } from './GalleryHeader.style';
-import { useCommonGallery } from '../Gallery.service';
+import { useFileUploadHelper, useFolderHelper } from '../Gallery.service';
 
 export const GalleryHeader: React.FC = () => {
-  const { folderMap, currentFolder, onFolderSelect, toggleShowUploadFolder, onFolderAdd } =
-    useCommonGallery();
+  const { onFolderChange, folderMap, onFolderAdd, currentFolder } = useFolderHelper();
+  const { onFileUploadOpen } = useFileUploadHelper();
   return (
     <GalleryHeaderRoot>
       <Breadcrumbs>
-        {folderMap[currentFolder].breadcrumbs.map((value) => {
+        {currentFolder.breadcrumbs.map((value) => {
           return (
             <Chip
               key={value}
               label={folderMap[value].label}
-              onClick={() => onFolderSelect(folderMap[value])}
+              onClick={() => onFolderChange(folderMap[value])}
             />
           );
         })}
       </Breadcrumbs>
       <div>
-        {folderMap[currentFolder].loading ? (
+        {currentFolder.loading ? (
           <Container component="div" sx={{ gap: 1 }}>
             <Skeleton variant="circular" height="30px" width="30px" />
             <Skeleton variant="circular" height="30px" width="30px" />
           </Container>
         ) : (
           <>
-            {folderMap[currentFolder].id !== 'root' && (
-              <Icon
-                Icon={Icon.icons.CloudUpload}
-                label="Upload files"
-                onClick={toggleShowUploadFolder}
-              />
+            {currentFolder.id !== 'root' && (
+              <Icon Icon={Icon.icons.CloudUpload} label="Upload files" onClick={onFileUploadOpen} />
             )}
-            {folderMap[currentFolder].breadcrumbs.length < MaxFolderUploadDepth && (
+            {currentFolder.breadcrumbs.length < MaxFolderUploadDepth && (
               <Icon Icon={Icon.icons.Add} label="Add folder" onClick={onFolderAdd} />
             )}
           </>

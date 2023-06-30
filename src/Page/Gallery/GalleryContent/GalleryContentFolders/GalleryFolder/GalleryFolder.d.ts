@@ -1,6 +1,4 @@
-import { IGenericParam } from '@types';
-
-import { IGalleryFolder } from '../Gallery';
+import { IGenericParam, IGalleryFolder } from '@types';
 
 export interface IGalleryFolder {
   folder: IGalleryFolder;

@@ -13,4 +13,5 @@ export interface IDialog {
 export interface IDialogStatic {
   Body: React.FC<ReactChildren>;
   Footer: React.FC<ReactChildren>;
+  BodyText: React.FC<ReactChildren>;
 }

@@ -20,6 +20,8 @@ export const FolderStyleRoot = styled('div')(({ theme }) => {
 export const FolderIconStyle = styled('div')(() => {
   return {
     gridArea: 'folder-icon',
+    display: 'flex',
+    justifyContent: 'space-between',
   };
 });
 

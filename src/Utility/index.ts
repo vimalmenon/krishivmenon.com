@@ -1,4 +1,5 @@
-import { AnyType } from '@types';
+import { ENV } from '@constant';
+import { AnyType, IGeneric } from '@types';
 
 export const NotImplemented = (): AnyType => {
   throw new Error('Function not implemented');
@@ -11,3 +12,7 @@ export class BoundaryError extends Error {
     this.showError = showError;
   }
 }
+
+export const getS3BucketFullPath: IGeneric<string, string> = (path) => {
+  return `${ENV.ASSET_S3_BUCKET}/${path}`;
+};

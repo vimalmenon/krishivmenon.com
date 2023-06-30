@@ -8,7 +8,6 @@ export type OnConvertFileType = (file: IUploadedFile, index: number) => Promise<
 
 export interface IFileUpload {
   files: IUploadedFile[];
-  accept: Record<string, string[]>;
   onDropAccepted: OnDropAcceptedType;
   onDeleteFile: IGenericParam<number>;
   onConvertFile: OnConvertFileType;

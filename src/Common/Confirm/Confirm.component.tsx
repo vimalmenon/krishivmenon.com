@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 
-import { Dialog, Icon } from '@common';
+import { Dialog, Icon, PromiseLoadingButton } from '@common';
 import { ReactChildren } from '@types';
 
 import { IConfirm } from './Confirm';
@@ -11,6 +11,7 @@ export const Confirm: React.FC<IConfirm & ReactChildren> = ({
   children,
   handleClose,
   handleConfirm,
+  handleConfirmPromise,
   fullWidth,
   maxWidth,
 }) => {
@@ -22,13 +23,26 @@ export const Confirm: React.FC<IConfirm & ReactChildren> = ({
       fullWidth={fullWidth}
       maxWidth={maxWidth}
     >
-      <Dialog.Body>{children}</Dialog.Body>
+      <Dialog.BodyText>{children}</Dialog.BodyText>
       <Dialog.Footer>
+        {handleConfirm ? (
+          <Button
+            variant="contained"
+            onClick={handleConfirm}
+            endIcon={<Icon.icons.Check />}
+          ></Button>
+        ) : null}
+        {handleConfirmPromise ? (
+          <PromiseLoadingButton
+            variant="contained"
+            onClick={handleConfirmPromise}
+            startIcon={<Icon.icons.Check />}
+          >
+            Confirm
+          </PromiseLoadingButton>
+        ) : null}
         <Button variant="outlined" onClick={handleClose} endIcon={<Icon.icons.Cancel />}>
           Cancel
-        </Button>
-        <Button variant="contained" onClick={handleConfirm} endIcon={<Icon.icons.Check />}>
-          Confirm
         </Button>
       </Dialog.Footer>
     </Dialog>

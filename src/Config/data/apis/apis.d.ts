@@ -1,3 +1,5 @@
+import { IFile } from '@types';
+
 export interface IApiS3Folder {
   folder: string;
 }
@@ -12,5 +14,9 @@ export interface IApiNote {
 
 export interface IUploadToS3 {
   data: File;
-  fileName: string;
+  name: string;
+}
+
+export interface IApiS3FolderWithData extends IApiS3Folder {
+  data: IFile;
 }

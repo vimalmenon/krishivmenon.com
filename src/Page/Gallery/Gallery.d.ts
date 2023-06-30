@@ -1,50 +1,37 @@
-import { IFolder, IGenericMethod, IGenericParam, IGalleryFolder, IFile } from '@types';
+import { IFolder, IGenericMethod, IGalleryFolder, IFile, PageModeType } from '@types';
 import { IFileUploadExternal } from 'src/Common/FileUpload/FileUpload';
 
 export type OnConvertFileType = (file: IUploadedFile, index: number) => Promise<unknown>;
 
 export interface IGalleryContext extends IFileUploadExternal {
-  currentFolder: string;
+  currentFolderId: string;
   deleteConfirm: boolean;
+  selectedFile: IFile | null;
   clearFiles: IGenericMethod;
+  addEditFolder: PageModeType;
+  folder: IGalleryFolder | null;
   onConvertFile: OnConvertFileType;
-  selectedItem: IGalleryFolder | IFile | null;
+  selectedFolder: IGalleryFolder | null;
   folderMap: Record<string, IGalleryFolder>;
-  onFolderSelect: IGenericParam<IGalleryFolder>;
+  syncAllFolders: IGenericMethod;
+  currentFolder: IGalleryFolder;
+  fileAction: FileActionType;
+  setFileAction: React.Dispatch<React.SetStateAction<FileActionType>>;
+  setCurrentFolderId: React.Dispatch<React.SetStateAction<string>>;
   setDeleteConfirm: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectedFile: React.Dispatch<React.SetStateAction<IFile | null>>;
+  setAddEditFolder: React.Dispatch<React.SetStateAction<PageModeType>>;
+  setFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
   onFolderUpdate: (folders: IFolder[], currentFolder: IGalleryFolder) => void;
+  setSelectedFolder: React.Dispatch<React.SetStateAction<IGalleryFolder | null>>;
   setFolderMap: React.Dispatch<React.SetStateAction<Record<string, IGalleryFolder>>>;
-  setSelectedItem: React.Dispatch<React.SetStateAction<IGalleryFolder | IFile | null>>;
 }
 
 export interface IUseGallery {
-  currentFolder: string;
   folderMap: Record<string, IGalleryFolder>;
-  onFolderSelect: IGenericParam<IGalleryFolder>;
   onFolderUpdate: (folder: IFolder[], currentFolder: IGalleryFolder) => void;
+  syncAllFolders: IGenericMethod;
   setFolderMap: React.Dispatch<React.SetStateAction<Record<string, IGalleryFolder>>>;
 }
 
-export interface IUseCommonGalleryContext extends IFileUploadExternal {
-  currentFolder: string;
-  deleteConfirm: boolean;
-  uploadFiles: IGenericMethod;
-  onFolderAdd: IGenericMethod;
-  onFileDelete: IGenericMethod;
-  onFolderDelete: IGenericMethod;
-  onConvertFile: OnConvertFileType;
-  onFolderDeleteConfirm: IGenericMethod;
-  closeShowUploadFolder: IGenericMethod;
-  openShowUploadFolder: IGenericMethod;
-  onDeleteConfirmCancel: IGenericMethod;
-  toggleShowUploadFolder: IGenericMethod;
-  onSelectedFolderCancel: IGenericMethod;
-  folderMap: Record<string, IGalleryFolder>;
-  onFileToggle: IGenericParam<IGalleryFolder>;
-  selectedItem: IGalleryFolder | IFile | null;
-  onFolderSelect: IGenericParam<IGalleryFolder>;
-  onFolderToggle: IGenericParam<IGalleryFolder>;
-  onAddFolderSave: IGenericReturn<Promise<unknown>>;
-  onSelectedFolderLabelUpdate: IGenericParam<string>;
-  setSelectedItem: React.Dispatch<React.SetStateAction<IGalleryFolder | IFile | null>>;
-}
+export type FileActionType = 'UPLOAD_FILE' | 'EDIT_FILE' | 'VIEW_FILE' | 'MOVE_FILE' | null;

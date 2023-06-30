@@ -17,7 +17,7 @@ import { useFolderHelper } from '../../../Gallery.service';
 
 export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) => {
   const { onFolderClick, onFolderEdit, onFolderDeleteRequest } = useFolderHelper();
-  const onEdit = (e: any) => {
+  const onEdit: React.MouseEventHandler<SVGSVGElement> = (e) => {
     e.stopPropagation();
     onFolderEdit(folder);
   };

@@ -13,7 +13,7 @@ export const GalleryContentFiles: React.FC = () => {
   const { onFileMoveRequest, onFileDeleteRequest, onViewFile, onFileEditSave } = useFileHelper();
   const { page, handleChange, paginationCount, pageStart, pageEnd, hasPagination } = usePagination({
     fileLength: currentFolder.files.length,
-    pageSize: 10,
+    pageSize: 12,
   });
   return (
     <>

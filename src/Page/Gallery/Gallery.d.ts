@@ -1,4 +1,12 @@
-import { IFolder, IGenericMethod, IGalleryFolder, IFile, PageModeType } from '@types';
+import {
+  IFolder,
+  IGenericMethod,
+  IGalleryFolder,
+  IFile,
+  PageModeType,
+  IGenericParam,
+  IGenericReturn,
+} from '@types';
 import { IFileUploadExternal } from 'src/Common/FileUpload/FileUpload';
 
 export type OnConvertFileType = (file: IUploadedFile, index: number) => Promise<unknown>;
@@ -35,3 +43,22 @@ export interface IUseGallery {
 }
 
 export type FileActionType = 'UPLOAD_FILE' | 'EDIT_FILE' | 'VIEW_FILE' | 'MOVE_FILE' | null;
+
+export interface IUseFolderHelper {
+  folder: IGalleryFolder | null;
+  folderMap: Record<string, IGalleryFolder>;
+  onFolderAdd: IGenericMethod;
+  onFolderEdit: IGenericParam<IGalleryFolder>;
+  deleteConfirm: boolean;
+  addEditFolder: PageModeType;
+  currentFolder: IGalleryFolder;
+  selectedFolder: IGalleryFolder | null;
+  onFolderChange: IGenericParam<IGalleryFolder>;
+  onFolderDelete: IGenericReturn<Promise<void>>;
+  onFolderToggle: IGenericParam<IGalleryFolder>;
+  onFolderAddEditSave: IGeneric<string, Promise<unknown>>;
+  onFolderAddEditCancel: IGenericMethod;
+  onFolderDeleteRequest: IGenericParam<IGalleryFolder>;
+  onDeleteConfirmCancel: IGenericMethod;
+  onFolderClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>, value: IGalleryFolder) => void;
+}

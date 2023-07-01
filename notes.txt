@@ -8,6 +8,8 @@ High Priority:
   [Feature] Logout auth permanently
   [Feature] selecting of notes
   [Loading] Loading for notes
+  [Feature] Responsive design for notes
+  [Feature] Responsive design for gallery
   [Feature] Clicking on name at the top should redirect to Home page
   [UI] Improve UI for 400 Page
   [UI] Improve UI for gallery

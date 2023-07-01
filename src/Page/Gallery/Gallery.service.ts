@@ -383,6 +383,20 @@ export const useFileHelper = () => {
       };
     });
   };
+  const onFileConvert: IGeneric<IFile, Promise<void>> = async (file) => {
+    await makeApiCall(apis.convertHeicFileToJpeg(file));
+    const files = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: currentFolderId }));
+    setFolderMap((folderMap) => {
+      const folder = folderMap[currentFolderId];
+      return {
+        ...folderMap,
+        [currentFolderId]: {
+          ...folder,
+          files,
+        },
+      };
+    });
+  };
   return {
     onViewFile,
     fileAction,
@@ -390,6 +404,7 @@ export const useFileHelper = () => {
     selectedFile,
     onFileSelect,
     onFileDelete,
+    onFileConvert,
     onFileEditSave,
     onViewFileCancel,
     onFileMoveRequest,

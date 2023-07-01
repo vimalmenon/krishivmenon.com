@@ -8,4 +8,5 @@ export interface IFileAction {
   onViewFile: IGenericParam<IFile>;
   onFileMoveRequest: IGenericParam<IFile>;
   onFileDeleteRequest: IGenericParam<IFile>;
+  onFileConvert: IGenericParam<IFile>;
 }

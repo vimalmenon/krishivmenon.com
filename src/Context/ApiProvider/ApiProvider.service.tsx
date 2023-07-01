@@ -43,7 +43,7 @@ export const useApiProvider: IGenericReturn<IUseApiProvider> = () => {
             message: result.message,
           });
         }
-        throw new Error('Error while trying to fetch notes');
+        throw new Error(result.message);
       })
       .finally(() => {
         reduceApiCount();

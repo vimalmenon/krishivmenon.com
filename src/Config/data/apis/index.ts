@@ -12,6 +12,7 @@ export const getApiUploadBaseUrl: IGenericReturn<string> = () => {
 };
 export const Apis = {
   S3Drive: 'drive/{folder}',
+  S3FileConvert: 'convert',
   S3DriveFile: 'drive/{folder}/{fileName}',
   S3DriveUpload: '{folder}',
   S3MoveFiles: '/drive/directory/{folder}',
@@ -42,6 +43,18 @@ export const apis = {
       url,
       method: 'PUT',
       data: createFormData<IUploadToS3>(data),
+      params: {
+        code: '3',
+      },
+    };
+  },
+  convertHeicFileToJpeg: function (data: IFile): IApi<FormData> {
+    const url = Apis.S3FileConvert;
+    return {
+      baseURL: getApiUploadBaseUrl(),
+      url,
+      method: 'PUT',
+      data: createFormData<IFile>(data),
       params: {
         code: '3',
       },

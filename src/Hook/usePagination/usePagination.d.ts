@@ -8,5 +8,6 @@ export interface IUsePagination {
   pageEnd: number;
   pageStart: number;
   paginationCount: number;
+  hasPagination: boolean;
   handleChange: (event: React.ChangeEvent<unknown>, value: number) => void;
 }

@@ -14,7 +14,7 @@ import {
 } from '@types';
 import { NotImplemented } from '@utility';
 
-import { IGalleryContext, IUseGallery } from './Gallery';
+import { IGalleryContext, IUseGallery, IUseFolderHelper } from './Gallery';
 
 // const initialValue: IGalleryFolder = {
 //   id: '',
@@ -189,7 +189,7 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
   };
 };
 
-export const useFolderHelper = () => {
+export const useFolderHelper = (): IUseFolderHelper => {
   const {
     folder,
     setFolder,
@@ -221,7 +221,7 @@ export const useFolderHelper = () => {
   const { onClick } = useClickHelper<IGalleryFolder>(onFolderSingleClick, onFolderDoubleClick);
 
   // All the delete methods
-  const onFolderDelete = async () => {
+  const onFolderDelete: IGenericReturn<Promise<void>> = async () => {
     if (folder) {
       const result = await makeApiCall<IFolder[]>(apis.deleteFolder({ id: folder.id }));
       onFolderUpdate(result, currentFolder);
@@ -338,7 +338,7 @@ export const useFileHelper = () => {
     setDeleteConfirm(true);
     setSelectedFile(file);
   };
-  const onFileDelete = async () => {
+  const onFileDelete: IGenericReturn<Promise<void>> = async () => {
     if (selectedFile) {
       await makeApiCall(apis.deleteFromS3({ folder: currentFolderId, fileName: selectedFile.id }));
       const files = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: currentFolderId }));
@@ -383,6 +383,20 @@ export const useFileHelper = () => {
       };
     });
   };
+  const onFileConvert: IGeneric<IFile, Promise<void>> = async (file) => {
+    await makeApiCall(apis.convertHeicFileToJpeg(file));
+    const files = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: currentFolderId }));
+    setFolderMap((folderMap) => {
+      const folder = folderMap[currentFolderId];
+      return {
+        ...folderMap,
+        [currentFolderId]: {
+          ...folder,
+          files,
+        },
+      };
+    });
+  };
   return {
     onViewFile,
     fileAction,
@@ -390,6 +404,7 @@ export const useFileHelper = () => {
     selectedFile,
     onFileSelect,
     onFileDelete,
+    onFileConvert,
     onFileEditSave,
     onViewFileCancel,
     onFileMoveRequest,
@@ -479,7 +494,7 @@ export const useFileMoveHelper = () => {
       setSelectedFolder(null);
     }
   }, [fileAction]);
-  const onFileMoveCancel = () => {
+  const onFileMoveCancel: IGenericMethod = () => {
     setFileAction(null);
     setSelectedFile(null);
   };
@@ -495,7 +510,7 @@ export const useFileMoveHelper = () => {
     setSelectedFolder(null);
   };
   const { onClick } = useClickHelper<IGalleryFolder>(onFolderSingleClick, onFolderDoubleClick);
-  const onFileMove = async () => {
+  const onFileMove: IGenericReturn<Promise<void>> = async () => {
     if (selectedFolder && selectedFile) {
       await makeApiCall(apis.moveFileToFolder({ folder: selectedFolder.id, data: selectedFile }));
       syncAllFolders();

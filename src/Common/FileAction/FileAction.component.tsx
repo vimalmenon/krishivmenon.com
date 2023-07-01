@@ -13,6 +13,7 @@ export const FileAction: React.FC<IFileAction> = ({
   width,
   height,
   onViewFile,
+  onFileConvert,
   onFileEditSave,
   onFileMoveRequest,
   onFileDeleteRequest,
@@ -60,6 +61,9 @@ export const FileAction: React.FC<IFileAction> = ({
           </>
         ) : (
           <>
+            {file.type === 'image/heic' ? (
+              <Icon Icon={Icon.icons.Process} label="Convert" onClick={() => onFileConvert(file)} />
+            ) : null}
             <Icon Icon={Icon.icons.Move} onClick={() => onFileMoveRequest(file)} label="Move" />
             <Icon Icon={Icon.icons.OpenInFull} onClick={() => onViewFile(file)} label="Move" />
             <Icon Icon={Icon.icons.Edit} label="Edit" onClick={() => setIsEdit(!isEdit)} />

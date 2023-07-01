@@ -3,7 +3,6 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
 High Priority:
-  [Problem] Support to upload the videos
   [Bug] Fix the authentication issue after no activity for long time
   [Feature] Logout auth permanently
   [Feature] selecting of notes
@@ -26,20 +25,17 @@ High Priority:
   [Bug] Handling errors for fetch
   [Enhancement] Make a better ErrorBoundary
   [Enhancement] Initial load looks bad (CSS missing)
-  [Bug] Http doesn't redirect the Https connection.
-  [UI] Fixing the folder structure
   [UI] Add a splash screen
   [Improvement] Convert EnvCheck to hooks
   [Feature] Check if first API is unauthorized or API not found
   [Feature] Need to work on main loading indicator
   [Bug] Images not working in Prod Website
-  [Feature] Edit File
   [Feature] Show images properly
   [Feature] Only show folder collapse when folder is present
-  [fix] Fix the breadcrumbs width
+  [Fix] Fix the breadcrumbs width
   [Feature] Add notes for image
   [feature] Ability to do next or previous on Image
-  [Fix] Fix the message when the file has been moved
+  [Enhancement] Show File count
 Medium Priority
   [Feature] Search for library for Image viewer (Lightbox)
   [Feature] Add framer motion for animation

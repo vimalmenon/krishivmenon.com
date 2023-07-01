@@ -77,6 +77,7 @@ export interface IGalleryFolder extends IFolder {
   files: IFile[];
   isFolderFolded: boolean;
   isFileFolded: boolean;
+  selectedPage: number;
 }
 
 export interface IFile extends IBaseDB {

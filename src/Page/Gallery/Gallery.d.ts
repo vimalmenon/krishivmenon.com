@@ -45,9 +45,10 @@ export interface IUseGallery {
 export type FileActionType = 'UPLOAD_FILE' | 'EDIT_FILE' | 'VIEW_FILE' | 'MOVE_FILE' | null;
 
 export interface IUseFolderHelper {
+  currentFolderId: string;
+  onFolderAdd: IGenericMethod;
   folder: IGalleryFolder | null;
   folderMap: Record<string, IGalleryFolder>;
-  onFolderAdd: IGenericMethod;
   onFolderEdit: IGenericParam<IGalleryFolder>;
   deleteConfirm: boolean;
   addEditFolder: PageModeType;
@@ -56,6 +57,7 @@ export interface IUseFolderHelper {
   onFolderChange: IGenericParam<IGalleryFolder>;
   onFolderDelete: IGenericReturn<Promise<void>>;
   onFolderToggle: IGenericParam<IGalleryFolder>;
+  setFolderMap: React.Dispatch<React.SetStateAction<Record<string, IGalleryFolder>>>;
   onFolderAddEditSave: IGeneric<string, Promise<unknown>>;
   onFolderAddEditCancel: IGenericMethod;
   onFolderDeleteRequest: IGenericParam<IGalleryFolder>;

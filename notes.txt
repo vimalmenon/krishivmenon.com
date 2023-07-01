@@ -3,6 +3,7 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
 High Priority:
+  [Enhancement] Show File count
   [Bug] First reload gives an issue with api refresh token
   [Bug] Fix the authentication issue after no activity for long time
   [Feature] Logout auth permanently
@@ -11,6 +12,8 @@ High Priority:
   [Feature] Responsive design for notes
   [Feature] Responsive design for gallery
   [Feature] Clicking on name at the top should redirect to Home page
+  [Bug] Both folder and file selected while deleting
+  [Feature] Need to retain the Page Number when deleting and adding
   [UI] Improve UI for 400 Page
   [UI] Improve UI for gallery
   [UI] Improve UI for upload of file
@@ -34,7 +37,6 @@ High Priority:
   [Fix] Fix the breadcrumbs width
   [Feature] Add notes for image
   [feature] Ability to do next or previous on Image
-  [Enhancement] Show File count
 Medium Priority
   [Feature] Search for library for Image viewer (Lightbox)
   [Feature] Add framer motion for animation

@@ -3,6 +3,7 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
 High Priority:
+  [Bug] First reload gives an issue with api refresh token
   [Bug] Fix the authentication issue after no activity for long time
   [Feature] Logout auth permanently
   [Feature] selecting of notes
@@ -18,10 +19,8 @@ High Priority:
   [UI] Fixing the scroll
   [UI] Improve the UI for Add Edit Item
   [UI] Improve the UI for no file and folder found
-  [Bug] First reload gives an issue with api refresh token
   [Bug] Bug while uploading images
   [Check] Check the page in IPad
-  [Bug] Fix caching in cloudfront (Bug)
   [Bug] Handling errors for fetch
   [Enhancement] Make a better ErrorBoundary
   [Enhancement] Initial load looks bad (CSS missing)
@@ -29,9 +28,7 @@ High Priority:
   [Improvement] Convert EnvCheck to hooks
   [Feature] Check if first API is unauthorized or API not found
   [Feature] Need to work on main loading indicator
-  [Bug] Images not working in Prod Website
   [Feature] Show images properly
-  [Feature] Only show folder collapse when folder is present
   [Fix] Fix the breadcrumbs width
   [Feature] Add notes for image
   [feature] Ability to do next or previous on Image

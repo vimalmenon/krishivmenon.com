@@ -22,8 +22,16 @@ export const GalleryContentFolderStyle = styled('div')(({ theme }) => {
 export const GalleryContentFilesStyle = styled('div')(({ theme }) => {
   return {
     gap: theme.spacing(2),
-    display: 'flex',
+    display: 'grid',
     flexWrap: 'wrap',
+    gridTemplateColumns: 'repeat(4, 1fr)',
+    margin: theme.spacing(0, 2),
+    [theme.breakpoints.down('lg')]: {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+    },
+    [theme.breakpoints.down('sm')]: {
+      gridTemplateColumns: 'repeat(1, 1fr)',
+    },
   };
 });
 

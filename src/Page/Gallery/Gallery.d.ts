@@ -58,9 +58,18 @@ export interface IUseFolderHelper {
   onFolderDelete: IGenericReturn<Promise<void>>;
   onFolderToggle: IGenericParam<IGalleryFolder>;
   setFolderMap: React.Dispatch<React.SetStateAction<Record<string, IGalleryFolder>>>;
-  onFolderAddEditSave: IGeneric<string, Promise<unknown>>;
+  onFolderAddEditSave: IGeneric<IFolderAddEditSaveParams, Promise<unknown>>;
   onFolderAddEditCancel: IGenericMethod;
   onFolderDeleteRequest: IGenericParam<IGalleryFolder>;
   onDeleteConfirmCancel: IGenericMethod;
   onFolderClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>, value: IGalleryFolder) => void;
+}
+
+export interface IGallery {
+  folder?: string;
+}
+
+export interface IFolderAddEditSaveParams {
+  label: string;
+  context: string;
 }

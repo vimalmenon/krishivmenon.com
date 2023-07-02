@@ -27,6 +27,12 @@ export const AcceptVideo = {
   'video/*': ['.mp4', '.mov'],
 };
 
+export const FileMapping: Record<string, string> = {
+  'image/jpeg': 'image',
+  'image/png': 'image',
+  'video/mp4': 'video',
+  'video/quicktime': 'video',
+};
 export const StorageKey = 'KM';
 
 export const AuthRefreshTime = 6300000;

@@ -3,7 +3,7 @@ import React from 'react';
 import { useFileUpload } from '@common';
 import { IFile, IGalleryFolder, PageModeType } from '@types';
 
-import { FileActionType } from './Gallery';
+import { FileActionType, IGallery } from './Gallery';
 import { useGallery, GalleryContext, initialContextValue, rootFolder } from './Gallery.service';
 import { GalleryRoot } from './Gallery.style';
 import { GalleryContent } from './GalleryContent';
@@ -17,7 +17,7 @@ const GalleryChildren: React.FC = () => {
     </GalleryRoot>
   );
 };
-export const Gallery: React.FC = () => {
+export const Gallery: React.FC<IGallery> = ({ folder: folderId = rootFolder.id }) => {
   const [selectedFolder, setSelectedFolder] = React.useState<IGalleryFolder | null>(
     initialContextValue.selectedFolder
   );
@@ -30,7 +30,7 @@ export const Gallery: React.FC = () => {
   const [addEditFolder, setAddEditFolder] = React.useState<PageModeType>(
     initialContextValue.addEditFolder
   );
-  const [currentFolderId, setCurrentFolderId] = React.useState<string>(rootFolder.id);
+  const [currentFolderId, setCurrentFolderId] = React.useState<string>(folderId);
   const { folderMap, onFolderUpdate, setFolderMap, syncAllFolders } = useGallery();
   const currentFolder = React.useMemo(
     () => folderMap[currentFolderId],

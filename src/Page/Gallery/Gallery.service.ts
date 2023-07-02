@@ -14,7 +14,12 @@ import {
 } from '@types';
 import { NotImplemented } from '@utility';
 
-import { IGalleryContext, IUseGallery, IUseFolderHelper } from './Gallery';
+import {
+  IGalleryContext,
+  IUseGallery,
+  IUseFolderHelper,
+  IFolderAddEditSaveParams,
+} from './Gallery';
 
 // const initialValue: IGalleryFolder = {
 //   id: '',
@@ -253,11 +258,17 @@ export const useFolderHelper = (): IUseFolderHelper => {
     setAddEditFolder('VIEW');
     setFolder(null);
   };
-  const onFolderAddEditSave: IGeneric<string, Promise<unknown>> = async (label) => {
+  const onFolderAddEditSave: IGeneric<IFolderAddEditSaveParams, Promise<unknown>> = async ({
+    label,
+    context,
+  }: IFolderAddEditSaveParams) => {
     if (addEditFolder === 'ADD') {
       const createdFolder: IFolder = {
         id: '',
         label: label,
+        metadata: {
+          context,
+        },
         parent: currentFolderId,
       };
       const result = await makeApiCall<IFolder[]>(apis.createFolder(createdFolder));
@@ -265,7 +276,7 @@ export const useFolderHelper = (): IUseFolderHelper => {
     }
     if (folder && addEditFolder === 'EDIT') {
       const result = await makeApiCall<IFolder[]>(
-        apis.updateFolderData({ id: folder.id }, { ...folder, label })
+        apis.updateFolderData({ id: folder.id }, { ...folder, label, metadata: { context } })
       );
       onFolderUpdate(result, currentFolder);
       setFolder(null);

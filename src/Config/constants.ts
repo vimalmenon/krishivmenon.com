@@ -29,6 +29,7 @@ export const AcceptVideo = {
 
 export const FileMapping: Record<string, string> = {
   'image/jpeg': 'image',
+  'image/png': 'image',
   'video/mp4': 'video',
   'video/quicktime': 'video',
 };

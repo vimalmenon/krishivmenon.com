@@ -9,7 +9,6 @@ export const Image: React.FC<IImage> = ({ src, height, width, alt }) => {
   React.useEffect(() => {
     setLoading(true);
   }, [src]);
-  const style = loading ? { display: 'none' } : {};
   return (
     <div>
       {loading && (
@@ -19,9 +18,11 @@ export const Image: React.FC<IImage> = ({ src, height, width, alt }) => {
         src={src}
         onLoad={() => setLoading(false)}
         onError={() => setLoading(false)}
-        width={'100%'}
         alt={alt}
-        style={style}
+        style={{
+          maxWidth: '100%',
+          display: loading ? 'none' : 'block',
+        }}
       />
     </div>
   );

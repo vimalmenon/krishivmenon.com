@@ -24,13 +24,16 @@ export const GalleryContentFilesStyle = styled('div')(({ theme }) => {
     gap: theme.spacing(2),
     display: 'grid',
     flexWrap: 'wrap',
-    gridTemplateColumns: 'repeat(4, 1fr)',
+    gridTemplateColumns: 'repeat(1, 1fr)',
     margin: theme.spacing(0, 2),
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.up('sm')]: {
       gridTemplateColumns: 'repeat(2, 1fr)',
     },
-    [theme.breakpoints.down('sm')]: {
-      gridTemplateColumns: 'repeat(1, 1fr)',
+    [theme.breakpoints.up('md')]: {
+      gridTemplateColumns: 'repeat(3, 1fr)',
+    },
+    [theme.breakpoints.up('lg')]: {
+      gridTemplateColumns: 'repeat(4, 1fr)',
     },
   };
 });

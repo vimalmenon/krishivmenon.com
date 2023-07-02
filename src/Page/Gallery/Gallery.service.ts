@@ -139,7 +139,7 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
   ): Promise<void> => {
     const folderIds = folders.map((data) => {
       setFolderMap((folderMap) => {
-        const previousSelectedPage = folderMap[data.id].selectedPage;
+        const previousSelectedPage = folderMap[data.id]?.selectedPage || 1;
         return {
           ...folderMap,
           [data.id]: {
@@ -326,6 +326,7 @@ export const useFileHelper = () => {
     setFolderMap,
     setFileAction,
     fileAction,
+    setFolder,
   } = React.useContext<IGalleryContext>(GalleryContext);
   const { makeApiCall } = useCommonApiContext();
   const onFileSelect: IGenericParam<IFile> = (file) => {
@@ -362,7 +363,7 @@ export const useFileHelper = () => {
         };
       });
       setDeleteConfirm(false);
-      setSelectedFile(null);
+      setFolder(null);
     }
   };
 

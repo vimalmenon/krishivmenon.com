@@ -2,6 +2,7 @@ import React from 'react';
 
 import { AddEditFolder } from './AddEditFolder';
 import { DeleteFileFolder } from './DeleteFileFolder';
+import { EditFile } from './EditFile';
 import { GalleryContentRoot } from './GalleryContent.style';
 import { GalleryContentFiles } from './GalleryContentFiles';
 import { GalleryContentFolders } from './GalleryContentFolders';
@@ -21,6 +22,7 @@ export const GalleryContent: React.FC = () => {
       <UploadFiles />
       <MoveFile />
       <ViewFile />
+      <EditFile />
       <GalleryHelper
         GalleryFolder={GalleryContentFolders}
         GalleryFile={GalleryContentFiles}

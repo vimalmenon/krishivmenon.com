@@ -4,6 +4,7 @@ Finished Task:
   Basic dev setup
 High Priority:
   [Feature] Ability to give context and Date to Image and folder
+  [Feature] Ability to make the folder private
   [Enhancement] Support for folder directory
   [Feature] Loading Indicator on Save Button
   [Feature] Dialog Should be unable to cancel when some process is going on

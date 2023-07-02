@@ -58,7 +58,7 @@ export interface IUseFolderHelper {
   onFolderDelete: IGenericReturn<Promise<void>>;
   onFolderToggle: IGenericParam<IGalleryFolder>;
   setFolderMap: React.Dispatch<React.SetStateAction<Record<string, IGalleryFolder>>>;
-  onFolderAddEditSave: IGeneric<string, Promise<unknown>>;
+  onFolderAddEditSave: IGeneric<IFolderAddEditSaveParams, Promise<unknown>>;
   onFolderAddEditCancel: IGenericMethod;
   onFolderDeleteRequest: IGenericParam<IGalleryFolder>;
   onDeleteConfirmCancel: IGenericMethod;
@@ -67,4 +67,9 @@ export interface IUseFolderHelper {
 
 export interface IGallery {
   folder?: string;
+}
+
+export interface IFolderAddEditSaveParams {
+  label: string;
+  context: string;
 }

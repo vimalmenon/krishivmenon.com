@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Skeleton from '@mui/material/Skeleton';
+import Tooltip from '@mui/material/Tooltip';
 import { clsx } from 'clsx';
 
 import { Icon } from '@common';
@@ -32,9 +33,18 @@ export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) 
         </Container>
 
         <Container component={'div'} sx={{ flex: '0' }}>
-          <Icon.icons.Edit onClick={onEdit} fontSize="small" />
-          {folder.files.length === 0 && folder.folders.length === 0 && !folder.isFixed ? (
-            <Icon.icons.Delete onClick={() => onFolderDeleteRequest(folder)} fontSize="small" />
+          {!folder.loading ? (
+            <>
+              <Icon.icons.Edit onClick={onEdit} fontSize="small" />
+              {folder.files.length === 0 && folder.folders.length === 0 && !folder.isFixed ? (
+                <Icon.icons.Delete onClick={() => onFolderDeleteRequest(folder)} fontSize="small" />
+              ) : null}
+              {folder.metadata?.context ? (
+                <Tooltip title={folder.metadata?.context}>
+                  <Icon.icons.Info onClick={onEdit} fontSize="small" />
+                </Tooltip>
+              ) : null}
+            </>
           ) : null}
         </Container>
       </FolderIconStyle>

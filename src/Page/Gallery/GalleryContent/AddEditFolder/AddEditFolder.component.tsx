@@ -12,6 +12,7 @@ import { useFolderHelper } from '../../Gallery.service';
 export const AddEditFolder: React.FC = () => {
   const { onFolderAddEditCancel, onFolderAddEditSave, folder, addEditFolder } = useFolderHelper();
   const [label, setLabel] = React.useState<string>('');
+  const [context, setContext] = React.useState<string>('');
   const updateInput: IGenericParam<React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>> = (
     e
   ) => {
@@ -20,10 +21,12 @@ export const AddEditFolder: React.FC = () => {
   const onCancel: IGenericMethod = () => {
     onFolderAddEditCancel();
     setLabel('');
+    setContext('');
   };
   React.useEffect(() => {
     if (folder) {
       setLabel(folder.label);
+      setContext(folder.metadata?.context || '');
     }
   }, [folder]);
   return (
@@ -40,13 +43,25 @@ export const AddEditFolder: React.FC = () => {
             fullWidth
             size="small"
           />
-          <TextField label="Context" placeholder="Context" multiline rows={3} />
+          <TextField
+            label="Context"
+            placeholder="Context"
+            multiline
+            rows={3}
+            value={context}
+            onChange={(e) => setContext(e.target.value)}
+          />
         </Container>
       </Dialog.Body>
       <Dialog.Footer>
         <PromiseLoadingButton
           variant="contained"
-          onClick={() => onFolderAddEditSave(label)}
+          onClick={() =>
+            onFolderAddEditSave({
+              label,
+              context,
+            })
+          }
           startIcon={<Icon.icons.Save />}
         >
           <span>{folder?.id ? 'Update' : 'Create'}</span>

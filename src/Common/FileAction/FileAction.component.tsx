@@ -56,7 +56,7 @@ export const FileAction: React.FC<IFileAction> = ({
       <Container component={'div'} sx={{ justifyContent: 'space-between', flex: '0 0 40px' }}>
         {isEdit ? (
           <>
-            <Icon Icon={Icon.icons.Save} label="Save" onClick={onSave} />
+            <Icon Icon={Icon.icons.Save} showLoading={true} label="Save" onClick={onSave} />
             <Icon Icon={Icon.icons.Cancel} label="Cancel" onClick={onCancel} />
           </>
         ) : (

@@ -33,7 +33,7 @@ export const AddEditFolder: React.FC = () => {
     >
       <Dialog.Body>
         <Container component={'div'} sx={{ m: 2 }}>
-          <TextField value={label} onChange={updateInput} label="Folder name" fullWidth />
+          <TextField value={label} onChange={updateInput} label="Folder name" fullWidth size="small" />
         </Container>
       </Dialog.Body>
       <Dialog.Footer>

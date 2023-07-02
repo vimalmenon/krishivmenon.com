@@ -37,6 +37,8 @@ High Priority:
   [Feature] Add notes for image
   [Feature] Ability to do next or previous on Image when expanded
   [Feature] Image Loading indicator not working
+  [Feature] Ability to view MOV files and PNG file
+  [Feature] Ability to give context and Date to Image and folder
 Medium Priority
   [Feature] Search for library for Image viewer (Lightbox)
   [Feature] Add framer motion for animation

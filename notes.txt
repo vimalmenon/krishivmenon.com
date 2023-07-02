@@ -3,11 +3,14 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
 High Priority:
+  [Bug] First reload gives an issue with api refresh token
   [Bug] Fix the authentication issue after no activity for long time
-  [Feature] Logout auth permanently
   [Feature] selecting of notes
   [Loading] Loading for notes
+  [Feature] Responsive design for notes
+  [Feature] Responsive design for gallery
   [Feature] Clicking on name at the top should redirect to Home page
+  [Bug] Both folder and file selected while deleting
   [UI] Improve UI for 400 Page
   [UI] Improve UI for gallery
   [UI] Improve UI for upload of file
@@ -18,24 +21,24 @@ High Priority:
   [UI] Fixing the scroll
   [UI] Improve the UI for Add Edit Item
   [UI] Improve the UI for no file and folder found
-  [Bug] First reload gives an issue with api refresh token
   [Bug] Bug while uploading images
   [Check] Check the page in IPad
-  [Bug] Fix caching in cloudfront (Bug)
   [Bug] Handling errors for fetch
+  [Feature] Change the upload implementation
+  [Feature] Ability to change image orientation
   [Enhancement] Make a better ErrorBoundary
   [Enhancement] Initial load looks bad (CSS missing)
   [UI] Add a splash screen
   [Improvement] Convert EnvCheck to hooks
   [Feature] Check if first API is unauthorized or API not found
   [Feature] Need to work on main loading indicator
-  [Bug] Images not working in Prod Website
   [Feature] Show images properly
-  [Feature] Only show folder collapse when folder is present
   [Fix] Fix the breadcrumbs width
   [Feature] Add notes for image
-  [feature] Ability to do next or previous on Image
-  [Enhancement] Show File count
+  [Feature] Ability to do next or previous on Image when expanded
+  [Feature] Image Loading indicator not working
+  [Feature] Ability to view MOV files and PNG file
+  [Feature] Ability to give context and Date to Image and folder
 Medium Priority
   [Feature] Search for library for Image viewer (Lightbox)
   [Feature] Add framer motion for animation
@@ -51,7 +54,9 @@ Medium Priority
   [Feature] Setup Google Analytics
   [UI] Need to make component adapt to Mobile screen
   [Feature] Add to slim scroll
+  [Feature] Logout auth permanently
   [Feature] Ability to Logout when unauthorized
+  [Feature] Ability to tag people
 Less Priority
   [Feature] Setting up sonar
   Add favicon

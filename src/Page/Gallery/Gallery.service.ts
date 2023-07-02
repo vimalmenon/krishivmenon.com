@@ -39,6 +39,7 @@ export const rootFolder: IGalleryFolder = {
   isFolderFolded: false,
   isFileFolded: false,
   isFileLocked: true,
+  selectedPage: 1,
 };
 
 export const initialContextValue: IGalleryContext = {
@@ -88,6 +89,7 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
     const result = await makeApiCall<IFolder[]>(apis.getFolderByParent({ id: folder.id }));
     const folders = result.map((value) => {
       setFolderMap((folderMap) => {
+        const previousSelectedPage = folderMap[value.id]?.selectedPage || 1;
         return {
           ...folderMap,
           [value.id]: {
@@ -98,6 +100,7 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
             files: [],
             isFolderFolded: false,
             isFileFolded: false,
+            selectedPage: previousSelectedPage,
           },
         };
       });
@@ -110,6 +113,7 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
           files: [],
           isFolderFolded: false,
           isFileFolded: false,
+          selectedPage: 1,
         },
         [...breadcrumbs, value.id]
       );
@@ -135,6 +139,7 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
   ): Promise<void> => {
     const folderIds = folders.map((data) => {
       setFolderMap((folderMap) => {
+        const previousSelectedPage = folderMap[data.id]?.selectedPage || 1;
         return {
           ...folderMap,
           [data.id]: {
@@ -145,6 +150,7 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
             files: [],
             isFolderFolded: false,
             isFileFolded: false,
+            selectedPage: previousSelectedPage || 1,
           },
         };
       });
@@ -157,6 +163,7 @@ export const useGallery: IGenericReturn<IUseGallery> = () => {
           files: [],
           isFolderFolded: false,
           isFileFolded: false,
+          selectedPage: 1,
         },
         [...currentFolder.breadcrumbs, data.id]
       );
@@ -299,6 +306,8 @@ export const useFolderHelper = (): IUseFolderHelper => {
     onFolderChange,
     onFolderDelete,
     onFolderToggle,
+    currentFolderId,
+    setFolderMap,
     onFolderAddEditSave,
     onFolderAddEditCancel,
     onFolderDeleteRequest,
@@ -317,6 +326,7 @@ export const useFileHelper = () => {
     setFolderMap,
     setFileAction,
     fileAction,
+    setFolder,
   } = React.useContext<IGalleryContext>(GalleryContext);
   const { makeApiCall } = useCommonApiContext();
   const onFileSelect: IGenericParam<IFile> = (file) => {
@@ -353,7 +363,7 @@ export const useFileHelper = () => {
         };
       });
       setDeleteConfirm(false);
-      setSelectedFile(null);
+      setFolder(null);
     }
   };
 

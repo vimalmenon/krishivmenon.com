@@ -1,8 +1,8 @@
 import { IVideo } from './Video';
 
-export const Video: React.FC<IVideo> = ({ height, width, src }) => {
+export const Video: React.FC<IVideo> = ({ src }) => {
   return (
-    <video width={height} height={width} controls>
+    <video controls style={{ width: '100%' }}>
       <source src={src} type="video/mp4"></source>
       <track kind="captions" />
     </video>

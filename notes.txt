@@ -3,13 +3,19 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
 High Priority:
+  [Feature] Ability to view MOV files and PNG file
+  [Feature] Ability to give context and Date to Image and folder
   [Bug] First reload gives an issue with api refresh token
   [Bug] Fix the authentication issue after no activity for long time
+  [Bug] Store folder path in URL
   [Feature] selecting of notes
   [Loading] Loading for notes
   [Feature] Responsive design for notes
   [Feature] Responsive design for gallery
+  [Feature] Change the upload implementation
+  [Feature] Ability to change image orientation
   [Feature] Clicking on name at the top should redirect to Home page
+  [Feature] Check if first API is unauthorized or API not found
   [Bug] Both folder and file selected while deleting
   [UI] Improve UI for 400 Page
   [UI] Improve UI for gallery
@@ -24,21 +30,14 @@ High Priority:
   [Bug] Bug while uploading images
   [Check] Check the page in IPad
   [Bug] Handling errors for fetch
-  [Feature] Change the upload implementation
-  [Feature] Ability to change image orientation
   [Enhancement] Make a better ErrorBoundary
   [Enhancement] Initial load looks bad (CSS missing)
   [UI] Add a splash screen
   [Improvement] Convert EnvCheck to hooks
-  [Feature] Check if first API is unauthorized or API not found
   [Feature] Need to work on main loading indicator
-  [Feature] Show images properly
   [Fix] Fix the breadcrumbs width
-  [Feature] Add notes for image
   [Feature] Ability to do next or previous on Image when expanded
   [Feature] Image Loading indicator not working
-  [Feature] Ability to view MOV files and PNG file
-  [Feature] Ability to give context and Date to Image and folder
 Medium Priority
   [Feature] Search for library for Image viewer (Lightbox)
   [Feature] Add framer motion for animation

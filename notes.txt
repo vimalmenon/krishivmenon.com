@@ -24,6 +24,8 @@ High Priority:
   [Bug] Bug while uploading images
   [Check] Check the page in IPad
   [Bug] Handling errors for fetch
+  [Feature] Change the upload implementation
+  [Feature] Ability to change image orientation
   [Enhancement] Make a better ErrorBoundary
   [Enhancement] Initial load looks bad (CSS missing)
   [UI] Add a splash screen
@@ -34,8 +36,8 @@ High Priority:
   [Fix] Fix the breadcrumbs width
   [Feature] Add notes for image
   [Feature] Ability to do next or previous on Image when expanded
+  [Feature] Image Loading indicator not working
 Medium Priority
-  [Feature] Logout auth permanently
   [Feature] Search for library for Image viewer (Lightbox)
   [Feature] Add framer motion for animation
   [Improvement] Increase the test coverage to 80%
@@ -50,7 +52,9 @@ Medium Priority
   [Feature] Setup Google Analytics
   [UI] Need to make component adapt to Mobile screen
   [Feature] Add to slim scroll
+  [Feature] Logout auth permanently
   [Feature] Ability to Logout when unauthorized
+  [Feature] Ability to tag people
 Less Priority
   [Feature] Setting up sonar
   Add favicon

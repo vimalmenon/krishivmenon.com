@@ -64,3 +64,7 @@ export interface IUseFolderHelper {
   onDeleteConfirmCancel: IGenericMethod;
   onFolderClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>, value: IGalleryFolder) => void;
 }
+
+export interface IGallery {
+  folder?: string;
+}

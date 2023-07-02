@@ -17,6 +17,7 @@ High Priority:
   [Feature] Ability to change image orientation
   [Feature] Clicking on name at the top should redirect to Home page
   [Feature] Check if first API is unauthorized or API not found
+  [Feature] Notes has to be private
   [UI] Improve UI for 400 Page
   [UI] Improve UI for gallery
   [UI] Improve UI for upload of file

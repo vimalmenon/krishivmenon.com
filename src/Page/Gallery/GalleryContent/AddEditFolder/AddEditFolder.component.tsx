@@ -32,8 +32,15 @@ export const AddEditFolder: React.FC = () => {
       title={addEditFolder === 'ADD' ? 'Add Folder' : 'Edit Folder'}
     >
       <Dialog.Body>
-        <Container component={'div'} sx={{ m: 2 }}>
-          <TextField value={label} onChange={updateInput} label="Folder name" fullWidth size="small" />
+        <Container component="div" sx={{ m: 2, gap: 2 }} direction="column">
+          <TextField
+            value={label}
+            onChange={updateInput}
+            label="Folder name"
+            fullWidth
+            size="small"
+          />
+          <TextField label="Context" placeholder="Context" multiline rows={3} />
         </Container>
       </Dialog.Body>
       <Dialog.Footer>

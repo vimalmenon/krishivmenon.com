@@ -9,8 +9,9 @@ export const FileViewer: React.FC<IFileViewer> = ({ file, width, height }) => {
       <Image src={getS3BucketFullPath(file.path)} height={height} width={width} alt={file.label} />
     );
   }
-  if (file.type === 'video/mp4') {
+  if (file.type === 'video/mp4' || file.type === 'video/quicktime') {
     return <Video src={getS3BucketFullPath(file.path)} />;
   }
+  console.log(file);
   return null;
 };

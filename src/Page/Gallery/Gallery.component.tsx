@@ -39,6 +39,7 @@ export const Gallery: React.FC<IGallery> = ({ folder: folderId = rootFolder.id }
 
   // This is used for edit and delete folder
   const [folder, setFolder] = React.useState<IGalleryFolder | null>(null);
+  const [file, setFile] = React.useState<IFile | null>(null);
 
   const [fileAction, setFileAction] = React.useState<FileActionType>(null);
 
@@ -55,6 +56,8 @@ export const Gallery: React.FC<IGallery> = ({ folder: folderId = rootFolder.id }
   return (
     <GalleryContext.Provider
       value={{
+        file,
+        setFile,
         files,
         folder,
         folderMap,

@@ -12,6 +12,7 @@ export const FileAction: React.FC<IFileAction> = ({
   file,
   width,
   height,
+  onFileEdit,
   onViewFile,
   onFileConvert,
   onFileEditSave,
@@ -33,7 +34,13 @@ export const FileAction: React.FC<IFileAction> = ({
     <Container component={'div'} direction="column" sx={{ flex: '1 1 100%' }}>
       <Container
         component={'div'}
-        sx={{ justifyContent: 'space-between', flex: '0 0 40px', my: 1, minWidth: '300px' }}
+        sx={{
+          justifyContent: 'space-between',
+          flex: '0 0 40px',
+          my: 1,
+          minWidth: '300px',
+          alignItems: 'center',
+        }}
       >
         {isEdit ? (
           <TextField
@@ -66,7 +73,7 @@ export const FileAction: React.FC<IFileAction> = ({
             ) : null}
             <Icon Icon={Icon.icons.Move} onClick={() => onFileMoveRequest(file)} label="Move" />
             <Icon Icon={Icon.icons.OpenInFull} onClick={() => onViewFile(file)} label="Move" />
-            <Icon Icon={Icon.icons.Edit} label="Edit" onClick={() => setIsEdit(!isEdit)} />
+            <Icon Icon={Icon.icons.Edit} label="Edit" onClick={onFileEdit} />
             <Icon Icon={Icon.icons.Delete} onClick={() => onFileDeleteRequest(file)} label="Move" />
           </>
         )}

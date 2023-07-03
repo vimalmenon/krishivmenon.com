@@ -1,4 +1,4 @@
-import { IFile, IGenericParam } from '@types';
+import { IFile, IGenericMethod, IGenericParam } from '@types';
 
 export interface IFileAction {
   file: IFile;
@@ -9,4 +9,5 @@ export interface IFileAction {
   onFileMoveRequest: IGenericParam<IFile>;
   onFileDeleteRequest: IGenericParam<IFile>;
   onFileConvert: IGenericParam<IFile>;
+  onFileEdit: IGenericMethod;
 }

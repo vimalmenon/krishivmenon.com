@@ -48,6 +48,7 @@ export const rootFolder: IGalleryFolder = {
 };
 
 export const initialContextValue: IGalleryContext = {
+  file: null,
   files: [],
   folder: null,
   selectedFile: null,
@@ -57,6 +58,7 @@ export const initialContextValue: IGalleryContext = {
   clearFiles: NotImplemented,
   currentFolderId: rootFolder.id,
   addEditFolder: 'VIEW',
+  setFile: NotImplemented,
   setFolder: NotImplemented,
   setFolderMap: NotImplemented,
   onDeleteFile: NotImplemented,
@@ -338,6 +340,8 @@ export const useFileHelper = () => {
     setFileAction,
     fileAction,
     setFolder,
+    setFile,
+    file,
   } = React.useContext<IGalleryContext>(GalleryContext);
   const { makeApiCall } = useCommonApiContext();
   const onFileSelect: IGenericParam<IFile> = (file) => {
@@ -418,7 +422,16 @@ export const useFileHelper = () => {
       };
     });
   };
+  const onFileEdit: IGenericParam<IFile> = (file) => {
+    setFileAction('EDIT_FILE');
+    setFile(file);
+  };
+  const onFileEditCancel = () => {
+    setFileAction(null);
+    setFile(null);
+  };
   return {
+    file,
     onViewFile,
     fileAction,
     onFileToggle,
@@ -426,6 +439,8 @@ export const useFileHelper = () => {
     onFileSelect,
     onFileDelete,
     onFileConvert,
+    onFileEdit,
+    onFileEditCancel,
     onFileEditSave,
     onViewFileCancel,
     onFileMoveRequest,

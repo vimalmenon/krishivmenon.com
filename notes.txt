@@ -3,7 +3,7 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
 High Priority:
-  [Feature] Ability to give context and Date to Image
+  [Feature] Ability to give Date to Image
   [Feature] Ability to make the folder private
   [Enhancement] Support for folder directory
   [Feature] Dialog Should be unable to cancel when some process is going on

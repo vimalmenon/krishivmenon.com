@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Tooltip from '@mui/material/Tooltip';
+
 import { Icon, FileViewer } from '@common';
 import { Container } from '@style';
 
@@ -28,6 +30,11 @@ export const FileAction: React.FC<IFileAction> = ({
         }}
       >
         <span style={{ whiteSpace: 'nowrap', overflow: 'hidden' }}>{file.label}</span>
+        {file.metadata?.context ? (
+          <Tooltip title={file.metadata?.context}>
+            <Icon.icons.Info />
+          </Tooltip>
+        ) : null}
       </Container>
       <Container
         component={'div'}

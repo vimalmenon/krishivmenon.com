@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 
 import { Icon, PromiseLoadingButton, Dialog } from '@common';
 import { Container } from '@style';
-import { IGenericMethod, IGenericParam } from '@types';
+import { IGenericMethod, IGenericParam, IGenericReturn } from '@types';
 
 import { useFolderHelper } from '../../Gallery.service';
 
@@ -20,6 +20,14 @@ export const AddEditFolder: React.FC = () => {
   };
   const onCancel: IGenericMethod = () => {
     onFolderAddEditCancel();
+    setLabel('');
+    setContext('');
+  };
+  const onSave: IGenericReturn<Promise<void>> = async () => {
+    await onFolderAddEditSave({
+      label,
+      context,
+    });
     setLabel('');
     setContext('');
   };
@@ -54,16 +62,7 @@ export const AddEditFolder: React.FC = () => {
         </Container>
       </Dialog.Body>
       <Dialog.Footer>
-        <PromiseLoadingButton
-          variant="contained"
-          onClick={() =>
-            onFolderAddEditSave({
-              label,
-              context,
-            })
-          }
-          startIcon={<Icon.icons.Save />}
-        >
+        <PromiseLoadingButton variant="contained" onClick={onSave} startIcon={<Icon.icons.Save />}>
           <span>{folder?.id ? 'Update' : 'Create'}</span>
         </PromiseLoadingButton>
         <Button variant="outlined" onClick={onCancel} startIcon={<Icon.icons.Cancel />}>

@@ -5,13 +5,12 @@ import TextField from '@mui/material/TextField';
 
 import { Icon, PromiseLoadingButton, Dialog } from '@common';
 import { Container } from '@style';
-import { IGenericMethod, IGenericParam } from '@types';
+import { IGenericMethod, IGenericParam, IGenericReturn } from '@types';
 
-import { useFileHelper, useFolderHelper } from '../../Gallery.service';
+import { useFileHelper } from '../../Gallery.service';
 
 export const EditFile: React.FC = () => {
-  const { onFolderAddEditSave } = useFolderHelper();
-  const { fileAction, file, onFileEditCancel } = useFileHelper();
+  const { fileAction, file, onFileEditCancel, onFileEditSave } = useFileHelper();
   const [label, setLabel] = React.useState<string>('');
   const [context, setContext] = React.useState<string>('');
   const updateInput: IGenericParam<React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>> = (
@@ -23,6 +22,20 @@ export const EditFile: React.FC = () => {
     onFileEditCancel();
     setLabel('');
     setContext('');
+  };
+  const onSave: IGenericReturn<Promise<void>> = async () => {
+    if (file) {
+      await onFileEditSave({
+        ...file,
+        label,
+        metadata: {
+          ...file.metadata,
+          context,
+        },
+      });
+      setLabel('');
+      setContext('');
+    }
   };
   React.useEffect(() => {
     if (file) {
@@ -55,12 +68,7 @@ export const EditFile: React.FC = () => {
         <Dialog.Footer>
           <PromiseLoadingButton
             variant="contained"
-            onClick={() =>
-              onFolderAddEditSave({
-                label,
-                context,
-              })
-            }
+            onClick={onSave}
             startIcon={<Icon.icons.Save />}
           >
             <span>Update</span>

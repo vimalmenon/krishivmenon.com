@@ -407,6 +407,8 @@ export const useFileHelper = () => {
         },
       };
     });
+    setFileAction(null);
+    setFile(null);
   };
   const onFileConvert: IGeneric<IFile, Promise<void>> = async (file) => {
     await makeApiCall(apis.convertHeicFileToJpeg(file));

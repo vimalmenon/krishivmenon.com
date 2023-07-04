@@ -17,9 +17,12 @@ import {
 import { useFolderHelper } from '../../../Gallery.service';
 
 export const getFolderToolTip = (value: Record<string, string>): string => {
-  return `${value.context}
-    ${value.date ? `Date: ${value.date}` : ''}
+  if (value.date) {
+    return `${value.context}
+    Date: ${value.date}
   `;
+  }
+  return `${value.context}`;
 };
 export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) => {
   const { onFolderClick, onFolderEdit, onFolderDeleteRequest } = useFolderHelper();

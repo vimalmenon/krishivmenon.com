@@ -2,6 +2,8 @@ import React from 'react';
 
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs, { Dayjs } from 'dayjs';
 
 import { Icon, PromiseLoadingButton, Dialog } from '@common';
 import { Container } from '@style';
@@ -13,6 +15,8 @@ export const AddEditFolder: React.FC = () => {
   const { onFolderAddEditCancel, onFolderAddEditSave, folder, addEditFolder } = useFolderHelper();
   const [label, setLabel] = React.useState<string>('');
   const [context, setContext] = React.useState<string>('');
+  const [date, setDate] = React.useState<string | null | undefined>(null);
+
   const updateInput: IGenericParam<React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>> = (
     e
   ) => {
@@ -22,6 +26,10 @@ export const AddEditFolder: React.FC = () => {
     onFolderAddEditCancel();
     setLabel('');
     setContext('');
+    setDate(undefined);
+  };
+  const onDataChange: IGenericParam<Dayjs | null> = (value) => {
+    setDate(value?.toString() || null);
   };
   const onSave: IGenericReturn<Promise<void>> = async () => {
     await onFolderAddEditSave({
@@ -59,6 +67,27 @@ export const AddEditFolder: React.FC = () => {
             value={context}
             onChange={(e) => setContext(e.target.value)}
           />
+          {date ? (
+            <Container component="div">
+              <Container component="div" sx={{ flex: 1 }}>
+                <DatePicker
+                  label="Date"
+                  value={date ? dayjs(date) : null}
+                  views={['year', 'month', 'day']}
+                  openTo="month"
+                  onChange={(newValue) => onDataChange(newValue)}
+                  sx={{ width: '100%' }}
+                />
+              </Container>
+              <div>
+                <Icon Icon={Icon.icons.Delete} label="Remove" />
+              </div>
+            </Container>
+          ) : (
+            <Container component="div" sx={{ justifyContent: 'end' }}>
+              <Icon Icon={Icon.icons.Add} label="Add Date" />
+            </Container>
+          )}
         </Container>
       </Dialog.Body>
       <Dialog.Footer>

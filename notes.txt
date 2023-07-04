@@ -5,6 +5,8 @@ Finished Task:
 High Priority:
   [Feature] Ability to Date to Image and Folder
   [Feature] Ability to make the folder private
+  [UI] Improve the UI for Add Edit Item
+  [UI] Improve the UI for no file and folder found
   [Enhancement] Support for folder directory
   [Feature] Dialog Should be unable to cancel when some process is going on
   [Bug] First reload gives an issue with api refresh token
@@ -26,8 +28,6 @@ High Priority:
   [Responsive] Responsive UI for gallery
   [Responsive] Responsive UI for notes
   [UI] Fixing the scroll
-  [UI] Improve the UI for Add Edit Item
-  [UI] Improve the UI for no file and folder found
   [Bug] Bug while uploading images
   [Check] Check the page in IPad
   [Bug] Handling errors for fetch

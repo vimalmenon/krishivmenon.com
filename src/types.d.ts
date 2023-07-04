@@ -62,7 +62,7 @@ export interface IBaseDB {
 
 export interface IFolder extends IBaseDB {
   id: string;
-  metadata?: Record<string, string>;
+  metadata: Record<string, string>;
   label: string;
   parent: string;
   isFixed?: boolean;
@@ -83,7 +83,7 @@ export interface IGalleryFolder extends IFolder {
 export interface IFile extends IBaseDB {
   id: string;
   name: string;
-  metadata?: Record<string, string>;
+  metadata: Record<string, string>;
   label: string;
   path: string;
   type: string;

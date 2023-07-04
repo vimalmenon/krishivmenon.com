@@ -3,17 +3,18 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
 High Priority:
-  [Feature] Ability to give context and Date to Image and folder
+  [Feature] Ability to Date to Image and Folder
   [Feature] Ability to make the folder private
+  [UI] Improve the UI for Add Edit Item
+  [UI] Improve the UI for no file and folder found
   [Enhancement] Support for folder directory
-  [Feature] Loading Indicator on Save Button
   [Feature] Dialog Should be unable to cancel when some process is going on
   [Bug] First reload gives an issue with api refresh token
   [Bug] Fix the authentication issue after no activity for long time
+  [Feature] Responsive design for gallery
   [Feature] selecting of notes
   [Loading] Loading for notes
   [Feature] Responsive design for notes
-  [Feature] Responsive design for gallery
   [Feature] Change the upload implementation
   [Feature] Ability to change image orientation
   [Feature] Clicking on name at the top should redirect to Home page
@@ -27,8 +28,6 @@ High Priority:
   [Responsive] Responsive UI for gallery
   [Responsive] Responsive UI for notes
   [UI] Fixing the scroll
-  [UI] Improve the UI for Add Edit Item
-  [UI] Improve the UI for no file and folder found
   [Bug] Bug while uploading images
   [Check] Check the page in IPad
   [Bug] Handling errors for fetch

@@ -45,9 +45,11 @@ export const rootFolder: IGalleryFolder = {
   isFileFolded: false,
   isFileLocked: true,
   selectedPage: 1,
+  metadata: {},
 };
 
 export const initialContextValue: IGalleryContext = {
+  file: null,
   files: [],
   folder: null,
   selectedFile: null,
@@ -57,6 +59,7 @@ export const initialContextValue: IGalleryContext = {
   clearFiles: NotImplemented,
   currentFolderId: rootFolder.id,
   addEditFolder: 'VIEW',
+  setFile: NotImplemented,
   setFolder: NotImplemented,
   setFolderMap: NotImplemented,
   onDeleteFile: NotImplemented,
@@ -261,14 +264,19 @@ export const useFolderHelper = (): IUseFolderHelper => {
   const onFolderAddEditSave: IGeneric<IFolderAddEditSaveParams, Promise<unknown>> = async ({
     label,
     context,
+    date,
   }: IFolderAddEditSaveParams) => {
+    const metadata: Record<string, string> = {
+      context,
+    };
+    if (date) {
+      metadata['date'] = date;
+    }
     if (addEditFolder === 'ADD') {
       const createdFolder: IFolder = {
         id: '',
         label: label,
-        metadata: {
-          context,
-        },
+        metadata,
         parent: currentFolderId,
       };
       const result = await makeApiCall<IFolder[]>(apis.createFolder(createdFolder));
@@ -276,7 +284,7 @@ export const useFolderHelper = (): IUseFolderHelper => {
     }
     if (folder && addEditFolder === 'EDIT') {
       const result = await makeApiCall<IFolder[]>(
-        apis.updateFolderData({ id: folder.id }, { ...folder, label, metadata: { context } })
+        apis.updateFolderData({ id: folder.id }, { ...folder, label, metadata })
       );
       onFolderUpdate(result, currentFolder);
       setFolder(null);
@@ -338,6 +346,8 @@ export const useFileHelper = () => {
     setFileAction,
     fileAction,
     setFolder,
+    setFile,
+    file,
   } = React.useContext<IGalleryContext>(GalleryContext);
   const { makeApiCall } = useCommonApiContext();
   const onFileSelect: IGenericParam<IFile> = (file) => {
@@ -403,6 +413,8 @@ export const useFileHelper = () => {
         },
       };
     });
+    setFileAction(null);
+    setFile(null);
   };
   const onFileConvert: IGeneric<IFile, Promise<void>> = async (file) => {
     await makeApiCall(apis.convertHeicFileToJpeg(file));
@@ -418,7 +430,16 @@ export const useFileHelper = () => {
       };
     });
   };
+  const onFileEdit: IGenericParam<IFile> = (file) => {
+    setFileAction('EDIT_FILE');
+    setFile(file);
+  };
+  const onFileEditCancel = () => {
+    setFileAction(null);
+    setFile(null);
+  };
   return {
+    file,
     onViewFile,
     fileAction,
     onFileToggle,
@@ -426,6 +447,8 @@ export const useFileHelper = () => {
     onFileSelect,
     onFileDelete,
     onFileConvert,
+    onFileEdit,
+    onFileEditCancel,
     onFileEditSave,
     onViewFileCancel,
     onFileMoveRequest,

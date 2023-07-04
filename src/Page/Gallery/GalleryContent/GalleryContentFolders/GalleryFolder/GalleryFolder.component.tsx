@@ -16,6 +16,14 @@ import {
 } from './GalleryFolder.style';
 import { useFolderHelper } from '../../../Gallery.service';
 
+export const getFolderToolTip = (value: Record<string, string>): string => {
+  if (value.date) {
+    return `${value.context}
+    Date: ${value.date}
+  `;
+  }
+  return `${value.context}`;
+};
 export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) => {
   const { onFolderClick, onFolderEdit, onFolderDeleteRequest } = useFolderHelper();
   const onEdit: React.MouseEventHandler<SVGSVGElement> = (e) => {
@@ -35,12 +43,17 @@ export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) 
         <Container component={'div'} sx={{ flex: '0' }}>
           {!folder.loading ? (
             <>
-              <Icon.icons.Edit onClick={onEdit} fontSize="small" />
               {folder.files.length === 0 && folder.folders.length === 0 && !folder.isFixed ? (
                 <Icon.icons.Delete onClick={() => onFolderDeleteRequest(folder)} fontSize="small" />
               ) : null}
-              {folder.metadata?.context ? (
-                <Tooltip title={folder.metadata?.context}>
+              {folder.metadata.context ? (
+                <Tooltip
+                  title={
+                    <div style={{ whiteSpace: 'pre-line' }}>
+                      {getFolderToolTip(folder.metadata)}
+                    </div>
+                  }
+                >
                   <Icon.icons.Info onClick={onEdit} fontSize="small" />
                 </Tooltip>
               ) : null}

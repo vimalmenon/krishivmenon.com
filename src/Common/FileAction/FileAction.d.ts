@@ -1,12 +1,12 @@
-import { IFile, IGenericParam } from '@types';
+import { IFile, IGenericMethod, IGenericParam } from '@types';
 
 export interface IFileAction {
   file: IFile;
   width?: number;
   height?: number;
-  onFileEditSave: IGenericParam<IFile>;
   onViewFile: IGenericParam<IFile>;
   onFileMoveRequest: IGenericParam<IFile>;
   onFileDeleteRequest: IGenericParam<IFile>;
   onFileConvert: IGenericParam<IFile>;
+  onFileEdit: IGenericMethod;
 }

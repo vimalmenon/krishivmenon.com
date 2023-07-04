@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+
 import { AuthStatus, StorageKey } from '@constant';
 import { IProfile, ReactChildren, ThemeType } from '@types';
 
@@ -35,7 +38,7 @@ export const AppProvider: React.FC<ReactChildren> = ({ children }) => {
         setAuthStatus,
       }}
     >
-      {children}
+      <LocalizationProvider dateAdapter={AdapterDayjs}>{children}</LocalizationProvider>
     </Context.Provider>
   );
 };

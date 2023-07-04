@@ -15,7 +15,7 @@ export const AddEditFolder: React.FC = () => {
   const { onFolderAddEditCancel, onFolderAddEditSave, folder, addEditFolder } = useFolderHelper();
   const [label, setLabel] = React.useState<string>('');
   const [context, setContext] = React.useState<string>('');
-  const [date, setDate] = React.useState<string | null | undefined>(null);
+  const [date, setDate] = React.useState<string | null | undefined>();
 
   const updateInput: IGenericParam<React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>> = (
     e
@@ -35,14 +35,22 @@ export const AddEditFolder: React.FC = () => {
     await onFolderAddEditSave({
       label,
       context,
+      date,
     });
     setLabel('');
     setContext('');
+  };
+  const onShowDate: IGenericMethod = () => {
+    setDate(null);
+  };
+  const onRemoveDate: IGenericMethod = () => {
+    setDate(undefined);
   };
   React.useEffect(() => {
     if (folder) {
       setLabel(folder.label);
       setContext(folder.metadata?.context || '');
+      setDate(folder.metadata?.date ? folder.metadata?.date : undefined);
     }
   }, [folder]);
   return (
@@ -67,7 +75,12 @@ export const AddEditFolder: React.FC = () => {
             value={context}
             onChange={(e) => setContext(e.target.value)}
           />
-          {date ? (
+          {date === undefined ? (
+            <Container component="div" sx={{ justifyContent: 'end' }}>
+              <Icon Icon={Icon.icons.Add} label="Add Date" onClick={onShowDate} />
+            </Container>
+          ) : null}
+          {date !== undefined ? (
             <Container component="div">
               <Container component="div" sx={{ flex: 1 }}>
                 <DatePicker
@@ -80,14 +93,10 @@ export const AddEditFolder: React.FC = () => {
                 />
               </Container>
               <div>
-                <Icon Icon={Icon.icons.Delete} label="Remove" />
+                <Icon Icon={Icon.icons.Delete} label="Remove Date" onClick={onRemoveDate} />
               </div>
             </Container>
-          ) : (
-            <Container component="div" sx={{ justifyContent: 'end' }}>
-              <Icon Icon={Icon.icons.Add} label="Add Date" />
-            </Container>
-          )}
+          ) : null}
         </Container>
       </Dialog.Body>
       <Dialog.Footer>

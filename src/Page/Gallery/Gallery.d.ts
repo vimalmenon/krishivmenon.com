@@ -82,4 +82,5 @@ export interface IGallery {
 export interface IFolderAddEditSaveParams {
   label: string;
   context: string;
+  date?: string;
 }

@@ -45,6 +45,7 @@ export const rootFolder: IGalleryFolder = {
   isFileFolded: false,
   isFileLocked: true,
   selectedPage: 1,
+  metadata: {},
 };
 
 export const initialContextValue: IGalleryContext = {
@@ -263,14 +264,19 @@ export const useFolderHelper = (): IUseFolderHelper => {
   const onFolderAddEditSave: IGeneric<IFolderAddEditSaveParams, Promise<unknown>> = async ({
     label,
     context,
+    date,
   }: IFolderAddEditSaveParams) => {
+    const metadata: Record<string, string> = {
+      context,
+    };
+    if (date) {
+      metadata['date'] = date;
+    }
     if (addEditFolder === 'ADD') {
       const createdFolder: IFolder = {
         id: '',
         label: label,
-        metadata: {
-          context,
-        },
+        metadata,
         parent: currentFolderId,
       };
       const result = await makeApiCall<IFolder[]>(apis.createFolder(createdFolder));
@@ -278,7 +284,7 @@ export const useFolderHelper = (): IUseFolderHelper => {
     }
     if (folder && addEditFolder === 'EDIT') {
       const result = await makeApiCall<IFolder[]>(
-        apis.updateFolderData({ id: folder.id }, { ...folder, label, metadata: { context } })
+        apis.updateFolderData({ id: folder.id }, { ...folder, label, metadata })
       );
       onFolderUpdate(result, currentFolder);
       setFolder(null);

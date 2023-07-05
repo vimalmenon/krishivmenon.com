@@ -87,6 +87,7 @@ Table Name : Application
   appKey        : string
   sortKey       : string
   createdBy     : string
+  updatedBy     : string
   createdDate   : string
   updatedDate   : string
 
@@ -97,15 +98,12 @@ IFile:
   metadata?: Record<string, string>;
   label: string;
   type: string;
-  private: boolean;
-  orphan: boolean;
 
 IFolder:
   id: string
   content: string[]
-  alias: string;
-  type: string;
-  private: boolean;
+  label: string
+  isPrivate: boolean;
 
 INote:
   title: string;

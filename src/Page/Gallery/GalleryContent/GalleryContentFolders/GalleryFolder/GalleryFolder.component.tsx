@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Hidden from '@mui/material/Hidden';
 import Skeleton from '@mui/material/Skeleton';
 import Tooltip from '@mui/material/Tooltip';
 import { clsx } from 'clsx';
@@ -25,7 +26,8 @@ export const getFolderToolTip = (value: Record<string, string>): string => {
   return `${value.context}`;
 };
 export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) => {
-  const { onFolderClick, onFolderEdit, onFolderDeleteRequest } = useFolderHelper();
+  const { onFolderClick, onFolderEdit, onFolderDeleteRequest, onFolderDoubleClick } =
+    useFolderHelper();
   const onEdit: React.MouseEventHandler<SVGSVGElement> = (e) => {
     e.stopPropagation();
     onFolderEdit(folder);
@@ -33,6 +35,7 @@ export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) 
   return (
     <FolderStyleRoot
       onClick={(e) => onFolderClick(e, folder)}
+      onTouchEnd={() => onFolderDoubleClick(folder)}
       className={clsx({ active: isSelected })}
     >
       <FolderIconStyle>
@@ -41,24 +44,29 @@ export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) 
         </Container>
 
         <Container component={'div'} sx={{ flex: '0' }}>
-          {!folder.loading ? (
-            <>
-              {folder.files.length === 0 && folder.folders.length === 0 && !folder.isFixed ? (
-                <Icon.icons.Delete onClick={() => onFolderDeleteRequest(folder)} fontSize="small" />
-              ) : null}
-              {folder.metadata.context ? (
-                <Tooltip
-                  title={
-                    <div style={{ whiteSpace: 'pre-line' }}>
-                      {getFolderToolTip(folder.metadata)}
-                    </div>
-                  }
-                >
-                  <Icon.icons.Info onClick={onEdit} fontSize="small" />
-                </Tooltip>
-              ) : null}
-            </>
-          ) : null}
+          <Hidden lgDown={true}>
+            {!folder.loading ? (
+              <>
+                {folder.files.length === 0 && folder.folders.length === 0 && !folder.isFixed ? (
+                  <Icon.icons.Delete
+                    onClick={() => onFolderDeleteRequest(folder)}
+                    fontSize="small"
+                  />
+                ) : null}
+                {folder.metadata.context ? (
+                  <Tooltip
+                    title={
+                      <div style={{ whiteSpace: 'pre-line' }}>
+                        {getFolderToolTip(folder.metadata)}
+                      </div>
+                    }
+                  >
+                    <Icon.icons.Info fontSize="small" onClick={onEdit} />
+                  </Tooltip>
+                ) : null}
+              </>
+            ) : null}
+          </Hidden>
         </Container>
       </FolderIconStyle>
       <FolderLabelStyle>{folder.label}</FolderLabelStyle>

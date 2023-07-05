@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 
 import { Icon, Profile } from '@common';
 import { AuthStatus } from '@constant';
-import { useCommonAuthProvider, useCommonContext } from '@context';
+import { useCommonAuthProvider, useAuthHelper } from '@context';
 import { NavigationList } from '@data';
 
 import { SideNavigationList, SideNavigationRoot } from './SideNavigation.style';
@@ -18,7 +18,7 @@ import { SideNavigationList, SideNavigationRoot } from './SideNavigation.style';
 export const SideNavigation: React.FC = () => {
   const { push, asPath } = useRouter();
   const { signOut } = useCommonAuthProvider();
-  const { authStatus } = useCommonContext();
+  const { authStatus } = useAuthHelper();
   const [collapseNavigation, setCollapseNavigation] = React.useState<boolean>(true);
   const [collapseOthers, setCollapseOthers] = React.useState<boolean>(true);
   return (

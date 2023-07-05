@@ -17,6 +17,9 @@ export const GalleryContentFolderStyle = styled('div')(({ theme }) => {
     display: 'grid',
     gap: theme.spacing(2),
     gridTemplateColumns: 'repeat(auto-fill, 300px)',
+    [theme.breakpoints.down('sm')]: {
+      gridTemplateColumns: '1fr',
+    },
   };
 });
 export const GalleryContentFilesStyle = styled('div')(({ theme }) => {

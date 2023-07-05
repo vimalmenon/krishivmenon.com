@@ -3,12 +3,13 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 import { AuthStatus } from '@constant';
-import { useCommonContext } from '@context';
+import { useAuthHelper, useCommonContext } from '@context';
 
 import { ProfileRoot } from './Profile.style';
 
 export const Profile: React.FC = () => {
-  const { profile, authStatus } = useCommonContext();
+  const { profile } = useCommonContext();
+  const { authStatus } = useAuthHelper();
   if (authStatus === AuthStatus.Authenticating) {
     return (
       <ProfileRoot>

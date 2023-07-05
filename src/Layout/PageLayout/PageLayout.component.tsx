@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import { MetaData, ErrorBoundary, Authenticating } from '@common';
 import { AuthStatus } from '@constant';
-import { useCommonContext } from '@context';
+import { useAuthHelper } from '@context';
 import { navigation } from '@data';
 import { useUser } from '@hook';
 import { Login, Unauthorized } from '@page';
@@ -20,7 +20,7 @@ import {
 } from '../';
 
 export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, title }) => {
-  const { authStatus } = useCommonContext();
+  const { authStatus } = useAuthHelper();
   if (authStatus === AuthStatus.NotAuthenticated) {
     return (
       <NotAuthenticatedPage title={navigation.Login.title}>
@@ -30,39 +30,34 @@ export const PageLayout: React.FC<ReactChildren & IBaseLayout> = ({ children, ti
   }
   if (authStatus === AuthStatus.UnAuthorized) {
     return (
-      <AuthorizedPage title={title}>
-        <PageLayoutAside />
-        <PageLayoutAsideMobile />
-        <MainPageContent>
-          <ErrorBoundary>
-            <Unauthorized />
-          </ErrorBoundary>
-        </MainPageContent>
-      </AuthorizedPage>
+      <NotAuthenticatedPage title={title}>
+        <ErrorBoundary>
+          <Unauthorized />
+        </ErrorBoundary>
+      </NotAuthenticatedPage>
     );
   }
   if (authStatus === AuthStatus.Authenticating) {
+    return (
+      <NotAuthenticatedPage title={title}>
+        <ErrorBoundary>
+          <Authenticating />
+        </ErrorBoundary>
+      </NotAuthenticatedPage>
+    );
+  }
+  if (authStatus === AuthStatus.Authorized) {
     return (
       <AuthorizedPage title={title}>
         <PageLayoutAside />
         <PageLayoutAsideMobile />
         <MainPageContent>
-          <ErrorBoundary>
-            <Authenticating />
-          </ErrorBoundary>
+          <ErrorBoundary>{children}</ErrorBoundary>
         </MainPageContent>
       </AuthorizedPage>
     );
   }
-  return (
-    <AuthorizedPage title={title}>
-      <PageLayoutAside />
-      <PageLayoutAsideMobile />
-      <MainPageContent>
-        <ErrorBoundary>{children}</ErrorBoundary>
-      </MainPageContent>
-    </AuthorizedPage>
-  );
+  return null;
 };
 
 const NotAuthenticatedPage: React.FC<ReactChildren & IBaseLayout> = ({ title, children }) => {

@@ -332,6 +332,7 @@ export const useFolderHelper = (): IUseFolderHelper => {
     onFolderDeleteRequest,
     onDeleteConfirmCancel,
     onFolderClick: onClick,
+    onFolderDoubleClick,
   };
 };
 

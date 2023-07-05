@@ -73,6 +73,7 @@ export interface IUseFolderHelper {
   onFolderDeleteRequest: IGenericParam<IGalleryFolder>;
   onDeleteConfirmCancel: IGenericMethod;
   onFolderClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>, value: IGalleryFolder) => void;
+  onFolderDoubleClick: IGenericParam<IGalleryFolder>;
 }
 
 export interface IGallery {

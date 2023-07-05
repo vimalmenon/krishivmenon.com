@@ -37,7 +37,7 @@ export interface IApi<T = unknown> {
   headers?: Record<string, string>;
 }
 
-export type StorageKeyType = 'theme' | 'refreshToken' | 'idToken' | 'tokenExpiry';
+export type StorageKeyType = 'theme' | 'refreshToken' | 'idToken';
 
 export type PageModeType = 'ADD' | 'EDIT' | 'VIEW';
 

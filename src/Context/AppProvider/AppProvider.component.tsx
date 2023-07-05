@@ -3,7 +3,7 @@ import React from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
-import { AuthStatus, StorageKey } from '@constant';
+import { StorageKey } from '@constant';
 import { IProfile, ReactChildren, ThemeType } from '@types';
 
 import { Context, initialValue } from './AppProvider.service';
@@ -13,7 +13,6 @@ export const AppProvider: React.FC<ReactChildren> = ({ children }) => {
   const [drawerOpen, setDrawerOpen] = React.useState(initialValue.drawerOpen);
   const [profile, setProfile] = React.useState<IProfile | null>(initialValue.profile);
   const [storage, setStorage] = React.useState<Record<string, string>>(initialValue.storage);
-  const [authStatus, setAuthStatus] = React.useState<AuthStatus>(AuthStatus.NotAuthenticated);
   const [apiCount, setApiCount] = React.useState<number>(initialValue.apiCount);
   React.useEffect(() => {
     setStorage(JSON.parse(localStorage.getItem(StorageKey) || '{}'));
@@ -31,11 +30,9 @@ export const AppProvider: React.FC<ReactChildren> = ({ children }) => {
         apiCount,
         setStorage,
         setProfile,
-        authStatus,
         drawerOpen,
         setApiCount,
         setDrawerOpen,
-        setAuthStatus,
       }}
     >
       <LocalizationProvider dateAdapter={AdapterDayjs}>{children}</LocalizationProvider>

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useFileUpload } from '@common';
 import { IFile, IGalleryFolder, PageModeType } from '@types';
 
 import { FileActionType, IGallery } from './Gallery';
@@ -43,48 +42,30 @@ export const Gallery: React.FC<IGallery> = ({ folder: folderId = rootFolder.id }
 
   const [fileAction, setFileAction] = React.useState<FileActionType>(null);
 
-  const {
-    files,
-    clearFiles,
-    onDeleteFile,
-    onConvertFile,
-    onDropAccepted,
-    showFileUploader,
-    onFileSetLoading,
-    setShowFileUploader,
-  } = useFileUpload();
   return (
     <GalleryContext.Provider
       value={{
         file,
         setFile,
-        files,
         folder,
         folderMap,
-        clearFiles,
         fileAction,
         selectedFile,
         setFolderMap,
         currentFolder,
         setFolder,
-        onDeleteFile,
         addEditFolder,
         selectedFolder,
-        onConvertFile,
         setFileAction,
         currentFolderId,
         deleteConfirm,
-        onDropAccepted,
         onFolderUpdate,
         syncAllFolders,
         setAddEditFolder,
         setSelectedFile,
-        onFileSetLoading,
-        showFileUploader,
         setCurrentFolderId,
         setDeleteConfirm,
         setSelectedFolder,
-        setShowFileUploader,
       }}
     >
       <GalleryChildren />

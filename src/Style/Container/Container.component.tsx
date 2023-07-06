@@ -12,6 +12,7 @@ export const Container: React.FC<ReactChildren & IContainer> = ({
   sx = {},
   className = '',
   isMain = false,
+  ...props
 }) => {
   if (isMain) {
     return (
@@ -30,6 +31,7 @@ export const Container: React.FC<ReactChildren & IContainer> = ({
       component={component}
       sx={{ ...sx, display, flexDirection: direction }}
       className={className}
+      {...props}
     >
       {children}
     </Box>

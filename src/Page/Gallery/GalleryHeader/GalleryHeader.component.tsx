@@ -7,11 +7,10 @@ import { MaxFolderUploadDepth } from '@constant';
 import { Container } from '@style';
 
 import { GalleryHeaderRoot } from './GalleryHeader.style';
-import { useFileUploadHelper, useFolderHelper } from '../Gallery.service';
+import { useFolderHelper } from '../Gallery.service';
 
 export const GalleryHeader: React.FC = () => {
   const { onFolderChange, folderMap, onFolderAdd, currentFolder } = useFolderHelper();
-  const { onFileUploadOpen } = useFileUploadHelper();
   return (
     <GalleryHeaderRoot>
       <Breadcrumbs>
@@ -34,7 +33,7 @@ export const GalleryHeader: React.FC = () => {
         ) : (
           <>
             {currentFolder.id !== 'root' && (
-              <Icon Icon={Icon.icons.CloudUpload} label="Upload files" onClick={onFileUploadOpen} />
+              <Icon Icon={Icon.icons.CloudUpload} label="Upload files" />
             )}
             {currentFolder.breadcrumbs.length < MaxFolderUploadDepth && (
               <Icon Icon={Icon.icons.Add} label="Add folder" onClick={onFolderAdd} />

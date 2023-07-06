@@ -7,18 +7,15 @@ import {
   IGenericParam,
   IGenericReturn,
 } from '@types';
-import { IFileUploadExternal } from 'src/Common/FileUpload/FileUpload';
 
 export type OnConvertFileType = (file: IUploadedFile, index: number) => Promise<unknown>;
 
-export interface IGalleryContext extends IFileUploadExternal {
+export interface IGalleryContext {
   currentFolderId: string;
   deleteConfirm: boolean;
   selectedFile: IFile | null;
-  clearFiles: IGenericMethod;
   addEditFolder: PageModeType;
   folder: IGalleryFolder | null;
-  onConvertFile: OnConvertFileType;
   selectedFolder: IGalleryFolder | null;
   folderMap: Record<string, IGalleryFolder>;
   syncAllFolders: IGenericMethod;

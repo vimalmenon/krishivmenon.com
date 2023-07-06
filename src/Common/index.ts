@@ -8,7 +8,6 @@ export * from './Profile';
 export * from './Profile';
 export * from './Confirm';
 export * from './MetaData';
-export * from './FileUpload';
 export * from './FileAction';
 export * from './FileViewer';
 export * from './SwitchTheme';

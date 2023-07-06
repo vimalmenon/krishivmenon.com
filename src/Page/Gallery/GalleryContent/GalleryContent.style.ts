@@ -49,3 +49,9 @@ export const GalleryContentFilesRoot = styled('div')(({ theme }) => {
     flexDirection: 'column',
   };
 });
+
+export const GalleryFileUploadStyle = styled('section')(() => ({
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
+}));

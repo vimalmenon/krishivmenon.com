@@ -5,9 +5,10 @@ import Divider from '@mui/material/Divider';
 import { Icon } from '@common';
 
 import { IGalleryHelper } from './GalleryHelper';
-import { useFileHelper, useFolderHelper } from '../../Gallery.service';
+import { useFileHelper, useFileUploadHelper, useFolderHelper } from '../../Gallery.service';
 import { GalleryContentFolderStyle, GalleryContentFilesRoot } from '../GalleryContent.style';
 import { GalleryFolderLoading } from '../GalleryContentFolders/GalleryFolder';
+import { GalleryUploadContainer } from '../GalleryUploadContainer';
 
 export const GalleryHelper: React.FC<IGalleryHelper> = ({
   gallery,
@@ -16,6 +17,7 @@ export const GalleryHelper: React.FC<IGalleryHelper> = ({
 }) => {
   const { currentFolder, onFolderToggle } = useFolderHelper();
   const { onFileToggle } = useFileHelper();
+  const { uploadFiles } = useFileUploadHelper();
 
   if (gallery.loading) {
     return (
@@ -31,43 +33,45 @@ export const GalleryHelper: React.FC<IGalleryHelper> = ({
   }
   return (
     <GalleryContentFilesRoot>
-      {currentFolder.folders.length ? (
-        <>
-          <div>
-            <Divider textAlign="left">
-              <Chip
-                label="Folders"
-                icon={
-                  currentFolder.isFolderFolded ? <Icon.icons.DownArrow /> : <Icon.icons.UpArrow />
-                }
-                onClick={() => onFolderToggle(currentFolder)}
-              />
-            </Divider>
-          </div>
-          <Collapse in={!currentFolder.isFolderFolded}>
-            <GalleryFolder />
-          </Collapse>
-        </>
-      ) : null}
+      <GalleryUploadContainer uploadFiles={uploadFiles} canUpload={currentFolder.canUploadFile}>
+        {currentFolder.folders.length ? (
+          <>
+            <div>
+              <Divider textAlign="left">
+                <Chip
+                  label="Folders"
+                  icon={
+                    currentFolder.isFolderFolded ? <Icon.icons.DownArrow /> : <Icon.icons.UpArrow />
+                  }
+                  onClick={() => onFolderToggle(currentFolder)}
+                />
+              </Divider>
+            </div>
+            <Collapse in={!currentFolder.isFolderFolded}>
+              <GalleryFolder />
+            </Collapse>
+          </>
+        ) : null}
 
-      {currentFolder.files.length ? (
-        <>
-          <div>
-            <Divider textAlign="left">
-              <Chip
-                label="Files"
-                icon={
-                  currentFolder.isFileFolded ? <Icon.icons.DownArrow /> : <Icon.icons.UpArrow />
-                }
-                onClick={() => onFileToggle(currentFolder)}
-              />
-            </Divider>
-          </div>
-          <Collapse in={!currentFolder.isFileFolded}>
-            <GalleryFile />
-          </Collapse>
-        </>
-      ) : null}
+        {currentFolder.files.length ? (
+          <>
+            <div>
+              <Divider textAlign="left">
+                <Chip
+                  label="Files"
+                  icon={
+                    currentFolder.isFileFolded ? <Icon.icons.DownArrow /> : <Icon.icons.UpArrow />
+                  }
+                  onClick={() => onFileToggle(currentFolder)}
+                />
+              </Divider>
+            </div>
+            <Collapse in={!currentFolder.isFileFolded}>
+              <GalleryFile />
+            </Collapse>
+          </>
+        ) : null}
+      </GalleryUploadContainer>
     </GalleryContentFilesRoot>
   );
 };

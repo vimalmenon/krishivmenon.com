@@ -47,7 +47,9 @@ export const GalleryFolder: React.FC<IGalleryFolder> = ({ folder, isSelected }) 
           <Hidden lgDown={true}>
             {!folder.loading ? (
               <>
-                {folder.files.length === 0 && folder.folders.length === 0 && !folder.isFixed ? (
+                {folder.files.length === 0 &&
+                folder.folders.length === 0 &&
+                !folder.canCreateFolder ? (
                   <Icon.icons.Delete
                     onClick={() => onFolderDeleteRequest(folder)}
                     fontSize="small"

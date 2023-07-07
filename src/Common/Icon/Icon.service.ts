@@ -6,6 +6,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import ErrorIcon from '@mui/icons-material/Error';
 import FolderIcon from '@mui/icons-material/Folder';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
@@ -38,4 +39,5 @@ export const CommonIcons: Record<IconTypes, typeof SaveIcon | typeof GoogleIcon>
   Info: InfoIcon,
   Move: MoveUpIcon,
   OpenInFull: OpenInFullIcon,
+  Error: ErrorIcon,
 };

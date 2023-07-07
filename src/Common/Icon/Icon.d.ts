@@ -18,7 +18,8 @@ export type IconTypes =
   | 'Process'
   | 'Info'
   | 'Move'
-  | 'OpenInFull';
+  | 'OpenInFull'
+  | 'Error';
 
 export interface IIcon<T> {
   Icon: T;

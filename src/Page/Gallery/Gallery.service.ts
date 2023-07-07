@@ -43,35 +43,29 @@ export const rootFolder: IGalleryFolder = {
   breadcrumbs: ['root'],
   isFolderFolded: false,
   isFileFolded: false,
-  isFileLocked: true,
+  canCreateFolder: true,
+  canUploadFile: false,
+  canDeleteFolder: false,
   selectedPage: 1,
   metadata: {},
 };
 
 export const initialContextValue: IGalleryContext = {
   file: null,
-  files: [],
   folder: null,
   selectedFile: null,
   deleteConfirm: false,
   selectedFolder: null,
-  showFileUploader: false,
-  clearFiles: NotImplemented,
   currentFolderId: rootFolder.id,
   addEditFolder: 'VIEW',
   setFile: NotImplemented,
   setFolder: NotImplemented,
   setFolderMap: NotImplemented,
-  onDeleteFile: NotImplemented,
-  onConvertFile: NotImplemented,
-  onDropAccepted: NotImplemented,
   onFolderUpdate: NotImplemented,
   setSelectedFile: NotImplemented,
   setCurrentFolderId: NotImplemented,
   setDeleteConfirm: NotImplemented,
-  onFileSetLoading: NotImplemented,
   setSelectedFolder: NotImplemented,
-  setShowFileUploader: NotImplemented,
   setAddEditFolder: NotImplemented,
   syncAllFolders: NotImplemented,
   folderMap: {
@@ -278,6 +272,9 @@ export const useFolderHelper = (): IUseFolderHelper => {
         label: label,
         metadata,
         parent: currentFolderId,
+        canCreateFolder: true,
+        canUploadFile: true,
+        canDeleteFolder: true,
       };
       const result = await makeApiCall<IFolder[]>(apis.createFolder(createdFolder));
       onFolderUpdate(result, currentFolder);
@@ -459,39 +456,24 @@ export const useFileHelper = () => {
 
 export const useFileUploadHelper = () => {
   const {
-    files,
-    clearFiles,
     setFolderMap,
-    onDeleteFile,
     currentFolderId,
-    onConvertFile,
-    onDropAccepted,
     setSelectedFile,
-    onFileSetLoading,
     setDeleteConfirm,
     fileAction,
     setFileAction,
   } = React.useContext<IGalleryContext>(GalleryContext);
   const { makeApiCall } = useCommonApiContext();
 
-  const onFileUploadOpen: IGenericMethod = () => {
-    setFileAction('UPLOAD_FILE');
-  };
-  const onFileUploadCancel: IGenericMethod = () => {
-    setFileAction(null);
-  };
-
-  const uploadFiles: IGenericMethod = async () => {
+  const uploadFiles: IGenericParam<File[]> = async (files) => {
     await Promise.all(
-      files.map(async (file, key) => {
-        onFileSetLoading(key, true);
+      files.map(async (file) => {
         await makeApiCall(
           apis.uploadToS3(currentFolderId, {
-            data: file.file,
-            name: file.label,
+            data: file,
+            name: file.name,
           })
         );
-        onFileSetLoading(key, false);
       })
     );
     const result = await makeApiCall<IFile[]>(apis.getFilesFromS3({ folder: currentFolderId }));
@@ -506,21 +488,14 @@ export const useFileUploadHelper = () => {
       };
     });
     setFileAction(null);
-    clearFiles();
   };
   const onFileDeleteRequest: IGenericParam<IFile> = (file) => {
     setSelectedFile(file);
     setDeleteConfirm(true);
   };
   return {
-    files,
     fileAction,
     uploadFiles,
-    onDeleteFile,
-    onConvertFile,
-    onDropAccepted,
-    onFileUploadOpen,
-    onFileUploadCancel,
     onFileDeleteRequest,
   };
 };

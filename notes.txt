@@ -17,10 +17,8 @@ High Priority:
   [Feature] Clicking on name at the top should redirect to Home page
   [Feature] Notes has to be private
   [UI] Improve UI for 400 Page
-  [UI] Improve UI for gallery
   [UI] Improve UI for unauthorized page
   [UI] Improve UI for authorizing page
-  [Responsive] Responsive UI for gallery
   [Responsive] Responsive UI for notes
   [UI] Fixing the scroll
   [Check] Check the page in IPad
@@ -36,7 +34,7 @@ Medium Priority
   [Feature] Search for library for Image viewer (Lightbox)
   [Feature] Add framer motion for animation
   [Improvement] Increase the test coverage to 80%
-  [Feature] Allow push only on 80% coverage
+  [Enhancement] Increase test coverage to 80%
   [Feature] Ability to invalidate the Id token
   [Feature] Need to create a tags for notes and Library
   [Feature] Create content for Home page

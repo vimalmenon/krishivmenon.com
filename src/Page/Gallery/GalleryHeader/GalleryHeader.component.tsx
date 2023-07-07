@@ -32,12 +32,13 @@ export const GalleryHeader: React.FC = () => {
           </Container>
         ) : (
           <>
-            {currentFolder.id !== 'root' && (
+            {currentFolder.canUploadFile && (
               <Icon Icon={Icon.icons.CloudUpload} label="Upload files" />
             )}
-            {currentFolder.breadcrumbs.length < MaxFolderUploadDepth && (
-              <Icon Icon={Icon.icons.Add} label="Add folder" onClick={onFolderAdd} />
-            )}
+            {currentFolder.breadcrumbs.length < MaxFolderUploadDepth &&
+              currentFolder.canCreateFolder && (
+                <Icon Icon={Icon.icons.Add} label="Add folder" onClick={onFolderAdd} />
+              )}
           </>
         )}
       </div>

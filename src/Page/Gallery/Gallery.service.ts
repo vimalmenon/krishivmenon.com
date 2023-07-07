@@ -43,7 +43,9 @@ export const rootFolder: IGalleryFolder = {
   breadcrumbs: ['root'],
   isFolderFolded: false,
   isFileFolded: false,
-  isFileLocked: true,
+  canCreateFolder: true,
+  canUploadFile: false,
+  canDeleteFolder: false,
   selectedPage: 1,
   metadata: {},
 };
@@ -270,6 +272,9 @@ export const useFolderHelper = (): IUseFolderHelper => {
         label: label,
         metadata,
         parent: currentFolderId,
+        canCreateFolder: true,
+        canUploadFile: true,
+        canDeleteFolder: true,
       };
       const result = await makeApiCall<IFolder[]>(apis.createFolder(createdFolder));
       onFolderUpdate(result, currentFolder);

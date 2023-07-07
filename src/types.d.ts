@@ -57,9 +57,9 @@ export interface IFolder extends IBaseDB {
   metadata: Record<string, string>;
   label: string;
   parent: string;
-  isFixed?: boolean;
-  isFolderLocked?: boolean;
-  isFileLocked?: boolean;
+  canCreateFolder: boolean;
+  canUploadFile: boolean;
+  canDeleteFolder: boolean;
 }
 
 export interface IGalleryFolder extends IFolder {

@@ -33,7 +33,7 @@ export const GalleryHelper: React.FC<IGalleryHelper> = ({
   }
   return (
     <GalleryContentFilesRoot>
-      <GalleryUploadContainer uploadFiles={uploadFiles} canUpload={!currentFolder.isFileLocked}>
+      <GalleryUploadContainer uploadFiles={uploadFiles} canUpload={currentFolder.canUploadFile}>
         {currentFolder.folders.length ? (
           <>
             <div>

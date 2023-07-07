@@ -38,7 +38,7 @@ export const MoveFile: React.FC = () => {
         </Container>
         <Container component={'div'} sx={{ flexWrap: 'wrap', gap: 1.5 }}>
           {folder.folders.map((value) => {
-            if (folderMap[value].isFixed) {
+            if (folderMap[value].canCreateFolder) {
               return null;
             }
             return (

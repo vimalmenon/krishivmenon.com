@@ -6,6 +6,7 @@ High Priority:
   [Feature] Support Mobile response UI
   [Feature] Responsive design for gallery
   [Feature] Ability to date Image
+  [Enhancement] Auto deploy when pushed to master
   [Feature] Ability to make the folder private
   [UI] Improve the UI for Add Edit Item
   [UI] Improve the UI for no file and folder found

@@ -29,7 +29,11 @@ export const GalleryHelper: React.FC<IGalleryHelper> = ({
     );
   }
   if (gallery.files.length === 0 && gallery.folders.length === 0) {
-    return <GalleryContentFilesRoot>No files and folder found.</GalleryContentFilesRoot>;
+    return (
+      <GalleryUploadContainer uploadFiles={uploadFiles} canUpload={currentFolder.canUploadFile}>
+        <GalleryContentFilesRoot>No files and folder found.</GalleryContentFilesRoot>
+      </GalleryUploadContainer>
+    );
   }
   return (
     <GalleryContentFilesRoot>

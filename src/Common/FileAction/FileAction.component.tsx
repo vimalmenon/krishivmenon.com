@@ -9,8 +9,6 @@ import { IFileAction } from './FileAction';
 
 export const FileAction: React.FC<IFileAction> = ({
   file,
-  width,
-  height,
   onFileEdit,
   onViewFile,
   onFileConvert,
@@ -40,7 +38,7 @@ export const FileAction: React.FC<IFileAction> = ({
         component={'div'}
         sx={{ flex: '1 1 100%', justifyContent: 'center', alignItems: 'center' }}
       >
-        <FileViewer file={file} width={width} height={height} />
+        <FileViewer file={file} />
       </Container>
       <Container component={'div'} sx={{ justifyContent: 'space-between', flex: '0 0 40px' }}>
         {file.type === 'image/heic' ? (

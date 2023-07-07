@@ -3,13 +3,13 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
 High Priority:
-  [Feature] Ability to Date to Image and Folder
+  [Feature] Support Mobile response UI
+  [Feature] Responsive design for gallery
+  [Feature] Ability to date Image
   [Feature] Ability to make the folder private
   [UI] Improve the UI for Add Edit Item
   [UI] Improve the UI for no file and folder found
-  [Enhancement] Support for folder directory
   [Feature] Dialog Should be unable to cancel when some process is going on
-  [Feature] Responsive design for gallery
   [Feature] selecting of notes
   [Loading] Loading for notes
   [Feature] Responsive design for notes
@@ -17,10 +17,8 @@ High Priority:
   [Feature] Clicking on name at the top should redirect to Home page
   [Feature] Notes has to be private
   [UI] Improve UI for 400 Page
-  [UI] Improve UI for gallery
   [UI] Improve UI for unauthorized page
   [UI] Improve UI for authorizing page
-  [Responsive] Responsive UI for gallery
   [Responsive] Responsive UI for notes
   [UI] Fixing the scroll
   [Check] Check the page in IPad
@@ -30,15 +28,13 @@ High Priority:
   [UI] Add a splash screen
   [Improvement] Convert EnvCheck to hooks
   [Feature] Need to work on main loading indicator
-  [Fix] Fix the breadcrumbs width
   [Feature] Ability to do next or previous on Image when expanded
-  [Feature] Image Loading indicator not working
   [Feature] Ability to show User and their group
 Medium Priority
   [Feature] Search for library for Image viewer (Lightbox)
   [Feature] Add framer motion for animation
   [Improvement] Increase the test coverage to 80%
-  [Feature] Allow push only on 80% coverage
+  [Enhancement] Increase test coverage to 80%
   [Feature] Ability to invalidate the Id token
   [Feature] Need to create a tags for notes and Library
   [Feature] Create content for Home page
@@ -47,16 +43,14 @@ Medium Priority
   [Feature] Setting up Sonar
   [Feature] Profile page
   [Feature] Setup Google Analytics
-  [UI] Need to make component adapt to Mobile screen
-  [Feature] Add to slim scroll
+  [Feature] Add slim scroll
   [Feature] Logout auth permanently
   [Feature] Ability to Logout when unauthorized
   [Feature] Ability to tag people
 Less Priority
+  [Feature] Add BDD testing
   [Feature] Setting up sonar
-  Add favicon
-  Add images
-  Pre signed image on request
+  [Enhancement] Add favicon
   [Feature] Set up roles
 
 
@@ -85,20 +79,6 @@ Table Name : Application
   createdDate   : string
   updatedDate   : string
 
-IFile:
-  id: string
-  name: string;
-  path: string
-  metadata?: Record<string, string>;
-  label: string;
-  type: string;
-
-IFolder:
-  id: string
-  content: string[]
-  label: string
-  isPrivate: boolean;
-
 INote:
   title: string;
   content: string;
@@ -106,6 +86,6 @@ INote:
 
 Common Commit
 # Refactor of code
-# Notes updated
+# Updated notes 
 # Package updated
 # Fix build

@@ -21,18 +21,6 @@ import {
   IFolderAddEditSaveParams,
 } from './Gallery';
 
-// const initialValue: IGalleryFolder = {
-//   id: '',
-//   label: '',
-//   files: [],
-//   folders: [],
-//   loading: false,
-//   parent: 'root',
-//   breadcrumbs: [],
-//   isFolderFolded: false,
-//   isFileFolded: false,
-// };
-
 export const rootFolder: IGalleryFolder = {
   files: [],
   id: 'root',

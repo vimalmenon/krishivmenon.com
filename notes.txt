@@ -7,7 +7,8 @@ High Priority:
   [Feature] Responsive design for gallery
   [Feature] Ability to date Image
   [Enhancement] Auto deploy when pushed to master
-  [Feature] Ability to make the folder private
+  [Feature] Show private folder to created user only
+  [Feature] Setting up sonar
   [UI] Improve the UI for Add Edit Item
   [UI] Improve the UI for no file and folder found
   [Feature] Dialog Should be unable to cancel when some process is going on
@@ -50,7 +51,7 @@ Medium Priority
   [Feature] Ability to tag people
 Less Priority
   [Feature] Add BDD testing
-  [Feature] Setting up sonar
+
   [Enhancement] Add favicon
   [Feature] Set up roles
 

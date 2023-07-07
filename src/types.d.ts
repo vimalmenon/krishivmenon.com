@@ -46,14 +46,6 @@ export type IGenericReturn<T> = () => T;
 export type IGenericParam<T> = (v: T) => void;
 export type IGeneric<T, K> = (v: T) => K;
 
-export interface IBaseContent {
-  uid: string;
-  alias: string;
-  type: string;
-  private?: boolean;
-  orphan: boolean;
-}
-
 export interface IBaseDB {
   createdBy?: string;
   createdDate?: string;
@@ -93,14 +85,6 @@ export interface IBaseResponse<T = unknown> {
   message: string;
   data: T;
   code: number;
-}
-
-export interface IAuthResponse {
-  picture: string;
-  email: string;
-  given_name: string;
-  exp: number;
-  iat: number;
 }
 
 export interface IProfile extends IBaseDB {

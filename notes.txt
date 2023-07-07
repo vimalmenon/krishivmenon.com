@@ -50,10 +50,9 @@ Medium Priority
   [Feature] Ability to Logout when unauthorized
   [Feature] Ability to tag people
 Less Priority
+  [Feature] Add BDD testing
   [Feature] Setting up sonar
-  Add favicon
-  Add images
-  Pre signed image on request
+  [Enhancement] Add favicon
   [Feature] Set up roles
 
 
@@ -82,20 +81,6 @@ Table Name : Application
   createdDate   : string
   updatedDate   : string
 
-IFile:
-  id: string
-  name: string;
-  path: string
-  metadata?: Record<string, string>;
-  label: string;
-  type: string;
-
-IFolder:
-  id: string
-  content: string[]
-  label: string
-  isPrivate: boolean;
-
 INote:
   title: string;
   content: string;
@@ -103,6 +88,6 @@ INote:
 
 Common Commit
 # Refactor of code
-# Notes updated
+# Updated notes 
 # Package updated
 # Fix build

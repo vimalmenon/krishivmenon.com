@@ -3,13 +3,13 @@ Finished Task:
   GitHub Action : Check and Deploy
   Basic dev setup
 High Priority:
-  [Feature] Ability to Date to Image and Folder
+  [Feature] Support Mobile response UI
+  [Feature] Responsive design for gallery
+  [Feature] Ability to date Image
   [Feature] Ability to make the folder private
   [UI] Improve the UI for Add Edit Item
   [UI] Improve the UI for no file and folder found
-  [Enhancement] Support for folder directory
   [Feature] Dialog Should be unable to cancel when some process is going on
-  [Feature] Responsive design for gallery
   [Feature] selecting of notes
   [Loading] Loading for notes
   [Feature] Responsive design for notes
@@ -30,9 +30,7 @@ High Priority:
   [UI] Add a splash screen
   [Improvement] Convert EnvCheck to hooks
   [Feature] Need to work on main loading indicator
-  [Fix] Fix the breadcrumbs width
   [Feature] Ability to do next or previous on Image when expanded
-  [Feature] Image Loading indicator not working
   [Feature] Ability to show User and their group
 Medium Priority
   [Feature] Search for library for Image viewer (Lightbox)
@@ -47,8 +45,7 @@ Medium Priority
   [Feature] Setting up Sonar
   [Feature] Profile page
   [Feature] Setup Google Analytics
-  [UI] Need to make component adapt to Mobile screen
-  [Feature] Add to slim scroll
+  [Feature] Add slim scroll
   [Feature] Logout auth permanently
   [Feature] Ability to Logout when unauthorized
   [Feature] Ability to tag people

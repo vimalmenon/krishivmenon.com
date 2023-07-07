@@ -9,7 +9,6 @@ High Priority:
   [UI] Improve the UI for no file and folder found
   [Enhancement] Support for folder directory
   [Feature] Dialog Should be unable to cancel when some process is going on
-  [Bug] First reload gives an issue with api refresh token
   [Feature] Responsive design for gallery
   [Feature] selecting of notes
   [Loading] Loading for notes
@@ -17,7 +16,6 @@ High Priority:
   [Feature] Change the upload implementation
   [Feature] Ability to change image orientation
   [Feature] Clicking on name at the top should redirect to Home page
-  [Feature] Check if first API is unauthorized or API not found
   [Feature] Notes has to be private
   [UI] Improve UI for 400 Page
   [UI] Improve UI for gallery

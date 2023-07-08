@@ -32,6 +32,7 @@ High Priority:
   [Feature] Need to work on main loading indicator
   [Feature] Ability to do next or previous on Image when expanded
   [Feature] Ability to show User and their group
+  [Enhancement] Reduce the warning less than 5
 Medium Priority
   [Feature] Search for library for Image viewer (Lightbox)
   [Feature] Add framer motion for animation

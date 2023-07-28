@@ -13,12 +13,6 @@ export interface IBaseLayout {
   title: string;
 }
 
-export interface IBaseDB {
-  createdDate?: string;
-  updatedDate?: string;
-  sortKey?: string;
-  createdBy?: string;
-}
 export interface INotes extends IBaseDB {
   id?: string;
   title: string;

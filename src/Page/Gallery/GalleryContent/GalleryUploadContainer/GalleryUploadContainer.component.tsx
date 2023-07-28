@@ -1,3 +1,5 @@
+import { MouseEventHandler } from 'react';
+
 import { useDropzone } from 'react-dropzone';
 
 import { AcceptVideo, AcceptImages } from '@constant';
@@ -11,6 +13,9 @@ export const GalleryUploadContainer: React.FC<ReactChildren & IGalleryUploadCont
   uploadFiles,
   canUpload = false,
 }) => {
+  const onClick: MouseEventHandler<HTMLElement> = (event) => {
+    event.preventDefault();
+  };
   const { getRootProps } = useDropzone({
     accept: { ...AcceptVideo, ...AcceptImages },
     onDropAccepted: uploadFiles,
@@ -18,7 +23,7 @@ export const GalleryUploadContainer: React.FC<ReactChildren & IGalleryUploadCont
   });
   const props = canUpload ? getRootProps() : {};
   return (
-    <GalleryFileUploadStyle {...props} onClick={(event: any) => event.preventDefault()}>
+    <GalleryFileUploadStyle {...props} onClick={onClick}>
       {children}
     </GalleryFileUploadStyle>
   );

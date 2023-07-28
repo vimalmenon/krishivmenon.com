@@ -6,7 +6,9 @@ High Priority:
   [Feature] Support Mobile response UI
   [Feature] Responsive design for gallery
   [Feature] Ability to date Image
-  [Feature] Ability to make the folder private
+  [Enhancement] Auto deploy when pushed to master
+  [Feature] Show private folder to created user only
+  [Feature] Setting up sonar
   [UI] Improve the UI for Add Edit Item
   [UI] Improve the UI for no file and folder found
   [Feature] Dialog Should be unable to cancel when some process is going on
@@ -30,6 +32,7 @@ High Priority:
   [Feature] Need to work on main loading indicator
   [Feature] Ability to do next or previous on Image when expanded
   [Feature] Ability to show User and their group
+  [Enhancement] Reduce the warning less than 5
 Medium Priority
   [Feature] Search for library for Image viewer (Lightbox)
   [Feature] Add framer motion for animation
@@ -49,7 +52,7 @@ Medium Priority
   [Feature] Ability to tag people
 Less Priority
   [Feature] Add BDD testing
-  [Feature] Setting up sonar
+
   [Enhancement] Add favicon
   [Feature] Set up roles
 
